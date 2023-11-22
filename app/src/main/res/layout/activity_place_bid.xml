@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.jobs.PlaceBidActivity">
+
+        <RelativeLayout
+            android:id="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/back"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/intercom_back"
+                app:tint="@color/black" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_bottom"
+            android:layout_below="@+id/rl_header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/place_a_bid_on"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sdp"
+                    app:fonts="@string/sfdiaply_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_project_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i_need_best_home_page_disgne"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:text="@string/paid_to_you"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/white_rounded_corner_10">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RtlSymmetry" />
+
+                        <android.edittext.EditTextSFTextRegular
+                            android:id="@+id/et_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:digits="0123456789."
+                            android:inputType="numberDecimal"
+                            android:maxLength="5"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            tools:ignore="RtlSymmetry" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/textgray" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_currency"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/dollar"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_bid_amount_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_9sdp"
+                    app:fonts="@string/sftext_regular"
+                    tools:ignore="RtlHardcoded" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="@string/delivery_in"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/white_rounded_corner_10">
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_deadline_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:background="@android:color/transparent"
+                        android:digits="0123456789"
+                        android:inputType="numberDecimal"
+                        android:maxLength="3"
+                        android:padding="@dimen/_10sdp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/textgray" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_deadline_type"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.4"
+                        android:background="@android:color/transparent"
+                        android:drawableEnd="@drawable/arrow_down"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/days"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:text="@string/describe_your_bid"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_describe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/white_rounded_corner_10">
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_describe_bid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/img_arrow"
+                        android:background="@android:color/transparent"
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:hint="@string/enter_your_proposal"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxHeight="@dimen/_90sdp"
+                        android:maxLines="6"
+                        android:lines="4"
+                        android:overScrollMode="always"
+                        android:padding="@dimen/_10sdp"
+                        android:scrollbarStyle="insideInset"
+                        android:scrollbars="vertical"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <ImageView
+                        android:id="@+id/img_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:contentDescription="@string/app_name"
+                        android:rotation="270"
+                        android:src="@drawable/arrow_down"
+                        android:visibility="gone"
+                        app:tint="@color/black" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:padding="@dimen/_10sdp"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_button_bg">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_place_bid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/_8sdp"
+                        android:text="@string/place_a_bid"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sftext_semibold" />
+
+                    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="@dimen/_17sdp"
+                        android:layout_height="@dimen/_17sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        app:cpbStyle="@style/CircularProgressBar"
+                        app:cpb_color="@color/white"
+                        app:cpb_colors="@array/progressColor"
+                        app:cpb_max_sweep_angle="300"
+                        app:cpb_min_sweep_angle="10"
+                        app:cpb_rotation_speed="1.0"
+                        app:cpb_stroke_width="@dimen/_2sdp"
+                        app:cpb_sweep_speed="1.0" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

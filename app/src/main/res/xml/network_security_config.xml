@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">gig.24task.com</domain>
+        <domain includeSubdomains="true">agent.24task.com</domain>
+        <domain includeSubdomains="true">3.85.154.200</domain>
+        <domain includeSubdomains="true">6fo9b3v2wg.execute-api.us-east-2.amazonaws.com</domain>
+    </domain-config>
+</network-security-config>

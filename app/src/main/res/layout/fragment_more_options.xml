@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingTop="@dimen/_15sdp">
+
+        <include
+            android:id="@+id/option"
+            layout="@layout/chat_more_options" />
+    </ScrollView>
+</layout>

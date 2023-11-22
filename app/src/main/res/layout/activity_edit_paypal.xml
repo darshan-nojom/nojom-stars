@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="editAct"
+            type="com.nojom.ui.balance.EditPaypalActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.balance.EditPaypalActivity">
+
+        <RelativeLayout
+            android:id="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/back"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/intercom_back"
+                app:tint="@color/black" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/rel_delete"
+            android:layout_below="@+id/rl_header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_paypal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_35sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:id="@+id/txt_title"
+                        android:layout_height="wrap_content"
+                        android:text="@string/paypal_account_email"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/red_border_5"
+                        android:paddingLeft="@dimen/_8sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:text="@string/not_verified"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sftext_medium"
+                        tools:ignore="RelativeOverlap" />
+                </RelativeLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_paypal_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:padding="@dimen/_20sdp"
+                    android:textAlignment="viewStart"
+                    android:text="@string/paypal_email_gmail_com"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:padding="@dimen/_15sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/primary_account"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <com.nojom.segment.SegmentedButtonGroup
+                        android:id="@+id/segmentGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentEnd="true"
+                        app:sbg_backgroundColor="@color/background"
+                        app:sbg_borderColor="@android:color/transparent"
+                        app:sbg_borderSize="1dp"
+                        app:sbg_dividerSize="0dp"
+                        app:sbg_position="0"
+                        app:sbg_radius="20dp"
+                        tools:ignore="RelativeOverlap">
+
+                        <com.nojom.segment.SegmentedButton
+                            android:id="@+id/tab_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_4sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_4sdp"
+                            app:sb_selectorColor="@color/red_dark"
+                            app:sb_text="@string/NO"
+                            app:sb_textColor_onSelection="@color/white"
+                            app:sb_textSize="@dimen/_10sdp"
+                            app:sb_textTypefacePath="@string/sftext_bold" />
+
+                        <com.nojom.segment.SegmentedButton
+                            android:id="@+id/tab_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_4sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_4sdp"
+                            app:sb_selectorColor="@color/colorPrimary"
+                            app:sb_text="@string/YES"
+                            app:sb_textColor_onSelection="@color/white"
+                            app:sb_textSize="@dimen/_10sdp"
+                            app:sb_textTypefacePath="@string/sftext_regular" />
+                    </com.nojom.segment.SegmentedButtonGroup>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_send_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/blue_rounded_corner">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_send_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:gravity="center"
+                            android:onClick="@{()->editAct.sendEmail()}"
+                            android:text="@string/send_verification_email"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sftext_bold" />
+
+                        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                            android:id="@+id/progress_bar_email"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:cpbStyle="@style/CircularProgressBar"
+                            app:cpb_color="@color/white"
+                            app:cpb_colors="@array/progressColor"
+                            app:cpb_max_sweep_angle="300"
+                            app:cpb_min_sweep_angle="10"
+                            app:cpb_rotation_speed="1.0"
+                            app:cpb_stroke_width="@dimen/_2sdp"
+                            app:cpb_sweep_speed="1.0" />
+                    </RelativeLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:lineSpacingExtra="@dimen/_5sdp"
+                        android:text="@string/verify_email_info"
+                        android:textColor="@color/textgrayAccent"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sftext_regular" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <RelativeLayout
+            android:id="@+id/rel_delete"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_20sdp"
+            android:background="@drawable/gray_rounded_corner_20"
+            android:elevation="@dimen/_3sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_delete_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="@{()->editAct.deleteAccount()}"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/delete_this_account"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="visible"
+                app:fonts="@string/sftext_regular"
+                tools:targetApi="lollipop" />
+
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:cpbStyle="@style/CircularProgressBar"
+                app:cpb_color="@color/colorPrimary"
+                app:cpb_colors="@array/progressColorPrimary"
+                app:cpb_max_sweep_angle="300"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_stroke_width="@dimen/_2sdp"
+                app:cpb_sweep_speed="1.0" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

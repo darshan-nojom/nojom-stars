@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_15sdp"
+        android:background="@drawable/white_rounded_corner_15"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/add_payoneer"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            app:fonts="@string/sftext_bold" />
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/close_gray" />
+
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_close"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/gray_border_5"
+            android:hint="@string/enter_payoneer_email"
+            android:imeOptions="actionDone"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/_10sdp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_email"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/green_button_bg"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/_7sdp"
+            android:text="@string/add"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sftext_bold" />
+
+    </RelativeLayout>
+</layout>

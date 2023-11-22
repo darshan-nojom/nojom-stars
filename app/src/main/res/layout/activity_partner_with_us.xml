@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_back" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:scrollbars="none"
+            tools:ignore="UnusedAttribute">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/partner_with_us"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_22sdp"
+                    app:fonts="@string/sfdiaply_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_form_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/we_are_looking_for_partners_investers_and_c_level_executives_to_grow_24task_start_by_filling_out_this_form_all_your_informations_and_answers_are_100_confidential_and_never_disclosed_to_third_parties"
+                    android:textColor="@color/black_60"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_regular" />
+
+                <LinearLayout
+                    android:id="@+id/lin_submitted_survey"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/rel_application"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:text="@string/application"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_15sdp"
+                            app:fonts="@string/sfpro_text_regular"
+                            tools:ignore="RelativeOverlap" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_application_status"
+                            android:layout_width="@dimen/_90sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:layout_toStartOf="@+id/img_right_google"
+                            android:background="@drawable/red_rounded_corner_20"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_2sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_2sdp"
+                            android:text="@string/start"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <ImageView
+                            android:id="@+id/img_right_google"
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next"
+                            app:tint="@color/black" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_about_me"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:text="@string/about_me"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_15sdp"
+                            app:fonts="@string/sfpro_text_regular"
+                            tools:ignore="RelativeOverlap" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_aboutme_status"
+                            android:layout_width="@dimen/_90sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:layout_toStartOf="@+id/img_aboutme"
+                            android:background="@drawable/red_rounded_corner_20"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_2sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_2sdp"
+                            android:text="@string/start"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <ImageView
+                            android:id="@+id/img_aboutme"
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next"
+                            app:tint="@color/black" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_my_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:text="@string/my_profile"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_15sdp"
+                            app:fonts="@string/sfpro_text_regular"
+                            tools:ignore="RelativeOverlap" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_myprofile_status"
+                            android:layout_width="@dimen/_90sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:layout_toStartOf="@+id/img_mp"
+                            android:background="@drawable/red_rounded_corner_20"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_2sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_2sdp"
+                            android:text="@string/start"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <ImageView
+                            android:id="@+id/img_mp"
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next"
+                            app:tint="@color/black" />
+                    </RelativeLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:text="@string/during_the_next_5_15_days_our_analysts_will_be_reviewing_the_information_you_provided_if_we_are_able_to_partner_with_you_we_will_contact_you_for_additional_information"
+                        android:textColor="@color/black_60"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:text="@string/if_you_haven_t_heard_from_us_within_that_period_please_assume_that_we_are_not_satisfied_with_the_information_you_provided_to_us_or_deem_your_profile_scores_low_especially_with_verifications"
+                        android:textColor="@color/black_60"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:orientation="horizontal">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="@string/ahmed_alsenan_n24task_ceo"
+                            android:textColor="@color/black_60"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_linkedin"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:src="@drawable/ic_linkedin" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_survey_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/lin_questions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:text="@string/what_s_the_website_of_your_current_company"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_17sdp"
+                        app:fonts="@string/sfdiaply_bold" />
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_website"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/white_rounded_corner_5"
+                        android:hint="@string/website"
+                        android:imeOptions="actionNext"
+                        android:textAlignment="viewStart"
+                        android:padding="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:inputType="textCapSentences"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:text="@string/where_do_you_live"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_17sdp"
+                        app:fonts="@string/sfdiaply_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_country"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:textAlignment="viewStart"
+                        android:background="@drawable/white_rounded_corner_5"
+                        android:drawableEnd="@drawable/arrow_down"
+                        android:drawableTint="@color/black"
+                        android:hint="@string/select"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:text="@string/how_old_are_you"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_17sdp"
+                        app:fonts="@string/sfdiaply_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_ages"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/white_rounded_corner_5"
+                        android:drawableEnd="@drawable/arrow_down"
+                        android:drawableTint="@color/black"
+                        android:hint="@string/select"
+                        android:textAlignment="viewStart"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:background="@drawable/black_button_bg">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_save"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:gravity="center"
+                            android:text="@string/submit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13sdp"
+                            app:fonts="@string/sfpro_text_semibold" />
+
+                        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                            android:id="@+id/progress_bar"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:cpbStyle="@style/CircularProgressBar"
+                            app:cpb_color="@color/white"
+                            app:cpb_colors="@array/progressColor"
+                            app:cpb_max_sweep_angle="300"
+                            app:cpb_min_sweep_angle="10"
+                            app:cpb_rotation_speed="1.0"
+                            app:cpb_stroke_width="@dimen/_2sdp"
+                            app:cpb_sweep_speed="1.0" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

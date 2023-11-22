@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="workAct"
+            type="com.nojom.ui.workprofile.WorkSettingActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.workprofile.WorkSettingActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_20sdp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_notifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/notifications"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->workAct.onClickLocation()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/location"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:onClick="@{()->workAct.onClickLanguage()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/language"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_currency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->workAct.onClickCurrency()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/currency"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_switchAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:onClick="@{()->workAct.onClickSwitchAccount()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/switch_account"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/pressed_bg" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_policy_pages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->workAct.onClickPolicyPages()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/policy_pages"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_chat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->workAct.onClickChat()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/chat_with_us"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_faqs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->workAct.onClickFaq()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/faqs"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_carrier"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->workAct.onClickCareer()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/carrier"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/version"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_version_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/arrow_next"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/pressed_bg" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_share_app"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->workAct.onClickShareApp()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/share_app"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_delete_account"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->workAct.onClickDataPrivacy()}"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/data_privacy"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_60sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/white_rounded_corner"
+                    android:elevation="@dimen/_3sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/btn_signout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:onClick="@{()->workAct.onClickSignout()}"
+                        android:padding="@dimen/_8sdp"
+                        android:text="@string/sign_out"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progress_bar_logout"
+                        android:layout_width="@dimen/_17sdp"
+                        android:layout_height="@dimen/_17sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        app:cpbStyle="@style/CircularProgressBar"
+                        app:cpb_color="@color/colorPrimary"
+                        app:cpb_colors="@array/progressColorPrimary"
+                        app:cpb_max_sweep_angle="300"
+                        app:cpb_min_sweep_angle="10"
+                        app:cpb_rotation_speed="1.0"
+                        app:cpb_stroke_width="@dimen/_2sdp"
+                        app:cpb_sweep_speed="1.0" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</layout>

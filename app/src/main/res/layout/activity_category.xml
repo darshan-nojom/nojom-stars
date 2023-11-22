@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/progress"
+            layout="@layout/toolbar_save" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/what_do_you_want_to_hire"
+                    android:textColor="@color/black"
+                    app:fonts="@string/sfpro_text_bold"
+                    android:textSize="@dimen/_22sdp" />
+
+                <android.edittext.EditTextSFTextRegular
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/border_grey_corner"
+                    android:drawableStart="@drawable/search"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:hint="@string/search_for_a_relevant_category"
+                    android:imeOptions="actionDone"
+                    android:padding="@dimen/_5sdp"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

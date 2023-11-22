@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/lin_delivery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_rounded_corner_5"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <LinearLayout
+                android:id="@+id/lin_gig_photos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_reqTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delivery_time"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_photos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_regular" />
+
+                <ImageView
+                    android:id="@+id/img_delete"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/close_red"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/gray_button_bg_left_radius"
+                    android:digits="0123456789"
+                    android:hint="@string/enter_time"
+                    android:inputType="number"
+                    android:textAlignment="viewStart"
+                    android:maxLength="3"
+                    android:padding="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_del_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/black_button_bg_6_right"
+                    android:drawableEnd="@drawable/ic_up_down"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxWidth="@dimen/_80sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:text="@string/days"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_regular" />
+
+                <EditText
+                    android:id="@+id/et_price"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="0.51"
+                    android:background="@drawable/gray_button_bg"
+                    android:digits="0123456789."
+                    android:gravity="center"
+                    android:hint="@string/price"
+                    android:textAlignment="center"
+                    android:inputType="number"
+                    android:maxLength="7"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/close_red"
+                    android:visibility="invisible"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_dynamicView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:id="@+id/rel_add_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:alpha="0.5"
+                    android:background="@drawable/gray_button_corner_30">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_add_requirement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:drawableEnd="@drawable/add_attachment_15"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/add_more_option"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rel_add_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:alpha="0.5"
+                    android:background="@drawable/gray_button_corner_30">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_add_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:drawableEnd="@drawable/add_attachment_15"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/add_description"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

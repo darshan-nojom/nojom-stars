@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:padding="@dimen/_15sdp"
+        tools:context="com.nojom.ui.pro.Pro24TaskActivity">
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sfdiaply_bold"
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_24task_pro"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_25sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:text="@string/get_full_time_job"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_17sdp" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_20sdp"
+                android:gravity="center"
+                android:text="@string/pro_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:id="@+id/btn_24task_pro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/button_bg"
+                android:backgroundTint="@color/white"
+                android:elevation="@dimen/_3sdp"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/become_a_24task_pro"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

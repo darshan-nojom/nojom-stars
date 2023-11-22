@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none"
+        app:layout_scrollFlags="scroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_here_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/give_10_get_10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_24sdp"
+                app:font="@string/sftext_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/earn_money_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:font="@string/sftext_regular" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:background="@drawable/gray_button_bg"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_ref_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/txt_copy"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    app:font="@string/sftext_regular"
+                    tools:ignore="RtlSymmetry" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/copy"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_14sdp"
+                    app:font="@string/sftext_semibold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/lin_msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gray_border_5"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_7sdp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/sms" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="@string/text"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:font="@string/sftext_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/gray_border_5"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_7sdp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/mail" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="@string/email"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:font="@string/sftext_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gray_border_5"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_7sdp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/share" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="@string/more"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:font="@string/sftext_regular" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_how_it_works"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:gravity="center"
+                android:text="@string/see_how_it_works"
+                android:textColor="@color/black_80"
+                android:textColorLink="@color/black_80"
+                android:textSize="@dimen/_14sdp"
+                app:font="@string/sftext_regular" />
+
+
+            <RelativeLayout
+                android:id="@+id/rel_referral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/txt_amount"
+                    android:text="@string/referral_history"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_22sdp"
+                    app:font="@string/sftext_bold"
+                    tools:ignore="RtlSymmetry" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/dollar_0_00_usd"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_22sdp"
+                    app:font="@string/sftext_bold" />
+
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_referral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/gray_button_bg"
+                android:visibility="gone" />
+
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_blue_label"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:background="@drawable/blue_button_bg"
+                android:gravity="center"
+                android:text="@string/_1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_25sdp"
+                app:font="@string/sftext_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/tell_your_friends_about_us"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sdp"
+                app:font="@string/sftext_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:text="@string/anyone_who_use_your_coupon_or_follows_your_link_gets_10_off_the_first_order"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:font="@string/sftext_regular" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_silver_label"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_70sdp"
+                android:background="@drawable/green_button_bg"
+                android:gravity="center"
+                android:text="@string/_2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_25sdp"
+                app:font="@string/sftext_bold" />
+
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/your_friends_make_an_order"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sdp"
+                app:font="@string/sftext_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:text="@string/your_friend_s_order_must_be_completed_so_you_can_use_your_10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:font="@string/sftext_regular" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_70sdp"
+                android:background="@drawable/red_button_bg"
+                android:gravity="center"
+                android:text="@string/_3"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_25sdp"
+                app:font="@string/sftext_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/get_10_for_every_friend"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sdp"
+                app:font="@string/sftext_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:text="@string/for_example_if_you_invited_100_friends_then_you_will_get_1_000"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:font="@string/sftext_regular" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_terms_of_use"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_70sdp"
+                android:text="@string/earn_money_footer"
+                android:textColor="@color/gray"
+                android:textColorLink="@color/colorPrimary"
+                android:textSize="@dimen/_12sdp"
+                app:font="@string/sftext_regular" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

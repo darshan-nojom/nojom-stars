@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_5sdp"
+        app:cardPreventCornerOverlap="true">
+
+        <LinearLayout
+            android:id="@+id/ll_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:orientation="vertical">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center|top"
+                android:text="@string/vip"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sdp"
+                app:fonts="@string/helvetica_light" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:text="@string/_3_90"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/_25sdp"
+                    app:fonts="@string/helvetica_light" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:gravity="bottom"
+                    android:text="@string/hour"
+                    android:textColor="@color/dark_text"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/helvetica_light" />
+            </LinearLayout>
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/by_the_hour"
+                android:textColor="@color/dark_text"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/helvetica_light" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        tools:context=".ui.workprofile.VerifyPhoneNumberActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_back" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="@string/mobile"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sftext_bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:id="@+id/lin_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="0.8"
+                    android:background="@drawable/white_rounded_corner_10">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_phone_prefix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:text="@string/_91"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RtlSymmetry" />
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:padding="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:gravity="center">
+
+                    <com.nojom.ccp.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        app:ccp_defaultLanguage="ENGLISH"
+                        app:ccp_showArrow="true"
+                        app:ccp_showFlag="true"
+                        app:ccp_showFullName="false"
+                        app:ccp_showNameCode="false"
+                        app:ccp_showPhoneCode="false" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@string/otp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <android.edittext.EditTextSFTextRegular
+                    android:id="@+id/et_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:hint="@string/enter_otp"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:padding="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_14sdp" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_resend_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/resend_otp"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar_resend"
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/red_dark"
+                    app:cpb_colors="@array/progressColorDarkRed"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/blue_rounded_corner">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:gravity="center"
+                android:text="@string/send_verification_code"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                app:fonts="@string/sftext_bold" />
+
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:cpbStyle="@style/CircularProgressBar"
+                app:cpb_color="@color/white"
+                app:cpb_colors="@array/progressColor"
+                app:cpb_max_sweep_angle="300"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_stroke_width="@dimen/_2sdp"
+                app:cpb_sweep_speed="1.0" />
+        </RelativeLayout>
+
+        <android.textview.TextViewSFTextPro
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:lineSpacingExtra="@dimen/_5sdp"
+            android:text="@string/phone_verification_info"
+            android:textColor="@color/textgrayAccent"
+            android:textSize="@dimen/_11sdp"
+            app:fonts="@string/sftext_regular" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        tools:context=".ui.settings.NotificationActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_title" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/all_notification"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <com.nojom.segment.SegmentedButtonGroup
+                        android:id="@+id/segmentGroupAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentEnd="true"
+                        app:sbg_backgroundColor="@color/white"
+                        app:sbg_borderColor="@android:color/transparent"
+                        app:sbg_borderSize="1dp"
+                        app:sbg_dividerSize="0dp"
+                        app:sbg_position="0"
+                        app:sbg_radius="20dp"
+                        tools:ignore="RelativeOverlap">
+
+                        <com.nojom.segment.SegmentedButton
+                            android:id="@+id/tab_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_4sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_4sdp"
+                            app:sb_selectorColor="@color/red_dark"
+                            app:sb_text="@string/NO"
+                            app:sb_textColor_onSelection="@color/white"
+                            app:sb_textSize="@dimen/_10sdp"
+                            app:sb_textTypefacePath="@string/sftext_bold" />
+
+                        <com.nojom.segment.SegmentedButton
+                            android:id="@+id/tab_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_4sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_4sdp"
+                            app:sb_selectorColor="@color/colorPrimary"
+                            app:sb_text="@string/YES"
+                            app:sb_textColor_onSelection="@color/white"
+                            app:sb_textSize="@dimen/_10sdp"
+                            app:sb_textTypefacePath="@string/sftext_regular" />
+                    </com.nojom.segment.SegmentedButtonGroup>
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_notifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:text="@string/new_job_post"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_service_notifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_layout_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+
+                        <include layout="@layout/item_notification_ph" />
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="education"
+            type="com.nojom.model.Education" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_10sdp">
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_medium"
+                android:id="@+id/tv_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/education1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_medium"
+                android:id="@+id/tv_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/remove"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <android.edittext.EditTextSFTextRegular
+                android:id="@+id/et_degree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_corner_10"
+                android:hint="@string/degree"
+                android:imeOptions="actionNext"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:inputType="textCapSentences"
+                android:text="@{education.degree}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp" />
+
+            <android.edittext.EditTextSFTextRegular
+                android:id="@+id/et_college"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/white_rounded_corner_10"
+                android:hint="@string/college"
+                android:imeOptions="actionNext"
+                android:inputType="textCapSentences"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:text="@{education.college}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/white_rounded_corner_10"
+                android:drawableEnd="@drawable/arrow_down"
+                android:hint="@string/level"
+                android:imeOptions="actionNext"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:text="@{education.level}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sftext_regular" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_start_year"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:hint="@string/start_year"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@{education.startYear}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_end_year"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:hint="@string/end_year"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@{education.endYear}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

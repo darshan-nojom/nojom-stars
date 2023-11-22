@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_deposit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/dialog_round_corner_bottom"
+        android:orientation="vertical">
+
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:src="@drawable/large_green_tick"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_30sdp" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/thank_you"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_21sdp" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:text="@string/remind_employer_for_deposit"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="@dimen/_12sdp" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_semibold"
+            android:id="@+id/tv_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:text="@string/ok"
+            android:background="@drawable/blue_rounded_corner"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/_12sdp" />
+    </LinearLayout>
+</layout>

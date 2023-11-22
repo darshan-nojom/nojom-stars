@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="hireAct"
+            type="com.nojom.ui.workprofile.HireFreelancersActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.workprofile.WorkSettingActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_hire_freelancer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shadow_bg_10"
+                    android:onClick="@{()->hireAct.openClientStore()}"
+                    android:padding="@dimen/_10sdp">
+
+                    <ImageView
+                        android:id="@+id/imgHireIcon"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@mipmap/ic_launcher_client" />
+
+                    <ImageView
+                        android:id="@+id/imgCloseHire"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/close_gray"
+                        android:visibility="gone" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txtTitleHire"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/imgHireIcon"
+                        android:text="@string/hire_freelancers"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_bold"
+                        tools:ignore="RelativeOverlap" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txtDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtTitleHire"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_toStartOf="@+id/imgCloseHire"
+                        android:layout_toEndOf="@+id/imgHireIcon"
+                        android:text="@string/hire_the_best_remote_employees_for_any_job_online"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_playstore_client"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtDesc"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/gray_rounded_corner_10"
+                        android:onClick="@{()->hireAct.openClientStore()}"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:id="@+id/imgSmallIcon"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/ic_play_store" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txtGetApp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_toEndOf="@+id/imgSmallIcon"
+                            android:singleLine="true"
+                            android:text="@string/download_on_the_google_play_store"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sftext_bold"
+                            tools:ignore="RelativeOverlap" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_redline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/shadow_bg_10"
+                    android:onClick="@{()->hireAct.openRedlineStore()}"
+                    android:padding="@dimen/_10sdp">
+
+                    <ImageView
+                        android:id="@+id/imgRedlineIcon"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@mipmap/ic_launcher_redline" />
+
+                    <ImageView
+                        android:id="@+id/imgCloseRedline"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/close_gray"
+                        android:visibility="gone" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txtTitleRedline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/imgRedlineIcon"
+                        android:text="@string/bitcoin_trading_signals"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_bold"
+                        tools:ignore="RelativeOverlap" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txtDescRed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtTitleRedline"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_toStartOf="@+id/imgCloseRedline"
+                        android:layout_toEndOf="@+id/imgRedlineIcon"
+                        android:text="@string/find_the_top_cryptocurrency_to_invest_in_2020"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_playstore_redline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtDescRed"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/gray_rounded_corner_10"
+                        android:onClick="@{()->hireAct.openRedlineStore()}"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:id="@+id/imgRedSmallIcon"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/ic_play_store" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txtRedGetApp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_toEndOf="@+id/imgRedSmallIcon"
+                            android:singleLine="true"
+                            android:text="@string/download_on_the_google_play_store"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sftext_bold"
+                            tools:ignore="RelativeOverlap" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next" />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</layout>

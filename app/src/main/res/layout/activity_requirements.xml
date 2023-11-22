@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/progress"
+            layout="@layout/toolbar_save" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/what_do_you_want_to_hire"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_22sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+                <android.edittext.EditTextSFTextRegular
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/border_grey_corner"
+                    android:drawableStart="@drawable/search"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:hint="@string/search_for_a_relevant_skill"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
+                    android:padding="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_view_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_category_custom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/custom"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sfdiaply_regular"
+                        tools:ignore="RelativeOverlap" />
+
+                    <ImageView
+                        android:id="@+id/img_check_uncheck_custom"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/circle_uncheck" />
+                </RelativeLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/or"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfdiaply_regular"
+                    tools:ignore="RelativeOverlap" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+                            <include layout="@layout/item_category_list_placeholder" />
+
+
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="payRateAct"
+            type="com.nojom.ui.workprofile.PayRateActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context="com.nojom.ui.workprofile.SelectExpertiseActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_signup" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pay_rate_hr"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_22sdp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_50sdp">
+
+                    <ImageView
+                        android:id="@+id/img_minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:onClick="@{()->payRateAct.decrease()}"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/minus" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        tools:ignore="RelativeOverlap">
+
+                        <android.textview.TextViewSFTextPro
+                            app:fonts="@string/sftext_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dollar"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_35sdp" />
+
+                        <android.edittext.EditTextSFTextBold
+                            android:id="@+id/et_rate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:cursorVisible="false"
+                            android:imeOptions="actionDone"
+                            android:digits="0123456789."
+                            android:inputType="numberDecimal"
+                            android:text="@string/_2_00"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_35sdp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/img_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/app_name"
+                        android:onClick="@{()->payRateAct.increase()}"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/plus_add" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_60sdp"
+                    android:background="@drawable/green_button_bg">
+
+                    <android.textview.TextViewSFTextPro
+                        app:fonts="@string/sftext_bold"
+                        android:id="@+id/btn_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:gravity="center"
+                        android:onClick="@{()->payRateAct.onClickSubmit()}"
+                        android:text="@string/submit"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp"
+                        android:visibility="visible" />
+
+                    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="@dimen/_17sdp"
+                        android:layout_height="@dimen/_17sdp"
+                        android:layout_centerInParent="true"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        app:cpbStyle="@style/CircularProgressBar"
+                        app:cpb_color="@color/white"
+                        app:cpb_colors="@array/progressColor"
+                        app:cpb_max_sweep_angle="300"
+                        app:cpb_min_sweep_angle="10"
+                        app:cpb_rotation_speed="1.0"
+                        app:cpb_stroke_width="@dimen/_2sdp"
+                        app:cpb_sweep_speed="1.0" />
+                </RelativeLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    app:fonts="@string/sftext_regular"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/don_t_worry_change_later" />
+
+                <LinearLayout
+                    android:id="@+id/linCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_60sdp"
+                    android:gravity="center"
+                    android:onClick="@{()->payRateAct.onClickTermsCond()}"
+                    android:orientation="horizontal">
+
+                    <android.checkbox.CheckBoxSFTextRegular
+                        android:id="@+id/chk_tnc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <android.textview.TextViewSFTextPro
+                        app:fonts="@string/sftext_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/agree_to_the_terms" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+</layout>

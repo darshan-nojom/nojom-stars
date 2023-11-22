@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_deposit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@drawable/dialog_round_corner_bottom"
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/large_green_tick" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:gravity="center"
+            android:text="@string/thank_you"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_semibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/green_border_round"
+                    android:gravity="center"
+                    android:text="@string/_1"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_10sdp" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@string/chat_with_your_client"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_semibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/green_border_round"
+                    android:gravity="center"
+                    android:text="@string/_2"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_10sdp" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@string/get_awarded_after_the_client_deposits_money_you_can_start_working"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_semibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/green_border_round"
+                    android:gravity="center"
+                    android:text="@string/_3"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_10sdp" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@string/get_paid_when_you_completed_the_project"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_semibold"
+            android:id="@+id/tv_view_bidding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/blue_rounded_corner"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/view_bidding"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11sdp" />
+    </LinearLayout>
+</layout>

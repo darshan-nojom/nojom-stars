@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:background="@color/black">
+
+            <com.duolingo.open.rtlviewpager.RtlViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp" />
+
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:ci_drawable="@drawable/circle_round"
+                app:ci_drawable_unselected="@drawable/gray_circle_round"
+                app:ci_gravity="center_vertical"
+                app:ci_orientation="horizontal" />
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:contentDescription="@string/back"
+                android:elevation="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:background="@drawable/circle_black"
+                android:src="@drawable/vw_ic_back"
+                app:tint="@color/white" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_share"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:contentDescription="@string/back"
+                    android:src="@drawable/share_gigs"
+                    android:padding="@dimen/_8sdp"
+                    android:background="@drawable/circle_black"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/img_edit"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:contentDescription="@string/back"
+                    android:background="@drawable/circle_black"
+                    android:elevation="@dimen/_5sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/ic_baseline_edit_24_white" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <com.nojom.util.ReadMoreTextView
+            android:id="@+id/tv_gig_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
+            app:readMoreTextColor="@color/colorPrimary"
+            app:trimLines="3"
+            app:trimMode="trimModeLine" />
+
+        <com.nojom.ui.radiobutton.SegmentedGroupTab
+            android:id="@+id/segmentedGroupTab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:divider="@drawable/radio_divider"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            segmentedgroup:sc_border_width="1dp"
+            segmentedgroup:sc_checked_text_color="@color/white"
+            segmentedgroup:sc_corner_radius="@dimen/_7sdp"
+            segmentedgroup:sc_tint_color="@color/colorPrimary"
+            segmentedgroup:sc_unchecked_text_color="@color/tab_gray"
+            segmentedgroup:sc_unchecked_tint_color="@color/white">
+
+            <com.nojom.util.RadioButtonSFPro
+                android:id="@+id/tab_openJob"
+                style="@style/RadioButtonTab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:tag="openjobs"
+                android:text="@string/open_jobs"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+            <com.nojom.util.RadioButtonSFPro
+                android:id="@+id/tab_closedJob"
+                style="@style/RadioButtonTab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:tag="closedjobs"
+                android:text="@string/closed_jobs"
+                android:textColor="@color/tab_gray"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+        </com.nojom.ui.radiobutton.SegmentedGroupTab>
+
+        <com.duolingo.open.rtlviewpager.RtlViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/h_progress_bar"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:padding="@dimen/_5sdp"
+            android:visibility="gone" />
+    </LinearLayout>
+</layout>

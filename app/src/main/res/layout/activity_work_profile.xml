@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.nojom.ui.workprofile.WorkProfileActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        tools:context=".ui.workprofile.WorkProfileActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <LinearLayout
+                    android:id="@+id/ll_private_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:onClick="@{()->activity.onClickPrivateInfo()}"
+                    android:padding="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/account_details"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_private_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_my_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onClickMyProfile()}"
+                    android:padding="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/public_profile"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_public_profile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_skill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onClickSkill()}"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/skills"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_skill"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_professional_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onCliCkProfInfo()}"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/professional_info"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_professional_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_agency_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onCliCkAgencyInfo()}"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/agency_info"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_agency_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_portfolio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onClickMyPortfolio()}"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/my_portfolio"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_portfolio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_myPlatform"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onClickMyPlatform()}"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/my_platforms"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_myPlatform"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_availability"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onClickAvailability()}"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/availability"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_availability"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:background="@drawable/red_rounded_corner"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:text="@string/_0_percent"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="invisible"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_pay_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onClickMyPayRate()}"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/my_pay_rate"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_payrate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:background="@drawable/red_rounded_corner"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:text="@string/_0_percent"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="invisible"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_verifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onClickVerification()}"
+                    android:padding="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/verifications"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_verifications"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_profile_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@drawable/button_bg"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_3sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/your_profile_is"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_semibold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:lineSpacingExtra="@dimen/_10sdp"
+                    android:text="@string/to_verify_your_account_you_need_to_have_a_trust_score_of_at_least_50_on_your_profile"
+                    android:textColor="@color/C_444444"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_regular" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

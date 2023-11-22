@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/white_rounded_corner_10"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_15sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_15sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/tv_balance"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_job_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_semibold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_job_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    app:fonts="@string/sftext_semibold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="@drawable/blue_border_5"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_8sdp"
+                    app:fonts="@string/sftext_medium" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sftext_semibold" />
+
+        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:cpbStyle="@style/CircularProgressBar"
+            app:cpb_color="@color/white"
+            app:cpb_colors="@array/progressColor"
+            app:cpb_max_sweep_angle="300"
+            app:cpb_min_sweep_angle="10"
+            app:cpb_rotation_speed="1.0"
+            app:cpb_stroke_width="@dimen/_2sdp"
+            app:cpb_sweep_speed="1.0" />
+    </RelativeLayout>
+</layout>

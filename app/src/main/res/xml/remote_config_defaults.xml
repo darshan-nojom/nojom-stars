@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>agent_app_version</key>
+        <value>1.0</value>
+    </entry>
+    <entry>
+        <key>agent_play_store_url</key>
+        <value>https://play.google.com/store/apps/details?id=com.task24.android.apps.freelancer.job.search</value>
+    </entry>
+    <entry>
+        <key>agent_force_update</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>agent_update_alert</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>agent_update_message</key>
+        <value>A new version of 24taskFreelancer is available. Please, update app to new version to continue.</value>
+    </entry>
+</defaultsMap>

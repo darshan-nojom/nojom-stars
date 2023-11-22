@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_deposit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/white_rounded_corner_15"
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_confirm_icon" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="@string/do_you_want_to_send_an_offer_anant05"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            app:fonts="@string/sftext_medium" />
+
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/green_button_bg"
+            android:gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:text="@string/confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sftext_medium" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sftext_medium" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="withdrawAct"
+            type="com.nojom.ui.balance.WithdrawActivity" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.balance.BalanceActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/_7sdp"
+                    android:src="@drawable/intercom_back"
+                    app:tint="@color/black" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/withdraw"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    app:fonts="@string/sftext_medium" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <android.textview.TextViewSFTextPro
+                        app:fonts="@string/sftext_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/dollar"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_22sdp" />
+
+                    <android.edittext.EditTextSFTextBold
+                        android:id="@+id/et_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/_0_00"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:minWidth="@dimen/_100sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_40sdp" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_validation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/my_available_balance"
+                    android:textColor="@color/textgrayAccent"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.button.ButtonSFTextBold
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_100sdp"
+                    android:background="@drawable/black_button_bg"
+                    android:onClick="@{()->withdrawAct.onClickNext()}"
+                    android:text="@string/next"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

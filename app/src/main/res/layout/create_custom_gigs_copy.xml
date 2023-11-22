@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/intercom_back"
+                app:tint="@color/black" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/add_service"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:fonts="@string/sfpro_text_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/delete"
+                android:textColor="@color/red_dark"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="invisible"
+                app:fonts="@string/sfpro_text_midium"
+                tools:ignore="RelativeOverlap" />
+
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar_delete"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:cpbStyle="@style/CircularProgressBar"
+                app:cpb_color="@color/red"
+                app:cpb_colors="@array/progressColorRed"
+                app:cpb_max_sweep_angle="300"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_stroke_width="@dimen/_2sdp"
+                app:cpb_sweep_speed="1.0" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white_rounded_corner_5"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_15sdp">
+
+                    <LinearLayout
+                        android:id="@+id/lin_gig_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title"
+                            android:textColor="@color/black_60"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_gig_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_6sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next"
+                            app:tint="@color/light_gray"
+                            tools:ignore="RtlHardcoded" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/description"
+                            android:textColor="@color/black_60"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_description"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_6sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next"
+                            app:tint="@color/light_gray"
+                            tools:ignore="RtlHardcoded" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/white_rounded_corner_5"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_15sdp">
+
+                    <LinearLayout
+                        android:id="@+id/lin_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:visibility="gone"
+                        android:paddingBottom="@dimen/_5sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/category"
+                            android:textColor="@color/black_60"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_category"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                            android:id="@+id/progress_bar_category"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:cpbStyle="@style/CircularProgressBar"
+                            app:cpb_color="@color/gray"
+                            app:cpb_colors="@array/progressColorLightGray"
+                            app:cpb_max_sweep_angle="300"
+                            app:cpb_min_sweep_angle="10"
+                            app:cpb_rotation_speed="1.0"
+                            app:cpb_stroke_width="@dimen/_2sdp"
+                            app:cpb_sweep_speed="1.0" />
+
+                        <ImageView
+                            android:id="@+id/img_cat_next"
+                            android:layout_width="@dimen/_6sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next"
+                            app:tint="@color/light_gray"
+                            tools:ignore="RtlHardcoded" />
+                    </LinearLayout>
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/lin_skills"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_vertical"-->
+<!--                        android:layout_marginTop="@dimen/_5sdp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:paddingTop="@dimen/_5sdp"-->
+<!--                        android:paddingBottom="@dimen/_5sdp">-->
+
+<!--                        <android.textview.TextViewSFTextPro-->
+<!--                            android:id="@+id/txt_skill_lbl"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/skills"-->
+<!--                            android:textColor="@color/black_60"-->
+<!--                            android:textSize="@dimen/_12sdp"-->
+<!--                            app:fonts="@string/sfpro_text_regular" />-->
+
+<!--                        <android.textview.TextViewSFTextPro-->
+<!--                            android:id="@+id/txt_skills"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_5sdp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:ellipsize="end"-->
+<!--                            android:textAlignment="viewEnd"-->
+<!--                            android:gravity="end"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="@dimen/_12sdp"-->
+<!--                            app:fonts="@string/sfpro_text_regular" />-->
+
+<!--                        <fr.castorflex.android.circularprogressbar.CircularProgressBar-->
+<!--                            android:id="@+id/progress_bar_skills"-->
+<!--                            android:layout_width="@dimen/_15sdp"-->
+<!--                            android:layout_height="@dimen/_15sdp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_marginStart="@dimen/_10sdp"-->
+<!--                            android:indeterminate="true"-->
+<!--                            android:visibility="gone"-->
+<!--                            app:cpbStyle="@style/CircularProgressBar"-->
+<!--                            app:cpb_color="@color/gray"-->
+<!--                            app:cpb_colors="@array/progressColorLightGray"-->
+<!--                            app:cpb_max_sweep_angle="300"-->
+<!--                            app:cpb_min_sweep_angle="10"-->
+<!--                            app:cpb_rotation_speed="1.0"-->
+<!--                            app:cpb_stroke_width="@dimen/_2sdp"-->
+<!--                            app:cpb_sweep_speed="1.0" />-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/img_subcat_next"-->
+<!--                            android:layout_width="@dimen/_6sdp"-->
+<!--                            android:layout_height="@dimen/_10sdp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_marginStart="@dimen/_10sdp"-->
+<!--                            android:layout_marginTop="@dimen/_1sdp"-->
+<!--                            android:contentDescription="@string/app_name"-->
+<!--                            android:src="@drawable/arrow_next"-->
+<!--                            app:tint="@color/light_gray"-->
+<!--                            tools:ignore="RtlHardcoded" />-->
+<!--                    </LinearLayout>-->
+
+                    <LinearLayout
+                        android:id="@+id/lin_platform"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:visibility="visible">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/platform"
+                            android:textColor="@color/black_60"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_platform"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                            android:id="@+id/progress_bar_platform"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:cpbStyle="@style/CircularProgressBar"
+                            app:cpb_color="@color/gray"
+                            app:cpb_colors="@array/progressColorLightGray"
+                            app:cpb_max_sweep_angle="300"
+                            app:cpb_min_sweep_angle="10"
+                            app:cpb_rotation_speed="1.0"
+                            app:cpb_stroke_width="@dimen/_2sdp"
+                            app:cpb_sweep_speed="1.0" />
+
+                        <ImageView
+                            android:id="@+id/img_platform"
+                            android:layout_width="@dimen/_6sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next"
+                            app:tint="@color/light_gray"
+                            tools:ignore="RtlHardcoded" />
+                    </LinearLayout>
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/lin_search_tag"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_vertical"-->
+<!--                        android:layout_marginTop="@dimen/_5sdp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:paddingTop="@dimen/_5sdp"-->
+<!--                        android:paddingBottom="@dimen/_5sdp">-->
+
+<!--                        <android.textview.TextViewSFTextPro-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/search_tag"-->
+<!--                            android:textColor="@color/black_60"-->
+<!--                            android:textSize="@dimen/_12sdp"-->
+<!--                            app:fonts="@string/sfpro_text_regular" />-->
+
+<!--                        <android.textview.TextViewSFTextPro-->
+<!--                            android:id="@+id/txt_tags"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_5sdp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:ellipsize="end"-->
+<!--                            android:gravity="end"-->
+<!--                            android:textAlignment="viewEnd"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="@dimen/_12sdp"-->
+<!--                            app:fonts="@string/sfpro_text_regular" />-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="@dimen/_6sdp"-->
+<!--                            android:layout_height="@dimen/_10sdp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_marginStart="@dimen/_10sdp"-->
+<!--                            android:layout_marginTop="@dimen/_1sdp"-->
+<!--                            android:contentDescription="@string/app_name"-->
+<!--                            android:src="@drawable/arrow_next"-->
+<!--                            app:tint="@color/light_gray"-->
+<!--                            tools:ignore="RtlHardcoded" />-->
+<!--                    </LinearLayout>-->
+
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/lin_language"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_vertical"-->
+<!--                        android:layout_marginTop="@dimen/_5sdp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:paddingTop="@dimen/_5sdp"-->
+<!--                        android:paddingBottom="@dimen/_5sdp">-->
+
+<!--                        <android.textview.TextViewSFTextPro-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/language"-->
+<!--                            android:textColor="@color/black_60"-->
+<!--                            android:textSize="@dimen/_12sdp"-->
+<!--                            app:fonts="@string/sfpro_text_regular" />-->
+
+<!--                        <android.textview.TextViewSFTextPro-->
+<!--                            android:id="@+id/txt_language"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_5sdp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:ellipsize="end"-->
+<!--                            android:gravity="end"-->
+<!--                            android:textAlignment="viewEnd"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="@dimen/_12sdp"-->
+<!--                            app:fonts="@string/sfpro_text_regular" />-->
+
+<!--                        <fr.castorflex.android.circularprogressbar.CircularProgressBar-->
+<!--                            android:id="@+id/progress_bar_language"-->
+<!--                            android:layout_width="@dimen/_15sdp"-->
+<!--                            android:layout_height="@dimen/_15sdp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_marginStart="@dimen/_10sdp"-->
+<!--                            android:indeterminate="true"-->
+<!--                            android:visibility="gone"-->
+<!--                            app:cpbStyle="@style/CircularProgressBar"-->
+<!--                            app:cpb_color="@color/gray"-->
+<!--                            app:cpb_colors="@array/progressColorLightGray"-->
+<!--                            app:cpb_max_sweep_angle="300"-->
+<!--                            app:cpb_min_sweep_angle="10"-->
+<!--                            app:cpb_rotation_speed="1.0"-->
+<!--                            app:cpb_stroke_width="@dimen/_2sdp"-->
+<!--                            app:cpb_sweep_speed="1.0" />-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="@dimen/_6sdp"-->
+<!--                            android:layout_height="@dimen/_10sdp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_marginStart="@dimen/_10sdp"-->
+<!--                            android:layout_marginTop="@dimen/_1sdp"-->
+<!--                            android:contentDescription="@string/app_name"-->
+<!--                            android:src="@drawable/arrow_next"-->
+<!--                            app:tint="@color/light_gray" />-->
+<!--                    </LinearLayout>-->
+
+
+                    <LinearLayout
+                        android:id="@+id/lin_gig_photos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gig_photos"
+                            android:textColor="@color/black_60"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_photos"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="end"
+                            android:textAlignment="viewEnd"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_6sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next"
+                            app:tint="@color/light_gray" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/delTime"
+                    layout="@layout/custom_gig_deliver_time_price" />
+
+                <LinearLayout
+                    android:id="@+id/lin_dynamic_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rel_add_req"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/black_60_button_corner_30">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_add_requirement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@drawable/add_attachment_gray"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center|center_vertical"
+                        android:paddingStart="@dimen/_25sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingEnd="@dimen/_25sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/add_new_requirement"
+                        android:textColor="@color/black_60"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progress_bar_req"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        app:cpbStyle="@style/CircularProgressBar"
+                        app:cpb_color="@color/gray"
+                        app:cpb_colors="@array/progressColorLightGray"
+                        app:cpb_max_sweep_angle="300"
+                        app:cpb_min_sweep_angle="10"
+                        app:cpb_rotation_speed="1.0"
+                        app:cpb_stroke_width="@dimen/_2sdp"
+                        app:cpb_sweep_speed="1.0" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="@color/light_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rel_pause"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/white_button_bg"
+                android:visibility="gone">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_pause"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/pause"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar_pause"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/gray"
+                    app:cpb_colors="@array/progressColorGray"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/white_button_bg">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/save"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar_save"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/gray"
+                    app:cpb_colors="@array/progressColorGray"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_view_public"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:background="@drawable/black_button_bg">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/view"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar_view"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/white"
+                    app:cpb_colors="@array/progressColor"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_live"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:background="@drawable/green_button_bg">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_live"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/live"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar_live"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/white"
+                    app:cpb_colors="@array/progressColor"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_active"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/green_button_bg"
+                android:visibility="gone">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_active"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/active"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar_active"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/white"
+                    app:cpb_colors="@array/progressColor"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

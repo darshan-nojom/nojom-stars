@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_rounded_corner_5"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_corner_5"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/lin_requirement_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/gray_button_bg"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_5sdp">
+
+                        <EditText
+                            android:id="@+id/txt_reqTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/gray_button_bg"
+                            android:hint="@string/requirements"
+                            android:textAlignment="viewStart"
+                            android:maxLength="20"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_6sdp"
+                            android:layout_height="@dimen/_12sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/arrow_next"
+                            android:visibility="gone"
+                            tools:ignore="RtlHardcoded"
+                            app:tint="@color/light_gray" />
+
+
+                    </LinearLayout>
+
+                    <RadioGroup
+                        android:id="@+id/rg"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_fixed_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button_bg"
+                            android:button="@drawable/radio_button_inset"
+                            android:buttonTint="@color/black"
+                            android:checked="true"
+                            android:textAlignment="viewStart"
+                            android:padding="@dimen/_5sdp"
+                            android:text="@string/fix_price"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <RadioButton
+                            android:id="@+id/rb_custom_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button_bg"
+                            android:button="@drawable/radio_button_inset"
+                            android:buttonTint="@color/black"
+                            android:padding="@dimen/_5sdp"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:textAlignment="viewStart"
+                            android:text="@string/custom_price"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/et_req"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/gray_button_bg"
+                            android:hint="@string/enter_requirement"
+                            android:imeOptions="actionNext"
+                            android:textAlignment="viewStart"
+                            android:maxLength="20"
+                            android:maxLines="1"
+                            android:padding="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <EditText
+                            android:id="@+id/et_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_button_bg"
+                            android:hint="@string/enter_price"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberDecimal"
+                            android:maxLength="7"
+                            android:textAlignment="viewStart"
+                            android:maxLines="1"
+                            android:padding="@dimen/_5sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/img_delete"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/close_red"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_dynamicView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:id="@+id/rel_add_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:alpha="0.5"
+                    android:visibility="invisible"
+                    android:background="@drawable/gray_button_corner_30">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_add_requirement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:drawableEnd="@drawable/add_attachment_15"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/add_more_option"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rel_add_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:alpha="0.5"
+                    android:background="@drawable/gray_button_corner_30">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_add_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:drawableEnd="@drawable/add_attachment_15"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:textAlignment="center"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/add_description"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

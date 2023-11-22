@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_180sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:clipToPadding="true">
+
+        <com.nojom.util.CustomViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_180sdp"
+            android:alpha="0.12"
+            android:background="@android:color/background_dark" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_medium"
+            android:id="@+id/txt_page"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/black_circle_round_20"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_medium"
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:alpha="0.12"
+            android:background="@android:color/background_dark"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11sdp" />
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/btn_retry"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/green_button_bg"
+                android:gravity="center"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:text="@string/intercom_retry"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/btn_chat"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/black_button_bg"
+                android:gravity="center"
+                android:text="@string/chat"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_maint"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_300sdp"
+                app:srcCompat="@drawable/ic_maintain" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:text="We'll be back soon"
+                android:textColor="@color/black"
+                app:fonts="@string/sfdiaply_bold"
+                android:textSize="@dimen/_18sdp"
+                tools:ignore="HardcodedText" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:gravity="center"
+                app:fonts="@string/sfdiaply_regular"
+                android:padding="@dimen/_5sdp"
+                android:text="This app is currently undergoing maintenance. We're sorry for any inconveniences this may have caused."
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_12sdp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

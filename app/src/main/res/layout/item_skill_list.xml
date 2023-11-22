@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_2sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_2sdp">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_skill_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            app:fonts="@string/sfdiaply_regular"
+            tools:ignore="RelativeOverlap" />
+
+        <ImageView
+            android:id="@+id/img_add_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/add" />
+    </RelativeLayout>
+</layout>

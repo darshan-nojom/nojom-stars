@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="layoutBinder"
+            type="com.nojom.ui.home.WorkHomeActivity.LayoutBinderHelper" />
+
+        <variable
+            name="homeAct"
+            type="com.nojom.ui.home.WorkHomeActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_project"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/available_jobs"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_23sdp"
+                    app:fonts="@string/sfdiaply_bold"
+                    tools:ignore="RelativeOverlap" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_search"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:onClick="@{()->homeAct.onClickSearch()}"
+                    android:src="@drawable/ic_search_round" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_filter"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:onClick="@{()->homeAct.onClickFilter()}"
+                    android:src="@drawable/ic_filter" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/linSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <android.edittext.EditTextSFDisplayRegular
+                        android:id="@+id/etSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_button_bg"
+                        android:hint="@string/search_job"
+                        android:imeOptions="actionSearch"
+                        android:inputType="textCapSentences"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txtCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:onClick="@{()->homeAct.onClickSearchCancel()}"
+                        android:text="@string/cancel"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_bold"
+                        tools:ignore="RelativeOverlap" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/white_button_bg"
+                android:orientation="horizontal"
+                android:padding="@dimen/_7sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/sort_by"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_10sdp"
+                    app:fonts="@string/sftext_bold"
+                    tools:ignore="RelativeOverlap" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:text="@string/top_gainers"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    app:fonts="@string/sftext_regular"
+                    tools:ignore="RelativeOverlap" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/ic_up_down"
+                    android:tint="@color/black" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

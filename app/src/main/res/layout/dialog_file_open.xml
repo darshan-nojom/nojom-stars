@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/dialog_round_corner_top"
+        android:paddingLeft="@dimen/_15sdp"
+        android:paddingRight="@dimen/_15sdp"
+        android:paddingTop="@dimen/_15sdp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_15sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/camera"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/app_name" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/camera_photo_galley"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_15sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/gallery"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:contentDescription="@string/app_name"
+                android:layout_gravity="center_vertical" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/video_library"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_document"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_15sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/file_black"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:contentDescription="@string/app_name"
+                android:layout_gravity="center_vertical" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/document"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_bold"
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="@color/red"
+            android:padding="@dimen/_15sdp"
+            android:textSize="@dimen/_12sdp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</layout>

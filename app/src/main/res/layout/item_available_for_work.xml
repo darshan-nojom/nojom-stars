@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_button_bg">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp"
+                tools:ignore="RtlSymmetry">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fixedprice"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/project"
+                    android:textColor="@color/textgrayAccent"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+
+            <com.nojom.segment.SegmentedButtonGroup
+                android:id="@+id/segmentGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:sbg_backgroundColor="@color/background"
+                app:sbg_borderColor="@android:color/transparent"
+                app:sbg_borderSize="1dp"
+                app:sbg_dividerSize="0dp"
+                app:sbg_position="0"
+                app:sbg_radius="20dp"
+                tools:ignore="RelativeOverlap">
+
+                <com.nojom.segment.SegmentedButton
+                    android:id="@+id/tab_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_4sdp"
+                    app:sb_selectorColor="@color/red_dark"
+                    app:sb_text="@string/NO"
+                    app:sb_textColor_onSelection="@color/white"
+                    app:sb_textSize="@dimen/_10sdp"
+                    app:sb_textTypefacePath="@string/sftext_bold" />
+
+                <com.nojom.segment.SegmentedButton
+                    android:id="@+id/tab_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_4sdp"
+                    app:sb_selectorColor="@color/colorPrimary"
+                    app:sb_text="@string/YES"
+                    app:sb_textColor_onSelection="@color/white"
+                    app:sb_textSize="@dimen/_10sdp"
+                    app:sb_textTypefacePath="@string/sftext_regular" />
+            </com.nojom.segment.SegmentedButtonGroup>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_margin="@dimen/_20sdp"
+            android:background="@color/textgray"
+            android:visibility="gone" />
+    </LinearLayout>
+</layout>

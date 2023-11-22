@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="work"
+            type="com.nojom.model.Work" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_10sdp">
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_medium"
+                android:id="@+id/tv_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/work1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_medium"
+                android:id="@+id/tv_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/remove"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <android.edittext.EditTextSFTextRegular
+                android:id="@+id/et_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_corner_10"
+                android:hint="@string/company"
+                android:imeOptions="actionNext"
+                android:textAlignment="viewStart"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:inputType="textCapSentences"
+                android:text="@{work.company}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_job_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textAlignment="viewStart"
+                android:background="@drawable/white_rounded_corner_10"
+                android:drawableEnd="@drawable/arrow_down"
+                android:hint="@string/job"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:text="@{work.jobTitle}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sftext_regular" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_experience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/white_rounded_corner_10"
+                android:drawableEnd="@drawable/arrow_down"
+                android:hint="@string/experience_level"
+                android:textAlignment="viewStart"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:text="@{work.experience}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sftext_regular" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_start_year"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:textAlignment="viewStart"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:hint="@string/start_year"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@{work.startYear}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_end_year"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:hint="@string/end_year"
+                    android:textAlignment="viewStart"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/chk_working"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/currently_working_here" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

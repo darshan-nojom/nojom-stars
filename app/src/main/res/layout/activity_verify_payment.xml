@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        tools:context=".ui.workprofile.VerifyPaymentActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_back" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/select_a_payment_method_to_verify"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_paypal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/white_rounded_corner_10"
+                android:padding="@dimen/_15sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/paypal" />
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/arrow_next"
+                    app:tint="@color/black" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/colorPrimary"
+                    android:visibility="gone"
+                    app:cpb_colors="@array/progressColorPrimary"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_paynoeer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/white_rounded_corner_10"
+                android:padding="@dimen/_15sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/payoneer" />
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/arrow_next"
+                    app:tint="@color/black" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar_payoneer"
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/colorPrimary"
+                    app:cpb_colors="@array/progressColorPrimary"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_visa"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:visibility="gone"
+                android:background="@drawable/white_rounded_corner_10"
+                android:padding="@dimen/_15sdp">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/visa" />
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/img"
+                    android:text="@string/coming_soon"
+                    tools:ignore="RtlHardcoded" />
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/arrow_next"
+                    app:tint="@color/black" />
+            </RelativeLayout>
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="@string/verify_your_payment_method_for_only_0_50"
+                tools:ignore="RtlHardcoded" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/why_should_i_verify_a_payment_method"
+                android:textSize="@dimen/_16sdp" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:text="@string/_1_payment_verified_badge_n2_higher_trust_score_n3_get_paid_faster_n4_rank_higher"
+                android:textSize="@dimen/_13sdp" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

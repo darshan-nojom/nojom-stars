@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.auth.UpdatePasswordActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_tag"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_25sdp"
+                    android:visibility="gone"
+                    app:fonts="@string/sfdiaply_bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/blue_border_5"
+                    android:orientation="horizontal">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/et_searchTags"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="top"
+                        android:hint="@string/search_tag"
+                        android:imeOptions="actionDone"
+                        android:maxLines="1"
+                        android:padding="@dimen/_10sdp"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/blue_button_bg"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:text="@string/add"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="end"
+                    android:text="@string/must_contain_at_least_1_tag"
+                    android:textColor="@color/tab_gray"
+                    android:textSize="@dimen/_10sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/tag_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="end"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/blue_button_bg">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_save"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35sdp"
+                android:gravity="center"
+                android:paddingStart="@dimen/_40sdp"
+                android:paddingEnd="@dimen/_40sdp"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                app:fonts="@string/sftext_bold" />
+
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:cpbStyle="@style/CircularProgressBar"
+                app:cpb_color="@color/white"
+                app:cpb_colors="@array/progressColor"
+                app:cpb_max_sweep_angle="300"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_stroke_width="@dimen/_2sdp"
+                app:cpb_sweep_speed="1.0" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

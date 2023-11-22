@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_withdraw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="none"
+                android:layout_marginTop="@dimen/_10sdp" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <include
+            android:id="@+id/noData"
+            layout="@layout/no_data_layout" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+                <include layout="@layout/item_income_balane_placeholder" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </RelativeLayout>
+</layout>

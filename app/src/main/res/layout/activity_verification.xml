@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        tools:context=".ui.workprofile.VerificationActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_title" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_verify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_need_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/you_need_at_least_50_points_to_verify_your_account"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <LinearLayout
+                    android:id="@+id/lin_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_15sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_current_trust_score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/blue_round_corner_left"
+                            android:padding="@dimen/_10sdp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/blue_low"
+                            android:padding="@dimen/_10sdp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/blue_dark"
+                            android:padding="@dimen/_10sdp" />
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/blue_round_corner_right"
+                            android:padding="@dimen/_10sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/img_triangle1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/triangle"
+                            android:visibility="invisible" />
+
+                        <ImageView
+                            android:id="@+id/img_triangle2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/triangle"
+                            android:visibility="invisible" />
+
+                        <ImageView
+                            android:id="@+id/img_triangle3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/triangle"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/img_triangle4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/triangle"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_very_low"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/very_low"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:visibility="invisible"
+                            app:fonts="@string/sftext_bold" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_low"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/low"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:visibility="invisible"
+                            app:fonts="@string/sftext_bold" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_good"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/high"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:visibility="invisible"
+                            app:fonts="@string/sftext_bold" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_very_good"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/very_high"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:visibility="invisible"
+                            app:fonts="@string/sftext_bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/white_rounded_corner_10"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_15sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/what_is_a_trust_score"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_19sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:lineSpacingExtra="@dimen/_3sdp"
+                        android:text="@string/what_is_trust_score_info"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sftext_regular" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

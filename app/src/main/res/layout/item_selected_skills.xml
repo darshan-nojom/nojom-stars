@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_4sdp">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_skill_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sftext_bold" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_skill_level"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/white_button_bg"
+            android:drawableEnd="@drawable/arrow_down"
+            android:hint="@string/select"
+            android:textAlignment="viewStart"
+            android:padding="@dimen/_6sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
+            app:fonts="@string/sftext_bold" />
+
+        <ImageView
+            android:id="@+id/img_add_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/close_red" />
+    </LinearLayout>
+</layout>

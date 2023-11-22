@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/please_tell_us_more_how_you_want_to_partner_with_us_and_why"
+            android:textColor="@color/black"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/_16sdp"
+            app:fonts="@string/sfdiaply_bold" />
+
+        <android.edittext.EditTextSFTextRegular
+            android:id="@+id/et_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/white_rounded_corner_5"
+            android:gravity="start"
+            android:textAlignment="viewStart"
+            android:inputType="textCapSentences"
+            android:hint="@string/i_m_looking_to_become_a_partner_or_work_as_c_level_with_24task_i_have_experience_in_management_and_i_believe_i_can_grow_24task"
+            android:imeOptions="actionNext"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp" />
+    </LinearLayout>
+</layout>

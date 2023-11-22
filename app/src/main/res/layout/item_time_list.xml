@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/rl_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gray_border_5"
+        android:paddingTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:paddingStart="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp"
+            app:fonts="@string/sfdiaply_regular"
+            tools:ignore="RelativeOverlap" />
+
+        <ImageView
+            android:id="@+id/img_check_uncheck"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/vw_ic_uncheck"
+            app:tint="@color/black" />
+    </RelativeLayout>
+</layout>

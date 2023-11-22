@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.balance.BalanceActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/_7sdp"
+                    android:src="@drawable/intercom_back"
+                    app:tint="@color/black" />
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/balance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_withdraw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/green_rounded_corner_25"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:text="@string/withdraw"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular"
+                    tools:ignore="RelativeOverlap" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/dollar"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_22sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0_00"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_40sdp"
+                        app:fonts="@string/sftext_bold" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_show_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/show_details"
+                    android:textColor="@color/textgrayAccent"
+                    app:fonts="@string/sftext_regular" />
+
+                <LinearLayout
+                    android:id="@+id/ll_show_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/available_balance"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RelativeOverlap" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_available_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@string/dollar_0_00_usd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RelativeOverlap" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pending_balance"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RelativeOverlap" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_pending_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@string/dollar_0_00_usd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RelativeOverlap" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_balance"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_total_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@string/dollar_0_00_usd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RelativeOverlap" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/img_arrow_up"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/circle_round"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/_8sdp"
+                        android:rotation="180"
+                        android:src="@drawable/arrow_down"
+                        app:tint="@color/black" />
+                </LinearLayout>
+
+                <com.nojom.ui.radiobutton.SegmentedGroupTab
+                    android:id="@+id/segmentedGroupTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_27sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:divider="@drawable/radio_divider"
+                    android:orientation="horizontal"
+                    android:showDividers="middle"
+                    segmentedgroup:sc_border_width="1dp"
+                    segmentedgroup:sc_checked_text_color="@color/white"
+                    segmentedgroup:sc_corner_radius="@dimen/_7sdp"
+                    segmentedgroup:sc_tint_color="@color/colorPrimary"
+                    segmentedgroup:sc_unchecked_text_color="@color/tab_gray"
+                    segmentedgroup:sc_unchecked_tint_color="@color/white">
+
+                    <com.nojom.util.RadioButtonTextMedium
+                        android:id="@+id/tab_income"
+                        style="@style/RadioButtonTab"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:tag="income"
+                        android:text="@string/income"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_11sdp" />
+
+
+                    <com.nojom.util.RadioButtonTextMedium
+                        android:id="@+id/tab_withdraw"
+                        style="@style/RadioButtonTab"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:tag="withdraw"
+                        android:text="@string/withdraw"
+                        android:textColor="@color/tab_gray"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <com.nojom.util.RadioButtonTextMedium
+                        android:id="@+id/tab_account"
+                        style="@style/RadioButtonTab"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:tag="account"
+                        android:text="@string/account"
+                        android:textColor="@color/tab_gray"
+                        android:textSize="@dimen/_11sdp" />
+                </com.nojom.ui.radiobutton.SegmentedGroupTab>
+
+                <com.duolingo.open.rtlviewpager.RtlViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:visibility="visible" />
+
+                <ProgressBar
+                    android:id="@+id/h_progress_bar"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

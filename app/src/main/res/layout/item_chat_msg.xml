@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:orientation="vertical">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/day_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@drawable/gray_button_bg"
+            android:gravity="center"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_8sdp"
+            android:visibility="gone"
+            app:font="@string/sftext_regular" />
+
+        <LinearLayout
+            android:id="@+id/frame_outgoing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:gravity="end"
+            android:orientation="vertical"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="2dp">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tvMyMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_upper_bubble"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:textColorLink="@color/white"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/hi"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:font="@string/sftext_regular" />
+
+            <RelativeLayout
+                android:id="@+id/rlImageSender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/ivOutgoing"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_180sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher"
+                    app:riv_border_color="@color/gray_midium_light"
+                    app:riv_border_width="1dp"
+                    app:riv_corner_radius="@dimen/_5sdp"
+                    app:riv_oval="false" />
+
+                <LinearLayout
+                    android:id="@+id/llMyDoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivOutgoing"
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/iv_my_doc"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="4dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/vw_ic_pdf" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tvMyDocName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:paddingTop="4dp"
+                        android:textSize="12sp"
+                        app:font="@string/sftext_regular" />
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/i_blur_sender"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_180sdp"
+                    android:alpha="0.8"
+                    android:src="@color/black"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tvMyTimestamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:gravity="right"
+                    android:textColor="@color/silver"
+                    android:textSize="@dimen/_7sdp"
+                    app:font="@string/sftext_regular"
+                    tools:ignore="RtlHardcoded" />
+
+                <ImageView
+                    android:id="@+id/img_seen"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    app:srcCompat="@drawable/sent" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/frame_incoming"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/_40sdp"
+            android:orientation="horizontal"
+            android:paddingLeft="4dp"
+            android:paddingTop="2dp"
+            android:paddingRight="4dp">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tvMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="email|web"
+                android:background="@drawable/gray_middle_bubble"
+                android:linksClickable="true"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/hi"
+                android:textColorLink="@color/black"
+                android:textIsSelectable="true"
+                android:textSize="14sp"
+                app:font="@string/sftext_regular" />
+
+            <RelativeLayout
+                android:id="@+id/rlImageReceiver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvMessage"
+                android:layout_alignParentStart="true"
+                android:visibility="visible">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/ivIncoming"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_180sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher"
+                    android:visibility="gone"
+                    app:riv_border_color="@color/gray_midium_light"
+                    app:riv_border_width="1dp"
+                    app:riv_corner_radius="@dimen/_5sdp"
+                    app:riv_oval="false" />
+
+                <LinearLayout
+                    android:id="@+id/llDoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivIncoming"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/iv_doc"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginTop="4dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/vw_ic_pdf" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tvDocName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:paddingTop="4dp"
+                        android:textSize="12sp"
+                        app:font="@string/sftext_regular" />
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/i_blur_reciever"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_180sdp"
+                    android:alpha="0.8"
+                    android:src="@color/black"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tvTimestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlImageReceiver"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp"
+                android:paddingTop="4dp"
+                android:textSize="@dimen/_9sdp"
+                app:font="@string/sftext_regular" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin_offer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@drawable/white_button_bg"
+            android:elevation="@dimen/_2sdp"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp"
+            android:visibility="visible">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_offer_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:font="@string/sfpro_text_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_offer_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="6"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp"
+                app:font="@string/sfpro_text_regular" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@color/background" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_offer_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    app:font="@string/sfpro_text_bold" />
+
+                <!--<android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_withdraw_offer_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Withdraw the Offer"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold"
+                    app:font="@string/sfpro_text_bold" />-->
+
+                <RelativeLayout
+                    android:id="@+id/rel_withdraw_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/gray_button_bg"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_withdraw_offer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:text="@string/withdraw_the_offer"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold"
+                        app:font="@string/sfpro_text_bold" />
+
+                    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progress_bar_view"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        app:cpbStyle="@style/CircularProgressBar"
+                        app:cpb_color="@color/colorPrimary"
+                        app:cpb_colors="@array/progressColorPrimary"
+                        app:cpb_max_sweep_angle="300"
+                        app:cpb_min_sweep_angle="10"
+                        app:cpb_rotation_speed="1.0"
+                        app:cpb_stroke_width="@dimen/_2sdp"
+                        app:cpb_sweep_speed="1.0" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_timestamp_offer"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_5sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tvMyTimestamp_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:gravity="right"
+                android:textColor="@color/silver"
+                android:textSize="@dimen/_7sdp"
+                app:font="@string/sftext_regular" />
+
+            <ImageView
+                android:id="@+id/img_seen_offer"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@drawable/sent" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_req_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+            android:text="@string/delivery_days"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            app:fonts="@string/sfpro_text_regular" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_req_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/white_rounded_corner_25"
+            android:gravity="right"
+            android:paddingStart="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:fonts="@string/sfpro_text_midium" />
+
+    </LinearLayout>
+</layout>

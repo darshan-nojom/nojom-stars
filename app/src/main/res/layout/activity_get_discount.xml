@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/back"
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/intercom_back"
+                segmentedgroup:tint="@color/black" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/get_discount"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:font="@string/sftext_medium" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_withdraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/green_button_bg"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/deposit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp"
+                android:visibility="gone"
+                app:font="@string/sftext_regular" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp">
+
+
+            <com.nojom.ui.radiobutton.SegmentedGroupTab
+                android:id="@+id/segmentedGroupTab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_27sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:divider="@drawable/radio_divider"
+                android:orientation="horizontal"
+                android:showDividers="middle"
+                segmentedgroup:sc_border_width="1dp"
+                segmentedgroup:sc_checked_text_color="@color/white"
+                segmentedgroup:sc_corner_radius="@dimen/_7sdp"
+                segmentedgroup:sc_tint_color="@color/black"
+                segmentedgroup:sc_unchecked_text_color="@color/tab_gray"
+                segmentedgroup:sc_unchecked_tint_color="@color/background">
+
+                <com.nojom.util.RadioButtonTextMedium
+                    android:id="@+id/tab_earnMoney"
+                    style="@style/RadioButtonTab"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:tag="earnmoney"
+                    android:text="@string/get_200"
+                    android:textColor="@color/tab_gray"
+                    android:textSize="@dimen/_12sdp" />
+
+                <com.nojom.util.RadioButtonTextMedium
+                    android:id="@+id/tab_Easy"
+                    style="@style/RadioButtonTab"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:tag="easy"
+                    android:text="@string/easy_12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <com.nojom.util.RadioButtonTextMedium
+                    android:id="@+id/tab_win"
+                    style="@style/RadioButtonTab"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:tag="win"
+                    android:text="@string/win_100"
+                    android:textColor="@color/tab_gray"
+                    android:textSize="@dimen/_12sdp" />
+            </com.nojom.ui.radiobutton.SegmentedGroupTab>
+
+            <com.duolingo.open.rtlviewpager.RtlViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

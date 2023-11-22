@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:paddingEnd="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:textAlignment="viewStart"
+            app:fonts="@string/sfpro_text_semibold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@id/tv_job_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_job_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@id/img"
+            android:textSize="@dimen/_10sdp"
+            app:fonts="@string/sftext_semibold" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="budget"
+            android:textColor="@color/gray"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:textSize="@dimen/_9sdp"
+            app:fonts="@string/sfdiaply_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_f_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="@string/u00b7"
+            android:textColor="@color/gray"
+            app:fonts="@string/sftext_bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@id/tv_budget"/>
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_daysleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@string/_3_days"
+            android:textColor="@color/gray"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:textSize="@dimen/_9sdp"
+            app:fonts="@string/sfdiaply_regular"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@+id/txt_f_dot" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_s_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:text="@string/u00b7"
+            android:textColor="@color/gray"
+            app:fonts="@string/sftext_bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@id/tv_daysleft"/>
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_bids"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:text="@string/bid"
+            android:textColor="@color/gray"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:textSize="@dimen/_9sdp"
+            app:fonts="@string/sfdiaply_regular"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@+id/txt_s_dot" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_bid_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="@string/u00b7"
+            android:textColor="@color/gray"
+            app:fonts="@string/sftext_bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@id/tv_bids"/>
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_job_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/job_id_colon_"
+            android:textColor="@color/gray"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:textSize="@dimen/_9sdp"
+            app:fonts="@string/sfdiaply_regular"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@+id/tv_bid_dot" />
+        <ImageView
+            android:layout_width="@dimen/_10sdp"
+            android:id="@+id/img"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorPrimary"
+            tools:ignore="RtlHardcoded" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_8sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingRight="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_budget"
+            app:fonts="@string/sfpro_text_regular" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_refunds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/inprogress_border_orange"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:paddingLeft="@dimen/_8sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingRight="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:text="@string/for_refund"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_budget"
+            app:fonts="@string/sfpro_text_regular" />
+        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:cpbStyle="@style/CircularProgressBar"
+            app:cpb_color="@color/white"
+            app:cpb_colors="@array/progressColor"
+            app:cpb_max_sweep_angle="300"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cpb_min_sweep_angle="10"
+            app:cpb_rotation_speed="1.0"
+            app:cpb_stroke_width="@dimen/_2sdp"
+            app:cpb_sweep_speed="1.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dataModel"
+            type="com.nojom.ui.startup.SelectAccountActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="@dimen/_15sdp"
+        tools:context="com.nojom.ui.startup.SelectAccountActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/one_profile_nall_your_platforms"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_22sdp"
+                app:fonts="@string/sfpro_text_bold" />
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/_40sdp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_34sdp"-->
+<!--                    android:layout_height="@dimen/_34sdp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_gravity="start"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:src="@drawable/ic_tiktok" />-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_34sdp"-->
+<!--                    android:layout_height="@dimen/_34sdp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:src="@drawable/ic_tiktok" />-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_34sdp"-->
+<!--                    android:layout_height="@dimen/_34sdp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:src="@drawable/ic_tiktok" />-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_34sdp"-->
+<!--                    android:layout_height="@dimen/_34sdp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:src="@drawable/ic_tiktok" />-->
+<!--            </LinearLayout>-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_hire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:gravity="center" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_work"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/rl_hire_freelancer"
+            android:background="@drawable/blue_rounded_corner_10"
+            android:onClick="@{() -> dataModel.onClickWork()}"
+            android:padding="@dimen/_15sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/create_influencer_profile"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                app:fonts="@string/sfpro_text_bold"
+                tools:ignore="RelativeOverlap" />
+
+            <ImageView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/arrow_next"
+                app:tint="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_hire_freelancer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:onClick="@{() -> dataModel.onClickHire()}"
+            android:background="@drawable/blue_border_10_1"
+            android:padding="@dimen/_15sdp"
+            android:visibility="visible">
+
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txtTitleHire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/i_m_looking_for_influencer"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14sdp"
+                app:fonts="@string/sfpro_text_bold"
+                tools:ignore="RelativeOverlap" />
+
+            <ImageView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/arrow_next"
+                app:tint="@color/colorPrimary" />
+
+            <!--<RelativeLayout
+                android:id="@+id/rl_playstore_client"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTitleHire"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/white_button_bg"
+                android:onClick="@{() -> dataModel.onClickHire()}"
+                android:padding="@dimen/_5sdp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imgSmallIcon"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_play_store" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txtGetApp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_toEndOf="@+id/imgSmallIcon"
+                    android:singleLine="true"
+                    android:text="@string/download_on_the_google_play_store"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    app:fonts="@string/sftext_bold"
+                    tools:ignore="RelativeOverlap" />
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/arrow_next" />
+
+            </RelativeLayout>-->
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/back"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/intercom_back"
+                app:tint="@color/black" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_profile"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img_back"
+                android:src="@mipmap/ic_launcher_round" />
+
+            <LinearLayout
+                android:id="@+id/ll_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toStartOf="@+id/img_setting"
+                android:layout_toEndOf="@+id/img_profile"
+                android:orientation="vertical">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:font="@string/sftext_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_online"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp"
+                    app:font="@string/sfdiaply_regular" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_setting"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:contentDescription="@string/setting"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/menu_dot"
+                app:tint="@color/black" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/ll_header"
+            android:background="@color/lightgray" />
+
+        <RelativeLayout
+            android:id="@+id/rl_hire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:padding="@dimen/_5sdp"
+            android:visibility="gone">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_project_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="@string/buying_and_selling_locally_app"
+                android:textSize="@dimen/_9sdp"
+                app:font="@string/sftext_medium" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@drawable/gray_rounded_corner_20"
+                android:paddingLeft="@dimen/_12sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingRight="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:text="@string/hire"
+                android:textColor="@color/colorPrimary"
+                app:font="@string/sftext_semibold"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/rl_hire"
+            android:background="@color/lightgray"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view"
+            android:max="100"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_messages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/view3"
+            android:layout_below="@+id/view2"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            app:layoutManager="LinearLayoutManager" />
+
+        <RelativeLayout
+            android:id="@+id/rlScrollDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/view3"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/rlScrollDownContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivScrollDown"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:alpha="0.5"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/_3sdp"
+                    android:rotation="180"
+                    android:src="@drawable/chat_send"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvNewMessageCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/rlScrollDownContent"
+                android:background="@drawable/item_count"
+                android:gravity="center"
+                android:textColor="#FFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/view3"
+            android:layout_below="@+id/view2"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_chat_messages_placeholder" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_above="@+id/rl_bottom"
+            android:background="@color/lightgray" />
+
+        <LinearLayout
+            android:id="@+id/rl_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/rl_bottom_offer"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/img_attach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/background_circle_round"
+                android:contentDescription="@string/attach_file"
+                android:padding="@dimen/_5sdp"
+                app:srcCompat="@drawable/add_attachment" />
+
+            <RelativeLayout
+                android:id="@+id/rl_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gray_rounded_corner_20">
+
+                <android.edittext.EditTextSFTextRegular
+                    android:id="@+id/et_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/img_send"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/write_your_message"
+                    android:inputType="textCapSentences"
+                    android:maxLines="5"
+                    android:padding="@dimen/_7sdp"
+                    android:textSize="@dimen/_12sdp" />
+
+                <ImageView
+                    android:id="@+id/img_send"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:alpha="0.5"
+                    android:contentDescription="@string/send"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@drawable/chat_send" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rl_bottom_offer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:visibility="invisible">
+
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_create_offer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/skyblue_button_bg"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/create_offer"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

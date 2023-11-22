@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/tv_time"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp" />
+
+                <ImageView
+                    android:id="@+id/img_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/img_profile"
+                    android:layout_alignBottom="@+id/img_profile"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/online_dot"
+                    android:visibility="gone"
+                    app:tint="@color/online" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_semibold"
+                    android:id="@+id/tv_receiver_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_10_off_expires_soon"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp" />
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_regular"
+                    android:id="@+id/tv_last_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="@string/use_the_code_first10_at_checkout_for_10_off_on_your_first_order_expires_oct_31_2020"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_11sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgCloseHire"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/close_gray"
+                    android:tint="@color/gray"
+                    android:visibility="visible" />
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_semibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:ellipsize="end"
+                    android:text="@string/now"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_10sdp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_medium"
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_9sdp" />
+    </RelativeLayout>
+</layout>

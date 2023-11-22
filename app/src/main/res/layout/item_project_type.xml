@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="type"
+            type="com.nojom.model.ProjectType" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@{type.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            app:fonts="@string/sftext_regular" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@{type.value}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            app:fonts="@string/sftext_bold"
+            tools:ignore="RelativeOverlap" />
+    </RelativeLayout>
+</layout>

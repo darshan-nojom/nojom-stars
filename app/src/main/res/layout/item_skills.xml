@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="skills"
+            type="com.nojom.model.Skill" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_regular"
+            android:id="@+id/tv_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/tv_level"
+            android:ellipsize="end"
+            android:textAlignment="viewStart"
+            android:maxLines="2"
+            android:text="@{skills.skillTitle}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_regular"
+            android:id="@+id/tv_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/gray_rounded_corner"
+            android:minWidth="@dimen/_120sdp"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="@{skills.skillValue}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/white_button_bg"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expertise"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_expertise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/gray_button_bg"
+                android:drawableEnd="@drawable/arrow_down"
+                android:hint="@string/select"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/english"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sftext_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/experience"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <ImageView
+                    android:id="@+id/img_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/close_red"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_experience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/gray_button_bg"
+                android:drawableEnd="@drawable/arrow_down"
+                android:hint="@string/select"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sftext_regular" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

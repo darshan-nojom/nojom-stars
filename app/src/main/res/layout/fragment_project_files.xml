@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/employer_s_files"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_20sdp"
+                        app:fonts="@string/sfdiaply_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/add_files"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/shadow_bg_20"
+                        android:drawableEnd="@drawable/attachment"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_15sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/upload_files"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="visible"
+                        app:fonts="@string/sftext_regular" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:minHeight="@dimen/_180sdp"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_my_files"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/img_my_showall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawableEnd="@drawable/arrow_down"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:drawableTint="@color/orange"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/show_all"
+                        android:textColor="@color/orange"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="gone"
+                        app:fonts="@string/sfdiaply_regular"
+                        tools:targetApi="m" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_writer_files"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:text="@string/writer_files"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_20sdp"
+                        app:fonts="@string/sfdiaply_bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/round_corner"
+                        android:minHeight="@dimen/_180sdp"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/_11sdp"
+                        android:paddingTop="@dimen/_11sdp"
+                        android:paddingRight="@dimen/_11sdp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_writer_files"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/img_writer_showall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:drawableEnd="@drawable/arrow_down"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:drawableTint="@color/orange"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/show_all"
+                            android:textColor="@color/orange"
+                            android:textSize="@dimen/_10sdp"
+                            android:visibility="gone"
+                            app:fonts="@string/sfdiaply_regular"
+                            tools:targetApi="m" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/noData"
+            layout="@layout/no_data_layout" />
+    </RelativeLayout>
+</layout>

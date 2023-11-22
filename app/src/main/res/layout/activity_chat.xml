@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="chatAct"
+            type="com.nojom.ui.chat.ChatActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_15sdp"
+        android:paddingTop="@dimen/_15sdp"
+        android:paddingRight="@dimen/_15sdp"
+        tools:context=".ui.chat.ChatActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_chat_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/messages"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_25sdp"
+                app:fonts="@string/sfdiaply_bold"
+                tools:ignore="RelativeOverlap" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_chat_now"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/img_chat"
+                android:text="@string/we_are_online_24_7"
+                android:textColor="@color/textgrayAccent"
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sfdiaply_regular" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_chat"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:elevation="@dimen/_5sdp"
+                android:onClick="@{()->chatAct.onClickSetting()}"
+                android:src="@drawable/chat_dot_menu"
+                 />
+        </RelativeLayout>
+
+        <com.nojom.ui.radiobutton.SegmentedGroupTab
+            android:id="@+id/segmentedGroupTab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:divider="@drawable/radio_divider"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            segmentedgroup:sc_border_width="1dp"
+            segmentedgroup:sc_checked_text_color="@color/white"
+            segmentedgroup:sc_corner_radius="@dimen/_7sdp"
+            segmentedgroup:sc_tint_color="@color/colorPrimary"
+            segmentedgroup:sc_unchecked_text_color="@color/tab_gray"
+            segmentedgroup:sc_unchecked_tint_color="@color/white">
+
+            <com.nojom.util.RadioButtonTextMedium
+                android:id="@+id/tab_employer"
+                style="@style/RadioButtonTab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:tag="employer"
+                android:text="@string/client"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_11sdp" />
+
+
+            <com.nojom.util.RadioButtonTextMedium
+                android:id="@+id/tab_support"
+                style="@style/RadioButtonTab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:tag="support"
+                android:text="@string/support"
+                android:textColor="@color/tab_gray"
+                android:textSize="@dimen/_11sdp" />
+
+            <com.nojom.util.RadioButtonTextMedium
+                android:id="@+id/tab_manager"
+                style="@style/RadioButtonTab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:tag="manager"
+                android:text="@string/manager"
+                android:textColor="@color/tab_gray"
+                android:textSize="@dimen/_11sdp" />
+        </com.nojom.ui.radiobutton.SegmentedGroupTab>
+
+        <LinearLayout
+            android:id="@+id/ll_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/gray_rounded_corner_10"
+            android:visibility="gone">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_32sdp"
+                app:tabBackground="@drawable/tab_bg_selector"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@android:color/transparent"
+                app:tabMode="fixed"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/black" />
+        </LinearLayout>
+
+        <com.duolingo.open.rtlviewpager.RtlViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:visibility="visible" />
+    </LinearLayout>
+</layout>

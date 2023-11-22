@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/relView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/white_button_bg"
+        android:orientation="vertical"
+        android:padding="@dimen/_7sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:alpha="0.12"
+                android:scaleType="centerCrop"
+                android:src="@android:color/background_dark"
+                app:riv_border_color="@color/lightgray"
+                app:riv_border_width="1dip"
+                app:riv_corner_radius="@dimen/_5sdp"
+                app:riv_oval="false" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_receiver_name"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:alpha="0.12"
+                android:background="@android:color/background_dark" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

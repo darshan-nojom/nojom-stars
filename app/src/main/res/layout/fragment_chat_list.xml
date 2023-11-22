@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.nojom.util.SwipeRefreshLayoutWithEmpty
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_chat_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <include
+                    android:id="@+id/noData"
+                    layout="@layout/no_data_layout" />
+            </RelativeLayout>
+
+        </com.nojom.util.SwipeRefreshLayoutWithEmpty>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+                <include layout="@layout/item_chat_list_placeholder" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_placeholder_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginRight="@dimen/_40sdp"
+                android:gravity="center"
+                android:text="No Conversations"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/_16sdp"
+                app:font="@string/sfdiaply_regular"
+                tools:ignore="HardcodedText,RelativeOverlap" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txtLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_40sdp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/_12sdp"
+                app:font="@string/sfdiaply_regular"
+                tools:ignore="RelativeOverlap" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_below="@+id/txtLbl"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:background="@drawable/blue_gradient"
+                android:gravity="center"
+                android:paddingLeft="@dimen/_30sdp"
+                android:paddingRight="@dimen/_30sdp"
+                android:paddingBottom="@dimen/_3sdp"
+                android:text="Sure, I'd like that"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:font="@string/sfdiaply_regular"
+                tools:ignore="HardcodedText" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

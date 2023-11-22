@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutDisabledMessage="@string/shortcut_message_text"
+        android:shortcutId="compose"
+        android:shortcutLongLabel="@string/shortcut_message_text"
+        android:shortcutShortLabel="@string/shortcut_message_text">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.nojom.ui.startup.MainActivity"
+            android:targetPackage="com.task24.android.apps.freelancer.job.search">
+
+            <extra
+                android:name="shortcut"
+                android:value="my_jobs" />
+
+        </intent>
+
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutDisabledMessage="@string/shortcut_message_text_aj"
+        android:shortcutId="compose1"
+        android:shortcutLongLabel="@string/shortcut_message_text_aj"
+        android:shortcutShortLabel="@string/shortcut_message_text_aj">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.nojom.ui.startup.MainActivity"
+            android:targetPackage="com.task24.android.apps.freelancer.job.search">
+
+            <extra
+                android:name="shortcut"
+                android:value="available_jobs" />
+
+        </intent>
+
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutDisabledMessage="@string/shortcut_message_text_mp"
+        android:shortcutId="compose2"
+        android:shortcutLongLabel="@string/shortcut_message_text_mp"
+        android:shortcutShortLabel="@string/shortcut_message_text_mp">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.nojom.ui.startup.MainActivity"
+            android:targetPackage="com.task24.android.apps.freelancer.job.search">
+
+            <extra
+                android:name="shortcut"
+                android:value="my_profile" />
+
+        </intent>
+<!--        <intent-->
+<!--            android:action="android.intent.action.VIEW"-->
+<!--            android:targetClass="com.task24agents.ui.workprofile.PrivateInfoActivity"-->
+<!--            android:targetPackage="com.task24.android.apps.freelancer.job.search" />-->
+    </shortcut>
+</shortcuts>

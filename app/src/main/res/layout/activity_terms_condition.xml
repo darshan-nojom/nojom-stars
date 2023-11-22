@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/back"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/intercom_back"
+                app:tint="@color/black" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/refund_guide_for_nfreelancer"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold"
+                app:font="@string/sfdiaply_bold" />
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingEnd="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_1_client_s_reason_for_refund"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    app:font="@string/sftext_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/abandoned_job_communication_issues_most_of_the_clients_get_frustrated_when_freelancers_do_not_update_them_regarding_the_job_s_progress_you_need_to_be_persistent_in_communicating_with_them_to_avoid_misunderstandings_if_there_is_a_disagreement_regarding_the_amount_of_job_explain_yourself_respectfully_that_you_cannot_make_it_and_contact_the_customer_support_so_they_can_assist_them_right_away_do_not_wait_for_several_hours_in_order_to_resolve_the_issue"
+                    android:textColor="@color/darkGray"
+                    android:textSize="@dimen/_12sdp"
+                    app:font="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/_2_client_s_reason_for_refund_plagiarized_document"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    app:font="@string/sftext_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/save_a_copy_of_a_plagiarism_checker_result_of_the_output_you_have_submitted_to_the_client_to_assure_that_it_is_your_original_work_do_not_forge_the_result_and_provide_the_evidence_for_the_whole_document"
+                    android:textColor="@color/darkGray"
+                    android:textSize="@dimen/_12sdp"
+                    app:font="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/_3_client_s_reason_for_refund_did_not_meet_the_deadline"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    app:font="@string/sftext_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/getting_projects_completed_within_the_provided_timeline_is_the_reason_for_hiring_freelancers_you_need_to_submit_the_output_ahead_of_time_if_the_application_is_having_issues_reach_out_to_the_customer_support_via_email_at_support_24task_com_and_request_them_to_send_the_files_directly_to_the_client"
+                    android:textColor="@color/darkGray"
+                    android:textSize="@dimen/_12sdp"
+                    app:font="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/_4_client_s_reason_for_refund_not_satisfied_with_the_work_quality"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    app:font="@string/sftext_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/projects_do_not_only_work_with_the_intention_of_getting_the_output_done_before_the_deadline_you_should_also_provide_a_high_quality_result_of_the_output_it_is_important_to_set_a_standard_on_the_document_you_are_producing_and_make_sure_that_it_meets_the_requirements_you_need_to_be_proactive_in_asking_questions_to_the_client_to_avoid_misunderstandings_most_of_the_clients_are_still_students_so_you_need_to_ask_them_carefully_regarding_the_instructions_and_the_topics_you_are_dealing_with"
+                    android:textColor="@color/darkGray"
+                    android:textSize="@dimen/_12sdp"
+                    app:font="@string/sftext_regular" />
+
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:autoLink="all"
+                    android:linksClickable="true"
+                    android:text="@string/take_note_that_you_are_accountable_for_the_outputs_you_are_submitting_it_is_your_responsibility_to_resolve_the_client_s_concerns_while_you_are_doing_their_task_if_there_is_any_conflict_misunderstandings_or_issues_you_cannot_handle_contact_the_customer_support_department_at_https_24task_com_contact_us"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:font="@string/sftext_regular" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.nojom.util.Utils" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="account"
+            type="com.nojom.model.Payment" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/white_rounded_corner_10"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_15sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_15sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/ll_right"
+            android:orientation="vertical">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{account.account}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sftext_semibold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{Utils.changeDateFormat(`yyyy-MM-dd'T'HH:mm:ss`, `MMM dd, yyyy`, account.timestamp)}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="@drawable/gray_button_bg"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:text="@{account.provider}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8sdp"
+                    app:fonts="@string/sftext_medium" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="@drawable/blue_border_5"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_8sdp"
+                    app:fonts="@string/sftext_medium" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gray_button_bg"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/primary"
+                android:textColor="@color/textgrayAccent"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="@{account.isPrimary.equals(`0`) ? View.GONE : View.VISIBLE}"
+                app:fonts="@string/sftext_regular" />
+
+            <ImageView
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_8sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/arrow_next"
+                app:tint="@color/black" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rl_add_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/roundedImage"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/add_image"
+            app:riv_corner_radius="@dimen/_5sdp"
+            app:riv_oval="false" />
+
+        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_13sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:indeterminate="true"
+            app:cpbStyle="@style/CircularProgressBar"
+            app:cpb_color="@color/white"
+            android:visibility="gone"
+            app:cpb_colors="@array/progressColor"
+            app:cpb_max_sweep_angle="300"
+            app:cpb_min_sweep_angle="10"
+            app:cpb_rotation_speed="1.0"
+            app:cpb_stroke_width="@dimen/_2sdp"
+            app:cpb_sweep_speed="1.0" />
+    </RelativeLayout>
+</layout>

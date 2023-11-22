@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/white_button_bg"
+        android:orientation="vertical">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_project_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:fonts="@string/sftext_bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp">
+
+            <com.willy.ratingbar.ScaleRatingBar
+                android:id="@+id/ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srb_clearRatingEnabled="false"
+                app:srb_drawableEmpty="@drawable/star_empty"
+                app:srb_drawableFilled="@drawable/star"
+                app:srb_isIndicator="true"
+                app:srb_numStars="5"
+                app:srb_starHeight="@dimen/_14sdp"
+                app:srb_starPadding="1dp"
+                app:srb_starWidth="@dimen/_12sdp"
+                app:srb_stepSize="0.1" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/ratingbar"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                app:fonts="@string/sftext_medium" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/textgrayAccent"
+                android:textSize="@dimen/_9sdp"
+                app:fonts="@string/sftext_medium"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:visibility="gone"
+            android:textColor="@color/gray_text"
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sftext_regular" />
+    </LinearLayout>
+</layout>

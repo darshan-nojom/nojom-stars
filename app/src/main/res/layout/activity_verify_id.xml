@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        tools:context=".ui.workprofile.VerifyPaymentActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_back" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upload_id"
+                    android:id="@+id/txt_id_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/white_rounded_corner_10">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_attach_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:drawableStart="@drawable/add"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawableTint="@color/colorPrimary"
+                        android:gravity="center_vertical"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="@string/attach_file"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap"
+                        tools:targetApi="m" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text="@string/max_size_is_20mb"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_files"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/colorPrimary"
+                    app:cpb_colors="@array/progressColorPrimary"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_bold"
+                    android:id="@+id/tv_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:background="@drawable/blue_rounded_corner"
+                    android:gravity="center"
+                    android:text="@string/upload_id"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    android:visibility="gone" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_desc"
+                    android:layout_marginTop="@dimen/_60sdp"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="@string/please_provide_your_photo_id_so_that_we_can_verify_your_account_this_id_will_be_kept_private_and_will_be_used_for_verification_purposes"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

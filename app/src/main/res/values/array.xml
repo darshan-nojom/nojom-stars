@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="hire">
+        <item>Support</item>
+        <item>Data Entry</item>
+        <item>Web Dev</item>
+        <item>Mobile Dev</item>
+        <item>Design</item>
+        <item>Writing</item>
+        <item>Marketing</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="service_name">
+        <item>customer service</item>
+        <item>data entry &amp; admin</item>
+        <item>website developer</item>
+        <item>mobile developer</item>
+        <item>graphic &amp; design</item>
+        <item>writing &amp; editing</item>
+        <item>sales &amp; marketing</item>
+        <item>other</item>
+    </string-array>
+
+    <integer-array name="hire_images">
+        <item>@drawable/ic_tiktok</item>
+        <item>@drawable/ic_snap</item>
+        <item>@drawable/ic_youtube</item>
+        <item>@drawable/ic_facebook</item>
+        <item>@drawable/ic_telegram</item>
+        <item>@drawable/ic_quora</item>
+        <item>@drawable/ic_in</item>
+        <item>@drawable/ic_twitter</item>
+        <item>@drawable/ic_twitch</item>
+        <item>@drawable/ic_ch</item>
+        <item>@drawable/ic_discord</item>
+        <item>@drawable/ic_insta</item>
+    </integer-array>
+
+    <string-array name="why_us">
+        <item>Free 10-Hour Trial</item>
+        <item>Pay Later</item>
+        <item>Lowest Price</item>
+        <item>No Credit Card</item>
+        <item>Cancel anytime</item>
+        <item>Backup Assistant</item>
+        <item>24/7 Support</item>
+        <item>Work in our office</item>
+        <item>Your data is safe</item>
+        <item>And More…</item>
+    </string-array>
+
+    <integer-array name="why_us_images">
+        <item>@drawable/free_tut</item>
+        <item>@drawable/pay_later</item>
+        <item>@drawable/lowest_price</item>
+        <item>@drawable/no_credit_card</item>
+        <item>@drawable/cancel_anytime</item>
+        <item>@drawable/backup_team</item>
+        <item>@drawable/support_small</item>
+        <item>@drawable/office</item>
+        <item>@drawable/data_small</item>
+        <item>@drawable/andmore_white</item>
+    </integer-array>
+
+    <string-array name="how_it_works">
+        <item>FREE TRIAL</item>
+        <item>HIRE</item>
+        <item>PAY</item>
+    </string-array>
+
+    <integer-array name="how_it_works_images">
+        <item>@drawable/free_trial</item>
+        <item>@drawable/hire</item>
+        <item>@drawable/pay</item>
+    </integer-array>
+
+    <string-array name="education_level">
+        <item>Associate</item>
+        <item>Bachelor</item>
+        <item>Master</item>
+        <item>Doctorate</item>
+    </string-array>
+
+    <string-array name="experience_rate">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Expert</item>
+    </string-array>
+
+    <string-array name="experience">
+        <item>@string/less_than_1_year</item>
+        <item>@string/year_1_3</item>
+        <item>@string/year_4_6</item>
+        <item>@string/year_7_9</item>
+        <item>@string/year_10_12</item>
+        <item>@string/year_13_15</item>
+        <item>@string/year_16_18</item>
+        <item>@string/year_19_21</item>
+        <item>@string/year_22_24</item>
+        <item>@string/year_25_27</item>
+        <item>@string/year_28_30</item>
+        <item>@string/year_31</item>
+    </string-array>
+
+    <string-array name="low_pricing_array">
+        <item>3.90</item>
+        <item>4.90</item>
+        <item>5.90</item>
+    </string-array>
+
+    <string-array name="high_pricing_array">
+        <item>4.90</item>
+        <item>5.90</item>
+        <item>6.90</item>
+    </string-array>
+
+    <string-array name="budget_array">
+        <item>$5 - $30</item>
+        <item>$30 - $100</item>
+        <item>$100 - $250</item>
+        <item>$250 - $500</item>
+        <item>$500 - $1,000</item>
+        <item>$1,000 - $2,000</item>
+    </string-array>
+
+    <string-array name="hourly_array">
+        <item>$2 - $5/hr</item>
+        <item>$5 - $8/hr</item>
+        <item>$8 - $10/hr</item>
+        <item>$10 - $15/hr</item>
+        <item>$15 - $30/hr</item>
+        <item>$30+ /hr</item>
+    </string-array>
+</resources>

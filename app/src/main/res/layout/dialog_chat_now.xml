@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/dialog_round_corner_top"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_15sdp"
+        android:paddingTop="@dimen/_15sdp"
+        android:paddingRight="@dimen/_15sdp">
+
+        <include layout="@layout/chat_more_options" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/_15sdp"
+            android:text="@string/cancel"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_14sdp"
+            app:fonts="@string/sftext_regular" />
+    </LinearLayout>
+</layout>

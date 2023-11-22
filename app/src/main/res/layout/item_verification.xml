@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="@string/phone_number_s"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            app:fonts="@string/sftext_regular" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_verified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:text="@string/verified"
+            android:textColor="@color/tab_gray"
+            android:textSize="@dimen/_10sdp"
+            android:visibility="gone"
+            app:fonts="@string/sfpro_text_regular" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_points"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_weight="0.2"
+            android:background="@drawable/red_rounded_corner"
+            android:gravity="center"
+            android:paddingLeft="@dimen/_8sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingRight="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            app:fonts="@string/sftext_regular" />
+
+        <ImageView
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/arrow_next" />
+    </LinearLayout>
+</layout>

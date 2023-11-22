@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.clientprofile.FreelancerProfileActivity">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/rl_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+
+                    <ImageView
+                        android:id="@+id/img_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/back"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/intercom_back"
+                        app:tint="@color/black" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/my_public_profile"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp"
+                        app:fonts="@string/sfdiaply_regular" />
+
+                    <ImageView
+                        android:id="@+id/img_share"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/back"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/share_profile" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_header"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_15sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/relative"
+                            android:orientation="vertical">
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/tv_user_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_26sdp"
+                                app:fonts="@string/sftext_bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <!--                                <com.willy.ratingbar.ScaleRatingBar-->
+                                <!--                                    android:id="@+id/ratingbar"-->
+                                <!--                                    android:layout_width="wrap_content"-->
+                                <!--                                    android:layout_height="wrap_content"-->
+                                <!--                                    app:srb_clearRatingEnabled="false"-->
+                                <!--                                    app:srb_drawableEmpty="@drawable/star_empty"-->
+                                <!--                                    app:srb_drawableFilled="@drawable/star"-->
+                                <!--                                    app:srb_isIndicator="true"-->
+                                <!--                                    app:srb_numStars="5"-->
+                                <!--                                    app:srb_rating="0"-->
+                                <!--                                    android:visibility="gone"-->
+                                <!--                                    app:srb_starHeight="@dimen/_20sdp"-->
+                                <!--                                    app:srb_starPadding="1dp"-->
+                                <!--                                    app:srb_starWidth="@dimen/_18sdp"-->
+                                <!--                                    app:srb_stepSize="0.5" />-->
+
+                                <com.nojom.util.RatingBar
+                                    android:id="@+id/ratingbar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:automatic="fully"
+                                    app:isIndicator="false"
+                                    app:numStars="5"
+                                    app:progress="@drawable/star_empty"
+                                    app:progressed="@drawable/star"
+                                    app:rating="0"
+                                    app:spacing="10dp"
+                                    app:stepSize="0.5"/>
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/tv_reviews"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:textSize="@dimen/_11sdp"
+                                    app:fonts="@string/sfdiaply_regular" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/relative"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/img_profile"
+                                android:layout_width="@dimen/_55sdp"
+                                android:layout_height="@dimen/_55sdp"
+                                android:src="@drawable/dp" />
+
+                            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                                android:id="@+id/progress_bar"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:indeterminate="true"
+                                app:cpbStyle="@style/CircularProgressBar"
+                                app:cpb_color="@color/gray"
+                                app:cpb_colors="@array/progressColorLightGray"
+                                app:cpb_max_sweep_angle="300"
+                                app:cpb_min_sweep_angle="10"
+                                app:cpb_rotation_speed="1.0"
+                                app:cpb_stroke_width="@dimen/_2sdp"
+                                app:cpb_sweep_speed="1.0" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignEnd="@+id/img_profile"
+                                android:layout_alignBottom="@+id/img_profile"
+                                android:layout_marginBottom="@dimen/_4sdp"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/online_dot" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:text="@string/verified_with"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_verified"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_no_verified"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_not_verified"
+                            android:textSize="@dimen/_12sdp"
+                            android:visibility="gone"
+                            app:fonts="@string/sftext_bold" />
+                    </RelativeLayout>
+
+                    <com.nojom.ui.radiobutton.SegmentedGroupTab
+                        android:id="@+id/segmentGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_27sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:divider="@drawable/radio_divider"
+                        android:orientation="horizontal"
+                        android:showDividers="middle"
+                        segmentedgroup:sc_border_width="1dp"
+                        segmentedgroup:sc_checked_text_color="@color/white"
+                        segmentedgroup:sc_corner_radius="@dimen/_7sdp"
+                        segmentedgroup:sc_tint_color="@color/blue_green"
+                        segmentedgroup:sc_unchecked_text_color="@color/tab_gray"
+                        segmentedgroup:sc_unchecked_tint_color="@color/white">
+
+                        <com.nojom.util.RadioButtonTextMedium
+                            android:id="@+id/tab_about"
+                            style="@style/RadioButtonTab"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:tag="about"
+                            android:text="@string/about"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_11sdp" />
+
+
+                        <com.nojom.util.RadioButtonTextMedium
+                            android:id="@+id/tab_skills"
+                            style="@style/RadioButtonTab"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:tag="skills"
+                            android:text="@string/skills"
+                            android:textColor="@color/tab_gray"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <com.nojom.util.RadioButtonTextMedium
+                            android:id="@+id/tab_portfolio"
+                            style="@style/RadioButtonTab"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:tag="portfolio"
+                            android:text="@string/portfolio"
+                            android:textColor="@color/tab_gray"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <com.nojom.util.RadioButtonTextMedium
+                            android:id="@+id/tab_reviews"
+                            style="@style/RadioButtonTab"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:tag="reviews"
+                            android:text="@string/reviews"
+                            android:textColor="@color/tab_gray"
+                            android:textSize="@dimen/_11sdp" />
+                    </com.nojom.ui.radiobutton.SegmentedGroupTab>
+
+                    <!--                    <com.task24agents.segment.SegmentedButtonGroup-->
+                    <!--                        android:id="@+id/segmentGroup"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="@dimen/_27sdp"-->
+                    <!--                        android:layout_marginTop="@dimen/_20sdp"-->
+                    <!--                        app:sbg_backgroundColor="@color/white"-->
+                    <!--                        app:sbg_borderColor="@android:color/transparent"-->
+                    <!--                        app:sbg_borderSize="0dp"-->
+                    <!--                        app:sbg_dividerColor="@color/background"-->
+                    <!--                        app:sbg_dividerSize="2dp"-->
+                    <!--                        app:sbg_radius="5dp"-->
+                    <!--                        app:sbg_selectorColor="@color/blue_green">-->
+
+                    <!--                        <com.task24agents.segment.SegmentedButton-->
+                    <!--                            android:id="@+id/tab_about"-->
+                    <!--                            style="@style/Button"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            app:sb_text="@string/about"-->
+                    <!--                            app:sb_textColor_onSelection="@color/white"-->
+                    <!--                            app:sb_textSize="@dimen/_12sdp"-->
+                    <!--                            app:sb_textTypefacePath="@string/sftext_medium" />-->
+
+                    <!--                        <com.task24agents.segment.SegmentedButton-->
+                    <!--                            android:id="@+id/tab_skills"-->
+                    <!--                            style="@style/Button"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            app:sb_text="@string/skills"-->
+                    <!--                            app:sb_textColor_onSelection="@color/white"-->
+                    <!--                            app:sb_textSize="@dimen/_12sdp"-->
+                    <!--                            app:sb_textTypefacePath="@string/sftext_medium" />-->
+
+                    <!--                        <com.task24agents.segment.SegmentedButton-->
+                    <!--                            android:id="@+id/tab_portfolio"-->
+                    <!--                            style="@style/Button"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            app:sb_text="Portfolio"-->
+                    <!--                            app:sb_textColor_onSelection="@color/white"-->
+                    <!--                            app:sb_textSize="@dimen/_12sdp"-->
+                    <!--                            app:sb_textTypefacePath="@string/sftext_medium" />-->
+
+
+                    <!--                        <com.task24agents.segment.SegmentedButton-->
+                    <!--                            android:id="@+id/tab_reviews"-->
+                    <!--                            style="@style/Button"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            app:sb_text="@string/reviews"-->
+                    <!--                            app:sb_textColor_onSelection="@color/white"-->
+                    <!--                            app:sb_textSize="@dimen/_12sdp"-->
+                    <!--                            app:sb_textTypefacePath="@string/sftext_medium" />-->
+                    <!--                    </com.task24agents.segment.SegmentedButtonGroup>-->
+
+                    <com.duolingo.open.rtlviewpager.RtlViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_300sdp"
+                        android:layout_marginTop="@dimen/_10sdp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/textgray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_chat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/chat"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_semibold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_hire"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/hire"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_semibold" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

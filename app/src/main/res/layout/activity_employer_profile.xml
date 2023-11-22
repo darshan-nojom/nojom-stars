@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:ellipsize="none"
+        android:fillViewport="true"
+        tools:context=".ui.clientprofile.EmployerProfileActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/rl_header"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/back"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/intercom_back"
+                    app:tint="@color/black" />
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_medium"
+                    android:id="@+id/tv_report_block"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/report_amp_block"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_11sdp"
+                    tools:ignore="RelativeOverlap" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/rl_header"
+                android:background="@color/lightgray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_header"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical"
+                        tools:ignore="RelativeOverlap">
+
+                        <android.textview.TextViewSFTextPro
+                            app:fonts="@string/sftext_bold"
+                            android:id="@+id/tv_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_26sdp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <com.nojom.util.RatingBar
+                                android:id="@+id/ratingbar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:automatic="fully"
+                                app:isIndicator="false"
+                                app:numStars="5"
+                                app:progress="@drawable/star_empty"
+                                app:progressed="@drawable/star"
+                                app:rating="0"
+                                app:spacing="@dimen/_5sdp"
+                                app:stepSize="0.5" />
+
+                            <android.textview.TextViewSFTextPro
+                                app:fonts="@string/sfdiaply_regular"
+                                android:id="@+id/tv_reviews"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:textSize="@dimen/_11sdp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_profile"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:src="@drawable/dp" />
+
+                        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                            android:id="@+id/progress_bar"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:indeterminate="true"
+                            app:cpbStyle="@style/CircularProgressBar"
+                            app:cpb_color="@color/gray"
+                            app:cpb_colors="@array/progressColorLightGray"
+                            app:cpb_max_sweep_angle="300"
+                            app:cpb_min_sweep_angle="10"
+                            app:cpb_rotation_speed="1.0"
+                            app:cpb_stroke_width="@dimen/_2sdp"
+                            app:cpb_sweep_speed="1.0" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@+id/img_profile"
+                            android:layout_alignBottom="@+id/img_profile"
+                            android:layout_marginBottom="@dimen/_4sdp"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/online_dot" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:text="@string/verified_with"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_verified"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <android.textview.TextViewSFTextPro
+                        app:fonts="@string/sftext_bold"
+                        android:id="@+id/tv_no_verified"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_not_verified"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/blue_green_button_bg_10"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    android:textColor="@color/white"
+                    android:text="@string/reviews" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_reviews"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_layout_reviews"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <include layout="@layout/item_reviews_ph" />
+
+                            <include layout="@layout/item_reviews_ph" />
+
+                            <include layout="@layout/item_reviews_ph" />
+
+                            <include layout="@layout/item_reviews_ph" />
+
+                            <include layout="@layout/item_reviews_ph" />
+
+                            <include layout="@layout/item_reviews_ph" />
+
+                            <include layout="@layout/item_reviews_ph" />
+
+                            <include layout="@layout/item_reviews_ph" />
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <include
+                        android:id="@+id/noData"
+                        layout="@layout/no_data_layout" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

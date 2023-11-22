@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_15sdp"
+        android:background="@drawable/white_rounded_corner_15"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/other"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            app:fonts="@string/sfpro_text_bold" />
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/close_gray"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/lin_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/lightblue_border_6"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
+
+            <CheckBox
+                android:id="@+id/rb_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_button_inset"
+                android:buttonTint="@color/colorPrimary"
+                android:checked="true"
+                android:enabled="false"
+                android:padding="@dimen/_3sdp"
+                app:fonts="@string/sfpro_text_regular" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:orientation="vertical">
+
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_title_standard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/quantity"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sfpro_text_semibold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_desc_standard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="@string/how_many_do_you_offer_describe_your_gig_requirement_in_a_physical_quantity"
+                    android:textColor="@color/black_50"
+                    android:textSize="@dimen/_9sdp"
+                    app:fonts="@string/sftext_regular" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_number"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/gray_border_6"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
+
+            <CheckBox
+                android:id="@+id/rb_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_button_inset"
+                android:buttonTint="@color/colorPrimary"
+                android:enabled="false"
+                android:padding="@dimen/_3sdp"
+                app:fonts="@string/sfpro_text_regular" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:orientation="vertical">
+
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/price_rate"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sfpro_text_semibold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_desc_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="@string/how_much_do_you_charge_briefly_describe_the_price_rate_you_set_per_unit_of_output"
+                    android:textColor="@color/black_50"
+                    android:textSize="@dimen/_9sdp"
+                    app:fonts="@string/sftext_regular" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_text"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@drawable/green_button_bg"
+            android:gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:text="@string/continue_"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sftext_bold" />
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_round_corner_top_bg"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/_15sdp"
+            android:src="@drawable/ic_close_white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <LinearLayout
+                android:id="@+id/lin_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/accept_offers"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="@string/choose_who_can_send_you_offers_nany_user_verified_users_or_verified_brands"
+                    android:textColor="@color/tab_gray"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sfpro_text_regular" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/white_button_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="All users"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_5sdp">
+
+                            <com.nojom.segment.SegmentedButtonGroup
+                                android:id="@+id/segmentGroup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_25sdp"
+                                app:sbg_backgroundColor="@color/background"
+                                app:sbg_borderColor="@android:color/transparent"
+                                app:sbg_borderSize="1dp"
+                                app:sbg_dividerSize="0dp"
+                                app:sbg_radius="20dp"
+                                tools:ignore="RelativeOverlap">
+
+                                <com.nojom.segment.SegmentedButton
+                                    android:id="@+id/tab_no"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingLeft="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_4sdp"
+                                    android:paddingRight="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_4sdp"
+                                    app:sb_selectorColor="@color/red_dark"
+                                    app:sb_text="@string/NO"
+                                    app:sb_textColor_onSelection="@color/white"
+                                    app:sb_textSize="@dimen/_11sdp"
+                                    app:sb_textTypefacePath="@string/sftext_bold" />
+
+                                <com.nojom.segment.SegmentedButton
+                                    android:id="@+id/tab_yes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingLeft="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_4sdp"
+                                    android:paddingRight="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_4sdp"
+                                    app:sb_selectorColor="@color/colorPrimary"
+                                    app:sb_text="@string/YES"
+                                    app:sb_textColor_onSelection="@color/white"
+                                    app:sb_textSize="@dimen/_11sdp"
+                                    app:sb_textTypefacePath="@string/sftext_regular" />
+                            </com.nojom.segment.SegmentedButtonGroup>
+
+                            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                                android:id="@+id/progress_bar"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:indeterminate="true"
+                                android:visibility="gone"
+                                app:cpbStyle="@style/CircularProgressBar"
+                                app:cpb_color="@color/colorPrimary"
+                                app:cpb_colors="@array/progressColorPrimary"
+                                app:cpb_max_sweep_angle="300"
+                                app:cpb_min_sweep_angle="10"
+                                app:cpb_rotation_speed="1.0"
+                                app:cpb_stroke_width="@dimen/_2sdp"
+                                app:cpb_sweep_speed="1.0" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Verified users"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_5sdp">
+
+                            <com.nojom.segment.SegmentedButtonGroup
+                                android:id="@+id/segmentGroupVU"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_25sdp"
+                                app:sbg_backgroundColor="@color/background"
+                                app:sbg_borderColor="@android:color/transparent"
+                                app:sbg_borderSize="1dp"
+                                app:sbg_dividerSize="0dp"
+                                app:sbg_position="1"
+                                app:sbg_radius="20dp"
+                                tools:ignore="RelativeOverlap">
+
+                                <com.nojom.segment.SegmentedButton
+                                    android:id="@+id/tab_noVU"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingLeft="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_4sdp"
+                                    android:paddingRight="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_4sdp"
+                                    app:sb_selectorColor="@color/red_dark"
+                                    app:sb_text="@string/NO"
+                                    app:sb_textColor_onSelection="@color/white"
+                                    app:sb_textSize="@dimen/_11sdp"
+                                    app:sb_textTypefacePath="@string/sftext_bold" />
+
+                                <com.nojom.segment.SegmentedButton
+                                    android:id="@+id/tab_yesVU"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingLeft="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_4sdp"
+                                    android:paddingRight="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_4sdp"
+                                    app:sb_selectorColor="@color/colorPrimary"
+                                    app:sb_text="@string/YES"
+                                    app:sb_textColor_onSelection="@color/white"
+                                    app:sb_textSize="@dimen/_11sdp"
+                                    app:sb_textTypefacePath="@string/sftext_regular" />
+                            </com.nojom.segment.SegmentedButtonGroup>
+
+                            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                                android:id="@+id/progress_barVU"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:indeterminate="true"
+                                android:visibility="gone"
+                                app:cpbStyle="@style/CircularProgressBar"
+                                app:cpb_color="@color/colorPrimary"
+                                app:cpb_colors="@array/progressColorPrimary"
+                                app:cpb_max_sweep_angle="300"
+                                app:cpb_min_sweep_angle="10"
+                                app:cpb_rotation_speed="1.0"
+                                app:cpb_stroke_width="@dimen/_2sdp"
+                                app:cpb_sweep_speed="1.0" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Verified brands"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_5sdp">
+
+                            <com.nojom.segment.SegmentedButtonGroup
+                                android:id="@+id/segmentGroupVB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_25sdp"
+                                app:sbg_backgroundColor="@color/background"
+                                app:sbg_borderColor="@android:color/transparent"
+                                app:sbg_borderSize="1dp"
+                                app:sbg_dividerSize="0dp"
+                                app:sbg_position="1"
+                                app:sbg_radius="20dp"
+                                tools:ignore="RelativeOverlap">
+
+                                <com.nojom.segment.SegmentedButton
+                                    android:id="@+id/tab_noVB"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingLeft="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_4sdp"
+                                    android:paddingRight="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_4sdp"
+                                    app:sb_selectorColor="@color/red_dark"
+                                    app:sb_text="@string/NO"
+                                    app:sb_textColor_onSelection="@color/white"
+                                    app:sb_textSize="@dimen/_11sdp"
+                                    app:sb_textTypefacePath="@string/sftext_bold" />
+
+                                <com.nojom.segment.SegmentedButton
+                                    android:id="@+id/tab_yesVB"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingLeft="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_4sdp"
+                                    android:paddingRight="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_4sdp"
+                                    app:sb_selectorColor="@color/colorPrimary"
+                                    app:sb_text="@string/YES"
+                                    app:sb_textColor_onSelection="@color/white"
+                                    app:sb_textSize="@dimen/_11sdp"
+                                    app:sb_textTypefacePath="@string/sftext_regular" />
+                            </com.nojom.segment.SegmentedButtonGroup>
+
+                            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                                android:id="@+id/progress_barVB"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:indeterminate="true"
+                                android:visibility="gone"
+                                app:cpbStyle="@style/CircularProgressBar"
+                                app:cpb_color="@color/colorPrimary"
+                                app:cpb_colors="@array/progressColorPrimary"
+                                app:cpb_max_sweep_angle="300"
+                                app:cpb_min_sweep_angle="10"
+                                app:cpb_rotation_speed="1.0"
+                                app:cpb_stroke_width="@dimen/_2sdp"
+                                app:cpb_sweep_speed="1.0" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@drawable/black_bg_50">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+            <ProgressBar
+                android:id="@+id/img_vp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:contentDescription="@string/app_name"
+                android:progressTint="@color/white"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

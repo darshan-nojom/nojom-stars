@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1A62F5</color>
+    <color name="colorPrimaryDark">#1A62F5</color>
+    <color name="colorAccent">#1A62F5</color>
+    <color name="vw_BgToolBar">#1A62F5</color>
+    <color name="vw_BgRv">#191919</color>
+    <color name="vw_BgItem">#353535</color>
+    <color name="vw_ShadowItem">#94333232</color>
+    <color name="vw_BgRvFileDivider">#EEEEEE</color>
+    <color name="textgrayAccent">#959595</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="black_60">#99000000</color>
+    <color name="black_80">#CC000000</color>
+    <color name="orange">#FF7900</color>
+    <color name="orange_light">#F5A623</color>
+    <color name="yellow">#FCBE05</color>
+    <color name="background">#F2F2F2</color>
+    <color name="red">#E70E3B</color>
+    <color name="red_dark">#D0021B</color>
+    <color name="reset_pw_btn">#D0555A</color>
+    <color name="red_dim">#CF6969</color>
+    <color name="red_aplha">#FBF0F1</color>
+    <color name="lightgray">#B4B4B4</color>
+    <color name="textgray">#C7C7CC</color>
+    <color name="green">#07B825</color>
+    <color name="greendark">#4DA659</color>
+    <color name="lightgreen">#13B675</color>
+    <color name="online">#5AD539</color>
+    <color name="full_dark_green">#26A051</color>
+    <color name="green_aplha">#E9F8F2</color>
+    <color name="pressed_bg">#64b7b7b7</color>
+    <color name="blue_green">#0A9095</color>
+    <color name="dark_text">#2B3857</color>
+    <color name="gray_text">#4A4A4A</color>
+    <color name="skin">#8B572A</color>
+    <color name="defaultContentColor">@color/black</color>
+    <color name="defaultBorderFlagColor">#00000000</color>
+    <color name="silver">#888888</color>
+    <color name="lovender">#9251AC</color>
+    <color name="blue_very_low">#A5C0F4</color>
+    <color name="blue_low">#76A0F7</color>
+    <color name="blue_dark">#4782FA</color>
+    <color name="blue_full_dark">#0055FF</color>
+    <color name="gray">#9B9B9B</color>
+    <color name="tab_gray">#858795</color>
+    <color name="iron">#CFD0D1</color>
+    <color name="facebook">#3C5998</color>
+    <color name="darkGray">#868E96</color>
+    <color name="c_b2b2b2">#B2B2B2</color>
+
+    <color name="placeholder_bg">#dddddd</color>
+    <color name="black_34">#57000000</color>
+    <color name="black_53">#87000000</color>
+    <color name="light_gray">#BEC0C2</color>
+    <color name="dark_gray">#EDEEF0</color>
+    <color name="gray_midium_light">#E5E6EA</color>
+    <color name="graycolor">#C1C1C1</color>
+    <color name="light_blue">#EFF4FF</color>
+    <color name="divider">#D6D6D6</color>
+    <color name="skyblue">#1087FF</color>
+    <color name="c_E5E5E5">#E5E5E5</color>
+    <color name="c_62646A">#62646A</color>
+    <color name="c_EFF2F1">#EFF2F1</color>
+    <color name="c_F9F9FB">#F9F9FB</color>
+    <color name="c_0FA35D">#0FA35D</color>
+    <color name="c_37D9DE">#37D9DE</color>
+    <color name="C_44A2E2">#44A2E2</color>
+    <color name="C_5A5A5A">#5A5A5A</color>
+    <color name="C_444444">#444444</color>
+
+    <integer-array name="progressColor">
+        <item>@color/white</item>
+    </integer-array>
+    <integer-array name="progressColorGray">
+        <item>@color/textgray</item>
+    </integer-array>
+    <integer-array name="progressColorPrimary">
+        <item>@color/colorPrimary</item>
+    </integer-array>
+    <integer-array name="progressColorOrange">
+        <item>@color/red_dim</item>
+    </integer-array>
+    <integer-array name="progressColorRed">
+        <item>@color/red</item>
+    </integer-array>
+    <integer-array name="progressColorDarkRed">
+        <item>@color/red_dark</item>
+    </integer-array>
+    <integer-array name="progressColorLightGray">
+        <item>@color/gray</item>
+    </integer-array>
+</resources>

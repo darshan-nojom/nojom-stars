@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        tools:context=".ui.workprofile.SelectSkillsActivity">
+
+        <include
+            android:id="@+id/toolbarSave"
+            layout="@layout/toolbar_save" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.edittext.EditTextSFTextRegular
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
+                android:background="@drawable/white_button_bg"
+                android:drawableStart="@drawable/search"
+                android:ellipsize="end"
+                android:inputType="textCapSentences"
+                android:hint="@string/search_for_relevant_skill"
+                android:imeOptions="actionSearch"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_11sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_skill_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_total_skill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/selected_skills"
+                    android:textSize="@dimen/_9sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_selected_skills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_selected_skills"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="none"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+
+                            <include layout="@layout/item_selected_skills_ph" />
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

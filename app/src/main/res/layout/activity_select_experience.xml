@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="expAct"
+            type="com.nojom.ui.workprofile.SelectExperienceActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.workprofile.SelectExpertiseActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar_signup" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_15sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/choose_your_experience"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_22sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="@string/experience_info"
+                        android:textColor="@color/textgrayAccent"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_beginner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:background="@drawable/white_rounded_corner_10"
+                        android:gravity="center"
+                        android:onClick="@{()->expAct.onClickBeginner()}"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_15sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_beginner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/beginner"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sftext_bold" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_beginner_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:lineSpacingExtra="@dimen/_3sdp"
+                            android:text="@string/beginner_text"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_intermediate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/white_rounded_corner_10"
+                        android:gravity="center"
+                        android:onClick="@{()->expAct.onClickIntermediate()}"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_15sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_intermediate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/intermediate"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sftext_bold" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_intermediate_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:lineSpacingExtra="@dimen/_3sdp"
+                            android:text="@string/intermediate_text"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_advanced"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_50sdp"
+                        android:background="@drawable/white_rounded_corner_10"
+                        android:gravity="center"
+                        android:onClick="@{()->expAct.onClickAdvance()}"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_15sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_advanced"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/advanced"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sftext_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_advanced_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:lineSpacingExtra="@dimen/_3sdp"
+                            android:text="@string/advanced_text"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_next"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_14sdp"
+            android:contentDescription="@string/app_name"
+            android:onClick="@{()->expAct.onClickNext()}"
+            android:src="@drawable/arrow_black"
+            android:visibility="gone" />
+    </RelativeLayout>
+</layout>

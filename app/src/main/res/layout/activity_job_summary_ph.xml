@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        tools:context=".ui.jobs.JobSummaryActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/back"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/intercom_back"
+                app:tint="@color/black" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="@string/job_details"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp"
+                app:fonts="@string/sfdiaply_bold" />
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_40sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="@string/job_title"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="invisible"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:alpha="0.12"
+                    android:background="@android:color/background_dark"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_medium" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:text="@string/project_budget"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="invisible"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="@dimen/_220sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:alpha="0.12"
+                    android:background="@android:color/background_dark"
+                    android:gravity="center"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_medium" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:text="@string/service"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="invisible"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:alpha="0.12"
+                    android:background="@android:color/background_dark"
+                    android:gravity="center"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_medium" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:text="@string/looking_for"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="invisible"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="@dimen/_220sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:alpha="0.12"
+                    android:background="@android:color/background_dark"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_medium" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:text="@string/details"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="invisible"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:alpha="0.12"
+                    android:background="@android:color/background_dark"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:text="@string/attachments"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="invisible"
+                    app:fonts="@string/sftext_regular" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:alpha="0.12"
+                    android:background="@android:color/background_dark"
+                    android:padding="@dimen/_30sdp"
+                    android:paddingBottom="@dimen/_5sdp" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:text="@string/job_id"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="invisible"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:alpha="0.12"
+                    android:background="@android:color/background_dark"
+                    android:gravity="center"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_medium" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="@dimen/_5sdp"
+            android:orientation="vertical"
+            tools:targetApi="lollipop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="0.4"
+                    android:alpha="0.12"
+                    android:background="@android:color/background_dark"
+                    android:orientation="vertical" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:alpha="0.12"
+                    android:background="@android:color/background_dark"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/place_a_bid"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_semibold" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

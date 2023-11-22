@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".ui.chat.ChatActivity">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/we_are_online_now"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sdp" />
+
+            <ImageView
+                android:layout_width="@dimen/_5sdp"
+                android:layout_height="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/online_dot"
+                android:contentDescription="@string/app_name" />
+        </LinearLayout>
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/_15sdp"
+            android:text="@string/chat_text"
+            android:textColor="@color/gray_text"
+            android:textSize="@dimen/_11sdp" />
+
+        <LinearLayout
+            android:id="@+id/ll_whatsapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/shadow_bg_20"
+            android:gravity="center"
+            android:visibility="gone"
+            android:padding="@dimen/_10sdp">
+
+            <ImageView
+                android:contentDescription="@string/app_name"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:src="@drawable/whatsapp" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:id="@+id/tv_go_whatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/go_to_whatsapp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_messenger"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/shadow_bg_20"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/messanger" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:id="@+id/tv_go_messenger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/go_to_messenger"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_bold"
+            android:id="@+id/tv_chat_here"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/button_bg"
+            android:gravity="center"
+            android:padding="@dimen/_9sdp"
+            android:text="@string/chat_now_here"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_regular"
+            android:id="@+id/tv_more_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/more_options"
+            android:textColor="@color/dark_text"
+            android:textSize="@dimen/_11sdp" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="chooseAccount"
+            type="com.nojom.ui.balance.ChooseAccountActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.balance.ChooseAccountActivity">
+
+        <RelativeLayout
+            android:id="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/back"
+                android:onClick="@{()->chooseAccount.onClickBack()}"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/intercom_back"
+                app:tint="@color/black" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_bottom"
+            android:layout_below="@+id/rl_header"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_account"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_22sdp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_accounts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:visibility="gone" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/item_choose_account_ph" />
+
+                    <include layout="@layout/item_choose_account_ph" />
+
+                    <include layout="@layout/item_choose_account_ph" />
+
+                    <include layout="@layout/item_choose_account_ph" />
+
+                    <include layout="@layout/item_choose_account_ph" />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <include
+                android:id="@+id/noData"
+                layout="@layout/no_data_layout" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/background"
+            android:elevation="@dimen/_5sdp"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp"
+            tools:targetApi="lollipop">
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_semibold"
+                android:id="@+id/tv_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:background="@drawable/black_button_bg"
+                android:gravity="center"
+                android:onClick="@{()->chooseAccount.onClickSave()}"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

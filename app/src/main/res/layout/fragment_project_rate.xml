@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rate_employer"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp"
+                app:fonts="@string/sfdiaply_bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/white_rounded_corner_10"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_client"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/img_client"
+                        android:orientation="vertical">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_client_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfdiaply_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_client_place"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_9sdp"
+                            app:fonts="@string/sfdiaply_regular" />
+                    </LinearLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_client_chat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/blue_border_10"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:paddingTop="@dimen/_6sdp"
+                        android:paddingRight="@dimen/_20sdp"
+                        android:paddingBottom="@dimen/_6sdp"
+                        android:text="@string/chat"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_semibold"
+                        tools:ignore="RelativeOverlap" />
+                </RelativeLayout>
+
+                <com.nojom.util.RatingBar
+                    android:id="@+id/rating_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    app:automatic="fully"
+                    app:isIndicator="false"
+                    app:numStars="5"
+                    app:progress="@drawable/star_empty"
+                    app:progressed="@drawable/star"
+                    app:rating="0"
+                    app:spacing="@dimen/_10sdp"
+                    app:stepSize="0.5" />
+
+                <com.nojom.util.ReadMoreTextView
+                    android:id="@+id/tv_client_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:text="@string/rate_employer_will_help_you_get_a_rating_back"
+                    android:textColor="@color/textgrayAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular"
+                    app:readMoreTextColor="@color/colorPrimary"
+                    app:trimLines="3"
+                    app:trimMode="trimModeLine" />
+            </LinearLayout>
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/my_rating"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp"
+                app:fonts="@string/sfdiaply_bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/white_rounded_corner_10"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_user"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/img_user"
+                        android:orientation="vertical">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfdiaply_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_user_place"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_9sdp"
+                            app:fonts="@string/sfdiaply_regular" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <com.nojom.util.RatingBar
+                    android:id="@+id/rating_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    app:automatic="manual"
+                    app:isIndicator="false"
+                    app:numStars="5"
+                    app:progress="@drawable/star_empty"
+                    app:progressed="@drawable/star"
+                    app:rating="0"
+                    app:spacing="@dimen/_10sdp"
+                    app:stepSize="0.5" />
+
+                <!--app:srb_starHeight="@dimen/_32sdp"
+                app:srb_starPadding="1dp"
+                app:srb_starWidth="@dimen/_40sdp"-->
+
+                <com.nojom.util.ReadMoreTextView
+                    android:id="@+id/tv_user_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:text="@string/ask_employer_to_rate_you_to_improve_your_profile"
+                    android:textColor="@color/textgrayAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular"
+                    app:readMoreTextColor="@color/colorPrimary"
+                    app:trimLines="3"
+                    app:trimMode="trimModeLine" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

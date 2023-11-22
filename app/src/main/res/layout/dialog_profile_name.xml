@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_round_corner_top_bg"
+        android:orientation="vertical">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:text="@string/cancel"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sfpro_text_semibold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <LinearLayout
+                android:id="@+id/lin_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/first_name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_firstname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/round_corner"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:hint="@string/first_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:padding="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/last_name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_lastname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/round_corner"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:hint="@string/last_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:padding="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_userName"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/username"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_userName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/round_corner"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:hint="@string/username"
+                        android:imeOptions="actionDone"
+                        android:inputType="textCapSentences"
+                        android:padding="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/website"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_website"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/round_corner"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:hint="@string/website"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:padding="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <com.nojom.segment.SegmentedButtonGroup
+                        android:id="@+id/segmentLoginGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        app:sbg_backgroundColor="@color/white"
+                        app:sbg_borderColor="@android:color/transparent"
+                        app:sbg_borderSize="2dp"
+                        app:sbg_dividerSize="0dp"
+                        app:sbg_position="0"
+                        app:sbg_radius="@dimen/_20sdp"
+                        app:sbg_selectorColor="@color/full_dark_green">
+
+                        <com.nojom.segment.SegmentedButton
+                            android:id="@+id/tab_notActive"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="@dimen/_5sdp"
+                            app:sb_text="@string/not_active"
+                            app:sb_textColor_onSelection="@color/white"
+                            app:sb_textSize="@dimen/_11sdp"
+                            app:sb_textTypefacePath="@string/sfpro_text_regular" />
+
+                        <com.nojom.segment.SegmentedButton
+                            android:id="@+id/tab_active"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="@dimen/_5sdp"
+                            app:sb_text="@string/active"
+                            app:sb_textColor_onSelection="@color/white"
+                            app:sb_textSize="@dimen/_11sdp"
+                            app:sb_textTypefacePath="@string/sfpro_text_regular" />
+                    </com.nojom.segment.SegmentedButtonGroup>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@drawable/black_bg_50">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:contentDescription="@string/app_name"
+                android:progressTint="@color/white"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

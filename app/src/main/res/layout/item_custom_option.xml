@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/lout_main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/gray_border_5"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/img_checked"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:adjustViewBounds="true"
+            android:button="@drawable/checkbox_layout"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_sub_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/_1_logo"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:font="@string/sfpro_text_regular" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_weight="0.40"
+            android:gravity="center|right"
+            android:text="$ 20"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:font="@string/sfpro_text_regular" />
+    </LinearLayout>
+
+</layout>

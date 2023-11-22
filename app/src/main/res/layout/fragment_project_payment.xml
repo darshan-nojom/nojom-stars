@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/payment_details"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp"
+                app:fonts="@string/sftext_bold" />
+
+            <LinearLayout
+                android:id="@+id/ll_bidding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/white_rounded_corner_10"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        app:fonts="@string/sftext_medium"
+                        android:id="@+id/tv_total_Bid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <android.textview.TextViewSFTextPro
+                        app:fonts="@string/sftext_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:text="@string/_fixed_price_"
+                        android:textColor="@color/textgrayAccent"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_medium"
+                    android:id="@+id/tv_payment_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/no_payment_agents"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_project_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/white_rounded_corner_10"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        app:fonts="@string/sftext_medium"
+                        android:id="@+id/tv_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <android.textview.TextViewSFTextPro
+                        app:fonts="@string/sftext_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:text="@string/_fixed_price_"
+                        android:textColor="@color/textgrayAccent"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_no_deposit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:text="@string/completed_paid_info"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_payment_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_rounded_corner_10"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_12sdp">
+
+                        <LinearLayout
+                            android:id="@+id/ll_deposit_done"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:visibility="invisible"
+                            tools:ignore="RtlHardcoded">
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/check_done" />
+                        </LinearLayout>
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_deposit_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@string/dollar_0_usd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_18sdp"
+                            app:fonts="@string/sftext_bold" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/deposit"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sftext_regular" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_rounded_corner_10"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_12sdp">
+
+                        <LinearLayout
+                            android:id="@+id/ll_release_done"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:visibility="invisible"
+                            tools:ignore="RtlHardcoded">
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/check_done" />
+                        </LinearLayout>
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_release_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@string/dollar_0_usd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_18sdp"
+                            app:fonts="@string/sftext_bold" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/released"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sftext_regular" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:drawableStart="@drawable/satisfied"
+                    android:drawablePadding="@dimen/_15sdp"
+                    android:text="@string/deposit_security"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_satisfied"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:drawableStart="@drawable/satisfied"
+                    android:drawablePadding="@dimen/_15sdp"
+                    android:text="@string/once_you_submit_your_job_employer_will_releasing_deposit"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_tnc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_50sdp"
+                    android:text="@string/refund_terms_and_conditions"
+                    android:textColor="@color/gray_text"
+                    android:textSize="@dimen/_10sdp"
+                    app:fonts="@string/sftext_regular" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

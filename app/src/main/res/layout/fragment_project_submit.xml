@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.textview.TextViewSFTextPro
+                    app:fonts="@string/sftext_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/completed_job"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sdp"
+                    tools:ignore="RelativeOverlap" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_add"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/circle_round"
+                    android:elevation="@dimen/_5sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="invisible"
+                    android:src="@drawable/ic_plus"
+                    tools:targetApi="lollipop" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_submit_jobs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp" />
+
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_regular"
+                android:id="@+id/tv_submit_job"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:background="@drawable/white_rounded_corner_25"
+                android:elevation="@dimen/_3sdp"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/submit_job"
+                android:textColor="@color/black"
+                tools:targetApi="lollipop" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_bold"
+                android:id="@+id/tv_placeholder_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_130sdp"
+                android:elevation="@dimen/_3sdp"
+                android:gravity="center"
+                android:text="@string/no_files"
+                android:textColor="@color/tab_gray"
+                android:textSize="@dimen/_18sdp"
+                android:visibility="gone"
+                tools:targetApi="lollipop" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sftext_regular"
+                android:id="@+id/tv_placeholder_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:elevation="@dimen/_3sdp"
+                android:gravity="center"
+                android:paddingLeft="@dimen/_30sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingRight="@dimen/_30sdp"
+                android:paddingBottom="@dimen/_30sdp"
+                android:text="@string/all_submitted_files_for_this_job_will_be_displayed_here"
+                android:textColor="@color/tab_gray"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="gone"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

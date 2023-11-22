@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_deposit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/_20sdp"
+        android:background="@drawable/white_rounded_corner_15"
+        android:orientation="vertical">
+
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/large_green_tick" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="@string/congratulation"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_regular"
+            android:id="@+id/tv_user_release_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/user_released_the_payment"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_regular"
+            android:id="@+id/tv_hows_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/how_was_user"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
+
+        <com.nojom.util.RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_gravity="center"
+            app:automatic="fully"
+            app:isIndicator="false"
+            app:numStars="5"
+            app:progress="@drawable/star_gray_border"
+            app:progressed="@drawable/star_gray_border"
+            app:rating="0"
+            app:spacing="@dimen/_10sdp"
+            app:stepSize="0.5" />
+
+        <android.textview.TextViewSFTextPro
+            app:fonts="@string/sftext_bold"
+            android:id="@+id/tv_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/skip"
+            android:textAllCaps="false"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/_13sdp" />
+    </LinearLayout>
+</layout>

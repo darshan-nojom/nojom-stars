@@ -1,0 +1,151 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="DatePickerDialog" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:layout_gravity">center_vertical|center_horizontal</item>
+        <item name="android:paddingLeft">@dimen/_8sdp</item>
+        <item name="android:paddingTop">@dimen/_5sdp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingRight">@dimen/_8sdp</item>
+        <item name="android:paddingBottom">@dimen/_5sdp</item>
+    </style>
+
+    <style name="TagGroup">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="atg_isAppendMode">false</item>
+        <item name="atg_borderColor">#49C120</item>
+        <item name="atg_textColor">#49C120</item>
+        <item name="atg_backgroundColor">#FFFFFF</item>
+        <item name="atg_dashBorderColor">#AAAAAA</item>
+        <item name="atg_inputHintColor">#80000000</item>
+        <item name="atg_inputTextColor">#DE000000</item>
+        <item name="atg_checkedBorderColor">#49C120</item>
+        <item name="atg_checkedTextColor">#FFFFFF</item>
+        <item name="atg_checkedMarkerColor">#FFFFFF</item>
+        <item name="atg_checkedBackgroundColor">#49C120</item>
+        <item name="atg_pressedBackgroundColor">#EDEDED</item>
+        <item name="atg_borderStrokeWidth">0.5dp</item>
+        <item name="atg_textSize">13sp</item>
+        <item name="atg_horizontalSpacing">8dp</item>
+        <item name="atg_verticalSpacing">4dp</item>
+        <item name="atg_horizontalPadding">12dp</item>
+        <item name="atg_verticalPadding">3dp</item>
+    </style>
+
+    <style name="vw_FilePickerTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowMenuStyle">@style/vw_OverflowMenuStyle</item>
+        <item name="android:listDivider">@drawable/vw_divider_rv</item>
+    </style>
+
+    <style name="vw_OverflowMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:popupBackground">#000000</item>
+        <item name="android:dropDownVerticalOffset">4dp</item>
+        <item name="android:dropDownHorizontalOffset">0dp</item>
+    </style>
+
+    <style name="vw_ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <declare-styleable name="MaxHeightLayout">
+        <attr name="mhl_HeightRatio" format="reference|float" />
+        <attr name="mhl_HeightDimen" format="reference|dimension" />
+    </declare-styleable>
+
+    <style name="RadioButtonTab">
+        <item name="android:minHeight">33dp</item>
+        <item name="android:minWidth">70dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="android:Theme.Dialog">
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="HorizontalProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressBackgroundTint">@color/gray</item>
+        <item name="android:progressTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="ChipTextApperance" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppThemeMat" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/gray_button_bg</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+
+    <declare-styleable name="RatingBar">
+        <!-- The number of stars (or rating items) to show. -->
+        <attr name="numStars" format="integer" />
+        <!-- The rating to set by default. -->
+        <attr name="rating" format="float" />
+        <!-- The step size of the rating. -->
+        <attr name="stepSize" format="float" />
+        <!-- Whether this rating bar is an indicator (and non-changeable by the user). -->
+        <attr name="isIndicator" format="boolean" />
+        <!-- The spacing between items. -->
+        <attr name="spacing" format="dimension" />
+        <!-- What kind of mode for automatic adaptation. -->
+        <attr name="automatic" format="enum">
+            <!-- Fully automatic  -->
+            <enum name="fully" value="0" />
+            <!-- Semi automatic  -->
+            <enum name="semi" value="1" />
+            <!-- Manual -->
+            <enum name="manual" value="2" />
+        </attr>
+        <!-- The default background image. -->
+        <attr name="progress" format="reference" />
+        <!-- The progressed background image. -->
+        <attr name="progressed" format="reference" />
+    </declare-styleable>
+</resources>

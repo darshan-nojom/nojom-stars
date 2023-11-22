@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/dialog_round_corner_bottom"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_25sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingRight="@dimen/_25sdp"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/what_s_wrong_with_this_post"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                app:fonts="@string/sfdiaply_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/help_us_understand_why_you_are_reporting_this_post"
+                android:textColor="@color/gray_text"
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sftext_regular" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/don_t_worry_your_identity_is_safe_with_us"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sftext_regular" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp">
+
+                <RadioButton
+                    android:id="@+id/rb_inappropriate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/selector_checkbox"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/inappropriate_content"
+                    android:textColor="@color/gray_text"
+                    android:textSize="@dimen/_10sdp" />
+
+                <RadioButton
+                    android:id="@+id/rb_irrelevant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/selector_checkbox"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/irrelevant_job_post"
+                    android:textColor="@color/gray_text"
+                    android:textSize="@dimen/_10sdp" />
+
+                <RadioButton
+                    android:id="@+id/rb_scam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/selector_checkbox"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/look_like_a_scam"
+                    android:textColor="@color/gray_text"
+                    android:textSize="@dimen/_10sdp" />
+
+                <RadioButton
+                    android:id="@+id/rb_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/selector_checkbox"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/other"
+                    android:textColor="@color/gray_text"
+                    android:textSize="@dimen/_10sdp" />
+
+            </RadioGroup>
+
+            <android.edittext.EditTextSFTextRegular
+                android:id="@+id/edit_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:background="@drawable/gray_button_bg"
+                android:gravity="start"
+                android:hint="@string/write_your_reason"
+                android:lines="4"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_11sdp"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:orientation="horizontal">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gray_button_bg"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <RelativeLayout
+                    android:id="@+id/rel_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_button_bg">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:gravity="center"
+                        android:text="@string/submit"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        app:cpbStyle="@style/CircularProgressBar"
+                        app:cpb_color="@color/white"
+                        app:cpb_colors="@array/progressColor"
+                        app:cpb_max_sweep_angle="300"
+                        app:cpb_min_sweep_angle="10"
+                        app:cpb_rotation_speed="1.0"
+                        app:cpb_stroke_width="@dimen/_2sdp"
+                        app:cpb_sweep_speed="1.0" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

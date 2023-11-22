@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_jobs"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_23sdp"
+                app:fonts="@string/sfdiaply_bold" />
+
+            <android.textview.TextViewSFTextPro
+                app:fonts="@string/sfdiaply_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_project"
+                android:text="@string/explore_your_projects_here"
+                android:textColor="@color/textgrayAccent"
+                android:textSize="@dimen/_11sdp" />
+        </RelativeLayout>
+
+        <com.nojom.ui.radiobutton.SegmentedGroupTab
+            android:id="@+id/segmentedGroupTab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:divider="@drawable/radio_divider"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            segmentedgroup:sc_border_width="1dp"
+            segmentedgroup:sc_checked_text_color="@color/white"
+            segmentedgroup:sc_corner_radius="@dimen/_7sdp"
+            segmentedgroup:sc_tint_color="@color/colorPrimary"
+            segmentedgroup:sc_unchecked_text_color="@color/tab_gray"
+            segmentedgroup:sc_unchecked_tint_color="@color/white">
+
+            <com.nojom.util.RadioButtonTextMedium
+                android:id="@+id/tab_openJob"
+                style="@style/RadioButtonTab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:tag="openjobs"
+                android:text="@string/open_jobs"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_11sdp" />
+
+
+            <com.nojom.util.RadioButtonTextMedium
+                android:id="@+id/tab_closedJob"
+                style="@style/RadioButtonTab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:tag="closedjobs"
+                android:text="@string/closed_jobs"
+                android:textColor="@color/tab_gray"
+                android:textSize="@dimen/_11sdp" />
+
+        </com.nojom.ui.radiobutton.SegmentedGroupTab>
+
+        <com.duolingo.open.rtlviewpager.RtlViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/h_progress_bar"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:padding="@dimen/_5sdp"
+            android:visibility="gone" />
+    </LinearLayout>
+</layout>
