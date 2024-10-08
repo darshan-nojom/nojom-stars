@@ -27,7 +27,7 @@ class NewPolicyActivityVM extends AndroidViewModel {
         String text = "<h2><strong>" + activity.getString(R.string.task_freelancing_app) + "</strong></h2>" +
                 "<p><br /></p>\n" +
                 "<p><strong>" + activity.getString(R.string.user_agreement) + ":&nbsp;</strong></p>\n" +
-                "<p><span style=\"font-weight: 400;\">As a freelancer of 24Task App,&nbsp; you have agreed </span><strong>NOT</strong><span style=\"font-weight: 400;\"> to do any of the following:</span></p>\n" +
+                "<p><span style=\"font-weight: 400;\">As a star of Nojom App,&nbsp; you have agreed </span><strong>NOT</strong><span style=\"font-weight: 400;\"> to do any of the following:</span></p>\n" +
                 "<ul>\n" +
                 "<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\"> &nbsp;Fail to deliver/submit the completed work ON (or before)&nbsp; the deadline.</span></li>\n" +
                 "<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\"> &nbsp;Fail to achieve the expected output of the Client or fail to follow the instructions provided by the Client. (Client has the right to request a redo or edit).&nbsp;&nbsp;</span></li>\n" +
@@ -68,7 +68,7 @@ class NewPolicyActivityVM extends AndroidViewModel {
                 "<p><strong><em>SUSPENSION OF BIDDING OR LIMIT OF ACCESS ON YOUR ACCOUNT:</em></strong></p>\n" +
                 "<ol>\n" +
                 "<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\"> &nbsp;If you under-bid on any Project in an attempt to renegotiate the actual price privately, to attempt to avoid fees.</span></li>\n" +
-                "<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\"> &nbsp;If you do not respond to the Clients messages after he/she hired you. (It&rsquo;s understood that Clients paid their deposit as soon as they accepted a freelancers bid, so communication must be continuous).</span></li>\n" +
+                "<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\"> &nbsp;If you do not respond to the Clients messages after he/she hired you. (It&rsquo;s understood that Clients paid their deposit as soon as they accepted a stars bid, so communication must be continuous).</span></li>\n" +
                 "</ol>\n" +
                 "<p><br /><br /><br /><br /><br /></p>";
         binding.text.setText(Html.fromHtml(text));

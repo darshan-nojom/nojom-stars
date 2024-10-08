@@ -102,6 +102,9 @@ public class ProjectByID extends GeneralModel implements Serializable {
     @SerializedName("services_name")
     @Expose
     public String servicesName;
+    @SerializedName("services_name_ar")
+    @Expose
+    public String servicesNameAr;
     @SerializedName("client_id")
     @Expose
     public Integer clientId;
@@ -117,12 +120,33 @@ public class ProjectByID extends GeneralModel implements Serializable {
     @SerializedName("client_country")
     @Expose
     public String clientCountry;
+    @SerializedName("countryNameAr")
+    @Expose
+    public String clientCountryAr;
+
+    public String getCountryName(String lang) {
+        if (lang.equals("ar")) {
+            return clientCountryAr != null ? clientCountryAr : clientCountry;
+        }
+        return clientCountry;
+    }
+
+    public String getServiceName(String lang) {
+        if (lang.equals("ar")) {
+            return servicesNameAr != null ? servicesNameAr : servicesName;
+        }
+        return servicesName;
+    }
+
     @SerializedName("client_region")
     @Expose
     public String clientRegion;
     @SerializedName("client_city")
     @Expose
     public String clientCity;
+    @SerializedName("client_city_ar")
+    @Expose
+    public String clientCityAr;
     @SerializedName("client_photos")
     @Expose
     public String clientPhotos;
@@ -177,7 +201,7 @@ public class ProjectByID extends GeneralModel implements Serializable {
         public Double amount;
         @SerializedName("bid_charges")
         @Expose
-        public Double bidCharges;
+        public Double bidCharges = 10.0;
         @SerializedName("currency")
         @Expose
         public String currency;
@@ -227,7 +251,7 @@ public class ProjectByID extends GeneralModel implements Serializable {
 
         @SerializedName("bid_charges")
         @Expose
-        public Double bidCharges;
+        public Double bidCharges=10.0;
         @SerializedName("bid_percent_charges")
         @Expose
         public Double bidPercentCharges;

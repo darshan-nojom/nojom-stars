@@ -9,7 +9,7 @@
             type="com.nojom.ui.home.HomePagerModel" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -23,5 +23,5 @@
             android:src="@drawable/ic_tiktok"
             bind:imageUrl="@{homeItem.icon}" />
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>

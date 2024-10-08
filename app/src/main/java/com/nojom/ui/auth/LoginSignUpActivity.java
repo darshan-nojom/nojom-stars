@@ -28,10 +28,10 @@ import com.nojom.R;
 import com.nojom.api.ApiClient;
 import com.nojom.databinding.ActivityLoginSignUpBinding;
 import com.nojom.model.requestmodel.AuthenticationRequest;
-import com.nojom.segment.SegmentedButtonGroup;
 import com.nojom.ui.BaseActivity;
-import com.nojom.ui.workprofile.NameActivity;
+import com.nojom.ui.workprofile.OtpActivity;
 import com.nojom.util.Constants;
+import com.nojom.util.SegmentedButtonGroupNew;
 import com.nojom.util.Utils;
 
 import java.util.Arrays;
@@ -70,10 +70,13 @@ public class LoginSignUpActivity extends BaseActivity implements LoginInteractor
     private void initData() {
         initFacebook();
         // For Google Login
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getResources().getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        // Configure Google Sign-In
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken("780634167419-8fg49f4n4b9i5rgdjoo9t5k44e1aqdh4.apps.googleusercontent.com")
+//                .requestEmail()
+//                .build();
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         if (getIntent() != null) {
@@ -90,7 +93,7 @@ public class LoginSignUpActivity extends BaseActivity implements LoginInteractor
         }
 
         binding.segmentLoginGroup.setOnPositionChangedListener(onPositionChangedListener);
-        binding.segmentLoginGroup.setPosition(1);
+        binding.segmentLoginGroup.setPosition(1, false);
 
         //this observer used when server return 502 error code or any wrong with response
         ApiClient.getMutableServerError().observe(LoginSignUpActivity.this, integer -> {
@@ -101,40 +104,51 @@ public class LoginSignUpActivity extends BaseActivity implements LoginInteractor
                 layoutBinderHelper.setIsLoadingFb(false);
             }
         });
+
+        binding.ccp.registerCarrierNumberEditText(binding.etMobile);
+        binding.ccp.setOnCountryChangeListener(() -> {
+            binding.etMobile.setText("");
+            binding.txtPrefix.setText(binding.ccp.getSelectedCountryCodeWithPlus());
+            binding.ccp.setTag(binding.ccp.getSelectedCountryCodeWithPlus());
+        });
+        binding.txtPrefix.setText(binding.ccp.getSelectedCountryCodeWithPlus());
     }
 
     public String getEmail() {
         return Objects.requireNonNull(binding.etEmail.getText()).toString();
     }
 
+    public String getMobile() {
+        return Objects.requireNonNull(binding.etMobile.getText()).toString();
+    }
+
     private void initFacebook() {
         callbackManager = CallbackManager.Factory.create();
 //        LoginManager.getInstance().logInWithReadPermissions(LoginSignUpActivity.this, Arrays.asList("email", "public_profile", "user_friends"));
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        activityViewModel.getGraphRequest(loginResult.getAccessToken());
-                    }
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                activityViewModel.getGraphRequest(loginResult.getAccessToken());
+            }
 
-                    @Override
-                    public void onCancel() {
-                        layoutBinderHelper.setIsLoadingFb(false);
-                    }
+            @Override
+            public void onCancel() {
+                layoutBinderHelper.setIsLoadingFb(false);
+            }
 
-                    @Override
-                    public void onError(FacebookException e) {
-                        if (e instanceof FacebookAuthorizationException) {
-                            if (AccessToken.getCurrentAccessToken() != null) {
-                                LoginManager.getInstance().logOut();
-                            }
-                        }
-                        if (!isEmpty(e.getMessage()))
-                            Log.e("LoginActivity1", Objects.requireNonNull(e.getMessage()));
-                        layoutBinderHelper.setIsLoadingFb(false);
-                        Utils.trackFirebaseEvent(LoginSignUpActivity.this, "Login_With_Facebook_Error");
+            @Override
+            public void onError(FacebookException e) {
+                if (e instanceof FacebookAuthorizationException) {
+                    if (AccessToken.getCurrentAccessToken() != null) {
+                        LoginManager.getInstance().logOut();
                     }
-                });
+                }
+                if (!isEmpty(e.getMessage()))
+                    Log.e("LoginActivity1", Objects.requireNonNull(e.getMessage()));
+                layoutBinderHelper.setIsLoadingFb(false);
+                Utils.trackFirebaseEvent(LoginSignUpActivity.this, "Login_With_Facebook_Error");
+            }
+        });
     }
 
     @Override
@@ -143,7 +157,7 @@ public class LoginSignUpActivity extends BaseActivity implements LoginInteractor
         finishToRight();
     }
 
-    public SegmentedButtonGroup.OnPositionChangedListener onPositionChangedListener = new SegmentedButtonGroup.OnPositionChangedListener() {
+    public SegmentedButtonGroupNew.OnPositionChangedListener onPositionChangedListener = new SegmentedButtonGroupNew.OnPositionChangedListener() {
         @Override
         public void onPositionChanged(int position) {
             if (position == LOGIN) {
@@ -179,15 +193,26 @@ public class LoginSignUpActivity extends BaseActivity implements LoginInteractor
     }
 
     public void onClickCreateAccount() {
-        if (activityViewModel.validSignUpData(layoutBinderHelper, binding, getEmail())) {
+        if (activityViewModel.validSignUpData(layoutBinderHelper, binding, getEmail(), getMobile())) {
             Utils.hideSoftKeyboard(this);
-            AuthenticationRequest authenticationRequest = new AuthenticationRequest();
-//            authenticationRequest.setUsername(binding.etSUsername.getText().toString());
-            authenticationRequest.setPassword(binding.etSPassword.getText().toString());
-            authenticationRequest.setEmail(getEmail());
-            authenticationRequest.setDevice_token(getToken());
-            authenticationRequest.setDevice_type(1);
-            activityViewModel.loginSignup(API_SIGNUP, authenticationRequest, true, false);
+//            AuthenticationRequest authenticationRequest = new AuthenticationRequest();
+////            authenticationRequest.setUsername(binding.etSUsername.getText().toString());
+//            authenticationRequest.setPassword(binding.etSPassword.getText().toString());
+//            authenticationRequest.setEmail(getEmail());
+//            authenticationRequest.setDevice_token(getToken());
+//            authenticationRequest.setDevice_type(1);
+//            String cCode = binding.ccp.getSelectedCountryCodeWithPlus();
+//            authenticationRequest.setPhone(getMobile());
+//            authenticationRequest.setPreFix(cCode);
+//            activityViewModel.loginSignup(API_SIGNUP, authenticationRequest, true, false);
+
+            Intent intent = new Intent(this, OtpActivity.class);
+            intent.putExtra("mobile", getMobile());
+            intent.putExtra("prefix", binding.ccp.getSelectedCountryCodeWithPlus());
+            intent.putExtra("pass", binding.etSPassword.getText().toString());
+            intent.putExtra("email", getEmail());
+            startActivity(intent);
+
         }
     }
 
@@ -234,6 +259,7 @@ public class LoginSignUpActivity extends BaseActivity implements LoginInteractor
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
+
                 if (account != null) {
                     String json = new Gson().toJson(account);
                     Log.e("Google Response", json);
@@ -263,16 +289,46 @@ public class LoginSignUpActivity extends BaseActivity implements LoginInteractor
     @Override
     public void redirect(boolean isSignup) {
         if (isSignup) {
-            redirectActivity(NameActivity.class);
+            Intent intent = new Intent(this, OtpActivity.class);
+            intent.putExtra("mobile", getMobile());
+            intent.putExtra("prefix", binding.ccp.getSelectedCountryCodeWithPlus());
+            startActivity(intent);
+//            redirectActivity(NameActivity.class);
         } else {
-            if (isNeedToFinish)
+            if (isNeedToFinish) {
                 finish();
-            else
-                gotoMainActivity(Constants.TAB_HOME);
+            } else {
+                if (getProfileData() != null && getProfileData().trustRate != null && getProfileData().trustRate.phoneNumber == 0) {//if number is not verified then again open while login case
+
+                    if (getProfileData().contactNo != null) {
+                        Intent intent = new Intent(this, OtpActivity.class);
+                        String[] split = getProfileData().contactNo.split("\\.");
+                        if (split.length == 2) {
+                            intent.putExtra("mobile", split[1]);
+                            intent.putExtra("prefix", split[0]);
+                        }
+                        startActivity(intent);
+                    } else {
+                        if (getProfileData().is_verified == 0) {
+                            openSteps(getProfileData().registration_step);
+//                            redirectActivity(ProfileVerificationActivity.class);
+                        } else {
+                            gotoMainActivity(Constants.TAB_HOME);
+                        }
+                    }
+                } else {
+                    if (getProfileData().is_verified == 0) {
+                        //redirectActivity(ProfileVerificationActivity.class);
+                        openSteps(getProfileData().registration_step);
+                    } else {
+                        gotoMainActivity(Constants.TAB_HOME);
+                    }
+                }
+            }
         }
     }
 
-    public class LayoutBinderHelper extends BaseObservable {
+    public static class LayoutBinderHelper extends BaseObservable {
         private Boolean show_login, isLoading, isLoadingGoogle, isLoadingFb;
 
         public LayoutBinderHelper() {
@@ -284,11 +340,11 @@ public class LoginSignUpActivity extends BaseActivity implements LoginInteractor
 
         public void setLoginView(boolean presentationElementsVisible) {
             if (presentationElementsVisible) {
-                binding.txtGoogle.setText(getString(R.string.login_with_google));
-                binding.txtFb.setText(getString(R.string.login_with_facebook));
+//                binding.txtGoogle.setText(getString(R.string.login_with_google));
+//                binding.txtFb.setText(getString(R.string.login_with_facebook));
             } else {
-                binding.txtGoogle.setText(getString(R.string.signup_with_google));
-                binding.txtFb.setText(getString(R.string.signup_with_facebook));
+//                binding.txtGoogle.setText(getString(R.string.signup_with_google));
+//                binding.txtFb.setText(getString(R.string.signup_with_facebook));
             }
             this.show_login = presentationElementsVisible;
             notifyChange();
@@ -296,19 +352,19 @@ public class LoginSignUpActivity extends BaseActivity implements LoginInteractor
 
         public void setIsLoading(boolean isLoading) {
             this.isLoading = isLoading;
-            disableEnableTouch(isLoading);
+//            disableEnableTouch(isLoading);
             notifyPropertyChanged(BR.isLoading);
         }
 
         public void setIsLoadingGoogle(boolean isLoadingGoogle) {
             this.isLoadingGoogle = isLoadingGoogle;
-            disableEnableTouch(isLoading);
+//            disableEnableTouch(isLoading);
             notifyPropertyChanged(BR.isLoadingGoogle);
         }
 
         public void setIsLoadingFb(boolean isLoadingFb) {
             this.isLoadingFb = isLoadingFb;
-            disableEnableTouch(isLoading);
+//            disableEnableTouch(isLoading);
             notifyPropertyChanged(BR.isLoadingFb);
         }
 

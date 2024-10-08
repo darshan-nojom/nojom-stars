@@ -53,7 +53,7 @@ class ContractDetailsFragmentVM extends AndroidViewModel {
             } else {
                 binding.tvJobTitle.setText(projectData.clientJobDescribe);
             }
-            binding.tvJobId.setText(String.format(Locale.US,"%d", projectData.id));
+            binding.tvJobId.setText(String.format(Locale.US, "%d", projectData.id));
 
             binding.noData.tvNoTitle.setText(fragment.activity.getString(R.string.no_files));
             binding.noData.tvNoDescription.setText(fragment.activity.getString(R.string.no_attached_file_desc));
@@ -65,7 +65,8 @@ class ContractDetailsFragmentVM extends AndroidViewModel {
 
             binding.tvGigTitle.setText(projectData.gigTitle);
             binding.tvGigDetails.setText(projectData.gigDescription);
-            binding.tvGigPrice.setText("$" + Utils.getDecimalValue("" + projectData.totalPrice));
+            binding.tvGigPrice.setText(fragment.activity.getCurrency().equals("SAR") ? Utils.getDecimalValue("" + projectData.totalPrice) + " "+fragment.getString(R.string.sar)
+                    : fragment.getString(R.string.dollar) + Utils.getDecimalValue("" + projectData.totalPrice));
 
             binding.tvRevisionsDays.setText("" + projectData.revisions);
             binding.tvQuantity.setText("" + projectData.quantity);
@@ -76,7 +77,8 @@ class ContractDetailsFragmentVM extends AndroidViewModel {
                 binding.linPackageDetails.setVisibility(View.GONE);
                 binding.linCustomPackageDetails.setVisibility(View.VISIBLE);
                 binding.linPrice.setVisibility(View.GONE);
-                binding.tvDeliveryDaysCustom.setText(Utils.priceWith$(Math.round(projectData.deadlinePrice)));
+                binding.tvDeliveryDaysCustom.setText(fragment.activity.getCurrency().equals("SAR") ? Utils.priceWithSAR(fragment.activity,Math.round(projectData.deadlinePrice))
+                        : Utils.priceWith$(Math.round(projectData.deadlinePrice),fragment.activity));
                 binding.txtDelDays.setText(fragment.activity.getString(R.string.delivery_time)
                         + " (" + Math.round(projectData.deadlineValue) + " " + (projectData.deadlineType.equals("1") ? "" + fragment.activity.getString(R.string.hours)
                         : "" + fragment.activity.getString(R.string.days)
@@ -84,7 +86,7 @@ class ContractDetailsFragmentVM extends AndroidViewModel {
 
                 if (projectData.socialPlatform != null && projectData.socialPlatform.size() > 0) {
                     binding.linPlatform.setVisibility(View.VISIBLE);
-                    binding.txtPlatformLbl.setText(projectData.socialPlatform.get(0).name + " (" + Utils.getPlatformTxt(projectData.socialPlatform.get(0).followers) + ")");
+                    binding.txtPlatformLbl.setText(projectData.socialPlatform.get(0).name + " (" + Utils.getPlatformTxt(projectData.socialPlatform.get(0).followers, fragment.activity) + ")");
                     binding.tvPlatPrice.setText(projectData.socialPlatform.get(0).username);
                 }
 
@@ -138,9 +140,11 @@ class ContractDetailsFragmentVM extends AndroidViewModel {
 
 
             if (reqData.inputType.equals("1") && reqData.gigRequirementType.equals("1")) {//fixed with qty
-                tvAmnt.setText("$" + format.format(Float.parseFloat(reqData.price)) + " x " + reqData.quantity);
+                tvAmnt.setText(fragment.activity.getCurrency().equals("SAR") ? format.format(Float.parseFloat(reqData.price)) + " "+fragment.getString(R.string.sar) + " x " + reqData.quantity
+                        : fragment.getString(R.string.dollar) + format.format(Float.parseFloat(reqData.price)) + " x " + reqData.quantity);
             } else {
-                tvAmnt.setText("$" + format.format(Float.parseFloat(reqData.price)));
+                tvAmnt.setText(fragment.activity.getCurrency().equals("SAR") ? format.format(Float.parseFloat(reqData.price)) + " "+fragment.getString(R.string.sar)
+                        : fragment.getString(R.string.dollar) + format.format(Float.parseFloat(reqData.price)));
             }
 
 

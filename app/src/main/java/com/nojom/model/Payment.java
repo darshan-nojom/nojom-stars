@@ -15,6 +15,16 @@ public class Payment extends GeneralModel implements Serializable {
     @SerializedName("provider")
     public String provider;
     @Expose
+    @SerializedName("providerAr")
+    public String providerAr;
+
+    public String getProvider(String lang) {
+        if (lang.equals("ar")) {
+            return providerAr != null ? providerAr : provider;
+        }
+        return provider;
+    }
+    @Expose
     @SerializedName("timestamp")
     public String timestamp;
     @Expose

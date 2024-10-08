@@ -10,14 +10,15 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.nojom.R;
 import com.nojom.databinding.Item24taskProBinding;
+import com.nojom.ui.BaseActivity;
 import com.nojom.util.Preferences;
 import com.nojom.util.Utils;
 
 public class Pro24TaskPagerAdapter extends PagerAdapter {
 
-    private Context mContext;
+    private BaseActivity mContext;
 
-    public Pro24TaskPagerAdapter(Context mContext) {
+    public Pro24TaskPagerAdapter(BaseActivity mContext) {
         this.mContext = mContext;
     }
 
@@ -63,7 +64,7 @@ public class Pro24TaskPagerAdapter extends PagerAdapter {
             int[] colorList = {R.color.colorPrimary};
             String[] words = {"pay"};
             binding.tvTitle.setText(Utils.getBoldString(mContext, s, null, colorList, words));
-            binding.tvDesciption.setText(mContext.getString(R.string.how_much_pay_text));
+            binding.tvDesciption.setText(mContext.getCurrency().equals("SAR") ?mContext.getString(R.string.how_much_pay_text_sar):mContext.getString(R.string.how_much_pay_text));
         } else if (position == 5) {
             if (Preferences.getProfileData(mContext) != null && Preferences.getProfileData(mContext).percentage != null) {
                 try {

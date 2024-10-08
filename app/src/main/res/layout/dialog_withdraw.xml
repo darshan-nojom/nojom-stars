@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:background="@drawable/dialog_round_corner_bottom"
+        android:backgroundTint="@color/C_F2F2F7"
         android:orientation="vertical"
         android:padding="@dimen/_20sdp">
 
@@ -22,16 +23,15 @@
             android:layout_marginTop="@dimen/_20sdp">
 
             <android.textview.TextViewSFTextPro
-                app:fonts="@string/sftext_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/total"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sftext_bold"
                 tools:ignore="RelativeOverlap" />
 
             <android.textview.TextViewSFTextPro
-                app:fonts="@string/sftext_regular"
                 android:id="@+id/tv_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,6 +39,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
+                app:fonts="@string/sftext_regular"
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
 
@@ -48,30 +49,31 @@
             android:layout_marginTop="@dimen/_10sdp">
 
             <LinearLayout
+                android:id="@+id/lin_to"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true">
 
                 <android.textview.TextViewSFTextPro
-                    app:fonts="@string/sftext_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/to"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_bold" />
 
                 <android.textview.TextViewSFTextPro
-                    app:fonts="@string/sftext_regular"
                     android:id="@+id/tv_provider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:text="@string/_paypal_"
+                    android:text="@string/bank_transfer"
                     android:textColor="@color/textgrayAccent"
-                    android:textSize="@dimen/_9sdp" />
+                    android:textSize="@dimen/_9sdp"
+                    app:fonts="@string/sftext_regular" />
             </LinearLayout>
 
             <android.textview.TextViewSFTextPro
-                app:fonts="@string/sftext_regular"
                 android:id="@+id/tv_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,6 +81,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
+                app:fonts="@string/sftext_regular"
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
 
@@ -88,15 +91,14 @@
             android:layout_marginTop="@dimen/_10sdp">
 
             <android.textview.TextViewSFTextPro
-                app:fonts="@string/sftext_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sftext_bold" />
 
             <android.textview.TextViewSFTextPro
-                app:fonts="@string/sftext_regular"
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,6 +106,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
+                app:fonts="@string/sftext_regular"
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
 
@@ -113,15 +116,14 @@
             android:layout_marginTop="@dimen/_10sdp">
 
             <android.textview.TextViewSFTextPro
-                app:fonts="@string/sftext_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/status"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sftext_bold" />
 
             <android.textview.TextViewSFTextPro
-                app:fonts="@string/sftext_regular"
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,39 +131,39 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
+                app:fonts="@string/sftext_regular"
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/textgrayAccent"
             android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginBottom="@dimen/_30sdp" />
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@color/textgrayAccent" />
 
         <android.textview.TextViewSFTextPro
-            app:fonts="@string/sftext_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="@dimen/_5sdp"
             android:text="@string/your_transfer_will_complete_in_5_15_business_days_after_you_ve_placed_the_withdraw_once_you_ve_made_a_withdraw_you_can_cancel_it_for_up_to_few_hours"
             android:textColor="@color/black"
-            android:textSize="@dimen/_11sdp" />
+            android:textSize="@dimen/_11sdp"
+            app:fonts="@string/sftext_regular" />
 
         <android.textview.TextViewSFTextPro
-            app:fonts="@string/sftext_semibold"
             android:id="@+id/tv_cancel_withdraw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cancel_this_withdraw"
-            android:textSize="@dimen/_11sdp"
-            android:padding="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_30sdp"
             android:layout_gravity="center"
-            android:textColor="@color/red" />
+            android:layout_marginTop="@dimen/_30sdp"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/cancel_this_withdraw"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_11sdp"
+            app:fonts="@string/sftext_semibold" />
 
         <android.textview.TextViewSFTextPro
-            app:fonts="@string/sftext_semibold"
             android:id="@+id/tv_ok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -173,6 +175,7 @@
             android:padding="@dimen/_8sdp"
             android:text="@string/done"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sftext_semibold" />
     </LinearLayout>
 </layout>

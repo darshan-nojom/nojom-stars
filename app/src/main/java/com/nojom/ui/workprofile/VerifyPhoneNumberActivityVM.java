@@ -106,6 +106,7 @@ public class VerifyPhoneNumberActivityVM extends ViewModel implements APIRequest
 
         CommonRequest.ProfileVerification profileVerification = new CommonRequest.ProfileVerification();
         profileVerification.setType("2");
+//        profileVerification.setMawthooq_number("");
 
         APIRequest apiRequest = new APIRequest();
         apiRequest.makeAPIRequest(activity, API_ADD_PROFILE_VERIF, profileVerification.toString(), true, this);

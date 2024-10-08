@@ -21,6 +21,7 @@ public class EducationEditActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_education_edit);
         educationEditActivityVM = ViewModelProviders.of(this).get(EducationEditActivityVM.class);

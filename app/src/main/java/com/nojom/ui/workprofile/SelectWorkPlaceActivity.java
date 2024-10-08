@@ -36,6 +36,7 @@ public class SelectWorkPlaceActivity extends BaseActivity implements ResponseLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_work_place);
         binding.setWorkPlaceAct(this);

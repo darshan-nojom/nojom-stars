@@ -18,6 +18,9 @@ public class SocialPlatformResponse extends GeneralModel {
         @SerializedName("name")
         public String name;
         @Expose
+        @SerializedName("name_ar")
+        public String nameAr;
+        @Expose
         @SerializedName("platform_icon")
         public String platformIcon;
         @Expose
@@ -30,6 +33,12 @@ public class SocialPlatformResponse extends GeneralModel {
 
         public boolean isSelected;
 
+        public String getName(String lang) {
+            if (lang.equals("ar")) {
+                return nameAr != null ? nameAr : name;
+            }
+            return name;
+        }
     }
 
     public static SocialPlatformResponse getSocialPlatforms(String responseBody) {

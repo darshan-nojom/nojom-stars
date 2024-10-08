@@ -18,6 +18,17 @@ public class GeneralModel implements Serializable {
     @SerializedName("flag")
     public int flag;
 
+    @Expose
+    @SerializedName("messageAr")
+    public String messageAr;
+
+    public String getMessage(String lang) {
+        if (lang.equals("ar")) {
+            return messageAr != null ? messageAr : msg;
+        }
+        return msg;
+    }
+
     //string to model conversation
     public static GeneralModel getResponse(String jsonData) {
         try {

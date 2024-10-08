@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/dialog_round_corner_top_white"
+        android:orientation="vertical"
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <View
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:padding="@dimen/_10sdp">
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_company"
+                android:id="@+id/title"
+                android:textColor="@color/c_080921"
+                android:textSize="@dimen/_14sdp"
+                android:layout_centerVertical="true"
+                app:fonts="@string/sfpro_text_bold" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/close_circle" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/C_E5E5EA" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/gray_l_border_6">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/default_text_input_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/company_name"
+                        android:padding="@dimen/_5sdp"
+                        android:textColorHint="@color/C_3C3C43"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxBackgroundMode="filled"
+                        app:boxStrokeColor="@color/white"
+                        app:boxStrokeWidth="0dp"
+                        app:hintTextColor="@color/C_3C3C43">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/C_020814"
+                            android:textColorHint="@color/C_3C3C43"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/gray_l_border_6"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/gray_l_border_6"
+                    android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/default_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/number_of_times_optional"
+                        android:padding="@dimen/_5sdp"
+                        android:textColorHint="@color/C_3C3C43"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxBackgroundMode="filled"
+                        app:boxStrokeColor="@color/white"
+                        app:boxStrokeWidth="0dp"
+                        app:hintTextColor="@color/C_3C3C43">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/C_020814"
+                            android:textColorHint="@color/C_3C3C43"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/gray_corner_30"
+                        android:drawableEnd="@drawable/arrow_down"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawableTint="@color/c_8E8E93"
+                        android:paddingStart="@dimen/_9sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_9sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/name"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rel_campDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/gray_l_border_6"
+                    android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/default_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/campaign_date_optional"
+                        android:padding="@dimen/_5sdp"
+                        android:textColorHint="@color/C_3C3C43"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxBackgroundMode="filled"
+                        app:boxStrokeColor="@color/white"
+                        app:boxStrokeWidth="0dp"
+                        app:hintTextColor="@color/C_3C3C43">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:imeOptions="actionDone"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:maxLines="1"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/C_020814"
+                            android:textColorHint="@color/C_3C3C43"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_status_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/gray_corner_30"
+                        android:drawableEnd="@drawable/arrow_down"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawableTint="@color/c_8E8E93"
+                        android:paddingStart="@dimen/_9sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_9sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/name"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@drawable/danger_circle"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:id="@+id/txtcont"
+                        android:text="@string/have_contract"
+                        android:textColor="@color/c_080921"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/swContract"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:theme="@style/SCBSwitch"
+                        android:layout_centerVertical="true"
+                        android:checked="false" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relContractDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:visibility="gone">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@drawable/danger_circle"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:text="@string/contract_date"
+                        android:id="@+id/c_date"
+                        android:textColor="@color/c_080921"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_status_contractDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/gray_corner_30"
+                        android:drawableEnd="@drawable/arrow_down"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawableTint="@color/c_8E8E93"
+                        android:paddingStart="@dimen/_9sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_9sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/name"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_l_border_6">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/default_from"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/from"
+                            android:padding="@dimen/_5sdp"
+                            android:textColorHint="@color/C_3C3C43"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="filled"
+                            app:boxStrokeColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:hintTextColor="@color/C_3C3C43">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_from"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:imeOptions="actionNext"
+                                android:maxLines="1"
+                                android:focusable="false"
+                                android:clickable="true"
+                                android:textColor="@color/C_020814"
+                                android:textColorHint="@color/C_3C3C43"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_gravity="center_vertical"
+                        android:rotation="270"
+                        android:src="@drawable/download_white"
+                        android:tint="@color/black" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_l_border_6">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/default_to"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/to"
+                            android:padding="@dimen/_5sdp"
+                            android:textColorHint="@color/C_3C3C43"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="filled"
+                            app:boxStrokeColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:hintTextColor="@color/C_3C3C43">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_to"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:imeOptions="actionNext"
+                                android:maxLines="1"
+                                android:focusable="false"
+                                android:clickable="true"
+                                android:textColor="@color/C_020814"
+                                android:textColorHint="@color/C_3C3C43"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/C_E5E5EA" />
+
+                <RelativeLayout
+                    android:id="@+id/rel_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@drawable/black_l_button_bg_10">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_send"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:text="@string/save"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sfdiaply_bold" />
+
+                    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        app:cpbStyle="@style/CircularProgressBar"
+                        app:cpb_color="@color/white"
+                        app:cpb_colors="@array/progressColor"
+                        app:cpb_max_sweep_angle="300"
+                        app:cpb_min_sweep_angle="10"
+                        app:cpb_rotation_speed="1.0"
+                        app:cpb_stroke_width="@dimen/_2sdp"
+                        app:cpb_sweep_speed="1.0" />
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

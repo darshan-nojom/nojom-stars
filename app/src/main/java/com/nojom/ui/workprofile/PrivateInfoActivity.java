@@ -22,7 +22,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.nojom.R;
@@ -53,6 +52,7 @@ public class PrivateInfoActivity extends BaseActivity implements PermissionListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_private_info);
         binding.setActivity(this);
@@ -83,14 +83,14 @@ public class PrivateInfoActivity extends BaseActivity implements PermissionListe
                 toastMessage(getString(R.string.please_enter_first_name));
                 return;
             }
-            if (TextUtils.isEmpty(getLastName())) {
+            /*if (TextUtils.isEmpty(getLastName())) {
                 toastMessage(getString(R.string.please_enter_last_name));
                 return;
-            }
-            if (TextUtils.isEmpty(getUsername())) {
-                toastMessage(getString(R.string.enter_username));
-                return;
-            }
+            }*/
+//            if (TextUtils.isEmpty(getUsername())) {
+//                toastMessage(getString(R.string.enter_username));
+//                return;
+//            }
             if (TextUtils.isEmpty(getEmail())) {
                 toastMessage(getString(R.string.enter_valid_email));
                 return;
@@ -107,7 +107,7 @@ public class PrivateInfoActivity extends BaseActivity implements PermissionListe
                 toastMessage(getString(R.string.enter_valid_number));
                 return;
             }
-            privateInfoActivityVM.updateProfile(getFirstName(), getLastName(), getEmail(), getMobile(), getMobilePrefix(), getUsername(), profileFile);
+            privateInfoActivityVM.updateProfile(getFirstName(), getLastName(), getEmail(), getMobile(), getMobilePrefix(), getUsername(), profileFile, binding.segmentLoginGroupGender.getPosition() == 0 ? 2 : 1);
         });
 
         profileData = Preferences.getProfileData(this);
@@ -163,8 +163,10 @@ public class PrivateInfoActivity extends BaseActivity implements PermissionListe
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
-                // requestHint();
+            }
+
+            if (profileData.gender != null) {
+                binding.segmentLoginGroupGender.setPosition(profileData.gender == 2 ? 0 : 1, false);
             }
         }
 
@@ -259,10 +261,10 @@ public class PrivateInfoActivity extends BaseActivity implements PermissionListe
                         toastMessage(getString(R.string.image_not_selected));
                     }
                 }
-            }else if (requestCode == 1212) {
+            } else if (requestCode == 1212) {
                 if (resultCode == RESULT_OK) {
-                    Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
-                    // credential.getId(); <-- E.164 format phone number on 10.2.+ devices
+//                    Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
+                    // credential.getId()-; <-- E.164 format phone number on 10.2.+ devices
                 }
             }
         } catch (Exception e) {
@@ -281,7 +283,14 @@ public class PrivateInfoActivity extends BaseActivity implements PermissionListe
     }
 
     public void onClickEditProfile() {
-        checkPermission();
+        if (checkAndRequestPermissions()) {
+            Intent intent = new Intent(PrivateInfoActivity.this, ImagePickActivity.class);
+            intent.putExtra(IS_NEED_CAMERA, true);
+            intent.putExtra(Constant.MAX_NUMBER, 1);
+            startActivityForResult(intent, Constant.REQUEST_CODE_PICK_IMAGE);
+        } else {
+            checkPermission();
+        }
     }
 
     public void onClickChangePass() {

@@ -59,9 +59,9 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.SimpleView
     public void onBindViewHolder(final SimpleViewHolder holder, final int position) {
         Balance.Income item = incomeList.get(position);
         holder.binding.tvJobId.setText(context.getString(R.string.paid_for_job_id, item.jobPostId + ""));
-        if(context.language.equals("ar")){
+        if (context.language.equals("ar")) {
             holder.binding.tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "dd MMM, yyyy hh:mm:ss a", item.timestamp));
-        }else{
+        } else {
             holder.binding.tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "MMM dd, yyyy hh:mm:ss a", item.timestamp));
         }
 
@@ -105,7 +105,11 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.SimpleView
                 holder.binding.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
                 holder.binding.tvBalance.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
                 finalAmnt = item.amount - item.refundedAmount;
-                holder.binding.tvBalance.setText(String.format(context.getString(R.string.plus_), Utils.priceWith$(Utils.getDecimalValue("" + finalAmnt))));
+                if (context.getCurrency().equals("SAR")) {
+                    holder.binding.tvBalance.setText(String.format(context.getString(R.string.plus_), Utils.priceWithSAR(context,Utils.getDecimalValue("" + finalAmnt))));
+                } else {
+                    holder.binding.tvBalance.setText(String.format(context.getString(R.string.plus_), Utils.priceWith$(Utils.getDecimalValue("" + finalAmnt),context)));
+                }
                 holder.binding.tvBalance.setPaintFlags(0);
                 break;
             case COMPLETED:
@@ -114,7 +118,11 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.SimpleView
                 holder.binding.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.greendark));
                 holder.binding.tvBalance.setTextColor(ContextCompat.getColor(context, R.color.greendark));
                 finalAmnt = item.amount - item.refundedAmount;
-                holder.binding.tvBalance.setText(String.format(context.getString(R.string.plus_), Utils.priceWith$(Utils.getDecimalValue("" + finalAmnt))));
+                if (context.getCurrency().equals("SAR")) {
+                    holder.binding.tvBalance.setText(String.format(context.getString(R.string.plus_), Utils.priceWithSAR(context,Utils.getDecimalValue("" + finalAmnt))));
+                } else {
+                    holder.binding.tvBalance.setText(String.format(context.getString(R.string.plus_), Utils.priceWith$(Utils.getDecimalValue("" + finalAmnt),context)));
+                }
                 holder.binding.tvBalance.setPaintFlags(0);
                 break;
             case CANCELLED:
@@ -123,7 +131,11 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.SimpleView
                 holder.binding.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.gray_text));
                 holder.binding.tvBalance.setTextColor(ContextCompat.getColor(context, R.color.gray_text));
                 finalAmnt = item.amount - item.refundedAmount;
-                holder.binding.tvBalance.setText(Utils.priceWith$(Utils.getDecimalValue("" + finalAmnt)));
+                if (context.getCurrency().equals("SAR")) {
+                    holder.binding.tvBalance.setText(Utils.priceWithSAR(context,Utils.getDecimalValue("" + finalAmnt)));
+                } else {
+                    holder.binding.tvBalance.setText(Utils.priceWith$(Utils.getDecimalValue("" + finalAmnt),context));
+                }
                 holder.binding.tvBalance.setPaintFlags(holder.binding.tvBalance.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 break;
             case REFUNDED:
@@ -132,7 +144,11 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.SimpleView
                 holder.binding.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.red_dark));
                 holder.binding.tvBalance.setTextColor(ContextCompat.getColor(context, R.color.red_dark));
                 finalAmnt = item.amount - item.refundedAmount;
-                holder.binding.tvBalance.setText(String.format(context.getString(R.string.minus_), Utils.priceWith$(Utils.getDecimalValue("" + finalAmnt))));
+                if (context.getCurrency().equals("SAR")) {
+                    holder.binding.tvBalance.setText(String.format(context.getString(R.string.minus_), Utils.priceWithSAR(context,Utils.getDecimalValue("" + finalAmnt))));
+                } else {
+                    holder.binding.tvBalance.setText(String.format(context.getString(R.string.minus_), Utils.priceWith$(Utils.getDecimalValue("" + finalAmnt),context)));
+                }
                 holder.binding.tvBalance.setPaintFlags(0);
                 break;
         }

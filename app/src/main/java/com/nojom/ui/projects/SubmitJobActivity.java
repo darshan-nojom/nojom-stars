@@ -36,6 +36,7 @@ public class SubmitJobActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_submit_job);
         submitJobActivityVM = ViewModelProviders.of(this).get(SubmitJobActivityVM.class);

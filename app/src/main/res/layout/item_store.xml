@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/white_button_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_7sdp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/img_profile"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_65sdp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dp"
+                app:riv_border_color="@color/C_F2F2F7"
+                app:riv_border_width="1dip"
+                app:riv_corner_radius="@dimen/_7sdp"
+                app:riv_oval="false" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_name"
+                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="@string/name"
+                    android:textColor="@color/c_080921"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sfpro_text_midium" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_uname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/name"
+                    android:textColor="@color/C_020814"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="italic"
+                    app:fonts="@string/sfpro_text_regular" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/gray_corner_30"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawableTint="@color/c_8E8E93"
+                    android:paddingStart="@dimen/_9sdp"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingEnd="@dimen/_9sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/name"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_9sdp"
+                    app:fonts="@string/sfpro_text_bold" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_menu"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_21sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:tint="@color/c_080921"
+                app:srcCompat="@drawable/outline_menu_dots" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_edit"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:srcCompat="@drawable/ic_reorder_ud" />
+        </LinearLayout>
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_contract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gray_button_bg_top_bottom"
+            android:paddingStart="@dimen/_9sdp"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingEnd="@dimen/_9sdp"
+            android:paddingBottom="@dimen/_3sdp"
+            android:text="@string/contract"
+            android:textColor="@color/c_ED8A00"
+            android:textSize="@dimen/_9sdp"
+            android:visibility="gone"
+            app:fonts="@string/sfpro_text_midium" />
+    </RelativeLayout>
+
+</layout>

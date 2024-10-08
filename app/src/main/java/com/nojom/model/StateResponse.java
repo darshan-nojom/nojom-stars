@@ -22,8 +22,18 @@ public class StateResponse extends GeneralModel implements Serializable {
         @SerializedName("stateName")
         public String stateName;
         @Expose
+        @SerializedName("stateNameAr")
+        public String stateNameAr;
+        @Expose
         @SerializedName("stateCode")
         public String stateCode;
+
+        public String getStateName(String lang) {
+            if (lang.equals("ar")) {
+                return stateNameAr != null ? stateNameAr : stateName;
+            }
+            return stateName;
+        }
 
         public boolean isSelected;
     }

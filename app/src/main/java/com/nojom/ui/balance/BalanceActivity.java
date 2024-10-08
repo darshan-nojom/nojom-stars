@@ -36,12 +36,18 @@ public class BalanceActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_balance);
         initData();
     }
 
     private void initData() {
+        if (getCurrency().equals("SAR")) {
+            binding.txtSign.setText(getString(R.string.sar));
+        } else {
+            binding.txtSign.setText(getString(R.string.dollar));
+        }
         binding.imgBack.setOnClickListener(v -> onBackPressed());
         binding.tvWithdraw.setOnClickListener(v -> {
             if (availableBalance > 0) {
@@ -113,9 +119,7 @@ public class BalanceActivity extends BaseActivity {
         Animation a = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
-                v.getLayoutParams().height = interpolatedTime == 1
-                        ? LinearLayout.LayoutParams.WRAP_CONTENT
-                        : (int) (targetHeight * interpolatedTime);
+                v.getLayoutParams().height = interpolatedTime == 1 ? LinearLayout.LayoutParams.WRAP_CONTENT : (int) (targetHeight * interpolatedTime);
                 v.requestLayout();
             }
 
@@ -202,10 +206,17 @@ public class BalanceActivity extends BaseActivity {
 
     public void setBalance(double availableBalance, double pendingBalance, double totalBalance) {
         this.availableBalance = availableBalance;
-        binding.tvAvailableBalance.setText(String.format(getString(R.string._usd), Utils.priceWith$(Utils.getDecimalValue("" + availableBalance))));
-        binding.tvPendingBalance.setText(String.format(getString(R.string._usd), Utils.priceWith$(Utils.getDecimalValue("" + pendingBalance))));
-        binding.tvTotalBalance.setText(String.format(getString(R.string._usd), Utils.priceWith$(Utils.getDecimalValue("" + totalBalance))));
-        binding.tvBalance.setText(Utils.priceWith$(Utils.getDecimalValue("" + availableBalance)).replace("$", ""));
+        if (getCurrency().equals("SAR")) {
+            binding.tvAvailableBalance.setText(String.format("%s", Utils.priceWithSAR(this,Utils.getDecimalValue("" + availableBalance))));
+            binding.tvPendingBalance.setText(String.format("%s", Utils.priceWithSAR(this,Utils.getDecimalValue("" + pendingBalance))));
+            binding.tvTotalBalance.setText(String.format("%s", Utils.priceWithSAR(this,Utils.getDecimalValue("" + totalBalance))));
+            binding.tvBalance.setText(Utils.priceWithSAR(this,Utils.getDecimalValue("" + availableBalance)).replace(getString(R.string.sar), ""));
+        } else {
+            binding.tvAvailableBalance.setText(String.format("%s", Utils.priceWith$(Utils.getDecimalValue("" + availableBalance),this)));
+            binding.tvPendingBalance.setText(String.format("%s", Utils.priceWith$(Utils.getDecimalValue("" + pendingBalance),this)));
+            binding.tvTotalBalance.setText(String.format("%s", Utils.priceWith$(Utils.getDecimalValue("" + totalBalance),this)));
+            binding.tvBalance.setText(Utils.priceWith$(Utils.getDecimalValue("" + availableBalance),this).replace(getString(R.string.dollar), ""));
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {

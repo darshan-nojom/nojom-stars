@@ -19,6 +19,7 @@ public class PortfolioListActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_portfolio_list);
         getPortfolioAPI = new GetPortfolioAPI();

@@ -24,7 +24,7 @@
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         android:orientation="vertical"
         tools:context=".ui.auth.LoginSignUpActivity">
 
@@ -39,44 +39,45 @@
             android:src="@drawable/intercom_back"
             app:tint="@color/black" />
 
-        <com.nojom.segment.SegmentedButtonGroup
+        <com.nojom.util.SegmentedButtonGroupNew
             android:id="@+id/segmentLoginGroup"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_17sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_17sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            app:sbg_backgroundColor="@color/white"
-            app:sbg_borderColor="@android:color/transparent"
-            app:sbg_borderSize="2dp"
-            app:sbg_dividerSize="0dp"
-            app:sbg_position="0"
-            app:sbg_radius="@dimen/_20sdp"
-            app:sbg_selectorColor="@color/background">
+            android:background="@color/white"
+            app:borderColor="@color/white"
+            app:borderWidth="3dp"
+            app:divider="@color/iron"
+            app:dividerWidth="0dp"
+            app:radius="@dimen/_20sdp"
+            app:selectedBackground="@color/background"
+            app:selectedButtonRadius="@dimen/_20sdp">
 
-            <com.nojom.segment.SegmentedButton
+            <com.nojom.util.SegmentedButtonNew
                 android:id="@+id/tab_signup"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="@dimen/_5sdp"
-                app:sb_text="@string/signup"
-                app:sb_textColor_onSelection="@color/black"
-                app:sb_textSize="@dimen/_14sdp"
-                app:sb_textTypefacePath="@string/sfpro_text_bold" />
+                android:padding="@dimen/_7sdp"
+                app:selectedTextColor="@color/black"
+                app:text="@string/signup"
+                app:textColor="@color/gray"
+                app:textSize="@dimen/_14sdp" />
 
-            <com.nojom.segment.SegmentedButton
+            <com.nojom.util.SegmentedButtonNew
                 android:id="@+id/tab_login"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="@dimen/_5sdp"
-                app:sb_text="@string/log_in"
-                app:sb_textColor_onSelection="@color/black"
-                app:sb_textSize="@dimen/_14sdp"
-                app:sb_textTypefacePath="@string/sfpro_text_bold" />
-        </com.nojom.segment.SegmentedButtonGroup>
+                android:padding="@dimen/_7sdp"
+                app:selectedTextColor="@color/black"
+                app:text="@string/log_in"
+                app:textColor="@color/gray"
+                app:textSize="@dimen/_14sdp" />
+        </com.nojom.util.SegmentedButtonGroupNew>
 
         <LinearLayout
             android:id="@+id/ll_login"
@@ -91,9 +92,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/white_button_bg"
-                android:hint="@string/email"
+                android:hint="@string/email_or_phone_number"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:importantForAutofill="no"
+                android:inputType="text|textNoSuggestions"
                 android:padding="@dimen/_10sdp"
                 android:singleLine="true"
                 android:textColor="@color/black"
@@ -102,22 +104,23 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/white_button_bg"
-                android:layout_marginTop="@dimen/_15sdp">
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/white_button_bg">
 
                 <android.edittext.EditTextSFTextRegular
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@+id/img_l_password"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
                     android:background="@android:color/transparent"
+                    android:gravity="start"
                     android:hint="@string/password"
                     android:imeOptions="actionDone"
-                    android:inputType="textPassword"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword|textNoSuggestions"
                     android:padding="@dimen/_10sdp"
                     android:singleLine="true"
+                    android:textAlignment="viewStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
 
@@ -212,7 +215,8 @@
                         android:background="@drawable/white_button_bg"
                         android:hint="@string/email"
                         android:imeOptions="actionNext"
-                        android:inputType="textEmailAddress"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress|textNoSuggestions"
                         android:padding="@dimen/_10sdp"
                         android:singleLine="true"
                         android:textColor="@color/black"
@@ -221,7 +225,6 @@
                     <android.edittext.EditTextSFTextRegular
                         android:id="@+id/et_s_username"
                         android:layout_width="match_parent"
-                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_15sdp"
                         android:background="@drawable/white_button_bg"
@@ -232,13 +235,84 @@
                         android:padding="@dimen/_10sdp"
                         android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/white_button_bg"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:gravity="center">
+
+                            <com.nojom.ccp.CountryCodePicker
+                                android:id="@+id/ccp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                app:ccp_defaultLanguage="ENGLISH"
+                                app:ccp_showArrow="true"
+                                app:ccp_showFlag="true"
+                                app:ccp_showFullName="false"
+                                app:ccp_showNameCode="false"
+                                app:ccp_showPhoneCode="false" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="@dimen/_1sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:background="@color/divider" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8">
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/txt_prefix"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:text="@string/_91"
+                                android:textColor="@color/gray"
+                                android:textSize="@dimen/_14sdp"
+                                app:fonts="@string/sftext_regular" />
+
+                            <android.edittext.EditTextSFTextRegular
+                                android:id="@+id/et_mobile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:hint="@string/phone_number_demo"
+                                android:imeOptions="actionNext"
+                                android:importantForAutofill="no"
+                                android:inputType="phone|textNoSuggestions"
+                                android:maxLength="13"
+                                android:padding="@dimen/_10sdp"
+                                android:singleLine="true"
+                                android:textAlignment="viewStart"
+                                android:textSize="@dimen/_14sdp"
+                                app:fonts="@string/sftext_regular"
+                                tools:ignore="SpeakableTextPresentCheck" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/white_button_bg"
-                        android:layout_marginTop="@dimen/_15sdp">
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/white_button_bg">
 
                         <android.edittext.EditTextSFTextRegular
                             android:id="@+id/et_s_password"
@@ -246,13 +320,14 @@
                             android:layout_height="wrap_content"
                             android:layout_toStartOf="@+id/img_password"
                             android:background="@android:color/transparent"
-                            android:hint="@string/password"
                             android:gravity="start"
-                            android:textAlignment="viewStart"
+                            android:hint="@string/password"
                             android:imeOptions="actionDone"
-                            android:inputType="textPassword"
+                            android:importantForAutofill="no"
+                            android:inputType="textPassword|textNoSuggestions"
                             android:padding="@dimen/_10sdp"
                             android:singleLine="true"
+                            android:textAlignment="viewStart"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_15sdp" />
 
@@ -376,12 +451,12 @@
                         android:visibility="@{layoutBinder.isLoadingGoogle?View.INVISIBLE:View.VISIBLE,default=visible}" />
 
                     <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_google"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:text="@string/login_with_google"
                         android:textSize="@dimen/_12sdp"
-                        android:id="@+id/txt_google"
                         android:visibility="@{layoutBinder.isLoadingGoogle?View.INVISIBLE:View.VISIBLE,default=visible}"
                         app:fonts="@string/sftext_regular" />
 

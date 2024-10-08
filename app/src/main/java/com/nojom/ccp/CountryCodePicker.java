@@ -27,6 +27,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nojom.R;
+import com.nojom.adapter.SocialPlatformAdapter;
+import com.nojom.ui.workprofile.NewSocialMediaActivity;
 import com.nojom.util.Utils;
 
 import java.util.ArrayList;
@@ -307,16 +309,16 @@ public class CountryCodePicker extends RelativeLayout {
                         setSelectedCountry(defaultCCPCountry);
                     }
                 } else {
-                    if (CCPCountry.getCountryForNameCodeFromEnglishList(defaultCountryNameCode) != null) {
+                    if (CCPCountry.getCountryForNameCodeFromEnglishList(context, defaultCountryNameCode) != null) {
                         setUsingNameCode = true;
-                        setDefaultCountry(CCPCountry.getCountryForNameCodeFromEnglishList(defaultCountryNameCode));
+                        setDefaultCountry(CCPCountry.getCountryForNameCodeFromEnglishList(context, defaultCountryNameCode));
                         setSelectedCountry(defaultCCPCountry);
                     }
                 }
 
                 //when it was not set means something was wrong with name code
                 if (!setUsingNameCode) {
-                    setDefaultCountry(CCPCountry.getCountryForNameCodeFromEnglishList("IN"));
+                    setDefaultCountry(CCPCountry.getCountryForNameCodeFromEnglishList(context, "sa"));
                     setSelectedCountry(defaultCCPCountry);
                     setUsingNameCode = true;
                 }
@@ -334,9 +336,9 @@ public class CountryCodePicker extends RelativeLayout {
                     setSelectedCountry(defaultCCPCountry);
                 } else {
                     //when it is in edit mode, we will check in english list only.
-                    CCPCountry defaultCountry = CCPCountry.getCountryForCodeFromEnglishList(defaultCountryCode + "");
+                    CCPCountry defaultCountry = CCPCountry.getCountryForCodeFromEnglishList(context, defaultCountryCode + "");
                     if (defaultCountry == null) {
-                        defaultCountry = CCPCountry.getCountryForCodeFromEnglishList(LIB_DEFAULT_COUNTRY_CODE + "");
+                        defaultCountry = CCPCountry.getCountryForCodeFromEnglishList(context, LIB_DEFAULT_COUNTRY_CODE + "");
                     }
                     setDefaultCountry(defaultCountry);
                     setSelectedCountry(defaultCountry);
@@ -345,7 +347,7 @@ public class CountryCodePicker extends RelativeLayout {
 
             //if default country is not set using nameCode or phone code, let's set library default as default
             if (getDefaultCountry() == null) {
-                setDefaultCountry(CCPCountry.getCountryForNameCodeFromEnglishList("IN"));
+                setDefaultCountry(CCPCountry.getCountryForNameCodeFromEnglishList(context, "sa"));
                 if (getSelectedCountry() == null) {
                     setSelectedCountry(defaultCCPCountry);
                 }
@@ -1929,7 +1931,13 @@ public class CountryCodePicker extends RelativeLayout {
      * Developer can use this to trigger manually.
      */
     public void launchCountrySelectionDialog() {
-        CountryCodeDialog.openCountryCodeDialog(codePicker);
+        if (SocialPlatformAdapter.context != null) {
+            CountryCodeDialog.openCountryCodeDialog1(codePicker, SocialPlatformAdapter.context);
+        } else if (NewSocialMediaActivity.activity != null) {
+            CountryCodeDialog.openCountryCodeDialog1(codePicker, NewSocialMediaActivity.activity);
+        } else {
+            CountryCodeDialog.openCountryCodeDialog1(codePicker);
+        }
     }
 
     /**

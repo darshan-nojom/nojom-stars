@@ -30,7 +30,6 @@
                 android:singleLine="true"
                 android:maxLines="1"
                 android:textAlignment="viewStart"
-                android:maxLength="3"
                 android:padding="@dimen/_5sdp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp" />
@@ -65,9 +64,10 @@
                 android:digits="0123456789."
                 android:gravity="center"
                 android:hint="@string/price"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:textAlignment="center"
                 android:inputType="number"
-                android:maxLength="7"
                 android:padding="@dimen/_5sdp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp" />

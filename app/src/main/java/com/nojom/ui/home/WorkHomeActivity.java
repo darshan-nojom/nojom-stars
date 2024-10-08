@@ -100,8 +100,8 @@ public class WorkHomeActivity extends BaseActivity implements APIRequest.APIRequ
             SCREEN_TAB_ = getIntent().getIntExtra(SCREEN_TAB, -1);
         }
 
-        boolean bannerClosed = Preferences.readBoolean(this, CLIENT_BANNER, false);//display TOP banner using this FLAG
-        layoutBinderHelper.setIsBanner(bannerClosed);
+//        boolean bannerClosed = Preferences.readBoolean(this, CLIENT_BANNER, false);//display TOP banner using this FLAG
+//        layoutBinderHelper.setIsBanner(bannerClosed);
 
         setupTabs();
 
@@ -112,7 +112,8 @@ public class WorkHomeActivity extends BaseActivity implements APIRequest.APIRequ
 //        if (mData == null || mData.size() == 0) {
         GetServiceCategoryAPI getServiceCategoryAPI = new GetServiceCategoryAPI();
         getServiceCategoryAPI.init(this);
-        getServiceCategoryAPI.getServiceCategories();
+//        getServiceCategoryAPI.getServiceCategories();
+        getServiceCategoryAPI.getServiceCategoriesById(4352);
 //        }
 
         getGigCatCharges();
@@ -298,13 +299,11 @@ public class WorkHomeActivity extends BaseActivity implements APIRequest.APIRequ
 
             //this below code is call when user don't have any location or any skills. At that time we need to update their data forcefully
             if (getProfileData() != null) {
-                if (TextUtils.isEmpty(getProfileData().countryName)
-                        || TextUtils.isEmpty(getProfileData().stateName)
-                        || TextUtils.isEmpty(getProfileData().cityName)) {
+                if (TextUtils.isEmpty(getProfileData().getCountryName(language))) {
                     showLocationSkillDialog(true);
-                } else if (getProfileData().skills == null || getProfileData().skills.size() == 0) {
+                }/* else if (getProfileData().skills == null || getProfileData().skills.size() == 0) {
                     showLocationSkillDialog(false);
-                }
+                }*/
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -539,13 +538,13 @@ public class WorkHomeActivity extends BaseActivity implements APIRequest.APIRequ
             HashMap<String, String> accounts = Preferences.getMultipleAccounts(this);
             UserModel userModel = Preferences.getUserData(this);
             if (accounts != null && accounts.size() > 0 && userModel != null) {
-                if (!accounts.containsKey(userModel.username)) {
-                    Preferences.addMultipleAccounts(this, userModel.jwt, userModel.username);
-                }
+//                if (!accounts.containsKey(userModel.username)) {
+                    Preferences.addMultipleAccounts(this, userModel.jwt, userModel.email);
+//                }
             } else {
                 if (userModel != null) {
                     userModel.jwt = getJWT();
-                    Preferences.addMultipleAccounts(this, getJWT(), userModel.username);
+                    Preferences.addMultipleAccounts(this, getJWT(), userModel.email);
                 }
             }
         } catch (Exception e) {

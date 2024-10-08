@@ -3,6 +3,6 @@
     <solid android:color="@color/textgrayAccent" />
 
     <size
-        android:width="32dp"
-        android:height="32dp" />
+        android:width="@dimen/_10sdp"
+        android:height="@dimen/_10sdp" />
 </shape>

@@ -128,6 +128,12 @@ public class SwitchAccountAdapter extends RecyclerSwipeAdapter<SwitchAccountAdap
                     if (!TextUtils.isEmpty(accounts.get(getAdapterPosition()).jwt)) {
                         Preferences.writeString(context, Constants.JWT, accounts.get(getAdapterPosition()).jwt);
                     }
+                    context.getProfile();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     context.gotoMainActivity(Constants.TAB_HOME);
                 }
             });

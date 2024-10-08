@@ -5,7 +5,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         android:orientation="vertical">
 
         <LinearLayout
@@ -165,8 +165,44 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_15sdp"
-                                android:layout_marginBottom="@dimen/_5sdp">
+                                android:layout_marginTop="@dimen/_15sdp">
+
+                                <android.textview.TextViewSFTextPro
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/email_"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_11sdp"
+                                    app:fonts="@string/sfpro_text_midium" />
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/tv_email"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_toStartOf="@+id/img_em"
+                                    android:text="@string/email_address"
+                                    android:textColor="@color/textgrayAccent"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fonts="@string/sfpro_text_regular" />
+
+                                <ImageView
+                                    android:id="@+id/img_em"
+                                    android:layout_width="@dimen/_8sdp"
+                                    android:layout_height="@dimen/_8sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/arrow_next"
+                                    app:tint="@color/tab_gray" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_15sdp">
 
                                 <android.textview.TextViewSFTextPro
                                     android:layout_width="wrap_content"
@@ -199,10 +235,179 @@
                                     app:tint="@color/tab_gray" />
 
                             </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginBottom="@dimen/_5sdp">
+
+                                <android.textview.TextViewSFTextPro
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/about_me"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_11sdp"
+                                    android:id="@+id/txt_ab_title"
+                                    app:fonts="@string/sfpro_text_midium" />
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/tv_about"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_toStartOf="@+id/img_about"
+                                    android:singleLine="true"
+                                    android:gravity="end"
+                                    android:layout_toEndOf="@+id/txt_ab_title"
+                                    android:text="@string/about_me"
+                                    android:textColor="@color/textgrayAccent"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fonts="@string/sfpro_text_regular" />
+
+                                <ImageView
+                                    android:id="@+id/img_about"
+                                    android:layout_width="@dimen/_8sdp"
+                                    android:layout_height="@dimen/_8sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/arrow_next"
+                                    app:tint="@color/tab_gray" />
+
+                            </RelativeLayout>
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/lin_socialMedia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:background="@drawable/round_corner"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+
+                            <RelativeLayout
+                                android:id="@+id/rel_gender"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp">
+
+                                <android.textview.TextViewSFTextPro
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/gender"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_11sdp"
+                                    app:fonts="@string/sfpro_text_midium" />
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/tv_gender"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_toStartOf="@+id/img_gen"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fonts="@string/sfpro_text_regular" />
+
+                                <ImageView
+                                    android:id="@+id/img_gen"
+                                    android:layout_width="@dimen/_8sdp"
+                                    android:layout_height="@dimen/_8sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/arrow_next"
+                                    app:tint="@color/tab_gray" />
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/rel_country"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:visibility="gone"
+                                android:paddingBottom="@dimen/_5sdp">
+
+                                <android.textview.TextViewSFTextPro
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/country"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_11sdp"
+                                    app:fonts="@string/sfpro_text_midium" />
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/tv_country"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_toStartOf="@+id/img_cou"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fonts="@string/sfpro_text_regular" />
+
+                                <ImageView
+                                    android:id="@+id/img_cou"
+                                    android:layout_width="@dimen/_8sdp"
+                                    android:layout_height="@dimen/_8sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/arrow_next"
+                                    app:tint="@color/tab_gray" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/rel_bdate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp">
+
+                                <android.textview.TextViewSFTextPro
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/birthdate"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_11sdp"
+                                    app:fonts="@string/sfpro_text_midium" />
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/tv_bDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_toStartOf="@+id/img_bdate"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fonts="@string/sfpro_text_regular" />
+
+                                <ImageView
+                                    android:id="@+id/img_bdate"
+                                    android:layout_width="@dimen/_8sdp"
+                                    android:layout_height="@dimen/_8sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/arrow_next"
+                                    app:tint="@color/tab_gray" />
+
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
@@ -211,10 +416,53 @@
                             android:padding="@dimen/_10sdp">
 
                             <RelativeLayout
+                                android:id="@+id/rel_category"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp">
+
+                                <android.textview.TextViewSFTextPro
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/category_"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_11sdp"
+                                    app:fonts="@string/sfpro_text_midium" />
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/tv_cat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_toStartOf="@+id/img_tc"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fonts="@string/sfpro_text_regular" />
+
+                                <ImageView
+                                    android:id="@+id/img_tc"
+                                    android:layout_width="@dimen/_8sdp"
+                                    android:layout_height="@dimen/_8sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/arrow_next"
+                                    app:tint="@color/tab_gray" />
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/lin_socialMedia"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_5sdp"
-                                android:layout_marginBottom="@dimen/_5sdp">
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp">
 
                                 <android.textview.TextViewSFTextPro
                                     android:layout_width="wrap_content"
@@ -226,16 +474,16 @@
 
                                 <android.textview.TextViewSFTextPro
                                     android:id="@+id/tv_socialMedia"
-                                    android:layout_width="@dimen/_70sdp"
-                                    android:layout_height="@dimen/_15sdp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginEnd="@dimen/_5sdp"
                                     android:layout_toStartOf="@+id/img_sm"
-                                    android:background="@drawable/red_bg_20"
-                                    android:gravity="center"
-                                    android:text="Not active"
-                                    android:textColor="@color/white"
-                                    android:textSize="@dimen/_9sdp"
+                                    android:ellipsize="end"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp"
                                     app:fonts="@string/sfpro_text_regular" />
 
                                 <ImageView
@@ -284,7 +532,7 @@
                                     android:background="@drawable/red_bg_20"
                                     android:backgroundTint="@color/greendark"
                                     android:gravity="center"
-                                    android:text="Active"
+                                    android:text="@string/active"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_9sdp"
                                     app:fonts="@string/sfpro_text_regular" />
@@ -303,9 +551,48 @@
                             </RelativeLayout>
 
                             <RelativeLayout
+                                android:id="@+id/rel_ads"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_7sdp"
+                                android:layout_marginBottom="@dimen/_7sdp"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp">
+
+                                <android.textview.TextViewSFTextPro
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/ads_price"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_11sdp"
+                                    app:fonts="@string/sfpro_text_midium" />
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/tv_adsPrice"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_toStartOf="@+id/img_ap"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fonts="@string/sfpro_text_regular" />
+
+                                <ImageView
+                                    android:id="@+id/img_ap"
+                                    android:layout_width="@dimen/_8sdp"
+                                    android:layout_height="@dimen/_8sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/arrow_next"
+                                    app:tint="@color/tab_gray" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_5sdp">
 
                                 <android.textview.TextViewSFTextPro
@@ -326,7 +613,7 @@
                                     android:background="@drawable/red_bg_20"
                                     android:backgroundTint="@color/greendark"
                                     android:gravity="center"
-                                    android:text="Active"
+                                    android:text="@string/active"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_9sdp"
                                     app:fonts="@string/sfpro_text_regular" />
@@ -363,7 +650,7 @@
                                 <android.textview.TextViewSFTextPro
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Agency"
+                                    android:text="@string/agency"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_11sdp"
                                     app:fonts="@string/sfpro_text_midium" />
@@ -377,9 +664,10 @@
                                     android:layout_toStartOf="@+id/img_agency"
                                     android:background="@drawable/red_bg_20"
                                     android:gravity="center"
-                                    android:text="Not active"
+                                    android:text="@string/not_active"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_9sdp"
+                                    android:visibility="invisible"
                                     app:fonts="@string/sfpro_text_regular" />
 
                                 <ImageView
@@ -430,9 +718,10 @@
                                     android:layout_toStartOf="@+id/img_services"
                                     android:background="@drawable/red_bg_20"
                                     android:gravity="center"
-                                    android:text="Not active"
+                                    android:text="@string/not_active"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_9sdp"
+                                    android:visibility="invisible"
                                     app:fonts="@string/sfpro_text_regular" />
 
                                 <ImageView

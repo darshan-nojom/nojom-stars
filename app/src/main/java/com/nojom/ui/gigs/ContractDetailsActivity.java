@@ -44,6 +44,7 @@ public class ContractDetailsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_project_details);
         projectDetailsActivityVM = ViewModelProviders.of(this).get(ContractDetailsActivityVM.class);
@@ -134,6 +135,7 @@ public class ContractDetailsActivity extends BaseActivity {
                 binding.tvCloseProject.setVisibility(View.GONE);
                 setTabWai(0);
                 break;
+            case Constants.BANK_TRANSFER_REVIEW:
             case Constants.WAITING_FOR_DEPOSIT:
                 binding.segmentGroupWaiting.setVisibility(View.VISIBLE);
                 setTabWai(0);
@@ -182,6 +184,7 @@ public class ContractDetailsActivity extends BaseActivity {
                         break;
                     case 7:
                     case Constants.WAITING_FOR_ACCEPTANCE:
+                    case Constants.BANK_TRANSFER_REVIEW:
                     case Constants.WAITING_FOR_DEPOSIT:
                         setTabWai(position);
                         break;
@@ -214,6 +217,7 @@ public class ContractDetailsActivity extends BaseActivity {
             case 7:
             case Constants.WAITING_FOR_ACCEPTANCE:
             case Constants.WAITING_FOR_DEPOSIT:
+            case Constants.BANK_TRANSFER_REVIEW:
             case Constants.CANCELLED:
             case Constants.REFUNDED:
                 adapter.addFrag(new ContractDetailsFragment(), getString(R.string.details));

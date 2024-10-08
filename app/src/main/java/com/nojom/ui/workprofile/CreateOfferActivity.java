@@ -59,6 +59,7 @@ public class CreateOfferActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_offer);
         createGigsActivityVM = new CreateCustomGigsActivityVM();
@@ -74,6 +75,8 @@ public class CreateOfferActivity extends BaseActivity {
         tf = Typeface.createFromAsset(getAssets(), Constants.SFTEXT_REGULAR);
         days = new PowerMenuItem(getString(R.string.days), true);
         hours = new PowerMenuItem(getString(R.string.hours), false);
+
+        binding.txtPrice.setText(getCurrency().equals("SAR") ? getString(R.string.price) + " (0 "+getString(R.string.sar)+")" : getString(R.string.price) + " ($0)");
 
         ProfileResponse profileData = Preferences.getProfileData(this);
         if (profileData != null && profileData.expertise != null && profileData.expertise.id != null) {
@@ -142,6 +145,10 @@ public class CreateOfferActivity extends BaseActivity {
             finish();
         });
 
+        if (getCurrency().equals("SAR")) {
+            binding.etPrice.setHint("9.99 "+getString(R.string.sar));
+        }
+
         binding.etPrice.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -151,10 +158,11 @@ public class CreateOfferActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (TextUtils.isEmpty(s.toString())) {
-                    binding.txtPrice.setText(getString(R.string.price)+" ($0)");
+                    binding.txtPrice.setText(getCurrency().equals("SAR") ? getString(R.string.price) + " (0 "+getString(R.string.sar)+")" : getString(R.string.price) + " ($0)");
                     calculatePercentage(0);
                 } else {
-                    binding.txtPrice.setText(getString(R.string.price)+" ($" + s.toString() + ")");
+                    binding.txtPrice.setText(getCurrency().equals("SAR") ? getString(R.string.price) + " (" + s + " "+getString(R.string.sar)+")"
+                            : getString(R.string.price) + " ("+getString(R.string.dollar) + s + ")");
                     calculatePercentage(Double.parseDouble(s.toString()));
                 }
             }
@@ -408,7 +416,11 @@ public class CreateOfferActivity extends BaseActivity {
             double finalAmountReceived = amount - percentAmount;
 
             binding.txtPriceLbl.setVisibility(View.VISIBLE);
-            binding.txtPriceLbl.setText(getString(R.string.you_will_get_total_amount)+" : $" + Utils.getDecimalValue(String.valueOf(finalAmountReceived)) + " (" + Utils.getDecimalValue(String.valueOf(percentage)) + "%)");
+            if (getCurrency().equals("SAR")) {
+                binding.txtPriceLbl.setText(getString(R.string.you_will_get_total_amount) + " : " + Utils.getDecimalValue(String.valueOf(finalAmountReceived)) + " "+getString(R.string.sar)+" (" + Utils.getDecimalValue(String.valueOf(percentage)) + "%)");
+            } else {
+                binding.txtPriceLbl.setText(getString(R.string.you_will_get_total_amount) + " : "+getString(R.string.dollar) + Utils.getDecimalValue(String.valueOf(finalAmountReceived)) + " (" + Utils.getDecimalValue(String.valueOf(percentage)) + "%)");
+            }
         } catch (Exception e) {
             binding.txtPriceLbl.setText("");
             e.printStackTrace();
@@ -426,6 +438,6 @@ public class CreateOfferActivity extends BaseActivity {
                 }
             }
         }
-        return 0;
+        return 5;//by default its 5
     }
 }

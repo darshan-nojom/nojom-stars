@@ -10,7 +10,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -79,7 +79,6 @@
                                 android:id="@+id/tv_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/username"
                                 android:textAlignment="viewStart"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_14sdp"
@@ -159,8 +158,9 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_platform"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_15sdp"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
@@ -208,6 +208,7 @@
 
                         <ImageView
                             android:id="@+id/img_save"
+                            android:visibility="invisible"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -258,6 +259,197 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/lin_overview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <android.textview.TextViewSFTextPro
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="@string/overview"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sdp"
+                                app:fonts="@string/sfpro_text_bold" />
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@drawable/white_button_bg"
+                                android:orientation="vertical"
+                                android:padding="@dimen/_15sdp">
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/title_about"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/about_me"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="@color/textgrayAccent"
+                                    android:textSize="@dimen/_13sdp"
+                                    app:fonts="@string/sftext_regular"
+                                    tools:ignore="TextContrastCheck" />
+
+                                <com.nojom.util.ReadMoreTextView
+                                    android:id="@+id/tv_aboutme"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="@color/black"
+                                    android:textIsSelectable="true"
+                                    android:textSize="@dimen/_13sdp"
+                                    app:fonts="@string/sftext_medium"
+                                    app:readMoreTextColor="@color/colorPrimary"
+                                    app:trimLines="3"
+                                    app:trimMode="trimModeLine" />
+
+                                <View
+                                    android:id="@+id/viewAbout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_1sdp"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:background="@color/C_F2F2F7" />
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/txt_cat_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:text="@string/category"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="@color/textgrayAccent"
+                                    android:textSize="@dimen/_13sdp"
+                                    app:fonts="@string/sftext_regular"
+                                    tools:ignore="TextContrastCheck" />
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/chipView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp" />
+
+                                <View
+                                    android:id="@+id/veiwCat"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_1sdp"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:background="@color/C_F2F2F7" />
+
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/txt_maw_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:drawableEnd="@drawable/ic_lock_id"
+                                    android:drawablePadding="@dimen/_5sdp"
+                                    android:gravity="center_vertical|start"
+                                    android:text="@string/mawthooq"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="@color/textgrayAccent"
+                                    android:textSize="@dimen/_13sdp"
+                                    app:fonts="@string/sftext_regular"
+                                    tools:ignore="TextContrastCheck" />
+
+                                <android.textview.TextViewSFTextPro
+                                    android:id="@+id/tv_mawId"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:gravity="center_vertical|start"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="@color/black"
+                                    android:textIsSelectable="true"
+                                    android:textSize="@dimen/_13sdp"
+                                    app:fonts="@string/sftext_medium" />
+
+                                <View
+                                    android:id="@+id/veiwMaw"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_1sdp"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:background="@color/C_F2F2F7" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:id="@+id/linAge"
+                                        android:orientation="vertical">
+
+                                        <android.textview.TextViewSFTextPro
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/age_"
+                                            android:textAlignment="viewStart"
+                                            android:textColor="@color/textgrayAccent"
+                                            android:textSize="@dimen/_13sdp"
+                                            app:fonts="@string/sftext_regular"
+                                            tools:ignore="TextContrastCheck" />
+
+                                        <android.textview.TextViewSFTextPro
+                                            android:id="@+id/tv_age"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/_5sdp"
+                                            android:textAlignment="viewStart"
+                                            android:textColor="@color/black"
+                                            android:textIsSelectable="true"
+                                            android:textSize="@dimen/_13sdp"
+                                            app:fonts="@string/sftext_medium" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <android.textview.TextViewSFTextPro
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/gender"
+                                            android:textAlignment="viewStart"
+                                            android:textColor="@color/textgrayAccent"
+                                            android:textSize="@dimen/_13sdp"
+                                            app:fonts="@string/sftext_regular"
+                                            tools:ignore="TextContrastCheck" />
+
+                                        <android.textview.TextViewSFTextPro
+                                            android:id="@+id/tv_gender"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/_5sdp"
+                                            android:textAlignment="viewStart"
+                                            android:textColor="@color/black"
+                                            android:textIsSelectable="true"
+                                            android:textSize="@dimen/_13sdp"
+                                            app:fonts="@string/sftext_medium" />
+
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/lin_portfolio"
@@ -423,7 +615,6 @@
                                     android:clipToPadding="false"
                                     android:nestedScrollingEnabled="false"
                                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                    tools:itemCount="2"
                                     tools:listitem="@layout/item_inf_services" />
 
                             </FrameLayout>
@@ -688,7 +879,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_15sdp"
-                                    android:text="@string/service_1"
+                                    android:text="@string/website"
                                     android:textAlignment="viewStart"
                                     android:textColor="@color/textgrayAccent"
                                     android:textSize="@dimen/_13sdp"
@@ -839,10 +1030,12 @@
                                 android:id="@+id/rv_linkedin"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/_10sdp"
+                                android:paddingEnd="@dimen/_10sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:clipToPadding="false"
+                                android:background="@drawable/white_button_bg"
                                 android:nestedScrollingEnabled="false"
-                                android:paddingBottom="@dimen/_10sdp"
                                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 tools:listitem="@layout/item_inf_reviews" />
 

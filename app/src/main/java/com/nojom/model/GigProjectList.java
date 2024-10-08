@@ -26,6 +26,9 @@ public class GigProjectList extends CommonModel {
         @SerializedName("gigStateName")
         public String gigStateName;
         @Expose
+        @SerializedName("gigStateNameAr")
+        public String gigStateNameAr;
+        @Expose
         @SerializedName("totalPrice")
         public Double totalPrice;
         @Expose
@@ -37,6 +40,13 @@ public class GigProjectList extends CommonModel {
 
         public boolean isSelected;
         public boolean isShowProgress;
+
+        public String getStateName(String lang) {
+            if (lang.equals("ar")) {
+                return gigStateNameAr != null ? gigStateNameAr : gigStateName;
+            }
+            return gigStateName;
+        }
     }
 
     public static class GigImage {

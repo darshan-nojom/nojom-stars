@@ -47,8 +47,8 @@ class ContractRateFragmentVM extends AndroidViewModel {
         ProfileResponse profileData = Preferences.getProfileData(fragment.activity);
         if (profileData != null) {
             binding.tvUsername.setText(fragment.activity.getProperName(profileData.firstName, profileData.lastName, profileData.username));
-            if (profileData.countryName != null)
-                binding.tvUserPlace.setText(profileData.countryName);
+            if (profileData.getCountryName(fragment.activity.language) != null)
+                binding.tvUserPlace.setText(profileData.getCountryName(fragment.activity.language));
             if (profileData.profilePic != null) {
                 Glide.with(fragment.activity)
                         .load(fragment.activity.getImageUrl() + profileData.profilePic)
@@ -124,7 +124,11 @@ class ContractRateFragmentVM extends AndroidViewModel {
 
                 i.putExtra(Constants.CHAT_ID, projectData.clientProfileID + "-" + fragment.activity.getUserID());  // ClientId - AgentId
                 i.putExtra(Constants.CHAT_DATA, chatMap);
-                fragment.startActivity(i);
+                if (fragment.activity.getIsVerified() == 1) {
+                    fragment.startActivity(i);
+                } else {
+                    fragment.activity.toastMessage(fragment.getString(R.string.verification_is_pending_please_complete_the_verification_first_before_chatting_with_them));
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -21,6 +21,9 @@ public class VerifyID extends GeneralModel {
         @SerializedName("data")
         public String data;
         @Expose
+        @SerializedName("is_number")
+        public String is_number;
+        @Expose
         @SerializedName("timestamp")
         public String timestamp;
         @Expose

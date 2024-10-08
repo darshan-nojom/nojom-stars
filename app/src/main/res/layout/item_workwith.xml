@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="@dimen/_190sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/_15sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_7sdp">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_55sdp"
+                    android:layout_height="@dimen/_55sdp">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/dp"
+                        app:riv_corner_radius="@dimen/_7sdp"
+                        app:riv_oval="false" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_contract"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/gray_button_bg_top_bottom"
+                        android:paddingStart="@dimen/_9sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_9sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/contract"
+                        android:textColor="@color/c_080921"
+                        android:textSize="@dimen/_7sdp"
+                        android:visibility="gone"
+                        app:fonts="@string/sfpro_text_regular" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@string/name"
+                        android:textColor="@color/c_080921"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sfpro_text_midium" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_uname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@string/name"
+                        android:textColor="@color/C_3C3C43"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sfpro_text_midium" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/C_3C3C43"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_c_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_date_c"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/C_3C3C43"
+                            android:textSize="@dimen/_9sdp"
+                            android:singleLine="true"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:src="@drawable/arrow_right" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_dateEnd_c"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/C_3C3C43"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_9sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

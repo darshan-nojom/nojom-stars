@@ -4,6 +4,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
+        android:backgroundTint="@color/C_F2F2F7"
         android:layout_height="wrap_content">
 
         <RelativeLayout

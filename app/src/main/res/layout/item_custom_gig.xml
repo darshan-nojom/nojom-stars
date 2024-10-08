@@ -150,7 +150,6 @@
                             android:hint="@string/enter_price"
                             android:imeOptions="actionDone"
                             android:inputType="numberDecimal"
-                            android:maxLength="7"
                             android:textAlignment="viewStart"
                             android:maxLines="1"
                             android:padding="@dimen/_5sdp"

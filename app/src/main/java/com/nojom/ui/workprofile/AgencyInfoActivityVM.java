@@ -1,6 +1,8 @@
 package com.nojom.ui.workprofile;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
+import android.webkit.MimeTypeMap;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,9 +12,16 @@ import com.nojom.model.Skill;
 import com.nojom.model.requestmodel.CommonRequest;
 import com.nojom.segment.SegmentedButtonGroup;
 import com.nojom.ui.BaseActivity;
+import com.nojom.util.CompressFile;
 import com.nojom.util.Constants;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class AgencyInfoActivityVM extends ViewModel implements Constants, APIRequest.APIRequestListener {
 
@@ -61,11 +70,35 @@ public class AgencyInfoActivityVM extends ViewModel implements Constants, APIReq
 
     void addAgencyInfoAPI(String agName, String agAbout, String agPhone, String agEmail, String agWebsite, String agAdd,
                           String note, int id, int name, int sgAddressPosition, int sgAboutPosition, int sgPhonePosition,
-                          int sgEmailPosition, int sgWebsitePosition, int sgNotePosition) {
+                          int sgEmailPosition, int sgWebsitePosition, int sgNotePosition, File file) {
         if (!activity.isNetworkConnected())
             return;
 
         getIsShowProgress().postValue(true);
+
+        MultipartBody.Part body = null;
+//        if (TextUtils.isEmpty(path)) {
+        if (file != null) {
+            file = CompressFile.getCompressedImageFile(file);
+            if (file != null) {
+                Uri selectedUri = Uri.fromFile(file);
+                String fileExtension = MimeTypeMap.getFileExtensionFromUrl(selectedUri.toString());
+                String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension.toLowerCase());
+
+                RequestBody requestFile = null;
+                if (mimeType != null) {
+                    requestFile = RequestBody.create(file, MediaType.parse(mimeType));
+                }
+
+                Headers.Builder headers = new Headers.Builder();
+                headers.addUnsafeNonAscii("Content-Disposition", "form-data; name=\"file\"; filename=\"" + file.getName() + "\"");
+
+                if (requestFile != null) {
+                    body = MultipartBody.Part.create(headers.build(), requestFile);
+                }
+            }
+        }
+
 
         CommonRequest.AddAgencyInfo profilePublicity = new CommonRequest.AddAgencyInfo();
         profilePublicity.setAbout(agAbout);
@@ -84,23 +117,22 @@ public class AgencyInfoActivityVM extends ViewModel implements Constants, APIReq
         profilePublicity.setPhone_public(sgPhonePosition);
         profilePublicity.setEmail_public(sgEmailPosition);
         profilePublicity.setWebsite_public(sgWebsitePosition);
-        profilePublicity.setNote_public(sgNotePosition);
 
 
         APIRequest apiRequest = new APIRequest();
-        apiRequest.makeAPIRequest(activity, ADD_AGENCY, profilePublicity.toString(), true, this);
+        apiRequest.makeAPIRequestFileUpload(activity, ADD_AGENCY, profilePublicity.toString(), this, body);
 
     }
 
     @Override
     public void onResponseSuccess(String decryptedData, String urlEndPoint, String msg) {
+
         if (urlEndPoint.equalsIgnoreCase(API_PROFILE_PUBLICITY)) {
             activity.toastMessage(msg);
         } else if (urlEndPoint.equalsIgnoreCase(ADD_AGENCY)) {
             activity.toastMessage(msg);
-            getIsAgencyAddSuccess().postValue(true);
+            activity.getProfile();
         }
-        activity.getProfile();
         getIsShowProgress().postValue(false);
     }
 

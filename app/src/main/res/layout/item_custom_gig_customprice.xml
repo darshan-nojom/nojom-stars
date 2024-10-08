@@ -44,7 +44,6 @@
             android:imeOptions="actionDone"
             android:inputType="numberDecimal"
             android:textAlignment="viewStart"
-            android:maxLength="7"
             android:maxLines="1"
             android:padding="@dimen/_5sdp"
             android:singleLine="true"

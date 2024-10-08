@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nojom.R;
 import com.nojom.databinding.ItemContractListBinding;
 import com.nojom.model.GigProjectList;
+import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
 import com.nojom.util.Utils;
 
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class GigProjectsAdapter extends RecyclerView.Adapter<GigProjectsAdapter.SimpleViewHolder> {
 
-    private Context context;
+    private BaseActivity context;
     private List<GigProjectList.Data> projectsList;
     private PrettyTime p = new PrettyTime();
     private boolean isState;
@@ -42,7 +43,7 @@ public class GigProjectsAdapter extends RecyclerView.Adapter<GigProjectsAdapter.
         isState = state;
     }
 
-    public GigProjectsAdapter(Context context, GigClickListener jobClickListener) {
+    public GigProjectsAdapter(BaseActivity context, GigClickListener jobClickListener) {
         this.context = context;
         this.jobClickListener = jobClickListener;
     }
@@ -70,10 +71,10 @@ public class GigProjectsAdapter extends RecyclerView.Adapter<GigProjectsAdapter.
     @Override
     public void onBindViewHolder(final SimpleViewHolder holder, final int position) {
         GigProjectList.Data item = projectsList.get(position);
-        holder.binding.tvTitle.setText(String.format("Job ID : %d", item.contractID));
+        holder.binding.tvTitle.setText(String.format(context.getString(R.string.job_id_new) + " : %d", item.contractID));
         String date = p.format(Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", item.createdAt));
         double totalPrice = projectsList.get(position).totalPrice;
-        holder.binding.tvBudget.setText(String.format("$%s - %s", totalPrice, date));
+        holder.binding.tvBudget.setText(String.format(context.getCurrency().equals("SAR") ? context.getString(R.string.s_sar_s) : "$%s - %s", totalPrice, date));
 
         if (item.isShowProgress) {
             holder.binding.shimmerViewContainer.setBackgroundResource(R.drawable.transp_rounded_corner_10);
@@ -86,20 +87,25 @@ public class GigProjectsAdapter extends RecyclerView.Adapter<GigProjectsAdapter.
 
         switch (item.gigStateID) {
             case Constants.BIDDING:
-                updateStatus(holder.binding.tvStatus, item.gigStateName, ContextCompat.getDrawable(context, R.drawable.yellow_border_5), ContextCompat.getColor(context, R.color.yellow));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.yellow_border_5), ContextCompat.getColor(context, R.color.yellow));
                 holder.binding.tvRefunds.setVisibility(View.GONE);
                 break;
             case 7:
             case Constants.WAITING_FOR_ACCEPTANCE:
-                updateStatus(holder.binding.tvStatus, item.gigStateName, ContextCompat.getDrawable(context, R.drawable.lovender_border_5), ContextCompat.getColor(context, R.color.lovender));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.lovender_border_5), ContextCompat.getColor(context, R.color.lovender));
                 holder.binding.tvRefunds.setVisibility(View.GONE);
                 break;
             case Constants.WAITING_FOR_DEPOSIT:
-                updateStatus(holder.binding.tvStatus, item.gigStateName, ContextCompat.getDrawable(context, R.drawable.red_border_5), ContextCompat.getColor(context, R.color.red_dark));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.red_border_5), ContextCompat.getColor(context, R.color.red_dark));
+                holder.binding.tvRefunds.setVisibility(View.GONE);
+                break;
+            case Constants.BANK_TRANSFER_REVIEW:
+            case Constants.REFUNDED:
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.orange_border_5), ContextCompat.getColor(context, R.color.orange_light));
                 holder.binding.tvRefunds.setVisibility(View.GONE);
                 break;
             case Constants.IN_PROGRESS:
-                updateStatus(holder.binding.tvStatus, item.gigStateName, ContextCompat.getDrawable(context, R.drawable.blue_border_5), ContextCompat.getColor(context, R.color.colorPrimary));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.blue_border_5), ContextCompat.getColor(context, R.color.colorPrimary));
                 if (item.jobRefunds == 1) {//refund case
                     holder.binding.tvRefunds.setVisibility(View.VISIBLE);
                 } else {
@@ -108,7 +114,7 @@ public class GigProjectsAdapter extends RecyclerView.Adapter<GigProjectsAdapter.
                 break;
             case Constants.SUBMIT_WAITING_FOR_PAYMENT:
             case Constants.COMPLETED:
-                updateStatus(holder.binding.tvStatus, item.gigStateName, ContextCompat.getDrawable(context, R.drawable.green_border_5), ContextCompat.getColor(context, R.color.greendark));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.green_border_5), ContextCompat.getColor(context, R.color.greendark));
                 if (item.jobRefunds == 1) {//refund case
                     holder.binding.tvRefunds.setVisibility(View.VISIBLE);
                 } else {
@@ -116,11 +122,7 @@ public class GigProjectsAdapter extends RecyclerView.Adapter<GigProjectsAdapter.
                 }
                 break;
             case Constants.CANCELLED:
-                updateStatus(holder.binding.tvStatus, item.gigStateName, ContextCompat.getDrawable(context, R.drawable.black_gray_border_5), ContextCompat.getColor(context, R.color.gray_text));
-                holder.binding.tvRefunds.setVisibility(View.GONE);
-                break;
-            case Constants.REFUNDED:
-                updateStatus(holder.binding.tvStatus, item.gigStateName, ContextCompat.getDrawable(context, R.drawable.orange_border_5), ContextCompat.getColor(context, R.color.orange_light));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.black_gray_border_5), ContextCompat.getColor(context, R.color.gray_text));
                 holder.binding.tvRefunds.setVisibility(View.GONE);
                 break;
         }

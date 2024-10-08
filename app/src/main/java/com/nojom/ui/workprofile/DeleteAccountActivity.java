@@ -33,6 +33,7 @@ public class DeleteAccountActivity extends BaseActivity implements APIRequest.AP
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_delete_account);
         initData();

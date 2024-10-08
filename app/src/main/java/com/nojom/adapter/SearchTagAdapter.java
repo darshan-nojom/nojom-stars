@@ -66,7 +66,8 @@ public class SearchTagAdapter extends ArrayAdapter<GigSubCategoryModel.Data> {
             if (constraint != null) {
                 suggestions.clear();
                 for (GigSubCategoryModel.Data people : tempItems) {
-                    if (people.getName(((BaseActivity) context).language).toLowerCase().contains(constraint.toString().toLowerCase())) {
+                    if (people.name.toLowerCase().contains(constraint.toString().toLowerCase())
+                            || people.getName(((BaseActivity) context).language).contains(constraint.toString())) {
                         suggestions.add(people);
                     }
                 }

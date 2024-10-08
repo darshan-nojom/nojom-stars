@@ -21,11 +21,12 @@
                 android:id="@+id/tv_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="center_vertical|start"
                 android:layout_weight="1"
                 android:text="@string/social_media"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/c_080921"
+                android:textSize="@dimen/_15sdp"
                 app:fonts="@string/sfpro_text_bold" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -57,11 +58,11 @@
 
             <ImageView
                 android:id="@+id/img_arrow"
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/arrow_down" />
+                android:src="@drawable/ic_arrow_down_thin" />
 
         </LinearLayout>
 
@@ -69,8 +70,8 @@
             android:id="@+id/rv_platform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 </layout>

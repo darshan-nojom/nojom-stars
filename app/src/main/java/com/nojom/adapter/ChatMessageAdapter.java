@@ -136,7 +136,11 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
 
                 holder.binding.txtOfferTitle.setText(item.offer.offerTitle);
                 holder.binding.txtOfferDesc.setText(item.offer.description);
-                holder.binding.txtOfferPrice.setText(Utils.priceWith$(Utils.getDecimalValue(String.valueOf(item.offer.price))));
+                if (baseActivity.getCurrency().equals("SAR")) {
+                    holder.binding.txtOfferPrice.setText(Utils.priceWithSAR(baseActivity,Utils.getDecimalValue(String.valueOf(item.offer.price))));
+                } else {
+                    holder.binding.txtOfferPrice.setText(Utils.priceWith$(Utils.getDecimalValue(String.valueOf(item.offer.price)),baseActivity));
+                }
 
                 if (item.offer.offerStatus == 0 || item.offer.offerStatus == 3) {
                     holder.binding.txtWithdrawOffer.setText(item.offer.offerStatus == 0 ? baseActivity.getString(R.string.deleted) : baseActivity.getString(R.string.rejected));
@@ -247,7 +251,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
     }
 
     public void refreshOfferView(int pos, boolean isShow, int offerStatus) {
-        if(chatMessage!=null && chatMessage.size()>0) {
+        if (chatMessage != null && chatMessage.size() > 0) {
             chatMessage.get(pos).isShowOfferProgress = isShow;
             if (offerStatus == 4) {
                 if (chatMessage.get(pos).offer != null) {

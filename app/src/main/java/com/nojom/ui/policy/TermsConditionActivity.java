@@ -12,6 +12,7 @@ public class TermsConditionActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityTermsConditionBinding termsConditionBinding = DataBindingUtil.setContentView(this, R.layout.activity_terms_condition);
 

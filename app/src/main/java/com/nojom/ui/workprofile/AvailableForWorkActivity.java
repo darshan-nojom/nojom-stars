@@ -34,6 +34,7 @@ public class AvailableForWorkActivity extends BaseActivity implements Recyclervi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_available_for_work);
         binding.setAvailableActivity(this);

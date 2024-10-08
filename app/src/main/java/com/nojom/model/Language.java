@@ -20,7 +20,7 @@ public class Language extends GeneralModel {
         @SerializedName("name")
         public String name;
         @Expose
-        @SerializedName("nameAr")
+        @SerializedName(value = "nameAr", alternate = {"name_ar"})
         public String nameAr;
         @Expose
         @SerializedName("id")

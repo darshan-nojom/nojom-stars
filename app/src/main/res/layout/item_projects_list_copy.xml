@@ -46,30 +46,30 @@
             android:textSize="@dimen/_10sdp"
             app:fonts="@string/sftext_semibold" />
 
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/tv_budget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="budget"
-            android:textColor="@color/gray"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:textSize="@dimen/_9sdp"
-            app:fonts="@string/sfdiaply_regular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+<!--        <android.textview.TextViewSFTextPro-->
+<!--            android:id="@+id/tv_budget"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="budget"-->
+<!--            android:textColor="@color/gray"-->
+<!--            android:layout_marginTop="@dimen/_3sdp"-->
+<!--            android:textSize="@dimen/_9sdp"-->
+<!--            app:fonts="@string/sfdiaply_regular"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_title" />-->
 
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/txt_f_dot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:text="@string/u00b7"
-            android:textColor="@color/gray"
-            app:fonts="@string/sftext_bold"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:layout_constraintStart_toEndOf="@id/tv_budget"/>
+<!--        <android.textview.TextViewSFTextPro-->
+<!--            android:id="@+id/txt_f_dot"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="@dimen/_2sdp"-->
+<!--            android:layout_marginStart="@dimen/_2sdp"-->
+<!--            android:layout_marginTop="@dimen/_2sdp"-->
+<!--            android:text="@string/u00b7"-->
+<!--            android:textColor="@color/gray"-->
+<!--            app:fonts="@string/sftext_bold"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_title"-->
+<!--            app:layout_constraintStart_toEndOf="@id/tv_budget"/>-->
 
         <android.textview.TextViewSFTextPro
             android:id="@+id/tv_daysleft"
@@ -83,7 +83,7 @@
             android:textSize="@dimen/_9sdp"
             app:fonts="@string/sfdiaply_regular"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:layout_constraintStart_toEndOf="@+id/txt_f_dot" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <android.textview.TextViewSFTextPro
             android:id="@+id/txt_s_dot"
@@ -165,7 +165,7 @@
             android:layout_marginTop="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_budget"
+            app:layout_constraintTop_toBottomOf="@+id/tv_daysleft"
             app:fonts="@string/sfpro_text_regular" />
 
         <android.textview.TextViewSFTextPro
@@ -188,7 +188,7 @@
             android:textSize="@dimen/_10sdp"
             app:layout_constraintEnd_toStartOf="@id/img"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_budget"
+            app:layout_constraintTop_toBottomOf="@+id/tv_daysleft"
             app:fonts="@string/sfpro_text_regular" />
         <fr.castorflex.android.circularprogressbar.CircularProgressBar
             android:id="@+id/progress_bar"

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/white_rounded_corner_10"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_15sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_15sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_bankName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/bank_name"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sfpro_text_regular" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_primary"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toEndOf="@id/tv_bankName"
+                android:background="@drawable/gray_button_bg"
+                android:gravity="center"
+                android:text="@string/primary"
+                android:textColor="@color/tab_gray"
+                android:textSize="@dimen/_10sdp"
+                app:fonts="@string/sftext_regular" />
+
+            <ImageView
+                android:id="@+id/img_arrow"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_8sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/arrow_next"
+                app:tint="@color/black" />
+
+            <ImageView
+                android:id="@+id/img_check"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/circle_uncheck"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_benfName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:text="@string/beneficiary_name"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            app:fonts="@string/sfpro_text_midium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:orientation="horizontal">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_accNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/beneficiary_name"
+                android:textAlignment="viewStart"
+                android:textColor="@color/lightgray"
+                android:textSize="@dimen/_13sdp"
+                app:fonts="@string/sfpro_text_regular" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/blue_border_5"
+                android:paddingLeft="@dimen/_8sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:text="@string/pending"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_8sdp"
+                app:fonts="@string/sfpro_text_regular" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

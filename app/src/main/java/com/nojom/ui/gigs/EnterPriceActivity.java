@@ -35,6 +35,7 @@ public class EnterPriceActivity extends BaseActivity implements RecyclerviewAdap
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_enter_rate);
         binding.toolbar.tvTitle.setText(getString(R.string.package_price));
@@ -55,7 +56,7 @@ public class EnterPriceActivity extends BaseActivity implements RecyclerviewAdap
         amountList.add("1000");
 
         if (!TextUtils.isEmpty(data)) {
-            rate = Double.parseDouble(Utils.priceWithout$(data));
+            rate = getCurrency().equals("SAR") ? Double.parseDouble(Utils.priceWithoutSAR(this,data)) : Double.parseDouble(Utils.priceWithout$(data));
 
             if (amountList.contains("" + data)) {
                 selectedAmount = data;
@@ -163,7 +164,12 @@ public class EnterPriceActivity extends BaseActivity implements RecyclerviewAdap
             double finalAmountReceived = amount - percentAmount;
 
             binding.tvValid.setVisibility(View.VISIBLE);
-            binding.tvValid.setText(getString(R.string.you_will_get_total_amount)+" : $" + Utils.get2DecimalPlaces(finalAmountReceived) + " (" + percent + "%)");
+            if (getCurrency().equals("SAR")) {
+                binding.tvValid.setText(getString(R.string.you_will_get_total_amount) + " : " + Utils.get2DecimalPlaces(finalAmountReceived) +" "+getString(R.string.sar)+ " (" + percent + "%)");
+            } else {
+                binding.tvValid.setText(getString(R.string.you_will_get_total_amount) + " : "+getString(R.string.dollar) + Utils.get2DecimalPlaces(finalAmountReceived) + " (" + percent + "%)");
+            }
+
         } catch (Exception e) {
             binding.tvValid.setText("");
             e.printStackTrace();
@@ -178,7 +184,7 @@ public class EnterPriceActivity extends BaseActivity implements RecyclerviewAdap
     public void bindView(View view, int position) {
         final TextView textView = view.findViewById(R.id.tv_amount);
         String amount = amountList.get(position);
-        textView.setText("$" + amount);
+        textView.setText(getCurrency().equals("SAR") ? amount + " "+getString(R.string.sar) : getString(R.string.dollar) + amount);
 
         if (selectedAmount.equalsIgnoreCase(amount)) {
             textView.setBackground(ContextCompat.getDrawable(this, R.drawable.black_button_bg));

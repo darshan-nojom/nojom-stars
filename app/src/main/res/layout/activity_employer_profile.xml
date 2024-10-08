@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/C_F2F2F7">
 
             <RelativeLayout
                 android:id="@+id/rl_header"

@@ -21,6 +21,9 @@ public class UserSkillsModel extends GeneralModel implements Serializable {
         @SerializedName("name")
         public String name;
         @Expose
+        @SerializedName("name_ar")
+        public String name_ar;
+        @Expose
         @SerializedName("id")
         public int id;
         @Expose
@@ -32,6 +35,13 @@ public class UserSkillsModel extends GeneralModel implements Serializable {
 
         public boolean isSelected;
         public int selectedRating;
+
+        public String getName(String lang) {
+            if (lang.equals("ar")) {
+                return name_ar != null ? name_ar : name;
+            }
+            return name;
+        }
 
         @Override
         public boolean equals(Object obj) {

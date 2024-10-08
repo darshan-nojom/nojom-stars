@@ -37,6 +37,7 @@ public class ServiceFilterActivity extends BaseActivity implements RecyclerviewA
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_service_filter);
         serviceFilterActivityVM = ViewModelProviders.of(this).get(ServiceFilterActivityVM.class);
@@ -56,7 +57,7 @@ public class ServiceFilterActivity extends BaseActivity implements RecyclerviewA
                 }
                 Intent i = new Intent();
                 i.putExtra(Constants.SERVICE_ID, selectedPosition == 0 ? 0 : servicesList.get(selectedPosition).id);
-                i.putExtra(Constants.SERVICE_NAME, selectedPosition == 0 ? getString(R.string.all_platforms) : servicesList.get(selectedPosition).name);
+                i.putExtra(Constants.SERVICE_NAME, selectedPosition == 0 ? getString(R.string.all_platforms) : servicesList.get(selectedPosition).getName(language));
                 setResult(RESULT_OK, i);
 
 //                AsyncTask.execute(() -> Preferences.writeInteger(ServiceFilterActivity.this, Constants.FILTER_ID, servicesList.get(selectedPosition).id));
@@ -116,7 +117,7 @@ public class ServiceFilterActivity extends BaseActivity implements RecyclerviewA
         if (position == 0) {
             tvService.setText(getString(R.string.all_platforms));
         } else {
-            tvService.setText(service.name);
+            tvService.setText(service.getName(language));
             if (!TextUtils.isEmpty(service.platformIcon)) {
                 Glide.with(this)
                         .load(Uri.parse(service.platformIcon))

@@ -21,6 +21,7 @@ public class UpdatePasswordActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update_password);
         updatePasswordActivityVM = ViewModelProviders.of(this).get(UpdatePasswordActivityVM.class);
@@ -34,7 +35,7 @@ public class UpdatePasswordActivity extends BaseActivity {
                 updatePasswordActivityVM.updatePassword(this, getOldPassword(), getNewPassword());
             }
         });
-        binding.rlSupportChat.setOnClickListener(v -> Intercom.client().displayMessageComposer());
+        binding.rlSupportChat.setOnClickListener(v ->Intercom.client().displayMessageComposer());
 
         binding.toolbar.tvTitle.setText(getString(R.string.update_password));
 

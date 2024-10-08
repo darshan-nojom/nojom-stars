@@ -113,7 +113,7 @@ public class GigDetails extends CommonModel implements Serializable {
         @SerializedName("followersCount")
         public int followers = -1;
         @Expose
-        @SerializedName("socialPlatformID")
+        @SerializedName("agent_profile_social_platform_id")
         public int socialPlatformID;
     }
 
@@ -206,6 +206,9 @@ public class GigDetails extends CommonModel implements Serializable {
         @Expose
         @SerializedName("featureName")
         public String featureName;
+        @Expose
+        @SerializedName("id")
+        public int id;
     }
 
     public static GigDetails getGigDetails(String responseBody) {

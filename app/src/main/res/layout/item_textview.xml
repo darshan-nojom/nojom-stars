@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.textview.TextViewSFTextPro xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txt_view1"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_30sdp"
+    android:layout_weight="1"
+    android:background="@drawable/gray_button_bg"
+    android:backgroundTint="@color/C_E5E5EA"
+    android:fontFamily="@string/sfpro_text_regular"
+    android:gravity="center"
+    android:hint="@string/whatsapp"
+    android:imeOptions="actionNext"
+    android:padding="@dimen/_5sdp"
+    android:singleLine="true"
+    android:textColor="@color/black"
+    android:textSize="@dimen/_12sdp" />

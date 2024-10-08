@@ -38,6 +38,7 @@ public class ChoosePaymentMethodActivity extends BaseActivity implements DropInL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_choose_payment_method);
         verifyPaymentActivityVM = ViewModelProviders.of(this).get(VerifyPaymentActivityVM.class);

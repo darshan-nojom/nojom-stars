@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:background="@color/C_F2F2F7"
         tools:context=".ui.balance.BalanceActivity">
 
         <LinearLayout
@@ -37,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="@string/balance"
+                    android:text="@string/wallet"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14sdp" />
 
@@ -78,6 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/dollar"
+                        android:id="@+id/txt_sign"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_22sdp"
                         app:fonts="@string/sftext_bold" />

@@ -4,38 +4,127 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@color/background"
         android:layout_height="match_parent"
+        android:background="@color/C_F2F2F7"
         android:orientation="vertical">
 
         <include
             android:id="@+id/progress"
             layout="@layout/toolbar_save" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_category"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <fr.castorflex.android.circularprogressbar.CircularProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_gravity="center_vertical|center"
-            android:indeterminate="true"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:visibility="gone"
-            app:cpbStyle="@style/CircularProgressBar"
-            app:cpb_color="@color/colorPrimary"
-            app:cpb_colors="@array/progressColorPrimary"
-            app:cpb_max_sweep_angle="300"
-            app:cpb_min_sweep_angle="10"
-            app:cpb_rotation_speed="1.0"
-            app:cpb_stroke_width="@dimen/_2sdp"
-            app:cpb_sweep_speed="1.0" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp" />
 
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center_vertical|center"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:cpbStyle="@style/CircularProgressBar"
+                app:cpb_color="@color/colorPrimary"
+                app:cpb_colors="@array/progressColorPrimary"
+                app:cpb_max_sweep_angle="300"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_stroke_width="@dimen/_2sdp"
+                app:cpb_sweep_speed="1.0" />
+
+            <LinearLayout
+                android:id="@+id/lin_ph"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/social_platform_ph" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/txt_add"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@string/sfpro_text_bold"
+                    android:text="@string/add_new_platform"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_22sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:fontFamily="@string/sfpro_text_bold"
+                    android:gravity="center"
+                    android:text="@string/to_offer_a_service_add_your_platform_to_provide_the_desired_service_and_start_earning"
+                    android:textColor="@color/c_8E8E93"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_regular" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_25sdp"
+            android:background="@drawable/blue_rounded_corner"
+            android:backgroundTint="@color/black">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/add_platform"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar_save"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:cpbStyle="@style/CircularProgressBar"
+                app:cpb_color="@color/white"
+                app:cpb_colors="@array/progressColor"
+                app:cpb_max_sweep_angle="300"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_stroke_width="@dimen/_2sdp"
+                app:cpb_sweep_speed="1.0" />
+        </RelativeLayout>
     </LinearLayout>
 </layout>

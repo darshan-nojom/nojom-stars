@@ -102,9 +102,10 @@ class ProjectStatusFragmentVM extends AndroidViewModel implements View.OnClickLi
                     binding.rvAcceptJob.setLayoutManager(new LinearLayoutManager(fragment.activity));
                     setProjectData();
                     break;
+                case Constants.BANK_TRANSFER_REVIEW:
                 case Constants.WAITING_FOR_DEPOSIT:
                     binding.llJobStatus.setVisibility(View.VISIBLE);
-                    setJobProgress(WAITING_FOR_DEPOSIT, false);
+                    setJobProgress(projectData.jobPostStateId, false);
                     binding.tvJobStatusInfo.setText(fragment.activity.getString(R.string.waiting_for_deposit_info));
                     break;
                 case Constants.IN_PROGRESS:
@@ -130,12 +131,12 @@ class ProjectStatusFragmentVM extends AndroidViewModel implements View.OnClickLi
                     binding.rlWithdraw.setVisibility(View.VISIBLE);
 
                     if (projectData.jobPostBids != null) {
-                        double withdraw = projectData.jobPostBids.jpcFixedPrice != null ? projectData.jobPostBids.jpcFixedPrice - projectData.jobPostBids.bidCharges: 0 - projectData.jobPostBids.bidCharges;
+                        double withdraw = projectData.jobPostBids.jpcFixedPrice != null ? projectData.jobPostBids.jpcFixedPrice - projectData.jobPostBids.bidCharges : 0 - projectData.jobPostBids.bidCharges;
 //                        double withdraw = projectData.jobPostBids.jpcFixedPrice != null ? projectData.jobPostBids.jpcFixedPrice : 0 - projectData.jobPostBids.bidCharges;
                         if (withdraw < 0) {
                             withdraw = 0;
                         }
-                        binding.tvTotal.setText(String.format("$%s", fragment.activity.get2DecimalPlaces(withdraw)));
+                        binding.tvTotal.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar)+"%s", fragment.activity.get2DecimalPlaces(withdraw)));
                     }
 
                     setJobProgress(PAID, true);
@@ -185,9 +186,9 @@ class ProjectStatusFragmentVM extends AndroidViewModel implements View.OnClickLi
                 binding.tvName2.setText(userName);
 
 
-                binding.tvPlace.setText(projectData.clientCountry);
-                binding.tvPlace1.setText(projectData.clientCountry);
-                binding.tvPlace2.setText(projectData.clientCountry);
+                binding.tvPlace.setText(projectData.getCountryName(fragment.activity.language));
+                binding.tvPlace1.setText(projectData.getCountryName(fragment.activity.language));
+                binding.tvPlace2.setText(projectData.getCountryName(fragment.activity.language));
 
                 if (projectData.clientPhotos != null) {
                     Glide.with(fragment.activity)
@@ -211,7 +212,7 @@ class ProjectStatusFragmentVM extends AndroidViewModel implements View.OnClickLi
 
     public void updateBidPrice(ProjectByID projectData) {
         if (projectData.jobPostBids != null) {
-            binding.tvBidPrice.setText(String.format("$%s", projectData.jobPostBids.jpcFixedPrice != null ? Utils.getDecimalValue(projectData.jobPostBids.jpcFixedPrice.toString()) : Utils.getDecimalValue(projectData.jobPostBids.amount.toString())));
+            binding.tvBidPrice.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar)+"%s", projectData.jobPostBids.jpcFixedPrice != null ? Utils.getDecimalValue(projectData.jobPostBids.jpcFixedPrice.toString()) : Utils.getDecimalValue(projectData.jobPostBids.amount.toString())));
             if (projectData.jobPayTypeId != null && projectData.jobPayTypeId == 1) {
                 binding.tvPriceType.setText(fragment.getString(R.string._project));
             } else {
@@ -301,7 +302,12 @@ class ProjectStatusFragmentVM extends AndroidViewModel implements View.OnClickLi
         ArrayList<ProjectType> projectTypesList = new ArrayList<>();
 //        if (projectData.jobPayTypeId != null && projectData.jobPayTypeId == 1 && projectData.jobPostBids != null) { // Fixed price
         projectTypesList.add(new ProjectType(fragment.activity.getString(R.string.contract_type), fragment.activity.getString(R.string.fixed)));
-        projectTypesList.add(new ProjectType(fragment.activity.getString(R.string.fixed_price), "$" + (projectData.jobPostBids.jpcFixedPrice != null ? projectData.jobPostBids.jpcFixedPrice : projectData.jobPostBids.amount)));
+        if (fragment.activity.getCurrency().equals("SAR")) {
+            projectTypesList.add(new ProjectType(fragment.activity.getString(R.string.fixed_price), (projectData.jobPostBids.jpcFixedPrice != null ? projectData.jobPostBids.jpcFixedPrice : projectData.jobPostBids.amount) + " "+fragment.getString(R.string.sar)));
+        } else {
+            projectTypesList.add(new ProjectType(fragment.activity.getString(R.string.fixed_price), fragment.getString(R.string.dollar) + (projectData.jobPostBids.jpcFixedPrice != null ? projectData.jobPostBids.jpcFixedPrice : projectData.jobPostBids.amount)));
+        }
+
 //        }
 
         ProjectTypeAdapter projectTypeAdapter = new ProjectTypeAdapter(projectTypesList);
@@ -424,7 +430,11 @@ class ProjectStatusFragmentVM extends AndroidViewModel implements View.OnClickLi
 
                     i.putExtra(Constants.CHAT_ID, projectData.clientId + "-" + projectData.jobPostBids.profileId);  // ClientId - AgentId
                     i.putExtra(Constants.CHAT_DATA, chatMap);
-                    fragment.startActivity(i);
+                    if (fragment.activity.getIsVerified() == 1) {
+                        fragment.startActivity(i);
+                    } else {
+                        fragment.activity.toastMessage(fragment.getString(R.string.verification_is_pending_please_complete_the_verification_first_before_chatting_with_them));
+                    }
                 }
                 break;
             case R.id.tv_edit_bid:
@@ -446,9 +456,8 @@ class ProjectStatusFragmentVM extends AndroidViewModel implements View.OnClickLi
             case R.id.tv_submit_job:
                 if (projectData != null && projectData.jobPostBids != null) {
 
-                    if(projectData.refundStatus!=null&& (projectData.refundStatus.equals("0")
-                    ||projectData.refundStatus.equals("1")||projectData.refundStatus.equals("3")))
-                    {
+                    if (projectData.refundStatus != null && (projectData.refundStatus.equals("0")
+                            || projectData.refundStatus.equals("1") || projectData.refundStatus.equals("3"))) {
                         Toast.makeText(fragment.activity, fragment.getString(R.string.refund_status_message), Toast.LENGTH_LONG).show();
                         return;
                     }
@@ -495,7 +504,10 @@ class ProjectStatusFragmentVM extends AndroidViewModel implements View.OnClickLi
         }
 
         if (projectData.jobPostBids != null) {
-            String budget = "$" + (projectData.jobPostBids.jpcFixedPrice != null ? projectData.jobPostBids.jpcFixedPrice : projectData.jobPostBids.amount);
+            String budget = fragment.getString(R.string.dollar) + (projectData.jobPostBids.jpcFixedPrice != null ? projectData.jobPostBids.jpcFixedPrice : projectData.jobPostBids.amount);
+            if (fragment.activity.getCurrency().equals("SAR")) {
+                budget = (projectData.jobPostBids.jpcFixedPrice != null ? projectData.jobPostBids.jpcFixedPrice : projectData.jobPostBids.amount) + " "+fragment.getString(R.string.sar);
+            }
             String projectType = budget + " / Fixed";
             String[] fontList = {Constants.SFTEXT_BOLD};
             String[] words = {budget};

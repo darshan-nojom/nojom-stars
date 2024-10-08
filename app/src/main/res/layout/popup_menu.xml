@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/_15sdp"
+    android:background="@drawable/white_button_bg"
+    android:backgroundTint="@color/C_F2F2F7"
+    android:orientation="vertical">
+
+    <android.textview.TextViewSFTextPro
+        android:id="@+id/txt_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/_8sdp"
+        android:text="@string/edit"
+        android:textColor="@color/C_020814"
+        android:textSize="@dimen/_13sdp"
+        app:fonts="@string/sfpro_text_regular" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:background="@color/divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/txt_status"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/view"
+            android:textColor="@color/C_020814"
+            android:textSize="@dimen/_13sdp"
+            app:fonts="@string/sfpro_text_regular" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/gray_corner_30"
+            android:drawableEnd="@drawable/arrow_down"
+            android:drawablePadding="@dimen/_5sdp"
+            android:drawableTint="@color/c_8E8E93"
+            android:paddingStart="@dimen/_9sdp"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingEnd="@dimen/_9sdp"
+            android:paddingBottom="@dimen/_3sdp"
+            android:text="@string/name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_9sdp"
+            app:fonts="@string/sfpro_text_bold" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:background="@color/divider" />
+
+    <android.textview.TextViewSFTextPro
+        android:id="@+id/txt_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/_8sdp"
+        android:text="@string/delete_"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_13sdp"
+        app:fonts="@string/sfpro_text_regular" />
+</LinearLayout>

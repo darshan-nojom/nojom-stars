@@ -57,6 +57,7 @@ public class GigPhotosActivity extends BaseActivity implements GigPhotosAdapter.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gig_photos);
         deletedPhotos = new JSONArray();

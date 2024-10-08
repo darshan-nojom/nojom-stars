@@ -93,6 +93,7 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.create_my_gigs);
 
@@ -407,7 +408,8 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
             }
 
             if (gigDetails.packages != null) {
-                binding.txtPrice.setText("$" + gigDetails.packages.get(0).price);
+                binding.txtPrice.setText(getCurrency().equals("SAR") ? gigDetails.packages.get(0).price + " " + getString(R.string.sar)
+                        : getString(R.string.dollar) + gigDetails.packages.get(0).price);
                 binding.txtPackageName.setText(gigDetails.packages.get(0).name);
                 binding.txtPackageDesc.setText(gigDetails.packages.get(0).description);
                 binding.txtDelivery.setText(gigDetails.packages.get(0).deliveryTitle);
@@ -416,7 +418,7 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
 
             //gig photos
             if (gigDetails.gigImages != null && gigDetails.gigImages.size() > 0) {
-                String photoText = gigDetails.gigImages.size() == 1 ? ""+getString(R.string.photo) : ""+getString(R.string.photos);
+                String photoText = gigDetails.gigImages.size() == 1 ? "" + getString(R.string.photo) : "" + getString(R.string.photos);
                 binding.txtPhotos.setText("(" + gigDetails.gigImages.size() + ") " + photoText);
 
                 for (GigDetails.GigImage img : gigDetails.gigImages) {
@@ -642,7 +644,12 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
     private void updatePackageWiseData(GigPackages.Data data) {
         try {
             binding.etRevision.setText(data.revisions != 0 ? "" + data.revisions : "0");
-            binding.txtPrice.setText(data.price >= 0 ? "$" + data.price : "");
+            if (getCurrency().equals("SAR")) {
+                binding.txtPrice.setText(data.price >= 0 ? data.price + " " + getString(R.string.sar) : "");
+            } else {
+                binding.txtPrice.setText(data.price >= 0 ? getString(R.string.dollar) + data.price : "");
+            }
+
             binding.txtPackageDesc.setText(TextUtils.isEmpty(data.packageDescription) ? "" : data.packageDescription);
             binding.txtPackageName.setText(TextUtils.isEmpty(data.name) ? "" : data.name);
             binding.txtDelivery.setText(TextUtils.isEmpty(data.deliveryTime) ? "" : data.deliveryTime);
@@ -992,7 +999,7 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
                     if (data != null) {
                         selectedSubCat = (GigSubCategoryModel.Data) data.getSerializableExtra("data");
                         if (selectedSubCat != null) {
-                            binding.txtSkills.setText(selectedSubCat.name);
+                            binding.txtSkills.setText(selectedSubCat.getName(language));
                         } else {
                             binding.txtSkills.setText("");
                         }
@@ -1079,7 +1086,7 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
                 case 14:
                     if (data != null) {
                         String gigPrice = data.getStringExtra("data");
-                        binding.txtPrice.setText(String.format("$%s", gigPrice));
+                        binding.txtPrice.setText(String.format(getCurrency().equals("SAR") ? getString(R.string.s_sar) : getString(R.string.dollar)+"%s", gigPrice));
                         binding.txtPrice.setTag(gigPrice);
                         if (gigPrice != null) {
                             packages.get(selectedPackagePosition).price = Double.parseDouble(gigPrice);
@@ -1110,7 +1117,7 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
                         fileList = new ArrayList<>();
                         if (selectedFiles != null && selectedFiles.size() > 0) {
                             fileList.addAll(selectedFiles);
-                            String photoText = fileList.size() == 1 ? ""+getString(R.string.photo) : ""+getString(R.string.photos);
+                            String photoText = fileList.size() == 1 ? "" + getString(R.string.photo) : "" + getString(R.string.photos);
                             binding.txtPhotos.setText("(" + fileList.size() + ") " + photoText);
                         } else {
                             binding.txtPhotos.setText("");
@@ -1126,7 +1133,7 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
                                 fileList = new ArrayList<>();
                             }
                             fileList.addAll(selectedFiles);
-                            String photoText = fileList.size() == 1 ? ""+getString(R.string.photo) : ""+getString(R.string.photos);
+                            String photoText = fileList.size() == 1 ? "" + getString(R.string.photo) : "" + getString(R.string.photos);
                             binding.txtPhotos.setText("(" + fileList.size() + ") " + photoText);
                         } else {
                             toastMessage("File not selected");
@@ -1278,7 +1285,7 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
             GigPackages.Data pack = packages.get(i);
 
             if (pack.price < 0) {
-                toastMessage(getString(R.string.please_enter_price_for)+" " + pack.packageName);
+                toastMessage(getString(R.string.please_enter_price_for) + " " + pack.packageName);
                 return false;
             }
 
@@ -1309,7 +1316,7 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
 
             if (previousPackage != null && previousPackage.price > 0 /*&& pack.price > 0*/) {
                 if (previousPackage.price >= pack.price) {
-                    toastMessage(getString(R.string.price_for) + pack.packageName + " "+getString(R.string.should_be_greater_than)+" " + previousPackage.packageName);
+                    toastMessage(getString(R.string.price_for) + pack.packageName + " " + getString(R.string.should_be_greater_than) + " " + previousPackage.packageName);
                     return false;
                 }
             }
@@ -1319,7 +1326,7 @@ public class CreateGigsActivity extends BaseActivity implements View.OnClickList
         }
 
         if (checkFreeValidation && stringBuilder.length() > 0) {
-            String msg = stringBuilder.deleteCharAt(stringBuilder.length() - 1) + " "+getString(R.string.packages_are_free);
+            String msg = stringBuilder.deleteCharAt(stringBuilder.length() - 1) + " " + getString(R.string.packages_are_free);
             freePackageDialog(this, msg, isLive);
             return false;
         }

@@ -17,6 +17,7 @@ import com.nojom.R;
 import com.nojom.api.APIRequest;
 import com.nojom.model.requestmodel.CommonRequest;
 import com.nojom.ui.BaseActivity;
+import com.nojom.ui.startup.OnboardingActivity;
 import com.nojom.ui.startup.SelectAccountActivity;
 import com.nojom.util.Constants;
 import com.nojom.util.Preferences;
@@ -25,6 +26,7 @@ import com.nojom.util.Utils;
 import java.util.HashMap;
 import java.util.Objects;
 
+import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 import io.intercom.android.sdk.Intercom;
 
 public class WorkMoreActivityVM extends ViewModel implements APIRequest.APIRequestListener {
@@ -143,7 +145,8 @@ public class WorkMoreActivityVM extends ViewModel implements APIRequest.APIReque
                 activity.mSocket.disconnect();
             }
 
-            Intent i = new Intent(activity, SelectAccountActivity.class);
+//            Intent i = new Intent(activity, SelectAccountActivity.class);
+            Intent i = new Intent(activity, OnboardingActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(i);
             activity.openToLeft();

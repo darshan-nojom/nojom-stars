@@ -13,6 +13,7 @@ public class Pro24TaskActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityPro24taskBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_pro_24task);
         binding.tvTitle.setText(Utils.getColorString(this, getString(R.string._24task_pro), getString(R.string.pro), R.color.red));

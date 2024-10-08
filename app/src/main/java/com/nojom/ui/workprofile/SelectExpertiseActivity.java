@@ -37,6 +37,7 @@ public class SelectExpertiseActivity extends BaseActivity implements Recyclervie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_expertise);
 

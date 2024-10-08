@@ -13,6 +13,7 @@
         android:layout_gravity="top"
         android:padding="@dimen/_5sdp"
         android:background="@drawable/dialog_round_corner_bottom"
+        android:backgroundTint="@color/C_F2F2F7"
         android:orientation="vertical">
 
         <ImageView

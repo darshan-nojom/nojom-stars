@@ -11,6 +11,7 @@
         android:background="@drawable/white_rounded_corner_5"
         android:orientation="vertical"
         android:paddingLeft="@dimen/_15sdp"
+        android:backgroundTint="@color/C_F2F2F7"
         android:paddingTop="@dimen/_10sdp"
         android:paddingRight="@dimen/_15sdp"
         android:paddingBottom="@dimen/_10sdp">

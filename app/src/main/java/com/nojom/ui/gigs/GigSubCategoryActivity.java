@@ -34,6 +34,7 @@ public class GigSubCategoryActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_subcat);
         binding.shimmerLayout.setVisibility(View.GONE);

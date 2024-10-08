@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/dialog_round_corner_bottom"
         android:orientation="vertical"
+        android:backgroundTint="@color/C_F2F2F7"
         android:paddingLeft="@dimen/_15sdp"
         android:paddingTop="@dimen/_15sdp"
         android:paddingRight="@dimen/_15sdp">

@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         android:orientation="vertical"
         tools:context=".ui.balance.AddPaypalActivity">
 
@@ -56,11 +56,13 @@
                     android:layout_marginTop="@dimen/_50sdp"
                     android:text="@string/_5_what_s_your_most_important_service"
                     android:textColor="@color/black"
+                    android:visibility="gone"
                     android:textSize="@dimen/_17sdp"
                     app:font="@string/sfdiaply_bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_services"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp" />
@@ -202,6 +204,7 @@
                     android:text="@string/we_will_review_your_survey_within_few_hours_and_deposit_5_to_your_balance_today_we_will_also_pick_a_winner_for_100"
                     android:textColor="@color/textgrayAccent"
                     android:textSize="@dimen/_13sdp"
+                    android:id="@+id/txt_footer"
                     app:font="@string/sftext_regular" />
 
                 <android.button.ButtonSFTextSemiBold

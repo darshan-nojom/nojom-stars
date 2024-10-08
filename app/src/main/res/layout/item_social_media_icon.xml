@@ -12,8 +12,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_7sdp"
-        android:layout_marginBottom="@dimen/_7sdp"
         android:background="@drawable/white_button_bg"
         android:gravity="center"
         android:orientation="vertical"
@@ -36,9 +34,9 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/facebook"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_7sdp"
-            app:fonts="@string/sfpro_text_semibold" />
+            android:textColor="@color/c_080921"
+            android:textSize="@dimen/_8sdp"
+            app:fonts="@string/sfpro_text_regular" />
 
     </LinearLayout>
 </layout>

@@ -107,7 +107,7 @@ public class CustomGigViewlActivity extends BaseActivity {
 
         if (catId == 4352) {//social influencer
             binding.linPlatform.setVisibility(View.VISIBLE);
-            binding.txtPlatform.setText(selectedPlatform.name);
+            binding.txtPlatform.setText(selectedPlatform.getName(language));
             binding.tvSocial.setText(selectedPlatform.username);
 
             binding.imgPlatform.setOnClickListener(v -> ViewTooltip
@@ -117,7 +117,7 @@ public class CustomGigViewlActivity extends BaseActivity {
                     .autoHide(true, 3000)
                     .corner(30)
                     .position(ViewTooltip.Position.BOTTOM)
-                    .text(Utils.getPlatformTxt(selectedPlatform.followers) + " "+getString(R.string.followers))
+                    .text(Utils.getPlatformTxt(selectedPlatform.followers,this) + " " + getString(R.string.followers))
                     .show());
         }
 
@@ -181,7 +181,7 @@ public class CustomGigViewlActivity extends BaseActivity {
                 }
 
                 position[0] = position[0] - 1;
-                value[0] = deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? ""+getString(R.string.days) : ""+getString(R.string.hours));
+                value[0] = deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? "" + getString(R.string.days) : "" + getString(R.string.hours));
                 binding.tvDeadline.setText(value[0]);
 
                 if (position[0] == 0) {
@@ -198,7 +198,7 @@ public class CustomGigViewlActivity extends BaseActivity {
                 if (position[0] != deadlineList.size() - 1) {
                     position[0] = position[0] + 1;
                 }
-                value[0] = deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? ""+getString(R.string.days) : ""+getString(R.string.hours));
+                value[0] = deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? "" + getString(R.string.days) : "" + getString(R.string.hours));
                 binding.tvDeadline.setText(value[0]);
 
                 if (position[0] == deadlineList.size() - 1) {
@@ -292,10 +292,20 @@ public class CustomGigViewlActivity extends BaseActivity {
 
                     tvReqTitle.setText(reqData.name);
 
-                    if (reqData.dataValue.startsWith("$")) {
-                        tvAmnt.setText(reqData.dataValue);
+                    if (getCurrency().equals("SAR")) {
+                        if (reqData.dataValue.endsWith(getString(R.string.sar))) {
+                            tvAmnt.setText(reqData.dataValue);
+                        } else {
+                            tvAmnt.setText(reqData.dataValue + " "+getString(R.string.sar));
+                        }
+
                     } else {
-                        tvAmnt.setText("$" + reqData.dataValue);
+                        if (reqData.dataValue.startsWith(getString(R.string.dollar))) {
+                            tvAmnt.setText(reqData.dataValue);
+                        } else {
+                            tvAmnt.setText(getString(R.string.dollar) + reqData.dataValue);
+                        }
+
                     }
 
                     imgInfo.setOnClickListener(view1 -> {
@@ -427,7 +437,7 @@ public class CustomGigViewlActivity extends BaseActivity {
             RequiremetList.CustomData item = arrList.get(pos);
 
             holder.binding.txtSubName.setText("" + item.dataReq);
-            holder.binding.txtPrice.setText("$" + item.dataValue);
+            holder.binding.txtPrice.setText(getCurrency().equals("SAR") ? item.dataValue + " "+getString(R.string.sar) : getString(R.string.dollar) + item.dataValue);
 
             holder.binding.loutMain.setOnClickListener(v -> {
                 mapSelect.clear();
@@ -510,10 +520,18 @@ public class CustomGigViewlActivity extends BaseActivity {
         } else if (viewType == 2) {
             linView.setVisibility(View.VISIBLE);
             txtReq.setText("" + reqData.dataReq);
-            if (reqData.dataValue.startsWith("$")) {
-                txtValue.setText(reqData.dataValue);
+            if (getCurrency().equals("SAR")) {
+                if (reqData.dataValue.endsWith(getString(R.string.sar))) {
+                    txtValue.setText(reqData.dataValue);
+                } else {
+                    txtValue.setText(reqData.dataValue + " "+getString(R.string.sar));
+                }
             } else {
-                txtValue.setText("$" + reqData.dataValue);
+                if (reqData.dataValue.startsWith(getString(R.string.dollar))) {
+                    txtValue.setText(reqData.dataValue);
+                } else {
+                    txtValue.setText(getString(R.string.dollar) + reqData.dataValue);
+                }
             }
         } else if (viewType == 3) {
             RequirementPriceViewAdapter customOptionGigAdapter = new RequirementPriceViewAdapter(this, customDataList);

@@ -27,6 +27,7 @@ public class HeadlinesActivity extends BaseActivity implements Constants {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_headlines);
         headlinesActivityVM = ViewModelProviders.of(this).get(HeadlinesActivityVM.class);
@@ -51,7 +52,7 @@ public class HeadlinesActivity extends BaseActivity implements Constants {
         } else if (screen == ADDRESS) {
             binding.tvTitle.setText(getString(R.string.professional_address));
             binding.etHeadline.setHint(String.format(getString(R.string.enter_s), getString(R.string.professional_address)));
-            binding.etHeadline.setText(String.format("%s, %s, %s", profileData.cityName, profileData.stateName, profileData.countryName));
+            binding.etHeadline.setText(String.format("%s, %s, %s", profileData.getCityName(language), profileData.getStateName(language), profileData.getCountryName(language)));
         } else if (screen == OFFICE_ADD) {
             binding.tvTitle.setText(getString(R.string.professional_address));
             binding.etHeadline.setHint(String.format(getString(R.string.enter_s), getString(R.string.professional_address)));
@@ -69,8 +70,8 @@ public class HeadlinesActivity extends BaseActivity implements Constants {
         } else if (screen == WEBSITE) {
             binding.tvTitle.setText(getString(R.string.professional_website));
             binding.etHeadline.setHint(String.format(getString(R.string.enter_s), getString(R.string.professional_website)));
-            if (profileData.websites != null)
-                binding.etHeadline.setText(profileData.websites);
+            if (profileData.website != null)
+                binding.etHeadline.setText(profileData.website);
         }
 
         binding.etHeadline.setImeOptions(EditorInfo.IME_ACTION_DONE);

@@ -26,6 +26,7 @@ import com.nojom.model.ContractDetails;
 import com.nojom.ui.balance.BalanceActivity;
 import com.nojom.ui.gigs.ContractDetailsActivity;
 import com.nojom.ui.projects.ProjectDetailsActivity;
+import com.nojom.ui.workprofile.WithdrawDetailActivity;
 import com.nojom.util.Constants;
 import com.nojom.util.EndlessRecyclerViewScrollListener;
 
@@ -109,6 +110,7 @@ public class IncomeFragment extends BaseFragment implements IncomeAdapter.OnClic
 
             if (projectByID != null && isAdded()) {
                 Intent i = new Intent(getActivity(), ProjectDetailsActivity.class);
+//                Intent i = new Intent(getActivity(), WithdrawDetailActivity.class);
                 i.putExtra(Constants.PROJECT, projectByID);
                 startActivity(i);
             }
@@ -196,6 +198,7 @@ public class IncomeFragment extends BaseFragment implements IncomeAdapter.OnClic
             });
             if (project != null) {
                 Intent i = new Intent(activity, ContractDetailsActivity.class);
+//                Intent i = new Intent(activity, WithdrawDetailActivity.class);
                 i.putExtra(Constants.PROJECT, project);
 //                if (!TextUtils.isEmpty(customGigDetailUrl)) {
                 i.putExtra("gigtype", project.gigType);//custom gig

@@ -39,6 +39,12 @@ public class SocialPlatformList extends CommonModel {
         @SerializedName("platformName")
         public String platformName;
         @Expose
+        @SerializedName("name")
+        public String name;
+        @Expose
+        @SerializedName("nameAr")
+        public String nameAr;
+        @Expose
         @SerializedName("platform_icon")
         public String platform_icon;
 
@@ -65,7 +71,18 @@ public class SocialPlatformList extends CommonModel {
         @SerializedName("redirectUrl")
         public String redirectUrl;
 
+        @Expose
+        @SerializedName("filename")
+        public String filename;
+
         public boolean isShowProgress;
+
+        public String getName(String lang) {
+            if (lang.equals("ar")) {
+                return nameAr != null ? nameAr : name;
+            }
+            return name;
+        }
     }
 
     public static SocialPlatformList getSocialPlatforms(String responseBody) {

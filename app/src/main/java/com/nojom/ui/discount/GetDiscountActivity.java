@@ -18,6 +18,7 @@ public class GetDiscountActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityGetDiscountBinding getDiscountBinding = DataBindingUtil.setContentView(this, R.layout.activity_get_discount);
         getDiscount = new GetDiscountActivityVM(Task24Application.getActivity(), getDiscountBinding, this);

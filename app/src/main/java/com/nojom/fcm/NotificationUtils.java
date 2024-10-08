@@ -37,7 +37,7 @@ public class NotificationUtils {
 
     void showNotificationMessage(String title, String message, String timeStamp, Intent intent) {
 
-        int notificationIcon = R.drawable.ic_notification_icon;
+        int notificationIcon = R.mipmap.ic_launcher_round;
         int icon = R.mipmap.ic_launcher;
 
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -46,7 +46,7 @@ public class NotificationUtils {
 //        int bundleNotificationId = 1000;
         issuedMessages.add(title + ": " + message);
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
-        inboxStyle.setBigContentTitle("24task");
+        inboxStyle.setBigContentTitle(mContext.getString(R.string.nojom));
         for (CharSequence cs : issuedMessages) {
             inboxStyle.addLine(cs);
         }
@@ -57,7 +57,7 @@ public class NotificationUtils {
                         mContext,
                         0,
                         intent,
-                        PendingIntent.FLAG_CANCEL_CURRENT);
+                        PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_MUTABLE);
 
         String channelId = mContext.getString(R.string.notification_channel_id);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -101,32 +101,17 @@ public class NotificationUtils {
     static boolean isAppIsInBackground(Context context) {
         boolean isInBackground = true;
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
-            List<ActivityManager.RunningAppProcessInfo> runningProcesses = null;
-            if (am != null) {
-                runningProcesses = am.getRunningAppProcesses();
-                for (ActivityManager.RunningAppProcessInfo processInfo : runningProcesses) {
-                    if (processInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                        for (String activeProcess : processInfo.pkgList) {
-                            if (activeProcess.equals(context.getPackageName())) {
-                                isInBackground = false;
-                            }
+        List<ActivityManager.RunningAppProcessInfo> runningProcesses = null;
+        if (am != null) {
+            runningProcesses = am.getRunningAppProcesses();
+            for (ActivityManager.RunningAppProcessInfo processInfo : runningProcesses) {
+                if (processInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                    for (String activeProcess : processInfo.pkgList) {
+                        if (activeProcess.equals(context.getPackageName())) {
+                            isInBackground = false;
                         }
                     }
                 }
-            }
-        } else {
-            List<ActivityManager.RunningTaskInfo> taskInfo = null;
-            try {
-                if (am != null) {
-                    taskInfo = am.getRunningTasks(1);
-                    ComponentName componentInfo = taskInfo.get(0).topActivity;
-                    if (componentInfo != null && componentInfo.getPackageName().equals(context.getPackageName())) {
-                        isInBackground = false;
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
 

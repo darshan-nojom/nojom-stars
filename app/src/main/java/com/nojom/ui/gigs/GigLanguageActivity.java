@@ -26,6 +26,7 @@ public class GigLanguageActivity extends BaseActivity implements GigLanguageAdap
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_category);
         binding.tvTitle.setText(getString(R.string.language));

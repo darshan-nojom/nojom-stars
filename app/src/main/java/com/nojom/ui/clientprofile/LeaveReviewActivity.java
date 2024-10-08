@@ -31,6 +31,7 @@ public class LeaveReviewActivity extends BaseActivity implements RecyclerviewAda
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_leave_review);
         leaveReviewActivityVM = ViewModelProviders.of(this).get(LeaveReviewActivityVM.class);
@@ -124,7 +125,7 @@ public class LeaveReviewActivity extends BaseActivity implements RecyclerviewAda
                 ratingBar.setVisibility(View.VISIBLE);
                 segmentedButtonGroup.setVisibility(View.GONE);
             }
-            tvQuestions.setText(item.question);
+            tvQuestions.setText(item.getQuestion(language));
         }
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override

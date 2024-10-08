@@ -72,6 +72,19 @@ public class WorkExperienceActivityVM extends ViewModel implements APIRequest.AP
         apiRequest.makeAPIRequest(activity, API_ADD_EXPERTISE, expertiseRequest.toString(), true, this);
     }
 
+    void updateExperience(int pubStatus) {
+        if (!activity.isNetworkConnected()) return;
+        activity.disableEnableTouch(true);
+
+        CommonRequest.ExpertiseRequest expertiseRequest = new CommonRequest.ExpertiseRequest();
+        expertiseRequest.setExperience("");
+        expertiseRequest.setService_category_id("");
+        expertiseRequest.setCategory_public_status(pubStatus);
+
+        APIRequest apiRequest = new APIRequest();
+        apiRequest.makeAPIRequest(activity, API_ADD_EXPERTISE, expertiseRequest.toString(), true, this);
+    }
+
     @Override
     public void onResponseSuccess(String decryptedData, String urlEndPoint, String message) {
         if (responseListener != null) {

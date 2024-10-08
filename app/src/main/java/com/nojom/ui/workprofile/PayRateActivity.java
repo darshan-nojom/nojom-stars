@@ -29,6 +29,7 @@ public class PayRateActivity extends BaseActivity implements ResponseListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_rate);
         binding.setPayRateAct(this);

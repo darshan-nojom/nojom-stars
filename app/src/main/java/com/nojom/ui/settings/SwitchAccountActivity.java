@@ -12,7 +12,7 @@ import com.nojom.adapter.SwitchAccountAdapter;
 import com.nojom.databinding.ActivitySwitchAccountBinding;
 import com.nojom.model.UserModel;
 import com.nojom.ui.BaseActivity;
-import com.nojom.ui.auth.LoginSignUpActivity;
+import com.nojom.ui.auth.LoginActivity;
 import com.nojom.util.Preferences;
 import com.nojom.util.Utils;
 
@@ -27,6 +27,7 @@ public class SwitchAccountActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_switch_account);
         initData();
@@ -62,7 +63,7 @@ public class SwitchAccountActivity extends BaseActivity {
 
         binding.tvAddAccount.setOnClickListener(v -> {
 
-            Intent i = new Intent(this, LoginSignUpActivity.class);
+            Intent i = new Intent(this, LoginActivity.class);
 //            i.putExtra(Constants.FROM_LOGIN, isLogin);
 //            i.putExtra(Constants.LOGIN_FINISH, isNeedToFinish);
             startActivity(i);

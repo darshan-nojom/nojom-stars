@@ -17,6 +17,7 @@ public class ReSubmitSurveyActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityAddSurveySubmitBinding addSurveySubmitBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_survey_submit);
         reSubmitSurveyActivityVM = new ReSubmitSurveyActivityVM(Task24Application.getActivity(), addSurveySubmitBinding, this);

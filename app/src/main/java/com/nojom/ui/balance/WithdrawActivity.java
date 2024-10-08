@@ -20,6 +20,7 @@ public class WithdrawActivity extends BaseActivity implements Constants {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_withdraw);
         binding.setWithdrawAct(this);
@@ -27,22 +28,32 @@ public class WithdrawActivity extends BaseActivity implements Constants {
     }
 
     private void initData() {
+        if (getCurrency().equals("SAR")) {
+            binding.txtSign.setText(getString(R.string.sar));
+        } else {
+            binding.txtSign.setText(getString(R.string.dollar));
+        }
         binding.imgBack.setOnClickListener(v -> onBackPressed());
 
         if (getIntent() != null) {
             availableBalance = getIntent().getDoubleExtra(AVAILABLE_BALANCE, 0);
         }
 
-        binding.tvBalance.setText(Utils.priceWith$(Utils.getDecimalValue("" + availableBalance)));
+        binding.tvBalance.setText(getCurrency().equals("SAR") ? Utils.priceWithSAR(this,Utils.getDecimalValue("" + availableBalance)) :
+                Utils.priceWith$(Utils.getDecimalValue("" + availableBalance),this));
 
         Utils.trackFirebaseEvent(this, "Withdraw_Balance_Screen");
     }
 
     public void onClickNext() {
         if (getFormatAmount() < 100) {
-            binding.tvValidation.setText(getString(R.string.minimum_amount_doll_1));
+            binding.tvValidation.setText(getCurrency().equals("SAR") ? getString(R.string.minimum_amount_doll_1_sar) : getString(R.string.minimum_amount_doll_1));
         } else if (getFormatAmount() > availableBalance) {
-            binding.tvValidation.setText(String.format(getString(R.string.maximum_amount_is_), Utils.priceWith$(Utils.getDecimalValue("" + availableBalance))));
+            if (getCurrency().equals("SAR")) {
+                binding.tvValidation.setText(String.format(getString(R.string.maximum_amount_is_), Utils.priceWithSAR(this,Utils.getDecimalValue("" + availableBalance))));
+            } else {
+                binding.tvValidation.setText(String.format(getString(R.string.maximum_amount_is_), Utils.priceWith$(Utils.getDecimalValue("" + availableBalance),this)));
+            }
         } else {
             binding.tvValidation.setText("");
             Intent i = new Intent(this, WithdrawMoneyActivity.class);

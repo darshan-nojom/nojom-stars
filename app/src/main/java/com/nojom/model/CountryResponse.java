@@ -22,6 +22,9 @@ public class CountryResponse extends GeneralModel implements Serializable {
         @SerializedName("countryName")
         public String countryName;
         @Expose
+        @SerializedName("countryNameAr")
+        public String countryNameAr;
+        @Expose
         @SerializedName("countryCode")
         public String countryCode;
         @Expose
@@ -29,6 +32,13 @@ public class CountryResponse extends GeneralModel implements Serializable {
         public String phoneCode;
 
         public boolean isSelected;
+
+        public String getCountryName(String lang) {
+            if (lang.equals("ar")) {
+                return countryNameAr != null ? countryNameAr : countryName;
+            }
+            return countryName;
+        }
     }
 
     public static List<CountryResponse.CountryData> getCountryData(String jsonData) {

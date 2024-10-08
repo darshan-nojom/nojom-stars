@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/ll_deposit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/white_rounded_corner_15"
+        android:backgroundTint="@color/C_F2F2F7"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/bank_transfer_done" />
+
+        <android.textview.TextViewSFTextPro
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="@string/we_will_respond_within_24_hours"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_22sdp"
+            app:fonts="@string/sfpro_text_bold" />
+
+        <android.textview.TextViewSFTextPro
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:gravity="center"
+            android:text="@string/we_will_respond_within_24_hours_24"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_22sdp"
+            app:fonts="@string/sfpro_text_bold" />
+
+        <android.textview.TextViewSFTextPro
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/the_deposit_process_takes_from_5_minutes_to_2_business_days_depending_on_the_bank_from_which_the_transfer_was_made_from_"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            app:fonts="@string/sfpro_text_regular" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_goto_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@drawable/blue_button_bg_10"
+            android:backgroundTint="@color/colorPrimary"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/okay"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            app:fonts="@string/sfpro_text_midium" />
+
+    </LinearLayout>
+</layout>

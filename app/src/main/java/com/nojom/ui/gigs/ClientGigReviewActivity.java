@@ -15,6 +15,7 @@ public class ClientGigReviewActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityClientGigReviewBinding clientReviewBinding = DataBindingUtil.setContentView(this, R.layout.activity_client_gig_review);
         new ClientGigReviewActivityVM(Task24Application.getActivity(), clientReviewBinding, this);

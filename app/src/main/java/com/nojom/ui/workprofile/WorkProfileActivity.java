@@ -22,6 +22,7 @@ public class WorkProfileActivity extends BaseActivity implements BaseActivity.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_work_profile);
         binding.setActivity(this);
@@ -103,6 +104,10 @@ public class WorkProfileActivity extends BaseActivity implements BaseActivity.On
         redirectActivity(VerificationActivity.class);
     }
 
+    public void onClickPayment() {
+//        redirectActivity(PaymentActivity.class);
+    }
+
     @Override
     public void onProfileLoad(ProfileResponse profileData) {
         if (profileData.percentage != null) {
@@ -114,7 +119,19 @@ public class WorkProfileActivity extends BaseActivity implements BaseActivity.On
                 setPercentage(profileData.percentage.privateInfo != null ? profileData.percentage.privateInfo : 0, binding.tvPrivateInfo);
                 setPercentage(profileData.percentage.professionalInfo != null ? profileData.percentage.professionalInfo : 0, binding.tvProfessionalInfo);
                 setPercentage(profileData.percentage.skill != null ? profileData.percentage.skill : 0, binding.tvSkill);
-                setPercentage(profileData.percentage.verification != null ? profileData.percentage.verification : 0, binding.tvVerifications);
+
+                int trustScore = 0;
+                if (profileData.trustRate.email != 0) {
+                    trustScore = trustScore + 30;
+                }
+                if (profileData.trustRate.phoneNumber != 0) {
+                    trustScore = trustScore + 30;
+                }
+                if (profileData.trustRate.mawthooq != 0) {
+                    trustScore = trustScore + 40;
+                }
+
+                setPercentage(trustScore, binding.tvVerifications);
             } catch (Exception e) {
                 e.printStackTrace();
             }

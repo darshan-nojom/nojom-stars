@@ -19,14 +19,14 @@ public class UpdateLocationActivityVM extends ViewModel implements Constants, AP
     @SuppressLint("StaticFieldLeak")
     private BaseActivity activity;
 
-    private MutableLiveData<ProfileResponse.Addresses> responseMutableLiveData = new MutableLiveData<>();
-    private MutableLiveData<List<StateResponse.StateData>> stateLiveData = new MutableLiveData<>();
-    private MutableLiveData<List<CityResponse.CityData>> cityLiveData = new MutableLiveData<>();
+    private final MutableLiveData<ProfileResponse.Addresses> responseMutableLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<StateResponse.StateData>> stateLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<CityResponse.CityData>> cityLiveData = new MutableLiveData<>();
 
 
-    private MutableLiveData<Boolean> isShowStateProgress = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isShowCityProgress = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isShowSaveProgress = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isShowStateProgress = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isShowCityProgress = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isShowSaveProgress = new MutableLiveData<>();
 
     public MutableLiveData<Boolean> getIsShowSaveProgress() {
         return isShowSaveProgress;
@@ -52,16 +52,27 @@ public class UpdateLocationActivityVM extends ViewModel implements Constants, AP
         return responseMutableLiveData;
     }
 
-    void updateLocation(Integer country, Integer state, Integer city) {
+    void updateLocation(Integer country, Integer city, int steps) {
         if (!activity.isNetworkConnected())
             return;
 
         getIsShowSaveProgress().postValue(true);
 
         CommonRequest.AddAddress addAddress = new CommonRequest.AddAddress();
-        addAddress.setCityID(city);
-        addAddress.setCountryID(country);
-        addAddress.setStateID(state);
+        if (city != null) {
+            addAddress.setCityID("" + city);
+        } else {
+            addAddress.setCityID("0");
+        }
+        if (country != null) {
+            addAddress.setCountryID("" + country);
+        } else {
+            addAddress.setCountryID("0");
+        }
+        addAddress.setStateID("0");
+//        if (steps != -1) {
+//            addAddress.setRegistration_step(steps);
+//        }
 
         APIRequest apiRequest = new APIRequest();
         apiRequest.makeAPIRequest(activity, API_ADD_ADDRESS, addAddress.toString(), true, this);
@@ -80,10 +91,12 @@ public class UpdateLocationActivityVM extends ViewModel implements Constants, AP
         } else if (urlEndPoint.equalsIgnoreCase(API_GET_CITIES)) {
             getIsShowCityProgress().postValue(false);
             getCityLiveData().postValue(CityResponse.getCityData(decryptedData));
-        } else {
-            getIsShowSaveProgress().postValue(false);
+        } else if (urlEndPoint.equalsIgnoreCase(API_ADD_ADDRESS)) {
             getResponseMutableLiveData().postValue(ProfileResponse.getAddress(decryptedData));
         }
+        getIsShowSaveProgress().postValue(false);
+        activity.isClickableView = false;
+        activity.disableEnableTouch(false);
     }
 
     @Override
@@ -95,6 +108,8 @@ public class UpdateLocationActivityVM extends ViewModel implements Constants, AP
         } else {
             getIsShowSaveProgress().postValue(false);
         }
+        activity.isClickableView = false;
+        activity.disableEnableTouch(false);
     }
 
     public void getStateFromCountry(int countryId) {

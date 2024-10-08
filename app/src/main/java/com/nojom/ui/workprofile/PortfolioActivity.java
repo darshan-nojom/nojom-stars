@@ -52,6 +52,7 @@ public class PortfolioActivity extends BaseActivity implements PortfolioFileAdap
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_portfolio);
         portfolioActivityVM = ViewModelProviders.of(this).get(PortfolioActivityVM.class);

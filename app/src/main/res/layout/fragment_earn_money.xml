@@ -7,7 +7,7 @@
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/C_F2F2F7"
         android:scrollbars="none"
         app:layout_scrollFlags="scroll">
 
@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:text="@string/give_10_get_10"
+                android:textAlignment="viewStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_24sdp"
                 app:font="@string/sftext_bold" />
@@ -35,6 +36,7 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:text=""
+                android:textAlignment="viewStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
                 app:font="@string/sftext_regular" />
@@ -44,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_60sdp"
                 android:background="@drawable/gray_button_bg"
+                android:backgroundTint="@color/C_E5E5EA"
                 android:orientation="horizontal"
                 android:padding="@dimen/_5sdp">
 
@@ -144,7 +147,7 @@
                         android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:text="@string/email"
+                        android:text="@string/email_"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp"
                         app:font="@string/sftext_regular" />
@@ -266,6 +269,7 @@
                 app:font="@string/sftext_bold" />
 
             <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -302,6 +306,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center_vertical"
+                android:id="@+id/txt_t2"
                 android:text="@string/your_friend_s_order_must_be_completed_so_you_can_use_your_10"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
@@ -325,6 +330,7 @@
                 android:text="@string/get_10_for_every_friend"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_18sdp"
+                android:id="@+id/txt_t3"
                 app:font="@string/sftext_bold" />
 
             <android.textview.TextViewSFTextPro
@@ -332,6 +338,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center_vertical"
+                android:id="@+id/txt_t3_d"
                 android:text="@string/for_example_if_you_invited_100_friends_then_you_will_get_1_000"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"

@@ -136,16 +136,16 @@ public class ProjectDetailsActivityVM extends ViewModel implements APIRequest.AP
         }
 
         if (projectData.clientRateId == 0 && projectData.jobBudget != null) {
-            tvBudget.setText("$" + projectData.jobBudget);
+            tvBudget.setText(activity.getCurrency().equals("SAR") ? projectData.jobBudget + " " + activity.getString(R.string.sar) : activity.getString(R.string.dollar) + projectData.jobBudget);
         } else {
             if (projectData.clientRate != null) {
                 if (projectData.clientRate.rangeTo != null && projectData.clientRate.rangeTo != 0) {
-                    tvBudget.setText(String.format("$%s - $%s", projectData.clientRate.rangeFrom, projectData.clientRate.rangeTo));
+                    tvBudget.setText(String.format(activity.getCurrency().equals("SAR") ? activity.getString(R.string.s_sar_s_sar) : "$%s - $%s", projectData.clientRate.rangeFrom, projectData.clientRate.rangeTo));
                 } else {
-                    tvBudget.setText(String.format("$%s", projectData.clientRate.rangeFrom));
+                    tvBudget.setText(String.format(activity.getCurrency().equals("SAR") ? activity.getString(R.string.s_sar) : activity.getString(R.string.dollar)+"%s", projectData.clientRate.rangeFrom));
                 }
             } else if (projectData.jobBudget != null) {
-                tvBudget.setText("$" + projectData.jobBudget);
+                tvBudget.setText(activity.getCurrency().equals("SAR") ? projectData.jobBudget + " " + activity.getString(R.string.sar) : activity.getString(R.string.dollar) + projectData.jobBudget);
             } else {
                 tvBudget.setText(activity.getString(R.string.free));
             }

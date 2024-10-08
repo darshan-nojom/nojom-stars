@@ -64,6 +64,13 @@ class WinFragmentVM extends AndroidViewModel implements View.OnClickListener {
             }
         };
 
+        if (fragment.activity.getCurrency().equals("SAR")) {
+            binding.tvHereBlue.setText(fragment.activity.getString(R.string.answer_6_questions_and_get_2_plus_get_a_chance_to_win_100_gift_card_sar));
+            binding.txtT3.setText(fragment.activity.getString(R.string.get_2_for_every_review_sar));
+            binding.txtT3D.setText(fragment.activity.getString(R.string.you_will_get_2_for_one_review_on_social_platform_sar));
+            binding.tvTermsOfUse.setText(fragment.activity.getString(R.string.earn_money_footer_sar));
+        }
+
         Utils.makeLinks(binding.tvTermsOfUse, new String[]{fragment.getString(R.string.terms_of_use_)}, new ClickableSpan[]{tncClick});
 
         socialSurveyAPI.getSocialSurveyMutableLiveData().observe(fragment, surveyListModel -> {

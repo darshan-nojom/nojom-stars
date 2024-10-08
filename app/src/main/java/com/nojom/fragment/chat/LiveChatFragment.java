@@ -20,7 +20,7 @@ public class LiveChatFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_live_chat, container, false);
-        new LiveChatFragmentVM(Task24Application.getActivity(), binding);
+        new LiveChatFragmentVM(Task24Application.getActivity(), binding,activity);
         return binding.getRoot();
     }
 

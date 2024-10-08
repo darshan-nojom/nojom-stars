@@ -7,6 +7,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/C_F2F2F7"
         android:fillViewport="true">
 
         <LinearLayout
@@ -35,7 +36,9 @@
                 android:visibility="gone">
 
                 <LinearLayout
+                    android:id="@+id/lin_range"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content">
 
                     <android.textview.TextViewSFTextPro
@@ -65,6 +68,105 @@
                         android:textSize="@dimen/_11sdp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/lin_depAmnt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:lineSpacingExtra="@dimen/_3sdp"
+                        android:text="@string/deposit_amount"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_depAmnt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="@dimen/_3sdp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_servAmnt"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/txt_serFee"
+                        android:lineSpacingExtra="@dimen/_3sdp"
+                        android:text="@string/service_fee_5"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_servAmnt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="@dimen/_3sdp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="#D1D1D6" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lin_total"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:lineSpacingExtra="@dimen/_3sdp"
+                        android:text="@string/total"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_totalAmnt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="@dimen/_3sdp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+                </LinearLayout>
+
                 <android.textview.TextViewSFTextPro
                     app:fonts="@string/sftext_medium"
                     android:id="@+id/tv_payment_text"
@@ -74,59 +176,6 @@
                     android:text="@string/no_payment_agents"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_project_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/white_rounded_corner_10"
-                android:orientation="vertical"
-                android:padding="@dimen/_10sdp"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <android.textview.TextViewSFTextPro
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/total"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
-                        app:fonts="@string/sftext_bold" />
-
-                    <android.textview.TextViewSFTextPro
-                        app:fonts="@string/sftext_medium"
-                        android:id="@+id/tv_total"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_11sdp" />
-
-                    <android.textview.TextViewSFTextPro
-                        app:fonts="@string/sftext_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:text="@string/_fixed_price_"
-                        android:textColor="@color/textgrayAccent"
-                        android:textSize="@dimen/_11sdp" />
-                </LinearLayout>
-
-                <android.textview.TextViewSFTextPro
-                    android:id="@+id/tv_no_deposit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:lineSpacingExtra="@dimen/_3sdp"
-                    android:text="@string/completed_paid_info"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_11sdp"
-                    app:fonts="@string/sftext_regular" />
             </LinearLayout>
 
             <LinearLayout
@@ -172,6 +221,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:text="@string/dollar_0_usd"
+                            android:maxLines="1"
+                            android:ellipsize="end"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_18sdp"
                             app:fonts="@string/sftext_bold" />
@@ -214,6 +265,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:text="@string/dollar_0_usd"
+                            android:maxLines="1"
+                            android:ellipsize="end"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_18sdp"
                             app:fonts="@string/sftext_bold" />

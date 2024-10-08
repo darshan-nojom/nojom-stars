@@ -46,8 +46,9 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/linear_flag_holder"
             android:singleLine="true"
+            android:fontFamily="@string/sfpro_text_regular"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="@dimen/_13sdp" />
 
         <ImageView
             android:id="@+id/imageView_arrow"
@@ -57,6 +58,7 @@
             android:layout_toEndOf="@+id/textView_selectedCountry"
             android:adjustViewBounds="true"
             android:alpha="0.6"
+            android:layout_marginStart="@dimen/_3sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/arrow_down"
             app:tint="@android:color/black" />

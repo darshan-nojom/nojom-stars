@@ -37,6 +37,7 @@ public class WorkExperienceActivity extends BaseActivity implements ResponseList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_work_experience);
         binding.setWorkActivity(this);

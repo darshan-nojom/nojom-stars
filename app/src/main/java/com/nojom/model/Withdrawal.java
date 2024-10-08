@@ -30,6 +30,25 @@ public class Withdrawal extends GeneralModel {
     @Expose
     @SerializedName("provider")
     public String provider;
+    @Expose
+    @SerializedName("name")
+    public String name;
+    @Expose
+    @SerializedName("nameAr")
+    public String nameAr;
+    @Expose
+    @SerializedName("beneficiary_name")
+    public String beneficiary_name;
+    @Expose
+    @SerializedName("iban")
+    public String iban;
+
+    public String getName(String lang) {
+        if (lang.equals("ar")) {
+            return nameAr != null ? nameAr : name;
+        }
+        return name;
+    }
 
     public static List<Withdrawal> getWithdrawals(String jsonData) {
         try {

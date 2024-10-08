@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TabHost
         android:id="@android:id/tabhost"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="@color/C_F2F2F7">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -21,10 +23,120 @@
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_minus5sdp"
-                android:layout_marginRight="@dimen/_minus5sdp"
-                android:layout_marginBottom="@dimen/_minus7sdp"
-                android:background="@drawable/shadow_bg" />
+                android:background="@drawable/shadow_bg"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/C_E5E5EA" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:id="@+id/lin_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgTab"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/tab_profile" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile"
+                        android:textColor="@color/vw_BgRv"
+                        android:textSize="@dimen/_10sdp"
+                        app:font="@string/sfpro_text_midium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgTabProj"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_t_camp" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/textProj"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/campaign"
+                        android:textColor="@color/C_3C3C43"
+                        android:textSize="@dimen/_10sdp"
+                        app:font="@string/sfpro_text_midium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_chat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgTabChat"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_t_chat" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/textChat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chats"
+                        android:textColor="@color/C_3C3C43"
+                        android:textSize="@dimen/_10sdp"
+                        app:font="@string/sfpro_text_midium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgTabProfile"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_t_more" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/textProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/more"
+                        android:textColor="@color/C_3C3C43"
+                        android:textSize="@dimen/_10sdp"
+                        app:font="@string/sfpro_text_midium" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </TabHost>
 </layout>

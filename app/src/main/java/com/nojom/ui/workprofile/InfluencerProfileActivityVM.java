@@ -7,6 +7,7 @@ import static java.lang.Math.abs;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -21,42 +23,58 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.nojom.R;
-import com.nojom.adapter.ProfilePlatformAdapter;
+import com.nojom.adapter.InfluencerServiceAdapter;
 import com.nojom.adapter.ReviewsAdapter;
+import com.nojom.adapter.SelectedPlatformAdapter;
+import com.nojom.adapter.SkillsListAdapter;
 import com.nojom.adapter.StoreAdapter;
 import com.nojom.adapter.VerifiedAdapter;
+import com.nojom.adapter.VerifyFilesAdapter;
 import com.nojom.databinding.ActivityInfluencerProfileBinding;
+import com.nojom.fragment.profile.ReviewsProfileFragmentVM;
 import com.nojom.model.ClientReviews;
+import com.nojom.model.ConnectedSocialMedia;
 import com.nojom.model.ProfileResponse;
+import com.nojom.model.Skill;
 import com.nojom.model.SocialPlatformList;
+import com.nojom.model.VerifyID;
 import com.nojom.ui.BaseActivity;
 import com.nojom.util.Preferences;
+import com.nojom.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnClickListener{
+class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnClickListener, InfluencerServiceAdapter.OnClickService {
     private final ActivityInfluencerProfileBinding binding;
     @SuppressLint("StaticFieldLeak")
     private final BaseActivity activity;
 
-//    private AgentProfile agentData;
+    //    private AgentProfile agentData;
     private ProfileResponse clientData;
     private boolean isShowHire, isRehire, viewMoreService = true, viewMoreStore = true, viewMoreAgency = true, viewMoreReview = true;
-//    private Proposals.Data proposalData;
+    //    private Proposals.Data proposalData;
     private VerifiedAdapter mVerifiedAdapter;
     private boolean isFromChatScreen;
     public List<SocialPlatformList.Data> socialPlatformList;
 
     private List<ClientReviews.Data> reviewsList, reviewsListAll;
     private List<SocialPlatformList.Data> socialListPage;
-//    private List<AgentProfile.StoreList> storeList;
+    //    private List<AgentProfile.StoreList> storeList;
     private int gigId = 0, selectedPos, page = 1;
 
     public void setServiceList(List<SocialPlatformList.Data> socialPlatformList) {
         this.socialPlatformList = socialPlatformList;
     }
+
+    private ReviewsProfileFragmentVM reviewsProfileFragmentVM;
+    private MyPlatformActivityVM nameActivityVM;
+    private VerifyIDActivityVM verifyIDActivityVM;
 
     InfluencerProfileActivityVM(Application application, ActivityInfluencerProfileBinding profileBinding, BaseActivity freelancerProfileActivity) {
         super(application);
@@ -67,6 +85,11 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
         socialPlatformList = new ArrayList<>();
         socialListPage = new ArrayList<>();
 //        storeList = new ArrayList<>();
+        reviewsProfileFragmentVM = ViewModelProviders.of(activity).get(ReviewsProfileFragmentVM.class);
+        nameActivityVM = ViewModelProviders.of(activity).get(MyPlatformActivityVM.class);
+        nameActivityVM.getConnectedPlatform(activity);
+        verifyIDActivityVM = ViewModelProviders.of(activity).get(VerifyIDActivityVM.class);
+        verifyIDActivityVM.getMawthooqList(activity, "maw");
         initData();
     }
 
@@ -82,6 +105,7 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
         binding.relReviewsAll.setOnClickListener(this);
         binding.rlStoreView.setOnClickListener(this);
         binding.imgSave.setOnClickListener(this);
+        binding.tvMawId.setOnClickListener(this);
 
         clientData = Preferences.getProfileData(activity);
 
@@ -90,15 +114,49 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
             if (clientData.firstName != null && clientData.lastName != null) {
                 binding.tvName.setTextColor(activity.getColor(R.color.black));
                 binding.tvName.setText(clientData.firstName + " " + clientData.lastName);
+                binding.toolbarTitle.setText(clientData.firstName + " " + clientData.lastName);
             }
             if (clientData.username != null) {
                 binding.tvUserName.setTextColor(activity.getColor(R.color.black));
                 binding.tvUserName.setText("@" + clientData.username);
             }
-            if (clientData.websites != null) {
+            if (clientData.website != null) {
                 binding.tvLink.setTextColor(activity.getColor(R.color.black));
-                binding.tvLink.setText(clientData.websites);
+                binding.tvLink.setText(clientData.website);
             }
+
+            if (!TextUtils.isEmpty(clientData.about_me)) {
+                binding.tvAboutme.setText(String.format("%s", clientData.about_me));
+            } else {
+                binding.tvAboutme.setText("-");
+            }
+
+            binding.tvGender.setText(clientData.gender != null && clientData.gender == 1 ? activity.getString(R.string.female) : activity.getString(R.string.male));
+            if (clientData.show_age != null && clientData.show_age == 1) {
+                binding.linAge.setVisibility(VISIBLE);
+                if (!TextUtils.isEmpty(clientData.birth_date)) {
+                    int age = Utils.calculateAge(clientData.birth_date.split("T")[0]);
+                    binding.tvAge.setText("" + age);
+                } else {
+                    binding.tvAge.setText("-");
+                }
+            } else {
+                binding.linAge.setVisibility(GONE);
+            }
+
+            ArrayList<Skill> skillList = new ArrayList<>();
+            if (clientData.skills != null && clientData.skills.size() > 0) {
+                for (ProfileResponse.Skill data : clientData.skills) {
+                    skillList.add(new Skill(data.getName(activity.language), Utils.getRatingLevel(data.rating)));
+                }
+            }
+            setTagsAdapter(skillList);
+
+            verifyIDActivityVM.getListMutableLiveData().observe(activity, this::setMaqData);
+
+//            if (clientData.trustRateStatus != null && clientData.trustRateStatus.verifyId != null && clientData.trustRateStatus.verifyId == 1) {
+//            binding.imgVerified.setVisibility(GONE);
+//            }
 
             Glide.with(activity).load(activity.getImageUrl() + clientData.profilePic).placeholder(R.drawable.dp).diskCacheStrategy(DiskCacheStrategy.ALL).listener(new RequestListener<Drawable>() {
                 @Override
@@ -114,41 +172,19 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
                 }
             }).into(binding.imgProfile);
 
-
-//            if (clientData.profilePic != null) {
-//                binding.imgProfile.setOnClickListener(v -> viewFile(getImageUrl() + clientData.profilePic));
-//            }
+            activity.runOnUiThread(() -> {
+                if (clientData != null && clientData.profile_agencies != null) {
+                    binding.linAgency.setVisibility(VISIBLE);
+                    binding.tvAgencyName.setText(clientData.profile_agencies.name);
+                    binding.tvAgencyContact.setText(clientData.profile_agencies.phone);
+                    binding.tvAgencyWebsite.setText(clientData.profile_agencies.website);
+                    binding.tvAgencyEmail.setText(clientData.profile_agencies.email);
+                    binding.tvAgencyAdd.setText(clientData.profile_agencies.address);
+                    binding.tvAgencyNote.setText(clientData.profile_agencies.note);
+                    binding.tvAgencyAbout.setText(clientData.profile_agencies.about);
+                }
+            });
         }
-
-
-
-//        if (activity.getIntent() != null) {
-//            agentData = (AgentProfile) activity.getIntent().getSerializableExtra(AGENT_PROFILE_DATA);
-//            isShowHire = activity.getIntent().getBooleanExtra(Constants.SHOW_HIRE, false);
-//            isRehire = activity.getIntent().getBooleanExtra(Constants.REHIRE, false);
-//            isFromChatScreen = activity.getIntent().getBooleanExtra("from", false);
-//            proposalData = (Proposals.Data) activity.getIntent().getSerializableExtra(Constants.USER_DATA);
-//        }
-
-//        if (clientData != null) {
-//
-////            getReviews(page, clientData.id);
-////            getSocialPlatforms(clientData.id);
-////            getAgency(clientData.id);
-////            getMyPortfolios();
-//
-//            setUi();
-//        } else {
-//            activity.finish();
-//            return;
-//        }
-
-        clientData = Preferences.getProfileData(activity);
-
-//        if (isRehire) {
-//            binding.tvHire.setText(activity.getString(R.string.rehire_me));
-//        }
-
 
         binding.appbar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             Log.e("lll", "" + (abs(verticalOffset) - appBarLayout.getTotalScrollRange()));
@@ -166,57 +202,68 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
             if (viewMoreReview) {
                 if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
                     page++;
-//                    getReviews(page, agentData.id);
+                    reviewsProfileFragmentVM.getAgentReviews(activity, page);
                 }
+            }
+        });
+
+        reviewsProfileFragmentVM.getListMutableLiveData().observe(activity, this::setAdapter);
+
+        reviewsProfileFragmentVM.getAgentReviews(activity, page);
+        reviewsProfileFragmentVM.getServiceList(activity);
+
+        nameActivityVM.getConnectedMediaDataList().observe(activity, data -> {
+
+            if (data != null && data.size() > 0) {
+                setConnectedMediaAdapter(data);
+            }
+        });
+
+        reviewsProfileFragmentVM.getServiceListMutableData().observe(activity, data -> {
+            if (data != null && data.size() > 0) {
+                setServicesAdapter(data);
             }
         });
     }
 
-    private void setUi() {
+    List<VerifyID.Data> mawData;
 
-        if (clientData != null) {
-            if (clientData.firstName != null && clientData.lastName != null) {
-                binding.tvName.setText(String.format("%s %s", clientData.firstName, clientData.lastName));
-                binding.toolbarTitle.setText(String.format("%s %s", clientData.firstName, clientData.lastName));
+    private void setMaqData(List<VerifyID.Data> verifyIdsList) {
+
+        if (verifyIdsList != null && verifyIdsList.size() > 0) {
+            mawData = verifyIdsList;
+            if (verifyIdsList.get(0).data != null) {
+                binding.tvMawId.setText(String.format("%s", verifyIdsList.get(0).data));
+                binding.tvMawId.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password, 0);
+            } else {
+                mawData = null;
+                binding.tvMawId.setText("-");
             }
 
-            binding.tvUserName.setText("@" + clientData.username);
-
-            if (!TextUtils.isEmpty(clientData.websites)) {
-                binding.tvLink.setText(String.format("%s", clientData.websites));
-            }
-
-//            if (clientData.saved == 1) {
-//                binding.imgSave.setImageResource(R.drawable.ic_fav_fill);
-//            } else {
-//                binding.imgSave.setImageResource(R.drawable.ic_fav);
-//            }
-
-            if (clientData.trustRateStatus != null && clientData.trustRateStatus.verifyId != null && clientData.trustRateStatus.verifyId == 1) {
-                binding.imgVerified.setVisibility(VISIBLE);
-            }
-
-//            binding.imgSave.setImageResource(R.drawable.ic_fav_fill);
-
-//            activity.setImage(binding.imgProfile, TextUtils.isEmpty(clientData.profilePic) ? "" : /*clientData.path +*/ clientData.profilePic, 0, 0);
-
-//            setServicesAdapter(socialListPage);
-            updateBlockUnblockStatus();
-
-//            if (agentData.store != null && agentData.store.size() > 0) {
-//                storeList.add(agentData.store.get(0));
-//            }
-//            if (agentData.store != null && agentData.store.size() > 1) {
-//                storeList.add(agentData.store.get(1));
-//            }
-//            setStoreAdapter(storeList);
+        } else {
+            mawData = null;
+            binding.tvMawId.setText("-");
         }
     }
 
-    public void setPlatformAdapter(List<SocialPlatformList.Data> profilePlatformArrayList) {
-        ProfilePlatformAdapter adapter = new ProfilePlatformAdapter();
-        adapter.doRefresh(profilePlatformArrayList, activity);
-        binding.rvPlatform.setAdapter(adapter);
+    private void setTagsAdapter(List<Skill> data) {
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(activity);
+        layoutManager.setFlexDirection(FlexDirection.ROW);
+        layoutManager.setJustifyContent(JustifyContent.FLEX_START);
+        layoutManager.setFlexWrap(FlexWrap.WRAP);
+        binding.chipView.setLayoutManager(layoutManager);
+        SkillsListAdapter skillsListAdapter = new SkillsListAdapter(activity, data, false);
+        binding.chipView.setAdapter(skillsListAdapter);
+    }
+
+    private void setConnectedMediaAdapter(ArrayList<ConnectedSocialMedia.Data> data) {
+        SelectedPlatformAdapter mAdapter = new SelectedPlatformAdapter(activity, data, null);
+//        ItemTouchHelper.Callback callback =
+//                new ItemMoveCallback(mAdapter);
+//        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+//        touchHelper.attachToRecyclerView(binding.rvSelection);
+        mAdapter.isView(true);
+        binding.rvPlatform.setAdapter(mAdapter);
     }
 
     StoreAdapter storeAdapter;
@@ -249,9 +296,22 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
 //                saveRemoveInfluencer();
                 break;
             case R.id.img_share:
-//                if (agentData.firebaseLink != null) {
-//                    activity.shareApp(agentData.firebaseLink);
-//                }
+                if (clientData != null && clientData.firebaseLink != null) {
+                    String fLink = clientData.firebaseLink.replaceAll("https://", "");
+                    activity.shareApp(fLink);
+                }
+                break;
+            case R.id.tv_mawId:
+                if (mawData != null && mawData.size() > 0) {
+                    String url;
+                    if (mawData.get(0).is_number.equals("1")) {
+                        url = "https://elaam.gamr.gov.sa/gcam-licenses/gcam-celebrity-check/" + mawData.get(0).data;
+                    } else {
+                        url = activity.getMawthooqIdUrl() + mawData.get(0).data;
+                    }
+                    activity.viewFile(url);
+                }
+
                 break;
             case R.id.rl_portfolio_view:
 //                Intent iP = new Intent(activity, InfluencerProfileAllActivity.class);
@@ -272,12 +332,8 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
 //                    setServicesAdapter(socialListPage);
                     viewMoreService = true;
                 }
+                setServicesAdapter(reviewsProfileFragmentVM.getServiceListMutableData().getValue());
 
-//                Intent iS = new Intent(activity, InfluencerProfileAllActivity.class);
-//                iS.putExtra(Constants.AGENT_PROFILE_DATA, agentData);
-//                iS.putExtra("platform", (Serializable) socialPlatformList);
-//                iS.putExtra("screen", "services");
-//                activity.startActivity(iS);
                 break;
             case R.id.rl_agency_view:
 
@@ -305,25 +361,19 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
                     viewMoreAgency = true;
                 }
 
-
-//                Intent iA = new Intent(activity, InfluencerProfileAllActivity.class);
-//                iA.putExtra(Constants.AGENT_PROFILE_DATA, agentData);
-//                iA.putExtra("platform", (Serializable) socialPlatformList);
-//                iA.putExtra("screen", "agency");
-//                activity.startActivity(iA);
                 break;
             case R.id.rel_reviews_all:
 
                 if (viewMoreReview) {//view more case
-//                    setReviewAdapter(reviewsListAll);
-                    binding.txtReviewAll.setText(activity.getString(R.string.view_less));
                     viewMoreReview = false;
+                    setAdapter(reviewsProfileFragmentVM.getListMutableLiveData().getValue());
+                    binding.txtReviewAll.setText(activity.getString(R.string.view_less));
                 } else {//view less
                     page = 1;
+                    viewMoreReview = true;
                     reviewsListAll = new ArrayList<>();
                     binding.txtReviewAll.setText(activity.getString(R.string.view_all));
-//                    setReviewAdapter(reviewsList);
-                    viewMoreReview = true;
+                    setAdapter(reviewsProfileFragmentVM.getListMutableLiveData().getValue());
                 }
 
 
@@ -409,98 +459,52 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
         }
     }
 
-//    public void getReviews(int pageNo, int profileId) {
-//        activity.isClickableView = true;
-//
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put("agent_profile_id", profileId + "");
-//        map.put("page_no", pageNo + "");
-//
-//        ApiRequest apiRequest = new ApiRequest();
-//        apiRequest.apiRequest(this, activity, API_GET_AGENT_REVIEW, true, map);
-//    }
-//
-//    public void getSocialPlatforms(int profileId) {
-//        activity.isClickableView = true;
-//
-//
-//        ApiRequest apiRequest = new ApiRequest();
-//        apiRequest.apiRequest(this, activity, API_GET_SOCIAL_PLATFORM_LIST +
-//                /*"456696"*/profileId, false, null);
-//
-//    }
-//
-//    public void getAgency(int profileId) {
-//        activity.isClickableView = true;
-//
-//
-//        ApiRequest apiRequest = new ApiRequest();
-//        apiRequest.apiRequest(this, activity, API_GET_AGENCY +
-//                /*"456696"*/profileId, false, null);
-//
-//    }
-//
-//    private void getGigDetails() {
-//        if (!activity.isNetworkConnected()) {
-//            return;
-//        }
-//
-//        ApiRequest apiRequest = new ApiRequest();
-//
-//        apiRequest.apiRequest(this, activity, API_GET_CUSTOM_GIG_DETAILS + "/" + gigId, false, null);
-//    }
-//
-//    public void getMyPortfolios() {
-//        if (!activity.isNetworkConnected()) return;
-//
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put("agent_profile_id", agentData.id + "");
-//
-//        ApiRequest apiRequest = new ApiRequest();
-//        apiRequest.apiRequest(this, activity, API_GET_PORTFOLIO, true, map);
-//    }
-//
-//    public void saveRemoveInfluencer() {
-//        if (!activity.isNetworkConnected()) return;
-//
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put("agentID", agentData.id + "");
-//
-//        ApiRequest apiRequest = new ApiRequest();
-//        apiRequest.apiRequest(this, activity, API_SAVE_INFLU, true, map);
-//    }
+    ReviewsAdapter mAdapter;
 
-    ReviewsAdapter reviewsAdapter;
+    private void setAdapter(List<ProfileResponse.ProjectReview> reviewsList) {
+        if (reviewsList != null && reviewsList.size() > 0) {
+            binding.rvLinkedin.setVisibility(View.VISIBLE);
+            binding.linReviews.setVisibility(VISIBLE);
+            if (mAdapter == null) {
+                mAdapter = new ReviewsAdapter();
+            }
+            mAdapter.setMore(viewMoreReview);
+            mAdapter.doRefresh(reviewsList);
 
-//    private void setReviewAdapter(List<ClientReviews.Data> reviewsList) {
-//        if (reviewsList != null && reviewsList.size() > 0) {
-//            if (reviewsAdapter == null) {
-//                reviewsAdapter = new ReviewsAdapter(activity);
-//                reviewsAdapter.doRefresh(reviewsList);
-//                binding.rvLinkedin.setAdapter(reviewsAdapter);
-//            } else {
-//                reviewsAdapter.doRefresh(reviewsList);
-//            }
-//
-//            binding.rvLinkedin.setVisibility(View.VISIBLE);
-//            binding.linReviews.setVisibility(VISIBLE);
-//        } else {
-//            binding.linReviews.setVisibility(View.GONE);
-//        }
-//    }
+            if (binding.rvLinkedin.getAdapter() == null) {
+                binding.rvLinkedin.setAdapter(mAdapter);
+            }
+        } else {
+            if (page == 1) {
+                binding.rvLinkedin.setVisibility(GONE);
+                binding.linReviews.setVisibility(GONE);
+            }
+            if (mAdapter != null) {
+                mAdapter.setMore(viewMoreReview);
+                mAdapter.doRefresh(reviewsList);
+            }
+        }
 
-//    InfluencerServiceAdapter influencerServiceAdapter;
-//
-//    private void setServicesAdapter(List<SocialPlatformList.Data> serviceList) {
-//        if (serviceList != null && serviceList.size() > 0) {
-//            influencerServiceAdapter = new InfluencerServiceAdapter(activity, serviceList, InfluencerProfileActivityCopyVM.this);
-//            binding.rvServices.setAdapter(influencerServiceAdapter);
-//            binding.rvServices.setVisibility(View.VISIBLE);
-//            binding.linServices.setVisibility(VISIBLE);
-//        } else {
-//            binding.linServices.setVisibility(GONE);
-//        }
-//    }
+    }
+
+    InfluencerServiceAdapter influencerServiceAdapter;
+
+    private void setServicesAdapter(List<SocialPlatformList.Data> serviceList) {
+        if (serviceList != null && serviceList.size() > 0) {
+            influencerServiceAdapter = new InfluencerServiceAdapter(activity, serviceList, InfluencerProfileActivityVM.this);
+            influencerServiceAdapter.setMore(viewMoreService);
+            binding.rvServices.setAdapter(influencerServiceAdapter);
+            binding.rvServices.setVisibility(View.VISIBLE);
+            binding.linServices.setVisibility(VISIBLE);
+        } else {
+            binding.linServices.setVisibility(GONE);
+        }
+    }
+
+    @Override
+    public void onClickService(SocialPlatformList.Data data, int pos) {
+
+    }
 //
 //    Portfolios portfolios;
 

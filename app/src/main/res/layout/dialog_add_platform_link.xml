@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/dialog_round_corner_top_bg"
+        android:backgroundTint="@color/C_F2F2F7"
         android:orientation="vertical">
 
         <ImageView
@@ -55,7 +56,7 @@
                 android:background="@drawable/white_rounded_corner_25"
                 android:fontFamily="@string/sfpro_text_regular"
                 android:hint="Add Snapchat username"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:padding="@dimen/_10sdp"
                 android:singleLine="true"
                 android:textAlignment="viewStart"
@@ -73,6 +74,24 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
                 app:fonts="@string/sfpro_text_regular" />
+
+            <android.edittext.EditTextSFTextRegular
+                android:id="@+id/et_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/white_rounded_corner_25"
+                android:fontFamily="@string/sfpro_text_regular"
+                android:hint="@string/number_of_followers_optional"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:visibility="gone"
+                android:padding="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_11sdp" />
+
+
         </LinearLayout>
 
         <RelativeLayout
@@ -97,13 +116,14 @@
                 app:fonts="@string/sfpro_text_midium" />
 
             <ProgressBar
-                android:id="@+id/img_vp"
-                android:layout_width="@dimen/_12sdp"
-                android:layout_height="@dimen/_12sdp"
+                android:id="@+id/pb"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:contentDescription="@string/app_name"
+                android:indeterminate="true"
                 android:progressTint="@color/white"
                 android:visibility="gone" />
         </RelativeLayout>
@@ -124,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
-                android:text="Delete Link"
+                android:text="@string/delete_link"
                 android:textColor="@color/red"
                 android:textSize="@dimen/_13sdp"
                 app:fonts="@string/sfpro_text_midium" />

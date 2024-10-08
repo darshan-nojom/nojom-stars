@@ -147,8 +147,8 @@ public class EducationEditActivityVM extends ViewModel implements APIRequest.API
                 return false;
             }
 
-            degreeBuilder = (degreeBuilder == null ? new StringBuilder() : degreeBuilder.append("$")).append(degree.getText().toString());
-            schoolBuilder = (schoolBuilder == null ? new StringBuilder() : schoolBuilder.append("$")).append(school.getText().toString());
+            degreeBuilder = (degreeBuilder == null ? new StringBuilder() : degreeBuilder.append(activity.getString(R.string.dollar))).append(degree.getText().toString());
+            schoolBuilder = (schoolBuilder == null ? new StringBuilder() : schoolBuilder.append(activity.getString(R.string.dollar))).append(school.getText().toString());
             String sDate, eDate;
             int sYear = 0, sMonth = 0, eYear = 0, eMonth = 0;
             @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("MMM yyyy");

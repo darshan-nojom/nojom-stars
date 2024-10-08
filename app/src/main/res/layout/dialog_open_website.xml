@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/_40sdp"
         android:layout_marginEnd="@dimen/_40sdp"
-        android:background="@color/white"
+        android:background="@color/C_F2F2F7"
         android:gravity="center"
         android:orientation="vertical"
         card_view:cardCornerRadius="@dimen/_10sdp">

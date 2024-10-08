@@ -133,7 +133,7 @@
             <!-- Background -->
             <item>
                 <shape>
-                    <solid android:color="@color/background" />
+                    <solid android:color="@color/C_F2F2F7" />
                 </shape>
             </item>
 

@@ -21,8 +21,18 @@ public class Questions extends GeneralModel {
         @SerializedName("question")
         public String question;
         @Expose
+        @SerializedName("questionAr")
+        public String questionAr;
+        @Expose
         @SerializedName("id")
         public int id;
+
+        public String getQuestion(String lang) {
+            if (lang.equals("ar")) {
+                return questionAr != null ? questionAr : question;
+            }
+            return question;
+        }
     }
 
     public static List<Questions.Data> getQuestions(String jsonData) {

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/C_F2F2F7"
+        android:orientation="vertical"
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/back" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/mawthooq"
+                android:textColor="@color/C_020814"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                app:fonts="@string/sfpro_text_midium" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/update"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                app:fonts="@string/sfpro_text_midium" />
+
+        </RelativeLayout>
+
+        <android.textview.TextViewSFTextPro
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/_5sdp"
+            android:text="@string/verification_opens_doors_to_exclusive_opportunities_premium_ads_and_lucrative_partnerships_elevating_the_user_experience_with"
+            android:textColor="@color/C_3C3C43"
+            android:textSize="@dimen/_11sdp"
+            app:fonts="@string/sfpro_text_regular" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/relOld"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:visibility="invisible"
+            android:background="@drawable/white_button_bg_7">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/default_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mawthooq_id_number"
+                android:padding="@dimen/_5sdp"
+                android:textColorHint="@color/C_3C3C43"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:hintTextColor="@color/C_3C3C43">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_maNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:fontFamily="@string/sfpro_text_regular"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/C_3C3C43"
+                    android:textColorHint="@color/C_3C3C43"
+                    android:textSize="@dimen/_12sdp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_new_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="@drawable/white_button_bg_7"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/default_text_input_layout_ma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/new_mawthooq_number"
+                android:padding="@dimen/_5sdp"
+                android:textColorHint="@color/C_3C3C43"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:hintTextColor="@color/C_3C3C43">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_maNo_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@string/sfpro_text_regular"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/C_020814"
+                    android:textColorHint="@color/C_3C3C43"
+                    android:textSize="@dimen/_12sdp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="@drawable/white_button_bg_7"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/default_text_input_layout_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:padding="@dimen/_5sdp"
+                android:textColorHint="@color/C_3C3C43"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:hintTextColor="@color/C_3C3C43">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_maNo_pas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@string/sfpro_text_regular"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
+                    android:inputType="textPassword"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/C_020814"
+                    android:textColorHint="@color/C_3C3C43"
+                    android:textSize="@dimen/_12sdp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp"
+            android:visibility="gone">
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="@string/otp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sftext_bold" />
+
+            <android.edittext.EditTextSFTextRegular
+                android:id="@+id/et_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/gray_rounded_corner_10"
+                android:hint="@string/enter_otp"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:padding="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:background="@drawable/blue_rounded_corner"
+            android:backgroundTint="@color/black"
+            android:visibility="gone">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:gravity="center"
+                android:text="@string/update"
+                android:textColor="@color/C_F2F2F7"
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:cpbStyle="@style/CircularProgressBar"
+                app:cpb_color="@color/white"
+                app:cpb_colors="@array/progressColor"
+                app:cpb_max_sweep_angle="300"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_stroke_width="@dimen/_2sdp"
+                app:cpb_sweep_speed="1.0" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</layout>

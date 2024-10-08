@@ -14,8 +14,10 @@ import com.nojom.adapter.AccountsAdapter;
 import com.nojom.apis.GetPaymentAccountAPI;
 import com.nojom.databinding.FragmentBalanceAccountBinding;
 import com.nojom.fragment.BaseFragment;
+import com.nojom.model.BankAccounts;
 import com.nojom.model.Payment;
 import com.nojom.ui.balance.ChoosePaymentMethodActivity;
+import com.nojom.ui.workprofile.PaymentActivity;
 
 import java.util.List;
 
@@ -46,7 +48,8 @@ public class AccountFragment extends BaseFragment {
         });
 
         binding.tvAddAccount.setOnClickListener(view -> {
-            activity.redirectActivity(ChoosePaymentMethodActivity.class);
+//            activity.redirectActivity(ChoosePaymentMethodActivity.class);
+            activity.redirectActivity(PaymentActivity.class);
 //            Intent i = new Intent(activity, VerifyPaymentActivity.class);
 //            startActivityForResult(i, 121);
         });
@@ -74,7 +77,7 @@ public class AccountFragment extends BaseFragment {
         });
     }
 
-    private void setAdapter(List<Payment> paymentList) {
+    private void setAdapter(List<BankAccounts.Data> paymentList) {
         if (paymentList != null && paymentList.size() > 0) {
             binding.noData.llNoData.setVisibility(View.GONE);
             if (mAdapter == null) {

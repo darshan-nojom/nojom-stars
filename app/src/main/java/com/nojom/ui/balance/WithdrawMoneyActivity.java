@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.nojom.R;
 import com.nojom.apis.GetPaymentAccountAPI;
 import com.nojom.databinding.ActivityWithdrawMoneyBinding;
+import com.nojom.model.BankAccounts;
 import com.nojom.model.Payment;
 import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
@@ -29,11 +30,12 @@ public class WithdrawMoneyActivity extends BaseActivity {
     private int REQ_ACCOUNT_ID = 101;
     private int REQ_ACCOUNTS = 102;
     private GetPaymentAccountAPI getPaymentAccountAPI;
-    private ArrayList<Payment> paymentList;
+    private ArrayList<BankAccounts.Data> paymentList;
     private boolean isForList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_withdraw_money);
         withdrawMoneyActivityVM = ViewModelProviders.of(this).get(WithdrawMoneyActivityVM.class);
@@ -43,6 +45,12 @@ public class WithdrawMoneyActivity extends BaseActivity {
     }
 
     private void initData() {
+        if (getCurrency().equals("SAR")) {
+            binding.txtSign.setText(getString(R.string.sar));
+        } else {
+            binding.txtSign.setText(getString(R.string.dollar));
+        }
+
         paymentList = new ArrayList<>();
         if (getIntent() != null) {
             withdrawBalance = getIntent().getDoubleExtra(Constants.WITHDRAW_AMOUNT, 0);
@@ -72,9 +80,16 @@ public class WithdrawMoneyActivity extends BaseActivity {
                 toastMessage(getString(R.string.please_select_your_account_first));
         });
 
-        binding.tvBalance.setText(Utils.currencyFormat(withdrawBalance).replace("$", ""));
-        binding.tvRemainingBalance.setText(String.format(getString(R.string.ramaining_balance_), Utils.currencyFormat(availableBalance - withdrawBalance)));
-        binding.tvAvailableBalance.setText(String.format(getString(R.string._usd), Utils.currencyFormat(availableBalance)));
+        binding.tvBalance.setText(withdrawBalance + "");
+
+        if (getCurrency().equals("SAR")) {
+            binding.tvRemainingBalance.setText(String.format(getString(R.string.ramaining_balance_), Utils.priceWithSAR(this, availableBalance - withdrawBalance)));
+            binding.tvAvailableBalance.setText(String.format(getString(R.string.s_sar), Utils.priceWithoutSAR(this, availableBalance)));
+        } else {
+            binding.tvRemainingBalance.setText(String.format(getString(R.string.ramaining_balance_), Utils.currencyFormat(availableBalance - withdrawBalance)));
+            binding.tvAvailableBalance.setText(String.format(getString(R.string.dollar)+"%s", Utils.priceWithout$(availableBalance)));
+        }
+
 
         withdrawMoneyActivityVM.getOnClickDialog().observe(this, aBoolean -> {
             Intent i = new Intent(WithdrawMoneyActivity.this, BalanceActivity.class);
@@ -106,13 +121,13 @@ public class WithdrawMoneyActivity extends BaseActivity {
             }
         });
 
-        getPaymentAccountAPI.getListMutableLiveData().observe(this, (Observer<ArrayList<Payment>>) payments -> {
+        getPaymentAccountAPI.getListMutableLiveData().observe(this, (Observer<ArrayList<BankAccounts.Data>>) payments -> {
             if (payments != null) {
                 paymentList = payments;
-                for (Payment payment : payments) {
-                    if (payment.isPrimary.equalsIgnoreCase("1")) {
-                        binding.tvProvider.setText(String.format("%s:", payment.provider));
-                        binding.tvPaypalEmail.setText(payment.account);
+                for (BankAccounts.Data payment : payments) {
+                    if (payment.is_primary == 1) {//primary
+                        binding.tvProvider.setText(String.format("%s", payment.iban));
+//                        binding.tvPaypalEmail.setText(payment.account);
                         accountId = payment.id;
                         break;
                     }
@@ -120,7 +135,7 @@ public class WithdrawMoneyActivity extends BaseActivity {
 
                 if (isForList) {
                     Intent i = new Intent(WithdrawMoneyActivity.this, ChooseAccountActivity.class);
-                    i.putExtra(Constants.ACCOUNTS, (ArrayList<Payment>) payments);
+                    i.putExtra(Constants.ACCOUNTS, (ArrayList<BankAccounts.Data>) payments);
                     i.putExtra(Constants.ACCOUNT_ID, accountId);
                     startActivityForResult(i, REQ_ACCOUNT_ID);
                     isForList = false;
@@ -140,10 +155,10 @@ public class WithdrawMoneyActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == REQ_ACCOUNT_ID) {
             if (data != null) {
-                Payment paymentData = (Payment) data.getSerializableExtra(Constants.ACCOUNT_DATA);
+                BankAccounts.Data paymentData = (BankAccounts.Data) data.getSerializableExtra(Constants.ACCOUNT_DATA);
                 if (paymentData != null) {
-                    binding.tvProvider.setText(String.format("%s:", paymentData.provider));
-                    binding.tvPaypalEmail.setText(paymentData.account);
+                    binding.tvProvider.setText(String.format("%s", paymentData.iban));
+//                    binding.tvPaypalEmail.setText(paymentData.account);
                     accountId = paymentData.id;
                 }
             }

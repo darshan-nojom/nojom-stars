@@ -52,6 +52,11 @@ class GetDiscountActivityVM extends AndroidViewModel {
     }
 
     private void setupPager() {
+        if (activity.getCurrency().equals("SAR")) {
+            binding.tabEarnMoney.setText(activity.getString(R.string.get_200_sar));
+            binding.tabEasy.setText(activity.getString(R.string.easy_12_sar));
+            binding.tabWin.setText(activity.getString(R.string.win_100_sar));
+        }
         setupViewPager(binding.viewpager);
 
         binding.segmentedGroupTab.setOnCheckedChangeListener((group, checkedId) -> {
@@ -120,7 +125,7 @@ class GetDiscountActivityVM extends AndroidViewModel {
                 .setLink(Uri.parse(link))
                 .setDomainUriPrefix("https://24taskpromo.page.link")
                 .setAndroidParameters(
-                        new DynamicLink.AndroidParameters.Builder("com.nojom.client")
+                        new DynamicLink.AndroidParameters.Builder("com.nojom.brands")
                                 .setMinimumVersion(1)
                                 .build())
                 .setIosParameters(

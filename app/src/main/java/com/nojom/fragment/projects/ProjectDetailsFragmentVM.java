@@ -47,41 +47,46 @@ class ProjectDetailsFragmentVM extends AndroidViewModel {
             binding.tvDetails.setText(projectData.description);
             if (!TextUtils.isEmpty(projectData.deadline)) {
                 String deadline = projectData.deadline.replace("T", " ");
-                binding.tvDeadline.setText(Utils.setDeadLine(fragment.activity,deadline));
+                binding.tvDeadline.setText(Utils.setDeadLine1(fragment.activity, deadline));
             } else {
                 binding.tvDeadline.setText("-");
             }
 
             String budget;
             if (projectData.clientRateId == 0) {
-                budget = "$" + Utils.getDecimalValue("" + projectData.jobBudget);
+                budget = fragment.activity.getCurrency().equals("SAR") ? Utils.getDecimalValue("" + projectData.jobBudget) + " "+fragment.getString(R.string.sar) : fragment.getString(R.string.dollar) + Utils.getDecimalValue("" + projectData.jobBudget);
             } else {
                 if (projectData.clientRate != null) {
                     if (projectData.clientRate.rangeTo != null && projectData.clientRate.rangeTo != 0) {
-                        budget = "$" + Utils.getDecimalValue("" + projectData.clientRate.rangeFrom)
-                                + " - $" + Utils.getDecimalValue("" + projectData.clientRate.rangeTo);
+                        budget = fragment.activity.getCurrency().equals("SAR") ? Utils.getDecimalValue("" + projectData.clientRate.rangeFrom) + " "+fragment.getString(R.string.sar)
+                                + " - " + Utils.getDecimalValue("" + projectData.clientRate.rangeTo) + " "+fragment.getString(R.string.sar)
+                                : fragment.getString(R.string.dollar) + Utils.getDecimalValue("" + projectData.clientRate.rangeFrom)
+                                + " - "+fragment.getString(R.string.dollar) + Utils.getDecimalValue("" + projectData.clientRate.rangeTo);
                     } else {
-                        budget = "$" + Utils.getDecimalValue("" + projectData.clientRate.rangeFrom);
+                        budget = fragment.activity.getCurrency().equals("SAR") ? Utils.getDecimalValue("" + projectData.clientRate.rangeFrom) + " "+fragment.getString(R.string.sar)
+                                : fragment.getString(R.string.dollar) + Utils.getDecimalValue("" + projectData.clientRate.rangeFrom);
                     }
                 } else if (projectData.jobBudget != null) {
-                    budget = "$" + Utils.getDecimalValue("" + projectData.jobBudget);
+                    budget = fragment.activity.getCurrency().equals("SAR") ? Utils.getDecimalValue("" + projectData.jobBudget) + " "+fragment.getString(R.string.sar)
+                            : fragment.getString(R.string.dollar) + Utils.getDecimalValue("" + projectData.jobBudget);
                 } else {
                     budget = fragment.getString(R.string.free);
                 }
             }
 
-            if (!TextUtils.isEmpty(budget))
-                binding.tvProjectBudget.setText(budget);
+//            if (!TextUtils.isEmpty(budget))
+//                binding.tvProjectBudget.setText(budget);
+
             if (projectData.scName != null)
                 binding.tvService.setText(projectData.scName);
 //            if (projectData.jobPayTypeName != null)
 //                binding.tvPaytype.setText(String.format("( %s )", projectData.jobPayTypeName));
-            if (projectData.servicesName != null)
-                binding.tvSkills.setText(projectData.servicesName);
+            if (projectData.getServiceName(fragment.activity.language) != null)
+                binding.tvSkills.setText(projectData.getServiceName(fragment.activity.language));
             if (projectData.jobPostStateId == (Constants.BIDDING)) {
                 binding.tvEdit.setVisibility(View.GONE);
             }
-            binding.tvJobId.setText(String.format(Locale.US,"%d", projectData.id));
+            binding.tvJobId.setText(String.format(Locale.US, "%d", projectData.id));
 
             binding.noData.tvNoTitle.setText(fragment.activity.getString(R.string.no_files));
             binding.noData.tvNoDescription.setText(fragment.activity.getString(R.string.no_attached_file_desc));

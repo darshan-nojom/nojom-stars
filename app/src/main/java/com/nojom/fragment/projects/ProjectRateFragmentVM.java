@@ -49,8 +49,8 @@ class ProjectRateFragmentVM extends AndroidViewModel {
         ProfileResponse profileData = Preferences.getProfileData(fragment.activity);
         if (profileData != null) {
             binding.tvUsername.setText(fragment.activity.getProperName(profileData.firstName, profileData.lastName, profileData.username));
-            if (profileData.countryName != null)
-                binding.tvUserPlace.setText(profileData.countryName);
+            if (profileData.getCountryName(fragment.activity.language) != null)
+                binding.tvUserPlace.setText(profileData.getCountryName(fragment.activity.language));
             if (profileData.profilePic != null) {
                 Glide.with(fragment.activity)
                         .load(fragment.activity.getImageUrl() + profileData.profilePic)
@@ -58,7 +58,7 @@ class ProjectRateFragmentVM extends AndroidViewModel {
                         .into(binding.imgUser);
             }
 
-            if (projectData!=null && projectData.agentReview != null) {
+            if (projectData != null && projectData.agentReview != null) {
                 if (projectData.agentReview.rate != null) {
                     binding.ratingUser.setRating(projectData.agentReview.rate);
                 }
@@ -70,8 +70,8 @@ class ProjectRateFragmentVM extends AndroidViewModel {
         if (projectData != null) {
             binding.tvClientName.setText(fragment.activity.getProperName(projectData.clientFirstName, projectData.clientLastName,
                     projectData.clientUsername));
-            if (projectData.clientCountry != null)
-                binding.tvClientPlace.setText(projectData.clientCountry);
+            if (projectData.getCountryName(fragment.activity.language) != null)
+                binding.tvClientPlace.setText(projectData.getCountryName(fragment.activity.language));
             if (projectData.clientPhotos != null) {
                 Glide.with(fragment.activity)
                         .load(fragment.activity.getClientImageUrl() + projectData.clientPhotos)
@@ -125,7 +125,11 @@ class ProjectRateFragmentVM extends AndroidViewModel {
 
                 i.putExtra(Constants.CHAT_ID, projectData.clientId + "-" + projectData.jobPostBids.profileId);  // ClientId - AgentId
                 i.putExtra(Constants.CHAT_DATA, chatMap);
-                fragment.startActivity(i);
+                if (fragment.activity.getIsVerified() == 1) {
+                    fragment.startActivity(i);
+                } else {
+                    fragment.activity.toastMessage(fragment.getString(R.string.verification_is_pending_please_complete_the_verification_first_before_chatting_with_them));
+                }
             }
         });
     }

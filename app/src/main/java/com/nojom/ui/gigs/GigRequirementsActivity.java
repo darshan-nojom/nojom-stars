@@ -25,6 +25,7 @@ public class GigRequirementsActivity extends BaseActivity implements GigRequirem
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_category);
         binding.shimmerLayout.setVisibility(View.GONE);

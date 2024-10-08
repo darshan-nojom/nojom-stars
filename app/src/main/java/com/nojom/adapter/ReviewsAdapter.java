@@ -16,6 +16,7 @@ import java.util.List;
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.SimpleViewHolder> {
 
     private boolean isUsedClientProfile = false;
+    boolean viewMoreReview = false;
     private List<ClientReviews.Data> mDatasetClient;
     private List<ProfileResponse.ProjectReview> mDataset;
 
@@ -33,10 +34,8 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.SimpleVi
     @NonNull
     @Override
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater =
-                LayoutInflater.from(parent.getContext());
-        ItemReviewsBinding reviewsBinding =
-                ItemReviewsBinding.inflate(layoutInflater, parent, false);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        ItemReviewsBinding reviewsBinding = ItemReviewsBinding.inflate(layoutInflater, parent, false);
         return new SimpleViewHolder(reviewsBinding);
     }
 
@@ -67,10 +66,19 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.SimpleVi
 
     @Override
     public int getItemCount() {
-        if (isUsedClientProfile)
+        if (isUsedClientProfile) {
             return mDatasetClient != null ? mDatasetClient.size() : 0;
-        else
-            return mDataset != null ? mDataset.size() : 0;
+        } else {
+            if (viewMoreReview) {
+                return mDataset != null ? Math.min(mDataset.size(), 3) : 0;
+            } else {
+                return mDataset != null ? mDataset.size() : 0;
+            }
+        }
+    }
+
+    public void setMore(boolean viewMoreReview) {
+        this.viewMoreReview = viewMoreReview;
     }
 
     static class SimpleViewHolder extends RecyclerView.ViewHolder {

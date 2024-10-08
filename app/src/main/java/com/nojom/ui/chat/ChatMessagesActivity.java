@@ -34,6 +34,7 @@ public class ChatMessagesActivity extends BaseActivity implements OnlineOfflineL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         setOnlineOfflineListener(this);
         ActivityChatMessagesBinding chatMessagesBinding = DataBindingUtil.setContentView(this, R.layout.activity_chat_messages);

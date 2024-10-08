@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         tools:context=".ui.jobs.PlaceBidActivity">
 
         <RelativeLayout
@@ -92,7 +92,6 @@
                             android:background="@android:color/transparent"
                             android:digits="0123456789."
                             android:inputType="numberDecimal"
-                            android:maxLength="5"
                             android:paddingStart="@dimen/_5sdp"
                             android:paddingTop="@dimen/_10sdp"
                             android:paddingBottom="@dimen/_10sdp"
@@ -123,7 +122,7 @@
                     android:id="@+id/tv_bid_amount_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="start"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textSize="@dimen/_9sdp"
                     app:fonts="@string/sftext_regular"
@@ -132,7 +131,72 @@
                 <android.textview.TextViewSFTextPro
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/you_well_receive"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/white_rounded_corner_10">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RtlSymmetry" />
+
+                        <android.edittext.EditTextSFTextRegular
+                            android:id="@+id/et_recAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:digits="0123456789."
+                            android:inputType="numberDecimal"
+                            android:editable="false"
+                            android:enabled="false"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            tools:ignore="RtlSymmetry" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/textgray" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_currency_rec"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/dollar"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:text="@string/delivery_in"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp"
@@ -152,7 +216,6 @@
                         android:background="@android:color/transparent"
                         android:digits="0123456789"
                         android:inputType="numberDecimal"
-                        android:maxLength="3"
                         android:padding="@dimen/_10sdp"
                         android:text=""
                         android:textColor="@color/black"

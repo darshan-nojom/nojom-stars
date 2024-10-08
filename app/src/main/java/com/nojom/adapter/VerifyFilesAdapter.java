@@ -48,10 +48,18 @@ public class VerifyFilesAdapter extends RecyclerView.Adapter<VerifyFilesAdapter.
     private Context context;
     private BaseActivity activity;
     private int selectedPos = -1;
+    private String screen;
+    private DeleteSuccessListener deleteSuccessListener;
 
-    public VerifyFilesAdapter(Context context) {
+    public interface DeleteSuccessListener {
+        void onDeleteSuccess(boolean isDelete);
+    }
+
+    public VerifyFilesAdapter(Context context, String screen, DeleteSuccessListener deleteSuccessListener) {
         this.context = context;
         activity = (BaseActivity) context;
+        this.deleteSuccessListener = deleteSuccessListener;
+        this.screen = screen;
     }
 
     public void doRefresh(List<VerifyID.Data> mDataset) {
@@ -77,7 +85,12 @@ public class VerifyFilesAdapter extends RecyclerView.Adapter<VerifyFilesAdapter.
             }
             VerifyID.Data item = mDataset.get(position);
             holder.binding.tvFileName.setText(item.data);
-            holder.binding.tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", "dd/MM/yyyy", item.timestamp));
+            if (item.timestamp != null) {
+                holder.binding.tvDate.setVisibility(View.VISIBLE);
+                holder.binding.tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", "dd/MM/yyyy", item.timestamp));
+            } else {
+                holder.binding.tvDate.setVisibility(View.GONE);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,7 +119,12 @@ public class VerifyFilesAdapter extends RecyclerView.Adapter<VerifyFilesAdapter.
                     return;
                 }
                 if (mDataset != null && mDataset.size() > 0 && getAdapterPosition() >= 0) {
-                    showOptionDialog(mDataset.get(getAdapterPosition()));
+                    if (mDataset.get(getAbsoluteAdapterPosition()).is_number.equals("1")) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://elaam.gamr.gov.sa/gcam-licenses/gcam-celebrity-check/" + mDataset.get(getAbsoluteAdapterPosition()).data));
+                        activity.startActivity(browserIntent);
+                    } else {
+                        showOptionDialog(mDataset.get(getAdapterPosition()));
+                    }
                 }
             });
 
@@ -142,6 +160,7 @@ public class VerifyFilesAdapter extends RecyclerView.Adapter<VerifyFilesAdapter.
             mDataset.remove(selectedPos);
             notifyItemRemoved(selectedPos);
             notifyItemRangeChanged(selectedPos, mDataset.size());
+            deleteSuccessListener.onDeleteSuccess(true);
         }
         selectedPos = -1;
 //        activity.hideProgress();
@@ -172,7 +191,12 @@ public class VerifyFilesAdapter extends RecyclerView.Adapter<VerifyFilesAdapter.
 
         llView.setOnClickListener(v -> {
             dialog.dismiss();
-            ((BaseActivity) context).viewFile(activity.getImageIdUrl() + userFiles.data);
+            if (screen != null && screen.equals("maw")) {
+                ((BaseActivity) context).viewFile(activity.getMawthooqIdUrl() + userFiles.data);
+            } else {
+                ((BaseActivity) context).viewFile(activity.getImageIdUrl() + userFiles.data);
+            }
+
         });
 
         llDownload.setOnClickListener(v -> {
@@ -208,10 +232,16 @@ public class VerifyFilesAdapter extends RecyclerView.Adapter<VerifyFilesAdapter.
         final File file = new File(folder, attachments.data);
         if (!file.exists()) {
 //            activity.showProgress();
-            String url = activity.getImageIdUrl() + attachments.data;
+            String url;
+            if (screen != null && screen.equals("maw")) {
+                url = activity.getMawthooqIdUrl() + attachments.data;
+            } else {
+                url = activity.getImageIdUrl() + attachments.data;
+            }
+
             if (!TextUtils.isEmpty(url) && (url.startsWith("http:") || url.startsWith("https:"))) {
                 MyDownloadManager downloadManager = new MyDownloadManager(activity)
-                        .setDownloadUrl(activity.getImageIdUrl() + attachments.data)
+                        .setDownloadUrl(url)
                         .setTitle(attachments.data)
                         .setDestinationUri(file)
                         .setDownloadCompleteListener(new MyDownloadManager.DownloadCompleteListener() {

@@ -7,23 +7,23 @@ public interface Constants {
 //    String BASE_URL_CHAT = "https://geaxdtp8z0.execute-api.us-east-2.amazonaws.com/prod/";
 //    String BASE_URL_WEBSOCKET = "wss://4zpnqwqsn5.execute-api.us-east-2.amazonaws.com/prod/";
 
-    String BASE_URL_CHAT_MSG = "http://3.85.154.200:4000/";
-    String BASE_URL_CHAT = "http://3.85.154.200:4000/api/";
+    String BASE_URL_CHAT_MSG = "http://15.184.217.235:3000/";
+    String BASE_URL_CHAT = "http://15.184.217.235:3000/api/";
 
 //    String BASE_URL_CHAT = "https://rv0h39xor3.execute-api.us-east-2.amazonaws.com/dev/";
 //    String BASE_URL_WEBSOCKET = "wss://qcjaqghd7k.execute-api.us-east-2.amazonaws.com/dev/";
 
     String TERMS_USE = "https://24task.com/terms-of-use";
     String FAQS = "https://24task.com/faqs";
-    String PRIVACY_POLICY = "https://24task.com/privacy-policy";
+    String PRIVACY_POLICY = "https://www.nojom.co/privacy";
     String CAREERS = "https://careers.24task.com/";
 
-    String FACEBOOK_URL = "https://www.facebook.com/pg/24Task/reviews/?ref=page_internal";
-    String GOOGLE_URL = "https://g.page/24Task/review?gm";
+    String FACEBOOK_URL = "https://www.facebook.com/nojomApps";
+    String GOOGLE_URL = "https://www.nojom.com";
     String TRUSTPILOT_URL = "https://www.trustpilot.com/evaluate/24task.com";
     String JABBER_URL = "https://www.sitejabber.com/online-business-review#24task.com_(24+Task+-)";
-    String APPSTORE_URL = "https://apps.apple.com/app/id1397804027";
-    String PLAYSTORE_URL = "https://play.google.com/store/apps/details?id=com.nojom.client";
+    String APPSTORE_URL = "https://apps.apple.com/us/app/nojom-app-for-stars/id6463190220";
+    String PLAYSTORE_URL = "https://play.google.com/store/apps/details?id=com.nojom.stars";
 
     int AGENT_PROFILE = 1;
     int CLIENT_PROFILE = 2;
@@ -62,6 +62,7 @@ public interface Constants {
     String SUBMIT_FILE_DONE = "submit_file";
     String PROFILE_DATA = "profile_data";
     String IS_LOGIN = "isLogin";
+    String IS_SHOW_FIRST_TIME = "isShowFirstTime";
     String SCREEN_NAME = "screen_name";
     String SCREEN_TAB = "screen_tab";
     String IS_EDIT = "isEdit";
@@ -102,6 +103,7 @@ public interface Constants {
     int COMPLETED = 4;
     int CANCELLED = 5;
     int REFUNDED = 9;
+    int BANK_TRANSFER_REVIEW = 15;
     int PLATFORM = 1;
 
     String M_TYPE = "m_type";
@@ -244,6 +246,8 @@ public interface Constants {
     String API_GET_INCOME = "get_income";
     String API_GET_WITHDRAWAL = "get_withdrawal";
     String API_GET_PAYMENT_ACCOUNTS = "get_payment_account";//Done
+    String API_GET_BANK_ACCOUNTS = "get_bank";//Done
+    String API_DELETE_BANK = "delete_bank";//Done
 
     String API_GET_NOTIFICATION_SETTINGS = "get_notification_setting";
     String API_ADD_PAYMENT_ACCOUNT = "add_payment_account";
@@ -255,6 +259,9 @@ public interface Constants {
     String API_UPDATE_PASSWORD = "update_password";
     String API_FORGET_PASSWORD = "forgot_password";
     String API_RESET_PASSWORD = "reset_password";
+    String API_RESET_PASSWORD_BY_PHONE = "reset_password_by_phone";
+    String API_RESET_PASSWORD_BY_TOKEN = "reset_password_by_token";
+    String API_SEND_CODE = "send_otp";
 
     String API_EMAIL_VERIFICATION = "send_email_verification";
     //Professional Info
@@ -303,11 +310,12 @@ public interface Constants {
     String API_AGENT_REVIEW = "get_agent_review";
     String API_UPDATE_PROFILE = "update_profile";//TODO:
     //21-11-2020
-    String API_VERIFY_FACEBOOK = "verify_facebook";
+    String API_VERIFY_FACEBOOK = "verify_facebook";//Not in usage
     String API_CANCEL_WITHDRAWALS = "cancel_withdrawal_request";
     String API_ADD_WITHDRAWALS = "add_withdrawal_request";
     //23-11-2020
     String API_ADD_PROFILE_VERIF = "add_profile_verification";
+    String API_ADD_MAWTHOUQ = "verification/mawthooq/submit";
     //24-11-2020
     String API_ADD_EXPERIENCE = "add_experiences";
     String API_JOB_DETAIL = "get_job_detail";//Done
@@ -372,7 +380,7 @@ public interface Constants {
     String API_GET_PROMOCODE_HISTORY = "getPromocodeHistory";
 
     String API_DELETE_ACCOUNT = "deleteProfile";
-    String API_CREATE_OFFER = "agent/createOffer";
+    String API_CREATE_OFFER = "agent/createOfferv2";
     String API_WITHDRAW_OFFER = "agent/withdrawOffer";
 
     String PREF_SELECTED_LANGUAGE = "selectedLanguage";
@@ -382,4 +390,88 @@ public interface Constants {
 
     String API_GET_SOCIAL_PLATFORMS = "get_profile_social_platforms";
     String API_ADD_SOCIAL_PLATFORMS = "add_profile_social_platforms";
+    String API_GET_PLATFORM = "getSocialPlatform";
+    String API_GET_CONNECTED_PLATFORM = "get_connected_social_platform";
+    String API_RE_ORDER_MEDIA = "reorder_social_platforms";
+    String API_SAVE_PLATFORM = "connect_social_platforms";
+    String API_EDIT_PLATFORM = "update_social_platforms";
+    String API_DELETE_PLATFORM = "delete_social_platforms";
+
+    String API_VERIFY_GOOGLE = "verify_google";
+
+    String API_PROFILE_VERIFICATION_MAW = "view_profile_verification_mawthooq";
+    String API_MAW_REQUEST_STATUS = "verification/mawthooq/request-status";
+
+    String API_GET_SOCIAL_PLATFORM_LIST = "agent/getSocialPlatformGigLists";
+
+    String API_ADD_PAYMENT = "add_bank";
+    String API_UPDATE_PAYMENT = "update_bank";
+    String API_SOCIAL_MEDIA_REQUEST = "add_social_platforms_request";
+
+    String API_GET_COMPANIES = "get_companies";
+    String API_GET_AGENT_COMPANIES = "get_agent_companies";
+    String API_ADD_COMPANIES = "add_companies";
+    String API_UPDATE_COMPANIES = "update_companies";
+    String API_DELETE_COMPANIES = "delete_companies";
+    String API_REORDER_COMPANIES = "reorder_agent_companies";
+    String API_REORDER_PORTFOLIO = "reorder_portfolio";
+
+    String API_GET_STORES = "get_store";
+    String API_ADD_STORES = "add_store";
+    String API_EDIT_STORES = "update_store";
+    String API_DELETE_STORES = "delete_store";
+    String API_REORDER_STORES = "reorder_store";
+
+    String API_GET_PARTNERS = "get_partners";
+    String API_ADD_PARTNERS = "add_partners";
+
+    String API_UPDATE_PARTNERS = "update_partners";
+
+    String API_DELETE_PARTNERS = "delete_partners";
+
+    String API_REORDER_PARTNERS = "reorder_partners";
+
+    String API_ADD_YOUTUBE = "add_youtube";
+    String API_GET_YOUTUBE_LIST = "get_youtube";
+    String API_UPDATE_YOUTUBE = "update_youtube";
+
+    String API_DELETE_YOUTUBE = "delete_youtube";
+
+    String API_REORDER_YOUTUBE = "reorder_youtube";
+
+    String API_ADD_PRODUCT = "add_product";
+    String API_UPDATE_PRODUCT = "update_product";
+    String API_DELETE_PRODUCT = "delete_product";
+    String API_GET_PRODUCT = "get_product";
+    String API_REORDER_PRODUCT = "reorder_product";
+    String API_GET_CATEGORIES = "get_categories";
+    String API_GET_SERVICE_CATEGORIES = "fetch_service_categories";
+    String API_GET_TAGS = "fetch_tags";
+    String API_ADD_CATEGORY = "manage_profile_categories";
+    String API_ADD_TAGS = "manage_profile_tags";
+
+    String API_UPDATE_MAW_STATUS = "update_mawthooq_status";//TODO:
+
+    String API_CONTACT_AVAILABILITY = "check_contacts_availability";
+    String API_VERIFY_EMAIL_OTP = "verify_password_otp";
+    String API_CHECK_UNIQUE = "check_contacts_uniqueness";
+    String API_SEND_OTP_PHONE = "send_otp_phone";
+    String API_VERIFY_OTP_PHONE = "verify_otp_phone";
+
+
+    int RS_1_NAME = 1;//registration step - name screen
+    int RS_2_LOCATION = 2;//registration step - location screen
+    int RS_3_GENDER = 3;//registration step - gender screen
+    int RS_4_SOCIAL = 4;//registration step - social screen
+    int RS_5_PROFILE = 5;//registration step - profile screen
+    int RS_6_USERNAME = 6;//registration step - username screen
+    int RS_7_DASHBOARD = 7;//registration step - dashboard screen
+
+    int FONT_AR_BOLD = 3;
+    int FONT_AR_REGULAR = 1;
+    int FONT_AR_SEMI_BOLD = 2;
+    int FONT_AR_LIGHT = 4;
+    int FONT_AR_MEDIUM = 5;
+    int FONT_AR_THIN = 6;
 }
+

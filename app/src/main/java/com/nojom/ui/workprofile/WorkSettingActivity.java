@@ -36,6 +36,7 @@ public class WorkSettingActivity extends BaseActivity implements APIRequest.APIR
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_work_setting);
         binding.setWorkAct(this);
@@ -93,6 +94,7 @@ public class WorkSettingActivity extends BaseActivity implements APIRequest.APIR
     }
 
     public void onClickChat() {
+//        openWhatsappChat();
         Intercom.client().displayMessageComposer();
     }
 
@@ -181,7 +183,7 @@ public class WorkSettingActivity extends BaseActivity implements APIRequest.APIR
     }
 
     public void selectCurrencyDialog() {
-        String selCurrency = Preferences.readString(this, Constants.PREF_SELECTED_CURRENCY, "usd");
+        String selCurrency = Preferences.readString(this, Constants.PREF_SELECTED_CURRENCY, "SAR");
         final boolean[] isUSDCurrency = new boolean[1];
         @SuppressLint("PrivateResource") final Dialog dialog = new Dialog(this, R.style.Theme_Design_Light_BottomSheetDialog);
         dialog.setTitle(null);
@@ -227,7 +229,7 @@ public class WorkSettingActivity extends BaseActivity implements APIRequest.APIR
 
         });
         txtApply.setOnClickListener(v -> {
-            Preferences.writeString(this, Constants.PREF_SELECTED_CURRENCY, isUSDCurrency[0] ? "usd" : "sar");
+            Preferences.writeString(this, Constants.PREF_SELECTED_CURRENCY, isUSDCurrency[0] ? "usd" : "SAR");
             loadAppLanguage();
             dialog.dismiss();
             gotoMainActivity(TAB_HOME);

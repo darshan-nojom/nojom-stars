@@ -40,6 +40,7 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.nojom.model.ConnectedSocialMedia;
 import com.skydoves.powermenu.MenuAnimation;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
@@ -98,7 +99,7 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
     private JSONArray duplicateDeletedFile;
     private PowerMenu powerMenu;
     private ArrayList<GigCategoryModel.Data> catList;
-    private ArrayList<SocialPlatformResponse.Data> socialDataList;
+    private ArrayList<ConnectedSocialMedia.Data> socialDataList;
     private boolean isOpenReqScreen = true;
     private ArrayList<GigCategoryModel.Deadline> deadlineList;
     private PowerMenuItem days, hours;
@@ -106,10 +107,11 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
     private final DecimalFormat format = new DecimalFormat("0.##");
     private final int CUSTOM_VIEW_LIMIT = 19;//no of count for custom requirement view
     private String deadlineDescription = "";
-    private SocialPlatformResponse.Data selectedPlatform = null;
+    private ConnectedSocialMedia.Data selectedPlatform = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.create_custom_gigs_copy);
         catList = new ArrayList<>();
@@ -136,12 +138,12 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
         selectedLanguageList = new ArrayList<>();
         binding.linCategory.setOnClickListener(this);
         binding.linDescription.setOnClickListener(this);
-//        binding.linSearchTag.setOnClickListener(this);
+        binding.linSearchTag.setOnClickListener(this);
         binding.linGigPhotos.setOnClickListener(this);
         binding.linGigTitle.setOnClickListener(this);
-//        binding.linLanguage.setOnClickListener(this);
+        binding.linLanguage.setOnClickListener(this);
         binding.linGigPhotos.setOnClickListener(this);
-//        binding.linSkills.setOnClickListener(this);
+        binding.linSkills.setOnClickListener(this);
         binding.tvDelete.setOnClickListener(this);
         binding.tvAddRequirement.setOnClickListener(this);
         binding.relLive.setOnClickListener(this);
@@ -189,13 +191,13 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                     binding.progressBarCategory.setVisibility(View.VISIBLE);
                     binding.imgCatNext.setVisibility(View.GONE);
                     break;
-//                case 2:
-//                    binding.progressBarSkills.setVisibility(View.VISIBLE);
-//                    binding.imgSubcatNext.setVisibility(View.GONE);
-//                    break;
-//                case 3:
-//                    binding.progressBarLanguage.setVisibility(View.VISIBLE);
-//                    break;
+                case 2:
+                    binding.progressBarSkills.setVisibility(View.VISIBLE);
+                    binding.imgSubcatNext.setVisibility(View.GONE);
+                    break;
+                case 3:
+                    binding.progressBarLanguage.setVisibility(View.VISIBLE);
+                    break;
                 case 7:
                     binding.progressBarDelete.setVisibility(View.VISIBLE);
                     binding.tvDelete.setVisibility(View.INVISIBLE);
@@ -235,13 +237,13 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                     binding.progressBarCategory.setVisibility(View.GONE);
                     binding.imgCatNext.setVisibility(View.VISIBLE);
                     break;
-//                case 2:
-//                    binding.progressBarSkills.setVisibility(View.GONE);
-//                    binding.imgSubcatNext.setVisibility(View.VISIBLE);
-//                    break;
-//                case 3:
-//                    binding.progressBarLanguage.setVisibility(View.GONE);
-//                    break;
+                case 2:
+                    binding.progressBarSkills.setVisibility(View.GONE);
+                    binding.imgSubcatNext.setVisibility(View.VISIBLE);
+                    break;
+                case 3:
+                    binding.progressBarLanguage.setVisibility(View.GONE);
+                    break;
                 case 7:
                     binding.progressBarDelete.setVisibility(View.GONE);
                     binding.tvDelete.setVisibility(View.VISIBLE);
@@ -343,14 +345,14 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
             //selected platform
             if (gigDetails.socialPlatform != null && gigDetails.socialPlatform.size() > 0) {
-                selectedPlatform = new SocialPlatformResponse.Data();
+                selectedPlatform = new ConnectedSocialMedia.Data();
                 selectedPlatform.followers = gigDetails.socialPlatform.get(0).followers;
                 selectedPlatform.id = gigDetails.socialPlatform.get(0).socialPlatformID;
                 selectedPlatform.username = gigDetails.socialPlatform.get(0).username;
                 selectedPlatform.name = gigDetails.socialPlatform.get(0).name;
-                selectedPlatform.platformIcon = gigDetails.socialPlatform.get(0).platformIcon;
+                selectedPlatform.filename = gigDetails.socialPlatform.get(0).platformIcon;
 
-                binding.txtPlatform.setText(selectedPlatform.name);
+                binding.txtPlatform.setText(selectedPlatform.getName(language));
             }
 
             if (gigDetails.customPackages != null && gigDetails.customPackages.size() > 0) {
@@ -421,7 +423,7 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
             subCat.name = gigDetails.subCategoryNamme;
             selectedSubCat = subCat;
 
-//            binding.txtSkills.setText(gigDetails.subCategoryNamme);
+            binding.txtSkills.setText(gigDetails.subCategoryNamme);
 
             //language
             if (gigDetails.languages != null && gigDetails.languages.size() > 0) {
@@ -450,12 +452,12 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                 }
             }
             //search tag
-//            if (gigDetails.searchTags != null && gigDetails.searchTags.size() > 0) {
-//                for (GigDetails.TagName tag : gigDetails.searchTags) {
-//                    searchTags.add(tag.tagName);
-//                }
-//                binding.txtTags.setText(searchTags.toString().replace("[", "").replace("]", ""));
-//            }
+            if (gigDetails.searchTags != null && gigDetails.searchTags.size() > 0) {
+                for (GigDetails.TagName tag : gigDetails.searchTags) {
+                    searchTags.add(tag.tagName);
+                }
+                binding.txtTags.setText(searchTags.toString().replace("[", "").replace("]", ""));
+            }
 
             deadlineDescription = gigDetails.deadlineDescription;
 //            if (selectedCategory.id == 4352) {//social influencer
@@ -471,7 +473,7 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                 }
                 for (int i = 0; i < gigDetails.deadlines.size(); i++) {
                     if (i == 0) {
-                        binding.delTime.etPrice.setText(Utils.priceWith$(format.format(gigDetails.deadlines.get(i).price)));
+                        binding.delTime.etPrice.setText(getCurrency().equals("SAR") ? Utils.priceWithSAR(this, format.format(gigDetails.deadlines.get(i).price)) : Utils.priceWith$(format.format(gigDetails.deadlines.get(i).price), this));
                         binding.delTime.etNumber.setText("" + gigDetails.deadlines.get(i).value);
                         binding.delTime.tvDelMethod.setText(gigDetails.deadlines.get(i).type == 2 ? "" + getString(R.string.days) : "" + getString(R.string.hours));
                     } else {
@@ -490,13 +492,13 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
         //category
         GigCategoryModel.Data cat = new GigCategoryModel.Data();
         cat.id = 4352;
-        cat.name = "Social Influencer";
-        cat.nameApp = "Influencer";
+        cat.name = "Social star";
+        cat.nameApp = "star";
 
         selectedCategory = cat;
 
         if (selectedCategory.id == 4352) {//social influencer
-//            binding.txtSkillLbl.setText(getString(R.string.industries));//just change lbl name
+            binding.txtSkillLbl.setText(getString(R.string.industries));//just change lbl name
 //                                binding.delTime.txtAddDesc.setText("Add Link");
             binding.linPlatform.setVisibility(View.VISIBLE);
             binding.delTime.linDelivery.setVisibility(View.VISIBLE);
@@ -509,7 +511,7 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
         if (selectedCategory != null) {
             createGigsActivityVM.getServiceCategoriesById(selectedCategory.id);//call API for subcategory or skill list
             isOpenReqScreen = false;
-            createGigsActivityVM.getRequirementById(selectedCategory.id, false);//call API for custom requirement list
+//            createGigsActivityVM.getRequirementById(selectedCategory.id, false);//call API for custom requirement list
         }
 
         runOnUiThread(() -> {
@@ -562,16 +564,32 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!binding.delTime.etPrice.getText().toString().startsWith("$")) {
-                    binding.delTime.etPrice.removeTextChangedListener(this);
-                    binding.delTime.etPrice.getText().toString().replaceAll("$", "");
-                    binding.delTime.etPrice.setText("$" + binding.delTime.etPrice.getText().toString());
-                    binding.delTime.etPrice.setSelection(binding.delTime.etPrice.getText().toString().length());
-                    binding.delTime.etPrice.addTextChangedListener(this);
-                } else if (binding.delTime.etPrice.getText().toString().equalsIgnoreCase("$")) {
-                    binding.delTime.etPrice.removeTextChangedListener(this);
-                    binding.delTime.etPrice.setText("");
-                    binding.delTime.etPrice.addTextChangedListener(this);
+                if (getCurrency().equals("SAR")) {
+                    if (!binding.delTime.etPrice.getText().toString().endsWith(getString(R.string.sar))) {
+                        binding.delTime.etPrice.removeTextChangedListener(this);
+                        String val = binding.delTime.etPrice.getText().toString().replaceAll(getString(R.string.sar), "").replace(" ", "");
+                        int len = val.length();
+                        binding.delTime.etPrice.setText(val + " " + getString(R.string.sar));
+                        binding.delTime.etPrice.setSelection(len);
+                        binding.delTime.etPrice.addTextChangedListener(this);
+                    } else if (binding.delTime.etPrice.getText().toString().equalsIgnoreCase(getString(R.string.sar))) {
+                        binding.delTime.etPrice.removeTextChangedListener(this);
+                        binding.delTime.etPrice.setText("");
+                        binding.delTime.etPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                        binding.delTime.etPrice.addTextChangedListener(this);
+                    }
+                } else {
+                    if (!binding.delTime.etPrice.getText().toString().startsWith(getString(R.string.dollar))) {
+                        binding.delTime.etPrice.removeTextChangedListener(this);
+                        binding.delTime.etPrice.getText().toString().replaceAll(getString(R.string.dollar), "");
+                        binding.delTime.etPrice.setText(getString(R.string.dollar) + binding.delTime.etPrice.getText().toString());
+                        binding.delTime.etPrice.setSelection(binding.delTime.etPrice.getText().toString().length());
+                        binding.delTime.etPrice.addTextChangedListener(this);
+                    } else if (binding.delTime.etPrice.getText().toString().equalsIgnoreCase(getString(R.string.dollar))) {
+                        binding.delTime.etPrice.removeTextChangedListener(this);
+                        binding.delTime.etPrice.setText("");
+                        binding.delTime.etPrice.addTextChangedListener(this);
+                    }
                 }
             }
         });
@@ -671,25 +689,58 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if (!TextUtils.isEmpty(charSequence) && !etCustomPrice.getText().toString().equalsIgnoreCase("$")) {
-                        deadline.price = Double.parseDouble(etCustomPrice.getText().toString().replace("$", ""));
+                    if (getCurrency().equals("SAR")) {
+                        if (!TextUtils.isEmpty(charSequence) && !etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.sar))) {
+                            if (!TextUtils.isEmpty(etCustomPrice.getText().toString().trim().replace(getString(R.string.sar), ""))) {
+                                deadline.price = Double.parseDouble(etCustomPrice.getText().toString().trim().replace(getString(R.string.sar), ""));
+                            } else {
+                                deadline.price = 0;
+                            }
+                        } else {
+                            deadline.price = 0;
+                        }
                     } else {
-                        deadline.price = 0;
+                        if (!TextUtils.isEmpty(charSequence) && !etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.dollar))) {
+                            if (!TextUtils.isEmpty(etCustomPrice.getText().toString().trim().replace(getString(R.string.dollar), ""))) {
+                                deadline.price = Double.parseDouble(etCustomPrice.getText().toString().replace(getString(R.string.dollar), ""));
+                            } else {
+                                deadline.price = 0;
+                            }
+                        } else {
+                            deadline.price = 0;
+                        }
                     }
+
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    if (!etCustomPrice.getText().toString().startsWith("$")) {
-                        etCustomPrice.removeTextChangedListener(this);
-                        etCustomPrice.getText().toString().replaceAll("$", "");
-                        etCustomPrice.setText("$" + etCustomPrice.getText().toString());
-                        etCustomPrice.setSelection(etCustomPrice.getText().toString().length());
-                        etCustomPrice.addTextChangedListener(this);
-                    } else if (etCustomPrice.getText().toString().equalsIgnoreCase("$")) {
-                        etCustomPrice.removeTextChangedListener(this);
-                        etCustomPrice.setText("");
-                        etCustomPrice.addTextChangedListener(this);
+                    if (getCurrency().equals("SAR")) {
+                        if (!etCustomPrice.getText().toString().endsWith(getString(R.string.sar))) {
+                            etCustomPrice.removeTextChangedListener(this);
+                            etCustomPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                            int len = etCustomPrice.getText().toString().length();
+                            etCustomPrice.setText(etCustomPrice.getText().toString() + " " + getString(R.string.sar));
+                            etCustomPrice.setSelection(len);
+                            etCustomPrice.addTextChangedListener(this);
+                        } else if (etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.sar))) {
+                            etCustomPrice.removeTextChangedListener(this);
+                            etCustomPrice.setText("");
+                            etCustomPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                            etCustomPrice.addTextChangedListener(this);
+                        }
+                    } else {
+                        if (!etCustomPrice.getText().toString().startsWith(getString(R.string.dollar))) {
+                            etCustomPrice.removeTextChangedListener(this);
+                            etCustomPrice.getText().toString().replaceAll(getString(R.string.dollar), "");
+                            etCustomPrice.setText(getString(R.string.dollar) + etCustomPrice.getText().toString());
+                            etCustomPrice.setSelection(etCustomPrice.getText().toString().length());
+                            etCustomPrice.addTextChangedListener(this);
+                        } else if (etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.dollar))) {
+                            etCustomPrice.removeTextChangedListener(this);
+                            etCustomPrice.setText("");
+                            etCustomPrice.addTextChangedListener(this);
+                        }
                     }
                 }
             });
@@ -893,7 +944,8 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                     deadline.value = Integer.parseInt(binding.delTime.etNumber.getText().toString());
                     deadline.type = binding.delTime.tvDelMethod.getText().toString().equals(getString(R.string.days)) ? 2 : 1;
                     if (!TextUtils.isEmpty(binding.delTime.etPrice.getText().toString())) {
-                        deadline.price = Double.parseDouble(Utils.priceWithout$(binding.delTime.etPrice.getText().toString()));
+                        deadline.price = Double.parseDouble(getCurrency().equals("SAR") ? Utils.priceWithoutSAR(this, binding.delTime.etPrice.getText().toString())
+                                : Utils.priceWithout$(binding.delTime.etPrice.getText().toString()));
                     }
                     deadline.id = -1;
                     deadlines.add(deadline);
@@ -996,16 +1048,32 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!etPrice.getText().toString().startsWith("$")) {
-                    etPrice.removeTextChangedListener(this);
-                    etPrice.getText().toString().replaceAll("$", "");
-                    etPrice.setText("$" + etPrice.getText().toString());
-                    etPrice.setSelection(etPrice.getText().toString().length());
-                    etPrice.addTextChangedListener(this);
-                } else if (etPrice.getText().toString().equalsIgnoreCase("$")) {
-                    etPrice.removeTextChangedListener(this);
-                    etPrice.setText("");
-                    etPrice.addTextChangedListener(this);
+                if (getCurrency().equals("SAR")) {
+                    if (!etPrice.getText().toString().endsWith(getString(R.string.sar))) {
+                        etPrice.removeTextChangedListener(this);
+                        etPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                        int len = etPrice.getText().toString().length();
+                        etPrice.setText(etPrice.getText().toString() + " " + getString(R.string.sar));
+                        etPrice.setSelection(len);
+                        etPrice.addTextChangedListener(this);
+                    } else if (etPrice.getText().toString().equalsIgnoreCase(getString(R.string.sar))) {
+                        etPrice.removeTextChangedListener(this);
+                        etPrice.setText("");
+                        etPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                        etPrice.addTextChangedListener(this);
+                    }
+                } else {
+                    if (!etPrice.getText().toString().startsWith(getString(R.string.dollar))) {
+                        etPrice.removeTextChangedListener(this);
+                        etPrice.getText().toString().replaceAll(getString(R.string.dollar), "");
+                        etPrice.setText(getString(R.string.dollar) + etPrice.getText().toString());
+                        etPrice.setSelection(etPrice.getText().toString().length());
+                        etPrice.addTextChangedListener(this);
+                    } else if (etPrice.getText().toString().equalsIgnoreCase(getString(R.string.dollar))) {
+                        etPrice.removeTextChangedListener(this);
+                        etPrice.setText("");
+                        etPrice.addTextChangedListener(this);
+                    }
                 }
             }
         });
@@ -1242,17 +1310,34 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    if (!etCustomPrice.getText().toString().startsWith("$")) {
-                        etCustomPrice.removeTextChangedListener(this);
-                        etCustomPrice.getText().toString().replaceAll("$", "");
-                        etCustomPrice.setText("$" + etCustomPrice.getText().toString());
-                        etCustomPrice.setSelection(etCustomPrice.getText().toString().length());
-                        etCustomPrice.addTextChangedListener(this);
-                    } else if (etCustomPrice.getText().toString().equalsIgnoreCase("$")) {
-                        etCustomPrice.removeTextChangedListener(this);
-                        etCustomPrice.setText("");
-                        etCustomPrice.addTextChangedListener(this);
+                    if (getCurrency().equals("SAR")) {
+                        if (!etCustomPrice.getText().toString().endsWith(getString(R.string.sar))) {
+                            etCustomPrice.removeTextChangedListener(this);
+                            etCustomPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                            int len = etCustomPrice.getText().toString().length();
+                            etCustomPrice.setText(etCustomPrice.getText().toString() + " " + getString(R.string.sar));
+                            etCustomPrice.setSelection(len);
+                            etCustomPrice.addTextChangedListener(this);
+                        } else if (etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.sar))) {
+                            etCustomPrice.removeTextChangedListener(this);
+                            etCustomPrice.setText("");
+                            etCustomPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                            etCustomPrice.addTextChangedListener(this);
+                        }
+                    } else {
+                        if (!etCustomPrice.getText().toString().startsWith(getString(R.string.dollar))) {
+                            etCustomPrice.removeTextChangedListener(this);
+                            etCustomPrice.getText().toString().replaceAll(getString(R.string.dollar), "");
+                            etCustomPrice.setText(getString(R.string.dollar) + etCustomPrice.getText().toString());
+                            etCustomPrice.setSelection(etCustomPrice.getText().toString().length());
+                            etCustomPrice.addTextChangedListener(this);
+                        } else if (etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.dollar))) {
+                            etCustomPrice.removeTextChangedListener(this);
+                            etCustomPrice.setText("");
+                            etCustomPrice.addTextChangedListener(this);
+                        }
                     }
+
                 }
             });
 
@@ -1303,7 +1388,8 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
                 customView.setTag(cData);
                 if (!TextUtils.isEmpty(cData.dataValue)) {
-                    etCustomPrice.setText(Utils.priceWith$(format.format(Double.valueOf(cData.dataValue))));
+                    etCustomPrice.setText(getCurrency().equals("SAR") ? Utils.priceWithSAR(this, format.format(Double.valueOf(cData.dataValue)))
+                            : Utils.priceWith$(format.format(Double.valueOf(cData.dataValue)), this));
                 }
                 etCustomReq.setText(cData.dataReq);
 
@@ -1353,16 +1439,32 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
                     @Override
                     public void afterTextChanged(Editable editable) {
-                        if (!etCustomPrice.getText().toString().startsWith("$")) {
-                            etCustomPrice.removeTextChangedListener(this);
-                            etCustomPrice.getText().toString().replaceAll("$", "");
-                            etCustomPrice.setText("$" + etCustomPrice.getText().toString());
-                            etCustomPrice.setSelection(etCustomPrice.getText().toString().length());
-                            etCustomPrice.addTextChangedListener(this);
-                        } else if (etCustomPrice.getText().toString().equalsIgnoreCase("$")) {
-                            etCustomPrice.removeTextChangedListener(this);
-                            etCustomPrice.setText("");
-                            etCustomPrice.addTextChangedListener(this);
+                        if (getCurrency().equals("SAR")) {
+                            if (!etCustomPrice.getText().toString().endsWith(getString(R.string.sar))) {
+                                etCustomPrice.removeTextChangedListener(this);
+                                etCustomPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                                int len = etCustomPrice.getText().toString().length();
+                                etCustomPrice.setText(etCustomPrice.getText().toString() + " " + getString(R.string.sar));
+                                etCustomPrice.setSelection(len);
+                                etCustomPrice.addTextChangedListener(this);
+                            } else if (etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.sar))) {
+                                etCustomPrice.removeTextChangedListener(this);
+                                etCustomPrice.setText("");
+                                etCustomPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                                etCustomPrice.addTextChangedListener(this);
+                            }
+                        } else {
+                            if (!etCustomPrice.getText().toString().startsWith(getString(R.string.dollar))) {
+                                etCustomPrice.removeTextChangedListener(this);
+                                etCustomPrice.getText().toString().replaceAll(getString(R.string.dollar), "");
+                                etCustomPrice.setText(getString(R.string.dollar) + etCustomPrice.getText().toString());
+                                etCustomPrice.setSelection(etCustomPrice.getText().toString().length());
+                                etCustomPrice.addTextChangedListener(this);
+                            } else if (etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.dollar))) {
+                                etCustomPrice.removeTextChangedListener(this);
+                                etCustomPrice.setText("");
+                                etCustomPrice.addTextChangedListener(this);
+                            }
                         }
                     }
                 });
@@ -1413,7 +1515,7 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
     private void hideShowInfluencerView() {
         try {
             if (selectedCategory.id == 4352) {//social influencer
-//                binding.txtSkillLbl.setText(getString(R.string.industries));//just change lbl name
+                binding.txtSkillLbl.setText(getString(R.string.industries));//just change lbl name
                 binding.linPlatform.setVisibility(View.VISIBLE);
                 if (!isEdit && !isDuplicate) {
                     binding.delTime.linDelivery.setVisibility(View.VISIBLE);
@@ -1486,7 +1588,8 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
             if (!TextUtils.isEmpty(binding.delTime.etNumber.getText().toString()) && Integer.parseInt(binding.delTime.etNumber.getText().toString()) > 0) {
                 JSONObject objectDeadline = new JSONObject();
                 objectDeadline.put("value", Integer.valueOf(binding.delTime.etNumber.getText().toString()));
-                objectDeadline.put("price", Double.valueOf(Utils.priceWithout$(binding.delTime.etPrice.getText().toString())));
+                objectDeadline.put("price", Double.valueOf(getCurrency().equals("SAR") ? Utils.priceWithoutSAR(this, binding.delTime.etPrice.getText().toString())
+                        : Utils.priceWithout$(binding.delTime.etPrice.getText().toString())));
                 objectDeadline.put("type", binding.delTime.tvDelMethod.getText().toString().equals(getString(R.string.days)) ? 2 : 1);
                 jsonArrayDeadline.put(objectDeadline);
             }
@@ -1500,7 +1603,8 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                     if (dead.value > 0) {
                         JSONObject object = new JSONObject();
                         object.put("value", dead.value);
-                        object.put("price", Double.parseDouble(Utils.priceWithout$(dead.price)));
+                        object.put("price", Double.parseDouble(getCurrency().equals("SAR") ? Utils.priceWithoutSAR(this, dead.price)
+                                : Utils.priceWithout$(dead.price)));
                         object.put("type", dead.type);
                         jsonArrayDeadline.put(object);
                     }
@@ -1519,7 +1623,12 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                         if (!TextUtils.isEmpty(pack.dataValue)) {
                             JSONObject object = new JSONObject();
                             object.put("requirment", pack.featureTitle);
-                            object.put("price", !pack.dataValue.equalsIgnoreCase("$") ? Double.valueOf(Utils.priceWithout$(pack.dataValue)) : null);
+                            if (getCurrency().equals("SAR")) {
+                                object.put("price", !pack.dataValue.equalsIgnoreCase(getString(R.string.sar)) ? Double.valueOf(Utils.priceWithoutSAR(this, pack.dataValue)) : null);
+                            } else {
+                                object.put("price", !pack.dataValue.equalsIgnoreCase(getString(R.string.dollar)) ? Double.valueOf(Utils.priceWithout$(pack.dataValue)) : null);
+                            }
+
                             object.put("inputType", pack.inputType);
                             object.put("gigRequirementType", pack.gigReqType);
                             if (!TextUtils.isEmpty(pack.reqDescription)) {
@@ -1534,7 +1643,12 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                             object1.put("inputType", pack.inputType);
                             object1.put("gigRequirementType", pack.gigReqType);
                             object1.put("featureName", pack.dataReq);
-                            object1.put("price", !pack.dataValue.equalsIgnoreCase("$") ? Double.valueOf(Utils.priceWithout$(pack.dataValue)) : null);
+
+                            if (getCurrency().equals("SAR")) {
+                                object1.put("price", !pack.dataValue.equalsIgnoreCase(getString(R.string.sar)) ? Double.valueOf(Utils.priceWithoutSAR(this, pack.dataValue)) : null);
+                            } else {
+                                object1.put("price", !pack.dataValue.equalsIgnoreCase(getString(R.string.dollar)) ? Double.valueOf(Utils.priceWithout$(pack.dataValue)) : null);
+                            }
                             if (!TextUtils.isEmpty(pack.reqDescription)) {
                                 object1.put("description", pack.reqDescription);
                             }
@@ -1549,7 +1663,11 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                                     object.put("inputType", pack.inputType);
                                     object.put("gigRequirementType", pack.gigReqType);
                                     object.put("featureName", cutData.dataReq);
-                                    object.put("price", !cutData.dataValue.equalsIgnoreCase("$") ? Double.valueOf(Utils.priceWithout$(cutData.dataValue)) : null);
+                                    if (getCurrency().equals("SAR")) {
+                                        object.put("price", !cutData.dataValue.equalsIgnoreCase(getString(R.string.sar)) ? Double.valueOf(Utils.priceWithoutSAR(this, cutData.dataValue)) : null);
+                                    } else {
+                                        object.put("price", !cutData.dataValue.equalsIgnoreCase(getString(R.string.dollar)) ? Double.valueOf(Utils.priceWithout$(cutData.dataValue)) : null);
+                                    }
                                     jsonArray.put(object);
                                 }
 
@@ -1573,7 +1691,8 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                         if (!TextUtils.isEmpty(pack.dataValue)) {
                             JSONObject object = new JSONObject();
                             object.put("requirment", pack.name);
-                            object.put("price", Double.valueOf(Utils.priceWithout$(pack.dataValue)));
+                            object.put("price", getCurrency().equals("SAR") ? Double.valueOf(Utils.priceWithoutSAR(this, pack.dataValue))
+                                    : Double.valueOf(Utils.priceWithout$(pack.dataValue)));
                             object.put("inputType", pack.inputType);
                             object.put("gigRequirementType", pack.gigReqType);
                             if (!TextUtils.isEmpty(pack.reqDescription)) {
@@ -1585,7 +1704,12 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                         if (!TextUtils.isEmpty(pack.dataValue) && !TextUtils.isEmpty(pack.dataReq)) {
                             JSONObject object1 = new JSONObject();
                             object1.put("requirment", pack.name);
-                            object1.put("price", pack.dataValue != null ? Double.valueOf(Utils.priceWithout$(pack.dataValue)) : null);
+                            if (getCurrency().equals("SAR")) {
+                                object1.put("price", pack.dataValue != null ? Double.valueOf(Utils.priceWithoutSAR(this, pack.dataValue)) : null);
+                            } else {
+                                object1.put("price", pack.dataValue != null ? Double.valueOf(Utils.priceWithout$(pack.dataValue)) : null);
+                            }
+
                             object1.put("inputType", pack.inputType);
                             object1.put("gigRequirementType", pack.gigReqType);
                             object1.put("featureName", pack.dataReq);
@@ -1603,7 +1727,12 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                                     object.put("inputType", pack.inputType);
                                     object.put("gigRequirementType", pack.gigReqType);
                                     object.put("featureName", cutData.dataReq);
-                                    object.put("price", cutData.dataValue != null ? Double.valueOf(Utils.priceWithout$(cutData.dataValue)) : null);
+                                    if (getCurrency().equals("SAR")) {
+                                        object.put("price", cutData.dataValue != null ? Double.valueOf(Utils.priceWithoutSAR(this, cutData.dataValue)) : null);
+                                    } else {
+                                        object.put("price", cutData.dataValue != null ? Double.valueOf(Utils.priceWithout$(cutData.dataValue)) : null);
+                                    }
+
                                     jsonArrayOther.put(object);
                                 }
                             }
@@ -1618,16 +1747,8 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
         //custom deadline
         JSONArray jsonArrayPlatform = new JSONArray();
-        try {
-            if (selectedPlatform != null) {
-                JSONObject objectDeadline = new JSONObject();
-                objectDeadline.put("socialPlatformID", selectedPlatform.id);
-                objectDeadline.put("username", selectedPlatform.username);
-                objectDeadline.put("followersCount", selectedPlatform.followers);
-                jsonArrayPlatform.put(objectDeadline);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (selectedPlatform != null) {
+            jsonArrayPlatform.put(selectedPlatform.id);
         }
 
 
@@ -1636,7 +1757,7 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
         RequestBody profileIdBody = RequestBody.create(getUserID() + "", MultipartBody.FORM);
         RequestBody gigTitleBody = RequestBody.create(binding.txtGigTitle.getText().toString(), MultipartBody.FORM);
-        RequestBody gigCatIdBody = RequestBody.create(selectedCategory != null ? "" + selectedCategory.id : "0", MultipartBody.FORM);
+        RequestBody gigCatIdBody = RequestBody.create(selectedCategory != null ? "" + selectedCategory.id : "4352", MultipartBody.FORM);
         RequestBody gigSubCatIdBody = RequestBody.create(arraySubCat.toString(), MediaType.parse("application/json"));
         RequestBody gigDescBody = RequestBody.create(binding.txtDescription.getText().toString(), MultipartBody.FORM);
         RequestBody gigMainPrice = RequestBody.create("", MultipartBody.FORM);
@@ -1674,22 +1795,22 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
         }
 
-//        JSONArray jsonArrayTag = new JSONArray();
-//        for (String pack : searchTags) {
-//            jsonArrayTag.put(pack);
-//        }
-
-//        JSONArray jsonArrayLang = new JSONArray();
-//        for (Language.Data lang : selectedLanguageList) {
-//            jsonArrayLang.put(lang.id);
-//        }
-//        RequestBody gigLanguageBody = RequestBody.create(jsonArrayLang.toString(), MediaType.parse("application/json"));
-//        RequestBody gigTagsBody = RequestBody.create(jsonArrayTag.toString(), MediaType.parse("application/json"));
+        JSONArray jsonArrayTag = new JSONArray();
+        for (String pack : searchTags) {
+            jsonArrayTag.put(pack);
+        }
+//
+        JSONArray jsonArrayLang = new JSONArray();
+        for (Language.Data lang : selectedLanguageList) {
+            jsonArrayLang.put(lang.id);
+        }
+        RequestBody gigLanguageBody = RequestBody.create(jsonArrayLang.toString(), MediaType.parse("application/json"));
+        RequestBody gigTagsBody = RequestBody.create(jsonArrayTag.toString(), MediaType.parse("application/json"));
 
         if (isDuplicate) {
-            createGigsActivityVM.duplicateGig(gigTitleBody, gigDescBody, gigCatIdBody, gigSubCatIdBody, gigPackagesBody, gigOtherReq, null, gigStatus, gigId, body, null, fileToDeleteBody, duplicateBody, isLive, profileIdBody, deadlineArray, gigMainPrice, deadlineDesc, platformArray);
+            createGigsActivityVM.duplicateGig(gigTitleBody, gigDescBody, gigCatIdBody, gigSubCatIdBody, gigPackagesBody, gigOtherReq, gigTagsBody, gigStatus, gigId, body, gigLanguageBody, fileToDeleteBody, duplicateBody, isLive, profileIdBody, deadlineArray, gigMainPrice, deadlineDesc, platformArray);
         } else {
-            createGigsActivityVM.createUpdateGig(gigTitleBody, gigDescBody, gigCatIdBody, gigSubCatIdBody, gigPackagesBody, gigOtherReq, null, gigStatus, gigId, body, null, isLive, profileIdBody, deadlineArray, gigMainPrice, deadlineDesc, platformArray);
+            createGigsActivityVM.createUpdateGig(gigTitleBody, gigDescBody, gigCatIdBody, gigSubCatIdBody, gigPackagesBody, gigOtherReq, gigTagsBody, gigStatus, gigId, body, gigLanguageBody, isLive, profileIdBody, deadlineArray, gigMainPrice, deadlineDesc, platformArray);
         }
     }
 
@@ -1705,8 +1826,8 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                             binding.txtCategory.setText(language.nameApp);
                             GigCategoryModel.Data cat = new GigCategoryModel.Data();
                             cat.id = 4352;
-                            cat.name = "Social Influencer";
-                            cat.nameApp = "Influencer";
+                            cat.name = "Social star";
+                            cat.nameApp = "star";
 
                             selectedCategory = cat;
                             selectedSubCat = null;
@@ -1718,7 +1839,7 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 //                            binding.txtSkills.setText("");
 
                             if (selectedCategory.id == 4352) {//social influencer
-//                                binding.txtSkillLbl.setText(getString(R.string.industries));//just change lbl name
+                                binding.txtSkillLbl.setText(getString(R.string.industries));//just change lbl name
 //                                binding.delTime.txtAddDesc.setText("Add Link");
                                 binding.linPlatform.setVisibility(View.VISIBLE);
                                 binding.delTime.linDelivery.setVisibility(View.VISIBLE);
@@ -1738,11 +1859,11 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                 case 3:
                     if (data != null) {
                         selectedSubCat = (GigSubCategoryModel.Data) data.getSerializableExtra("data");
-//                        if (selectedSubCat != null) {
-//                            binding.txtSkills.setText(selectedSubCat.name);
-//                        } else {
-//                            binding.txtSkills.setText("");
-//                        }
+                        if (selectedSubCat != null) {
+                            binding.txtSkills.setText(selectedSubCat.getName(language));
+                        } else {
+                            binding.txtSkills.setText("");
+                        }
                     }
                     break;
                 case 4:
@@ -1754,13 +1875,13 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                 case 7:
                     if (data != null) {
                         ArrayList<String> selectedTags = data.getStringArrayListExtra("tags");
-//                        if (selectedTags != null && selectedTags.size() > 0) {
-//                            searchTags = selectedTags;
-//                            binding.txtTags.setText(selectedTags.toString().replace("[", "").replace("]", ""));
-//                        } else {
-//                            binding.txtTags.setText("");
-//                            searchTags = null;
-//                        }
+                        if (selectedTags != null && selectedTags.size() > 0) {
+                            searchTags = selectedTags;
+                            binding.txtTags.setText(selectedTags.toString().replace("[", "").replace("]", ""));
+                        } else {
+                            binding.txtTags.setText("");
+                            searchTags = null;
+                        }
                     }
                     break;
                 case 10:
@@ -1784,8 +1905,8 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 //                    break;
                 case 14:
                     if (data != null) {
-                        SocialPlatformResponse.Data platforms = (SocialPlatformResponse.Data) data.getSerializableExtra("channel");
-                        binding.txtPlatform.setText(platforms.name);
+                        ConnectedSocialMedia.Data platforms = (ConnectedSocialMedia.Data) data.getSerializableExtra("channel");
+                        binding.txtPlatform.setText(platforms.getName(language));
                         selectedPlatform = platforms;
                     }
                     break;
@@ -1874,9 +1995,9 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
                 stringBuilder.append(model.getName(language));
                 stringBuilder.append(",");
             }
-//            binding.txtLanguage.setText(stringBuilder.deleteCharAt(stringBuilder.length() - 1));
+            binding.txtLanguage.setText(stringBuilder.deleteCharAt(stringBuilder.length() - 1));
         } else {
-//            binding.txtLanguage.setText("");
+            binding.txtLanguage.setText("");
         }
     }
 
@@ -1934,15 +2055,15 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
             return false;
         }
 
-//        if (selectedSubCat == null) {
-//            toastMessage(getString(R.string.select_your_skills));
-//            return false;
-//        }
+        if (selectedSubCat == null) {
+            toastMessage(getString(R.string.select_your_skills));
+            return false;
+        }
 
-//        if (selectedLanguageList == null || selectedLanguageList.size() == 0) {
-//            toastMessage(getString(R.string.please_select_language));
-//            return false;
-//        }
+        if (selectedLanguageList == null || selectedLanguageList.size() == 0) {
+            toastMessage(getString(R.string.please_select_language));
+            return false;
+        }
 
         if (TextUtils.isEmpty(binding.txtGigTitle.getText().toString())) {
             toastMessage(getString(R.string.please_enter_gig_title));
@@ -1954,20 +2075,20 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
             return false;
         }
 
-//        if (searchTags == null || searchTags.size() == 0) {
-//            toastMessage(getString(R.string.please_set_search_tag_for_your_gig));
+        if (searchTags == null || searchTags.size() == 0) {
+            toastMessage(getString(R.string.please_set_search_tag_for_your_gig));
+            return false;
+        }
+
+//        if (fileList == null || fileList.size() == 0) {
+//            toastMessage(getString(R.string.please_select_photos));
 //            return false;
 //        }
-
-        if (fileList == null || fileList.size() == 0) {
-            toastMessage(getString(R.string.please_select_photos));
-            return false;
-        }
-
-        if (fileList.size() > 5) {
-            toastMessage(getString(R.string.only_five_photos_allowed));
-            return false;
-        }
+//
+//        if (fileList.size() > 5) {
+//            toastMessage(getString(R.string.only_five_photos_allowed));
+//            return false;
+//        }
 
         if (selectedCategory.id != 4352) {//ignore to check delivery time in case of select social influencer
             if (TextUtils.isEmpty(binding.delTime.etNumber.getText().toString().trim())) {
@@ -2285,7 +2406,7 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
         etCustomPrice.setHint(getString(R.string.price));
         tvDelMethod.setBackgroundResource(R.drawable.black_button_bg_6_right);
 
-        etCustomPrice.setText(Utils.priceWith$(format.format(deadline.price)));
+        etCustomPrice.setText(getCurrency().equals("SAR") ? Utils.priceWithSAR(this, format.format(deadline.price)) : Utils.priceWith$(format.format(deadline.price), this));
         etTime.setText("" + deadline.value);
         tvDelMethod.setText(deadline.type == 2 ? "" + getString(R.string.days) : "" + getString(R.string.hours));
 
@@ -2326,8 +2447,8 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!TextUtils.isEmpty(charSequence) && !charSequence.toString().equals("$")) {
-                    deadline.price = Double.parseDouble(charSequence.toString().replace("$", ""));
+                if (!TextUtils.isEmpty(charSequence) && !charSequence.toString().equals(getString(R.string.dollar))) {
+                    deadline.price = Double.parseDouble(charSequence.toString().replace(getString(R.string.dollar), ""));
                 } else {
                     deadline.price = 0;
                 }
@@ -2335,16 +2456,32 @@ public class CreateCustomGigsActivityCopy extends BaseActivity implements View.O
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!etCustomPrice.getText().toString().startsWith("$")) {
-                    etCustomPrice.removeTextChangedListener(this);
-                    etCustomPrice.getText().toString().replaceAll("$", "");
-                    etCustomPrice.setText("$" + etCustomPrice.getText().toString());
-                    etCustomPrice.setSelection(etCustomPrice.getText().toString().length());
-                    etCustomPrice.addTextChangedListener(this);
-                } else if (etCustomPrice.getText().toString().equalsIgnoreCase("$")) {
-                    etCustomPrice.removeTextChangedListener(this);
-                    etCustomPrice.setText("");
-                    etCustomPrice.addTextChangedListener(this);
+                if (getCurrency().equals("SAR")) {
+                    if (!etCustomPrice.getText().toString().endsWith(getString(R.string.sar))) {
+                        etCustomPrice.removeTextChangedListener(this);
+                        etCustomPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                        int len = etCustomPrice.getText().toString().length();
+                        etCustomPrice.setText(etCustomPrice.getText().toString() + " " + getString(R.string.sar));
+                        etCustomPrice.setSelection(len);
+                        etCustomPrice.addTextChangedListener(this);
+                    } else if (etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.sar))) {
+                        etCustomPrice.removeTextChangedListener(this);
+                        etCustomPrice.setText("");
+                        etCustomPrice.getText().toString().replaceAll(getString(R.string.sar), "");
+                        etCustomPrice.addTextChangedListener(this);
+                    }
+                } else {
+                    if (!etCustomPrice.getText().toString().startsWith(getString(R.string.dollar))) {
+                        etCustomPrice.removeTextChangedListener(this);
+                        etCustomPrice.getText().toString().replaceAll(getString(R.string.dollar), "");
+                        etCustomPrice.setText(getString(R.string.dollar) + etCustomPrice.getText().toString());
+                        etCustomPrice.setSelection(etCustomPrice.getText().toString().length());
+                        etCustomPrice.addTextChangedListener(this);
+                    } else if (etCustomPrice.getText().toString().equalsIgnoreCase(getString(R.string.dollar))) {
+                        etCustomPrice.removeTextChangedListener(this);
+                        etCustomPrice.setText("");
+                        etCustomPrice.addTextChangedListener(this);
+                    }
                 }
             }
         });

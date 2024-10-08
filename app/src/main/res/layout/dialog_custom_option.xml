@@ -9,6 +9,7 @@
         android:layout_margin="@dimen/_15sdp"
         android:background="@drawable/white_rounded_corner_5"
         android:orientation="vertical"
+        android:backgroundTint="@color/C_F2F2F7"
         android:fitsSystemWindows="true"
         android:paddingLeft="@dimen/_15sdp"
         android:paddingTop="@dimen/_10sdp"

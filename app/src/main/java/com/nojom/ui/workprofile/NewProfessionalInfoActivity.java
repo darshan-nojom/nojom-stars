@@ -45,6 +45,7 @@ public class NewProfessionalInfoActivity extends BaseActivity implements BaseAct
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_professional_info_new);
         binding.setActivity(this);
@@ -372,22 +373,22 @@ public class NewProfessionalInfoActivity extends BaseActivity implements BaseAct
             }
 
             StringBuilder address = new StringBuilder();
-            if (!TextUtils.isEmpty(profileData.cityName)) {
-                address.append(profileData.cityName);
+            if (!TextUtils.isEmpty(profileData.getCityName(language))) {
+                address.append(profileData.getCityName(language));
             }
 
-            if (!TextUtils.isEmpty(profileData.stateName)) {
+            if (!TextUtils.isEmpty(profileData.getStateName(language))) {
                 if (address.length() > 0) {
                     address.append(", ");
                 }
-                address.append(profileData.stateName);
+                address.append(profileData.getStateName(language));
             }
 
-            if (!TextUtils.isEmpty(profileData.countryName)) {
+            if (!TextUtils.isEmpty(profileData.getCountryName(language))) {
                 if (address.length() > 0) {
                     address.append(", ");
                 }
-                address.append(profileData.countryName);
+                address.append(profileData.getCountryName(language));
             }
 
             if (!TextUtils.isEmpty(address)) {
@@ -402,10 +403,10 @@ public class NewProfessionalInfoActivity extends BaseActivity implements BaseAct
                 binding.tvOffAdd.setText(profileData.addProAddress);
             }
 
-            if (TextUtils.isEmpty(profileData.websites)) {
+            if (TextUtils.isEmpty(profileData.website)) {
                 binding.tvWebsite.setHint(getString(R.string.website));
             } else {
-                binding.tvWebsite.setText(profileData.websites);
+                binding.tvWebsite.setText(profileData.website);
             }
 
             professionalInfoActivityVM.getEmploymentData(profileData);

@@ -32,7 +32,7 @@ import com.nojom.databinding.ActivityWorkMoreBinding;
 import com.nojom.model.ProfileResponse;
 import com.nojom.model.UserModel;
 import com.nojom.ui.BaseActivity;
-import com.nojom.ui.auth.LoginSignUpActivity;
+import com.nojom.ui.auth.LoginActivity;
 import com.nojom.ui.balance.BalanceActivity;
 import com.nojom.ui.clientprofile.FreelancerProfileActivity;
 import com.nojom.ui.discount.GetDiscountActivity;
@@ -64,7 +64,7 @@ public class WorkMoreActivity extends BaseActivity implements BaseActivity.OnPro
         getPartnerQuestion = new GetPartnerQuestion();
         getPartnerQuestion.init(this);
         initData();
-        managedAccountList();
+
     }
 
     private void initData() {
@@ -112,7 +112,7 @@ public class WorkMoreActivity extends BaseActivity implements BaseActivity.OnPro
     }
 
     public void onClickFeedback() {
-        showFeedbackDialog(0,getString(R.string.feedback));
+        showFeedbackDialog(0, getString(R.string.feedback));
     }
 
     public void onClickHireFreelancer() {
@@ -144,6 +144,7 @@ public class WorkMoreActivity extends BaseActivity implements BaseActivity.OnPro
                 if (profileData != null) {
                     onProfileLoad(profileData);
                 }
+                managedAccountList();
             }).start();
 
         } catch (Exception e) {
@@ -156,35 +157,33 @@ public class WorkMoreActivity extends BaseActivity implements BaseActivity.OnPro
         runOnUiThread(() -> {
 
             try {
-                binding.tvUsername.setText(String.format(getString(R.string.hi_), data.username));
-                if (data.email != null)
-                    binding.tvEmail.setText(data.email);
+                if (data.username != null) {
+                    binding.tvUsername.setText(String.format(getString(R.string.hi_), data.username != null ? data.username : ""));
+                } else if (data.firstName != null) {
+                    binding.tvUsername.setText(String.format(getString(R.string.hi_), data.firstName));
+                }
+                if (data.email != null) binding.tvEmail.setText(data.email);
 //            if (data.profilePic != null && !TextUtils.isEmpty(data.profilePic)) {
                 Log.e("IMAGE URL ", "===== " + getImageUrl() + data.profilePic);
 
-                Glide.with(WorkMoreActivity.this).load(getImageUrl() + data.profilePic)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .listener(new RequestListener<Drawable>() {
-                            @Override
-                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                                binding.progressBar.setVisibility(View.GONE);
-                                return false;
-                            }
+                Glide.with(WorkMoreActivity.this).load(getImageUrl() + data.profilePic).placeholder(R.mipmap.ic_launcher).diskCacheStrategy(DiskCacheStrategy.ALL).listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        binding.progressBar.setVisibility(View.GONE);
+                        return false;
+                    }
 
-                            @Override
-                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                                binding.progressBar.setVisibility(View.GONE);
-                                return false;
-                            }
-                        })
-                        .into(binding.imgProfile);
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        binding.progressBar.setVisibility(View.GONE);
+                        return false;
+                    }
+                }).into(binding.imgProfile);
 //            }
 
-                if (data.percentage != null) {
-                    String profilePercentage = Math.round(data.percentage.totalPercentage) + "%";
-                    binding.tvProfileComplete.setText(Utils.getColorString(WorkMoreActivity.this,
-                            getString(R.string.percent_complete, profilePercentage), profilePercentage, R.color.red));
+                if (data.profileStatus != null) {
+                    String profilePercentage = Math.round(data.profileStatus.totalPercentage) + "%";
+                    binding.tvProfileComplete.setText(Utils.getColorString(WorkMoreActivity.this, getString(R.string.percent_complete, profilePercentage), profilePercentage, R.color.red));
                 } else {
                     binding.tvProfileComplete.setVisibility(View.INVISIBLE);
                 }
@@ -197,10 +196,8 @@ public class WorkMoreActivity extends BaseActivity implements BaseActivity.OnPro
 
     @Override
     public void onBackPressed() {
-        if (getParent() != null)
-            redirectTab(Constants.TAB_HOME);
-        else
-            super.onBackPressed();
+        if (getParent() != null) redirectTab(Constants.TAB_HOME);
+        else super.onBackPressed();
     }
 
     private void showSwitchAccountDialog() {
@@ -218,7 +215,7 @@ public class WorkMoreActivity extends BaseActivity implements BaseActivity.OnPro
 
         txtAddAccount.setOnClickListener(v -> {
             dialog.dismiss();
-            Intent i = new Intent(this, LoginSignUpActivity.class);
+            Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
         });
 

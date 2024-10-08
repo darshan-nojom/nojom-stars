@@ -6,7 +6,7 @@
         android:id="@+id/rl_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <android.textview.TextViewSFTextPro
             app:fonts="@string/sftext_bold"
@@ -22,12 +22,23 @@
 
         <android.textview.TextViewSFTextPro
             android:id="@+id/tv_title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_8sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:layout_weight="1"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             app:fonts="@string/sftext_regular" />
+        <ImageView
+            android:id="@+id/img_chk"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/_5sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_gig_checked"
+            android:visibility="gone" />
     </LinearLayout>
 </layout>

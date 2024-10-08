@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nojom.R;
 import com.nojom.databinding.ItemSelectFullBinding;
 import com.nojom.model.CountryResponse;
+import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
 
 import java.util.ArrayList;
@@ -26,14 +28,13 @@ public class SelectCountryAdapter extends RecyclerView.Adapter<SelectCountryAdap
 
     private List<CountryResponse.CountryData> mDataset;
     private List<CountryResponse.CountryData> mDatasetFiltered;
-    private Context context;
+    private BaseActivity context;
     public boolean isBlackColor;
-
     public void setBlackColor(boolean blackColor) {
         isBlackColor = blackColor;
     }
 
-    public SelectCountryAdapter(Context context, List<CountryResponse.CountryData> objects) {
+    public SelectCountryAdapter(BaseActivity context, List<CountryResponse.CountryData> objects) {
         this.mDataset = objects;
         this.mDatasetFiltered = objects;
         this.context = context;
@@ -54,18 +55,20 @@ public class SelectCountryAdapter extends RecyclerView.Adapter<SelectCountryAdap
         try {
             CountryResponse.CountryData item = mDatasetFiltered.get(position);
 
-            holder.binding.tvTitle.setText(item.countryName);
+            holder.binding.tvTitle.setText(item.getCountryName(context.language));
 
             if (item.isSelected) {
-                holder.binding.tvTitle.setBackground(isBlackColor ? ContextCompat.getDrawable(context, R.drawable.black_button_bg) : ContextCompat.getDrawable(context, R.drawable.blue_button_bg));
+                holder.binding.imgChk.setVisibility(View.VISIBLE);
+                /*holder.binding.tvTitle.setBackground(isBlackColor ? ContextCompat.getDrawable(context, R.drawable.black_button_bg) : ContextCompat.getDrawable(context, R.drawable.blue_button_bg));
                 Typeface tf = Typeface.createFromAsset(context.getAssets(), Constants.SFTEXT_BOLD);
                 holder.binding.tvTitle.setTypeface(tf);
-                holder.binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.white));
+                holder.binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.white));*/
             } else {
-                holder.binding.tvTitle.setBackgroundColor(Color.TRANSPARENT);
+                holder.binding.imgChk.setVisibility(View.GONE);
+                /*holder.binding.tvTitle.setBackgroundColor(Color.TRANSPARENT);
                 holder.binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.black));
                 Typeface tf = Typeface.createFromAsset(context.getAssets(), Constants.SFTEXT_REGULAR);
-                holder.binding.tvTitle.setTypeface(tf);
+                holder.binding.tvTitle.setTypeface(tf);*/
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,7 +142,7 @@ public class SelectCountryAdapter extends RecyclerView.Adapter<SelectCountryAdap
                 } else {
                     List<CountryResponse.CountryData> filteredList = new ArrayList<>();
                     for (CountryResponse.CountryData row : mDataset) {
-                        String rowText = row.countryName.toLowerCase();
+                        String rowText = row.getCountryName(context.language).toLowerCase();
                         if (!TextUtils.isEmpty(rowText)) {
                             if (rowText.contains(charString.toLowerCase())) {
                                 filteredList.add(row);

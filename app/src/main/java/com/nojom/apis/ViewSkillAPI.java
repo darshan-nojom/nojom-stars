@@ -46,10 +46,15 @@ public class ViewSkillAPI implements APIRequest.APIRequestListener {
         if (userSkillsModel != null) {
             getUserModel().postValue(userSkillsModel);
         }
+        activity.isClickableView=false;
+        activity.disableEnableTouch(false);
+        getIsShowProgress().postValue(false);
     }
 
     @Override
     public void onResponseError(Throwable t, String urlEndPoint, String message) {
         getIsShowProgress().postValue(false);
+        activity.isClickableView=false;
+        activity.disableEnableTouch(false);
     }
 }

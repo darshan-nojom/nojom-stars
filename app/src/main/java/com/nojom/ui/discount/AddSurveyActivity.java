@@ -14,6 +14,7 @@ public class AddSurveyActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityAddSurveyBinding addSurveyBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_survey);
         new AddSurveyActivityVM(Task24Application.getActivity(), addSurveyBinding, this);

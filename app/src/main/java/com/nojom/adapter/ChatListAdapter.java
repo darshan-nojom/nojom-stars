@@ -125,7 +125,11 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Simple
             HashMap<String, String> chatMap = new HashMap<>();
             chatMap.put("isProject", "1");//1 mean updated record
             intent.putExtra(Constants.CHAT_DATA, chatMap);
-            baseActivity.startActivity(intent);
+            if (baseActivity.getIsVerified() == 1) {
+                baseActivity.startActivity(intent);
+            } else {
+                baseActivity.toastMessage(baseActivity.getString(R.string.verification_is_pending_please_complete_the_verification_first_before_chatting_with_them));
+            }
         });
     }
 

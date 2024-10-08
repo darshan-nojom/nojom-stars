@@ -67,6 +67,8 @@ public class IncomeFragmentVM extends ViewModel implements APIRequest.APIRequest
 
             ((BalanceActivity) fragment.activity).setBalance(balance.availableBalance, balance.pendingBalance, balance.totalBalance);
 
+        } else {
+            ((BalanceActivity) fragment.activity).setBalance(0, 0, 0);
         }
         getListMutableLiveData().postValue(incomeList);
 
@@ -76,5 +78,6 @@ public class IncomeFragmentVM extends ViewModel implements APIRequest.APIRequest
     @Override
     public void onResponseError(Throwable t, String urlEndPoint, String message) {
         getIsShowProgress().postValue(false);
+        ((BalanceActivity) fragment.activity).setBalance(0, 0, 0);
     }
 }

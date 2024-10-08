@@ -558,6 +558,8 @@ public class ChatMessagesActivityVM extends AndroidViewModel implements View.OnC
 
                 if (isPass && chatMap != null && !TextUtils.isEmpty(chatMap.get("isProject"))) {
                     jsonData.put("isProject", chatMap.get("isProject"));
+                } else {
+                    jsonData.put("isProject", "1");
                 }
                 if (isPass && chatMap != null && !TextUtils.isEmpty(chatMap.get("projectType"))) {//gig or job
                     jsonData.put("projectType", chatMap.get("projectType"));
@@ -648,6 +650,7 @@ public class ChatMessagesActivityVM extends AndroidViewModel implements View.OnC
 
         tvReport.setOnClickListener(v -> {
             profileDialog.dismiss();
+//            activity.openWhatsappChat();
             io.intercom.android.sdk.Intercom.client().displayMessageComposer();
         });
 

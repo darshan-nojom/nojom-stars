@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_15sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/stores_products"
+                android:textAlignment="viewStart"
+                android:textColor="#080921"
+                android:textSize="@dimen/_14sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_show"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_toStartOf="@+id/txt_add"
+                android:background="@drawable/white_button_bg"
+                android:gravity="center"
+                android:backgroundTint="@color/C_E5E5EA"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:visibility="gone"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/hide"
+                android:textColor="@color/C_020814"
+                android:textSize="@dimen/_10sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_add"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_toStartOf="@+id/img_order"
+                android:background="@drawable/white_button_bg"
+                android:gravity="center"
+                android:backgroundTint="@color/C_E5E5EA"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/add"
+                android:textColor="@color/C_020814"
+                android:textSize="@dimen/_10sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_order"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_re_order" />
+
+        </RelativeLayout>
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_stores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="@string/my_stores"
+            android:textColor="#080921"
+            android:textSize="@dimen/_13sdp"
+            app:fonts="@string/sfpro_text_midium" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_portfolio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_portfolio_small" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/txt_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="@string/my_product"
+            android:textColor="#080921"
+            android:textSize="@dimen/_13sdp"
+            app:fonts="@string/sfpro_text_midium" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_portfolio_small" />
+
+
+    </LinearLayout>
+
+</layout>

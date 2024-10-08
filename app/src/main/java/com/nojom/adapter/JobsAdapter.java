@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.SimpleViewHolder> {
 
@@ -45,6 +46,11 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.SimpleViewHold
         this.isOffer = isOffer;
         this.onItemClickListener = clickListener;
         activity = (BaseActivity) context;
+        if (activity.language.equals("ar")) {
+            Locale locale = new Locale("ar");
+            p = new PrettyTime(locale);
+        }
+
     }
 
     public void doRefresh(List<Data> projectsList) {
@@ -67,53 +73,74 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.SimpleViewHold
     public void onBindViewHolder(@NonNull final SimpleViewHolder holder, final int position) {
         if (projectsList != null) {
             Data item = projectsList.get(position);
-            holder.binding.tvTitle.setText(item.title);
-            holder.binding.tvJobId.setText(String.format(context.getString(R.string.job_id_colon_), item.id));
+            if (item != null) {
+                holder.binding.tvTitle.setText(item.title);
 
-            if (item.isShowProgress) {
-                holder.binding.shimmerViewContainer.setBackgroundResource(R.drawable.transp_rounded_corner_10);
-                holder.binding.progressBar.setVisibility(View.VISIBLE);
-            } else {
-                holder.binding.shimmerViewContainer.setBackgroundResource(R.drawable.white_rounded_corner_10);
-                holder.binding.progressBar.setVisibility(View.GONE);
-                item.isShowProgress = false;
-            }
+                StringBuilder stringBuilder = new StringBuilder();
 
-            Date date1 = Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", item.timestamp);
-            Date date = Calendar.getInstance().getTime();
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat dfFinal2 = new SimpleDateFormat("MMM dd, yyyy");
-
-            if (date1 != null) {
-                if (activity.printDifference(date1, date).equalsIgnoreCase("0")) {
-                    String result = p.format(Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", item.timestamp));
-                    holder.binding.tvDaysleft.setText(result);
+                if (item.isShowProgress) {
+                    holder.binding.shimmerViewContainer.setBackgroundResource(R.drawable.transp_rounded_corner_10);
+                    holder.binding.progressBar.setVisibility(View.VISIBLE);
                 } else {
-                    String finalDate = dfFinal2.format(date1);
-                    holder.binding.tvDaysleft.setText(finalDate);
+                    holder.binding.shimmerViewContainer.setBackgroundResource(R.drawable.white_rounded_corner_10);
+                    holder.binding.progressBar.setVisibility(View.GONE);
+                    item.isShowProgress = false;
                 }
-            }
 
-            holder.binding.tvBids.setText(item.bidsCount > 1 ? item.bidsCount + " "+context.getString(R.string.bids_) : item.bidsCount + " "+context.getString(R.string.bid_));
-            if (item.clientRateId == 0 && item.budget != null) {
-                holder.binding.tvBudget.setText("$" + Utils.getDecimalValue("" + item.budget) + "");
-            } else {
-                if (item.rangeTo != null && item.rangeFrom != null) {
-                    if (!TextUtils.isEmpty(item.rangeTo) && !item.rangeTo.equals("null")) {
-                        holder.binding.tvBudget.setText(String.format("$%s - $%s", item.rangeFrom, item.rangeTo));
+                /*if (item.clientRateId == 0 && item.budget != null) {
+                    stringBuilder.append(activity.getCurrency().equals("SAR") ? Utils.getDecimalValue("" + item.budget) + " " + activity.getString(R.string.sar) : "$" + Utils.getDecimalValue("" + item.budget) + "");
+                    stringBuilder.append(" - ");
+                } else {
+                    if (item.rangeTo != null && item.rangeFrom != null) {
+                        if (!TextUtils.isEmpty(item.rangeTo) && !item.rangeTo.equals("null")) {
+                            stringBuilder.append(String.format(activity.getCurrency().equals("SAR") ? activity.getString(R.string.s_sar_s_sar) : "$%s - $%s", item.rangeFrom, item.rangeTo));
+                            stringBuilder.append(" - ");
+                        } else {
+                            stringBuilder.append(String.format(activity.getCurrency().equals("SAR") ? activity.getString(R.string.s_sar) : "$%s", item.rangeFrom));
+                            stringBuilder.append(" - ");
+                        }
+                    } else if (item.budget != null) {
+                        stringBuilder.append(activity.getCurrency().equals("SAR") ? Utils.getDecimalValue("" + item.budget) + " " + activity.getString(R.string.sar) : "$" + Utils.getDecimalValue("" + item.budget) + "");
+                        stringBuilder.append(" - ");
                     } else {
-                        holder.binding.tvBudget.setText(String.format("$%s", item.rangeFrom));
+                        stringBuilder.append(activity.getString(R.string.free));
+                        stringBuilder.append(" - ");
                     }
-                } else if (item.budget != null) {
-                    holder.binding.tvBudget.setText("$" + Utils.getDecimalValue("" + item.budget) + "");
-                } else {
-                    holder.binding.tvBudget.setText(activity.getString(R.string.free));
-                }
-            }
+                }*/
 
-            if (isBidding || isOffer) {
-                holder.binding.tvSeen.setVisibility(View.GONE);
-            } else {
-                holder.binding.tvSeen.setVisibility(item.seen == 0 ? View.GONE : View.VISIBLE);
+                Date date1 = Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", item.timestamp);
+                Date date = Calendar.getInstance().getTime();
+                SimpleDateFormat dfFinal2;
+                dfFinal2 = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+
+                if (date1 != null) {
+                    if (activity.printDifference(date1, date).equalsIgnoreCase("0")) {
+                        String result = p.format(Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", item.timestamp));
+//                    holder.binding.tvDaysleft.setText(result);
+                        stringBuilder.append(result);
+                        stringBuilder.append(" - ");
+                    } else {
+                        String finalDate = dfFinal2.format(date1);
+//                    holder.binding.tvDaysleft.setText(finalDate);
+                        stringBuilder.append(finalDate);
+                        stringBuilder.append(" - ");
+                    }
+                }
+
+//            holder.binding.tvBids.setText(item.bidsCount > 1 ? item.bidsCount + " " + context.getString(R.string.bids_) : item.bidsCount + " " + context.getString(R.string.bid_));
+
+                stringBuilder.append(item.bidsCount > 1 ? item.bidsCount + " " + context.getString(R.string.bids_) : item.bidsCount + " " + context.getString(R.string.bid_));
+                stringBuilder.append(" - ");
+
+                stringBuilder.append(String.format(context.getString(R.string.job_id_colon_), item.id));
+
+                holder.binding.tvJobId.setText(stringBuilder.toString());
+
+                if (isBidding || isOffer) {
+                    holder.binding.tvSeen.setVisibility(View.GONE);
+                } else {
+                    holder.binding.tvSeen.setVisibility(item.seen == 0 ? View.GONE : View.VISIBLE);
+                }
             }
         }
     }

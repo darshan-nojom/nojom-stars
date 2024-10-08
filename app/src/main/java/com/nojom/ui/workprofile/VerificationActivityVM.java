@@ -30,6 +30,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 import static com.nojom.util.Constants.API_VERIFY_FACEBOOK;
+import static com.nojom.util.Constants.API_VERIFY_GOOGLE;
 
 public class VerificationActivityVM extends ViewModel implements APIRequest.APIRequestListener {
     @SuppressLint("StaticFieldLeak")
@@ -101,13 +102,13 @@ public class VerificationActivityVM extends ViewModel implements APIRequest.APIR
 
     void getList(ProfileResponse.TrustRate trustPoints) {
         ArrayList<TrustPoint> arrayList = new ArrayList<>();
-        arrayList.add(new TrustPoint(activity.getString(R.string.email), trustPoints != null ? trustPoints.email : 0, 5));
-        arrayList.add(new TrustPoint(activity.getString(R.string.phonenumber), trustPoints != null ? trustPoints.phoneNumber : 0, 5));
-        arrayList.add(new TrustPoint(activity.getString(R.string.google), trustPoints != null ? trustPoints.google : 0, 10));
+        arrayList.add(new TrustPoint(activity.getString(R.string.email), trustPoints != null ? trustPoints.email : 0, 30));
+        arrayList.add(new TrustPoint(activity.getString(R.string.phonenumber), trustPoints != null ? trustPoints.phoneNumber : 0, 30));
+//        arrayList.add(new TrustPoint(activity.getString(R.string.google), trustPoints != null ? trustPoints.google : 0, 10));
 //        arrayList.add(new TrustPoint(activity.getString(R.string.facebook), trustPoints != null ? trustPoints.facebook : 0, 20));
-        arrayList.add(new TrustPoint(activity.getString(R.string.payment), trustPoints != null ? trustPoints.payment : 0, 20));
-        arrayList.add(new TrustPoint(activity.getString(R.string.mawthooq), trustPoints != null ? trustPoints.mawthooq : 0, 30));
-        arrayList.add(new TrustPoint(activity.getString(R.string.verify_id), trustPoints != null ? trustPoints.verifyId : 0, 30));
+//        arrayList.add(new TrustPoint(activity.getString(R.string.payment), trustPoints != null ? trustPoints.payment : 0, 20));
+        arrayList.add(new TrustPoint(activity.getString(R.string.mawthooq), trustPoints != null ? trustPoints.mawthooq : 0, 40));
+//        arrayList.add(new TrustPoint(activity.getString(R.string.verify_id), trustPoints != null ? trustPoints.verifyId : 0, 35));
 
         getListMutableLiveData().postValue(arrayList);
     }
@@ -146,6 +147,20 @@ public class VerificationActivityVM extends ViewModel implements APIRequest.APIR
 
         APIRequest apiRequest = new APIRequest();
         apiRequest.makeAPIRequest(activity, API_VERIFY_FACEBOOK, verifyFb.toString(), true, this);
+
+    }
+
+    public void verifyGoogle(String gId) {
+        if (!activity.isNetworkConnected())
+            return;
+
+//        activity.showProgress();
+
+        CommonRequest.GoogleId verifyFb = new CommonRequest.GoogleId();
+        verifyFb.setGoogle_id(gId);
+
+        APIRequest apiRequest = new APIRequest();
+        apiRequest.makeAPIRequest(activity, API_VERIFY_GOOGLE, verifyFb.toString(), true, this);
 
     }
 

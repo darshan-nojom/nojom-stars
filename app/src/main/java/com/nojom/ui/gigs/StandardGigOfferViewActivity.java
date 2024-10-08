@@ -177,7 +177,8 @@ public class StandardGigOfferViewActivity extends BaseActivity {
                 textViewName.setTextColor(getResources().getColor(R.color.tab_gray));
             }
 
-            textViewName.setText("$" + Utils.getDecimalValue(String.valueOf(packages.get(listPosition).price)));
+            textViewName.setText(getCurrency().equals("SAR") ? Utils.getDecimalValue(String.valueOf(packages.get(listPosition).price)) + " "+getString(R.string.sar)
+                    : getString(R.string.dollar) + Utils.getDecimalValue(String.valueOf(packages.get(listPosition).price)));
 
             textViewName.setTag(packages.get(listPosition).id);
 
@@ -259,7 +260,7 @@ public class StandardGigOfferViewActivity extends BaseActivity {
                 binding.rvRequirements.setVisibility(View.GONE);
             }
 
-            binding.txtPrice.setText(getString(R.string.price)+" (" + Utils.getDecimalValue(String.valueOf(data.price)) + ")");
+            binding.txtPrice.setText(getString(R.string.price) + " (" + Utils.getDecimalValue(String.valueOf(data.price)) + ")");
 
 //            if (searchTags != null && data.searchTags.size() > 0) {
 //                binding.txtTags.setText("" + data.searchTags.toString().replace("[", "").replace("]", ""));

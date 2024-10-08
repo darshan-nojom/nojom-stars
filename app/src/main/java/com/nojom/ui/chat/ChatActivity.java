@@ -16,6 +16,7 @@ import com.nojom.databinding.ActivityChatBinding;
 import com.nojom.fragment.chat.ChatListFragment;
 import com.nojom.fragment.chat.LiveChatFragment;
 import com.nojom.fragment.chat.ManagerFragment;
+import com.nojom.model.ProfileResponse;
 import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
 import com.nojom.util.Utils;
@@ -23,7 +24,7 @@ import com.nojom.util.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatActivity extends BaseActivity {
+public class ChatActivity extends BaseActivity implements BaseActivity.OnProfileLoadListener {
     private ActivityChatBinding binding;
 
     @Override
@@ -40,6 +41,7 @@ public class ChatActivity extends BaseActivity {
         binding.segmentedGroupTab.setOnCheckedChangeListener(onCheckedChangeListener);
         setTab(0);
         binding.viewpager.setCurrentItem(0);
+        setOnProfileLoadListener(this);
     }
 
     RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
@@ -80,7 +82,7 @@ public class ChatActivity extends BaseActivity {
         } else if (pos == 1) {
             binding.tabSupport.setChecked(true);
         } else if (pos == 2) {
-            binding.tabManager.setChecked(true);
+//            binding.tabManager.setChecked(true);
         }
     }
 
@@ -92,9 +94,14 @@ public class ChatActivity extends BaseActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new ChatListFragment(), getString(R.string.employer));
         adapter.addFrag(new LiveChatFragment(), getString(R.string.live_chat));
-        adapter.addFrag(new ManagerFragment(), getString(R.string.manager));
+//        adapter.addFrag(new ManagerFragment(), getString(R.string.manager));
         // binding.viewpager.setPageMargin(20);
         binding.viewpager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onProfileLoad(ProfileResponse data) {
+
     }
 
     private static class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -137,6 +144,7 @@ public class ChatActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        getProfile();
         if (pageChangeListener != null)
             binding.viewpager.addOnPageChangeListener(pageChangeListener);
     }

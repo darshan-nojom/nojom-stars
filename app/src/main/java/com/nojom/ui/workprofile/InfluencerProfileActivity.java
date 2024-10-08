@@ -16,6 +16,7 @@ public class InfluencerProfileActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityInfluencerProfileBinding profileBinding = DataBindingUtil.setContentView(this, R.layout.activity_influencer_profile);
         freelancerProfileActivityVM = new InfluencerProfileActivityVM(Task24Application.getActivity(), profileBinding, this);

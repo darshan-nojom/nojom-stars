@@ -11,6 +11,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:paddingBottom="@dimen/_8sdp"
+        android:paddingTop="@dimen/_8sdp"
         android:layout_height="wrap_content">
 
         <android.textview.TextViewSFTextPro
@@ -38,6 +40,7 @@
             android:paddingLeft="@dimen/_15sdp"
             android:paddingTop="@dimen/_5sdp"
             android:paddingRight="@dimen/_15sdp"
+            android:visibility="gone"
             android:paddingBottom="@dimen/_5sdp"
             android:text="@{skills.skillValue}"
             android:textColor="@color/black"

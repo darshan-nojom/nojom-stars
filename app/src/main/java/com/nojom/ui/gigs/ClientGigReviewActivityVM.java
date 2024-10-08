@@ -198,7 +198,7 @@ class ClientGigReviewActivityVM extends AndroidViewModel implements Recyclerview
             segmentedButtonGroup.setVisibility(View.GONE);
         }
 
-        tvQuestions.setText(item.question);
+        tvQuestions.setText(item.getQuestion(activity.language));
     }
 
     @Override

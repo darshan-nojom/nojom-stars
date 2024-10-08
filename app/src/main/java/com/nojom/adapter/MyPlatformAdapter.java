@@ -68,7 +68,7 @@ public class MyPlatformAdapter extends RecyclerView.Adapter<MyPlatformAdapter.Si
     public void onBindViewHolder(@NonNull final SimpleViewHolder holder, final int position) {
         try {
             SocialPlatformResponse.Data item = mDatasetFiltered.get(position);
-            holder.binding.tvCategory.setText(item.name);
+            holder.binding.tvCategory.setText(item.getName(context.language));
 
             Glide.with(context).load(Uri.parse(item.platformIcon)).placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.binding.imgCheckUncheck);
 
@@ -113,7 +113,7 @@ public class MyPlatformAdapter extends RecyclerView.Adapter<MyPlatformAdapter.Si
                 public View getDropDownView(int position, View convertView, ViewGroup parent) {
                     View view = super.getDropDownView(position, convertView, parent);
                     TextView tv = (TextView) view.findViewById(R.id.text);
-                    tv.setText(item.name);
+                    tv.setText(item.getName(context.language));
 
                     if (position == 0) {
                         // Set the hint text color gray
@@ -156,7 +156,7 @@ public class MyPlatformAdapter extends RecyclerView.Adapter<MyPlatformAdapter.Si
                         // If user change the default selection
                         // First item is disable and it is used for hint
 //                        if (position1 > 0) {
-                        mDatasetFiltered.get(holder.getAdapterPosition()).followers = Utils.getPlatformId(selectedItemText);
+                        mDatasetFiltered.get(holder.getAdapterPosition()).followers = Utils.getPlatformId(selectedItemText,context);
                         mDatasetFiltered.get(holder.getAdapterPosition()).platformFollower = selectedItemText;
 //                        }
                     }

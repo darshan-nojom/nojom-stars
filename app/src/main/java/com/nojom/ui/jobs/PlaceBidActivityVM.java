@@ -115,7 +115,8 @@ public class PlaceBidActivityVM extends ViewModel implements APIRequest.APIReque
         if (projectData.jobPayTypeId != null && projectData.jobPayTypeId != 5/*Free*/) {
             try {
                 if (Double.parseDouble(amount.replaceAll(",", "")) < 9) {
-                    activity.validationError(activity.getString(R.string.minimum_bid_amount_should_be_nine));
+                    activity.validationError(activity.getCurrency().equals("SAR") ? activity.getString(R.string.minimum_bid_amount_should_be_nine_sar)
+                            : activity.getString(R.string.minimum_bid_amount_should_be_nine));
                     return false;
                 }
             } catch (NumberFormatException e) {

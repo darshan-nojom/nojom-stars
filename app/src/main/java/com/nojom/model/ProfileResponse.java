@@ -19,6 +19,9 @@ public class ProfileResponse implements Serializable {
     @SerializedName("facebook_id")
     @Expose
     public String facebookId;
+    @SerializedName("settings_order")
+    @Expose
+    public String settings_order;
     @SerializedName("username")
     @Expose
     public String username;
@@ -28,9 +31,39 @@ public class ProfileResponse implements Serializable {
     @SerializedName("last_name")
     @Expose
     public String lastName;
+
+    @SerializedName("firebaseLink")
+    @Expose
+    public String firebaseLink;
+    @SerializedName("is_verified")
+    @Expose
+    public Integer is_verified;//0=unverified, 2=Submit for verified, 1= verified
+
+    @SerializedName("registration_step")
+    @Expose
+    public Integer registration_step;
     @SerializedName("working_experience")
     @Expose
     public Integer workingExperience;
+
+    @SerializedName("show_whatsapp")
+    @Expose
+    public Integer show_whatsapp;//1=show, 2=hide
+
+    @SerializedName("show_message_button")
+    @Expose
+    public Integer show_message_button;//1=show, 2=hide
+    @SerializedName("show_send_offer_button")
+    @Expose
+    public Integer show_send_offer_button;//1=show, 2=hide
+
+    @SerializedName("min_price")
+    @Expose
+    public Double minPrice;
+
+    @SerializedName("max_price")
+    @Expose
+    public Double maxPrice;
     @SerializedName("workbase")
     @Expose
     public String workbase;
@@ -52,6 +85,9 @@ public class ProfileResponse implements Serializable {
     @SerializedName("trust_rate")
     @Expose
     public TrustRate trustRate;
+    @SerializedName("agent_bank")
+    @Expose
+    public BankDetail bankDetail;
     @SerializedName("profile_type_id")
     @Expose
     public Integer profileTypeId;
@@ -73,15 +109,64 @@ public class ProfileResponse implements Serializable {
     @SerializedName("headlines")
     @Expose
     public String headlines;
-    @SerializedName("websites")
+    @SerializedName("website")
     @Expose
-    public String websites;
+    public String website;
+
+    @SerializedName("about_me")
+    @Expose
+    public String about_me;
+    @SerializedName("website_status")
+    @Expose
+    public Integer website_status;
+
+    @SerializedName("price_range_public_status")
+    @Expose
+    public Integer price_range_public_status = 0;
+    @SerializedName("gender_public_status")
+    @Expose
+    public Integer gender_public_status = 1;
+    @SerializedName("mawthooq_public_status")
+    @Expose
+    public Integer mawthooq_public_status = 0;
+    @SerializedName("category_public_status")
+    @Expose
+    public Integer category_public_status = 1;
+    @SerializedName("about_me_public_status")
+    @Expose
+    public Integer about_me_public_status = 1;
+
+    @SerializedName("location_public")
+    @Expose
+    public Integer location_public = 1;
+
+
+    @SerializedName("gender")
+    @Expose
+    public Integer gender;
     @SerializedName("contact_no")
     @Expose
     public String contactNo;
+    @SerializedName("whatsapp_number")
+    @Expose
+    public String whatsapp_number;
+    @SerializedName("birth_date")
+    @Expose
+    public String birth_date;
+
+    @SerializedName("show_age")
+    @Expose
+    public Integer show_age = 1;
+
+    @SerializedName("show_email")
+    @Expose
+    public Integer show_email=1;//1== public, 2 == private
     @SerializedName("email")
     @Expose
     public String email;
+    @SerializedName("bussiness_email")
+    @Expose
+    public String bussiness_email;
     @SerializedName("summaries")
     @Expose
     public String summaries;
@@ -99,21 +184,51 @@ public class ProfileResponse implements Serializable {
     @SerializedName("countryName")
     @Expose
     public String countryName;
+    @SerializedName("countryNameAr")
+    @Expose
+    public String countryNameAr;
     @SerializedName("stateID")
     @Expose
     public Integer stateID;
     @SerializedName("stateName")
     @Expose
     public String stateName;
+    @SerializedName("stateNameAr")
+    @Expose
+    public String stateNameAr;
     @SerializedName("cityID")
     @Expose
     public Integer cityID;
     @SerializedName("cityName")
     @Expose
     public String cityName;
+    @SerializedName("cityNameAr")
+    @Expose
+    public String cityNameAr;
     @SerializedName("agent_survey")
     @Expose
     public int agentSurvey;
+
+    public String getCountryName(String lang) {
+        if (lang.equals("ar")) {
+            return countryNameAr != null ? countryNameAr : countryName;
+        }
+        return countryName;
+    }
+
+    public String getStateName(String lang) {
+        if (lang.equals("ar")) {
+            return stateNameAr != null ? stateNameAr : stateName;
+        }
+        return stateName;
+    }
+
+    public String getCityName(String lang) {
+        if (lang.equals("ar")) {
+            return cityNameAr != null ? cityNameAr : cityName;
+        }
+        return cityName;
+    }
 
     //    @SerializedName("add_country")
 //    @Expose
@@ -147,6 +262,12 @@ public class ProfileResponse implements Serializable {
     @SerializedName("skills")
     @Expose
     public List<Skill> skills = null;
+    @SerializedName("category_lists")
+    @Expose
+    public List<Skill> category_lists = null;
+    @SerializedName("tags_lists")
+    @Expose
+    public List<Skill> tags_lists = null;
     @SerializedName("experiences")
     @Expose
     public List<Experiences> experiences;
@@ -174,6 +295,14 @@ public class ProfileResponse implements Serializable {
     @Expose
     public List<SocialPlatform> profile_social_platform = null;
 
+    @SerializedName("banks")
+    @Expose
+    public List<BankName> banks = null;
+
+    @SerializedName("mawthooq_status")
+    @Expose
+    public MawthooqStatus mawthooq_status;
+
     public static class Expertise implements Serializable {
 
         @SerializedName("id")
@@ -182,12 +311,22 @@ public class ProfileResponse implements Serializable {
         @SerializedName("name")
         @Expose
         public String name;
+        @SerializedName("name_ar")
+        @Expose
+        public String name_ar;
         @SerializedName("name_app")
         @Expose
         public String nameApp;
         @SerializedName("length")
         @Expose
         public Integer length;
+
+        public String getName(String lang) {
+            if (lang.equals("ar")) {
+                return name_ar == null ? name : name_ar;
+            }
+            return name;
+        }
     }
 
     public static class ProfilePayType implements Serializable {
@@ -246,6 +385,16 @@ public class ProfileResponse implements Serializable {
         @SerializedName("name")
         @Expose
         public String name;
+        @SerializedName("name_ar")
+        @Expose
+        public String name_ar;
+
+        public String getName(String lang) {
+            if (lang.equals("ar")) {
+                return name_ar == null ? name : name_ar;
+            }
+            return name;
+        }
     }
 
     public static class SocialPlatform implements Serializable {
@@ -282,6 +431,26 @@ public class ProfileResponse implements Serializable {
         public String getName(String lang) {
             if (lang.equals("ar")) {
                 return name_ar != null ? name_ar : name;
+            }
+            return name;
+        }
+    }
+
+    public static class BankName implements Serializable {
+
+        @SerializedName("id")
+        @Expose
+        public Integer id;
+        @SerializedName("name")
+        @Expose
+        public String name;
+        @SerializedName("nameAr")
+        @Expose
+        public String nameAr;
+
+        public String getBankName(String lang) {
+            if (lang.equals("ar")) {
+                return nameAr != null ? nameAr : name;
             }
             return name;
         }
@@ -426,7 +595,7 @@ public class ProfileResponse implements Serializable {
         @SerializedName("payment")
         @Expose
         public Integer payment;
-        @SerializedName("mawthooq")
+        @SerializedName("mawthooq_id")
         @Expose
         public Integer mawthooq = 0;
         @SerializedName("Verify_id")
@@ -440,8 +609,66 @@ public class ProfileResponse implements Serializable {
         public Integer pointsNeeded;
     }
 
+    public static class BankDetail implements Serializable {
+
+        @SerializedName("id")
+        @Expose
+        public Integer id;
+        @SerializedName("profile_id")
+        @Expose
+        public Integer profile_id;
+        @SerializedName("bank_id")
+        @Expose
+        public Integer bank_id;
+
+        @SerializedName("name")
+        @Expose
+        public String name;
+        @SerializedName("nameAr")
+        @Expose
+        public String nameAr;
+        @SerializedName("beneficiary_name")
+        @Expose
+        public String beneficiary_name;
+        @SerializedName("iban")
+        @Expose
+        public String iban;
+        @SerializedName("bank_certificate")
+        @Expose
+        public String file;
+
+        public String getBankName(String lang) {
+            if (lang.equals("ar")) {
+                return nameAr != null ? nameAr : name;
+            }
+            return name;
+        }
+    }
+
+    public static class MawthooqStatus implements Serializable {
+
+        @SerializedName("status")
+        @Expose
+        public String status;//2 = approved, 1 == pending // null = not upload
+        @SerializedName("id")
+        @Expose
+        public Integer id;
+        @SerializedName("public_status")
+        @Expose
+        public Integer public_status = 1;
+        @SerializedName("is_number")
+        @Expose
+        public Integer is_number;
+        @SerializedName("data")
+        @Expose
+        public String data;
+    }
+
     public static class ProfileAgencies implements Serializable {
 
+        @SerializedName("filename")
+        @Expose
+        public String filename;
         @SerializedName("id")
         @Expose
         public Integer id;
@@ -535,9 +762,19 @@ public class ProfileResponse implements Serializable {
         @SerializedName("img_id")
         @Expose
         public String imgId;
+        @SerializedName("mawthooq_id")
+        @Expose
+        public String mawthooq_id;
         @SerializedName("client_img")
         @Expose
         public String clientImg;
+        @SerializedName("bank_certificate")
+        @Expose
+        public String bank_certificate;
+
+        @SerializedName("agency")
+        @Expose
+        public String agency;
     }
 
     //string to model conversation

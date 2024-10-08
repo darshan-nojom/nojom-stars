@@ -59,6 +59,15 @@ class EarnMoneyFragmentVM extends AndroidViewModel implements View.OnClickListen
 
         binding.tvHowItWorks.setPaintFlags(binding.tvHowItWorks.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+        if (fragment.activity.getCurrency().equals("SAR")) {
+            binding.tvHereBlue.setText(fragment.activity.getString(R.string.give_10_get_10_sar));
+            binding.txtT1.setText(fragment.activity.getString(R.string.anyone_who_use_your_coupon_or_follows_your_link_gets_10_off_the_first_order_sar));
+            binding.txtT2.setText(fragment.activity.getString(R.string.your_friend_s_order_must_be_completed_so_you_can_use_your_10_sar));
+            binding.txtT3.setText(fragment.activity.getString(R.string.get_10_for_every_friend_sar));
+            binding.txtT3D.setText(fragment.activity.getString(R.string.for_example_if_you_invited_100_friends_then_you_will_get_1_000_sar));
+            binding.tvTermsOfUse.setText(fragment.activity.getString(R.string.earn_money_footer_sar));
+        }
+
         binding.rvReferral.setLayoutManager(new LinearLayoutManager(fragment.activity));
         binding.rvReferral.addItemDecoration(new EqualSpacingItemDecoration(10, EqualSpacingItemDecoration.VERTICAL));
 
@@ -74,10 +83,20 @@ class EarnMoneyFragmentVM extends AndroidViewModel implements View.OnClickListen
         };
 
 //        String language = Preferences.readString(fragment.activity, Constants.SELECTED_LANGUAGE, "");
-        String textLine = "Give your friends 10% off their first order and get 20% of their first order up to $200 for every friend who place their first order using your link or promo code (<u>" + fragment.activity.getReferralCode() + "</u>).";
-        if (!TextUtils.isEmpty(fragment.activity.language)) {
-            if (fragment.activity.language.equals("ar")) {
-                textLine = fragment.activity.getReferralCode() + "امنح أصدقائك خصمًا بنسبة 10٪ على طلبهم الأول واحصل على 20٪ من أول طلب يصل إلى 200 دولار لكل صديق يقدم طلبهم الأول باستخدام الرابط أو الرمز الترويجي الخاص بك ";
+        String textLine;
+        if (fragment.activity.getCurrency().equals("SAR")) {
+            textLine = "Give your friends 10% off their first order and get 20% of their first order up to 200 SAR for every friend who place their first order using your link or promo code (<u>" + fragment.activity.getReferralCode() + "</u>).";
+            if (!TextUtils.isEmpty(fragment.activity.language)) {
+                if (fragment.activity.language.equals("ar")) {
+                    textLine = " قدّم لأصدقائك خصمًا بنسبة 10% على حملتهم الأولى واحصل على خصم بنسبة 20% يصل إلى 200 ريال، لكل صديق يقوم بإطلاق حملته الأولى باستخدام كود الخصم الخاص بك"+fragment.activity.getReferralCode();
+                }
+            }
+        } else {
+            textLine = "Give your friends 10% off their first order and get 20% of their first order up to $200 for every friend who place their first order using your link or promo code (<u>" + fragment.activity.getReferralCode() + "</u>).";
+            if (!TextUtils.isEmpty(fragment.activity.language)) {
+                if (fragment.activity.language.equals("ar")) {
+                    textLine = fragment.activity.getReferralCode() + "قدّم لأصدقائك خصمًا بنسبة 10% على حملتهم الأولى واحصل على خصم بنسبة 20% يصل إلى 200 ريال، لكل صديق يقوم بإطلاق حملته الأولى باستخدام كود الخصم الخاص بك  ";
+                }
             }
         }
 
@@ -108,8 +127,13 @@ class EarnMoneyFragmentVM extends AndroidViewModel implements View.OnClickListen
             if (fragment.activity != null) {
                 String link = ((GetDiscountActivity) fragment.activity).getmInvitationUrl();
                 binding.txtRefLink.setText(String.format(fragment.getString(R.string.task_promo_code) + " ", fragment.activity.getReferralCode()));
-                shareText = fragment.activity.getString(R.string.share_1) + "\n\n1. "
-                        + link + "\n" + fragment.activity.getString(R.string.share_2) + " " + fragment.activity.getReferralCode() + "\n" + fragment.activity.getString(R.string.share_3);
+                if (fragment.activity.getCurrency().equals("SAR")) {
+                    shareText = fragment.activity.getString(R.string.share_1_sar) + "\n\n1. "
+                            + link + "\n" + fragment.activity.getString(R.string.share_2) + " " + fragment.activity.getReferralCode() + "\n" + fragment.activity.getString(R.string.share_3_sar);
+                } else {
+                    shareText = fragment.activity.getString(R.string.share_1) + "\n\n1. "
+                            + link + "\n" + fragment.activity.getString(R.string.share_2) + " " + fragment.activity.getReferralCode() + "\n" + fragment.activity.getString(R.string.share_3);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -214,7 +238,8 @@ class EarnMoneyFragmentVM extends AndroidViewModel implements View.OnClickListen
             }
             if (historyData.size() > 1) {
                 binding.relReferral.setVisibility(View.VISIBLE);
-                binding.txtAmount.setText(Utils.priceWith$(Utils.get2DecimalPlaces(Objects.requireNonNull(model).totalBalance)));
+                binding.txtAmount.setText(fragment.activity.getCurrency().equals("SAR") ? Utils.priceWithSAR(fragment.activity, Utils.get2DecimalPlaces(Objects.requireNonNull(model).totalBalance))
+                        : Utils.priceWith$(Utils.get2DecimalPlaces(Objects.requireNonNull(model).totalBalance),fragment.activity));
                 binding.rvReferral.setVisibility(View.VISIBLE);
                 ReferralHistoryAdapter adapter = new ReferralHistoryAdapter(fragment.activity, historyData);
                 binding.rvReferral.setAdapter(adapter);

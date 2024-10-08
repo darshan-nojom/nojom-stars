@@ -37,6 +37,7 @@ public class SubmitContractJobActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_submit_job);
         if (getIntent() != null) {

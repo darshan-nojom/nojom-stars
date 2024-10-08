@@ -26,6 +26,7 @@ public class NotificationActivity extends BaseActivity implements RecyclerviewAd
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_notification);
         notificationActivityVM = ViewModelProviders.of(this).get(NotificationActivityVM.class);
@@ -45,12 +46,7 @@ public class NotificationActivity extends BaseActivity implements RecyclerviewAd
         else
             binding.segmentGroupAll.setPosition(0);
 
-        binding.segmentGroupAll.setOnPositionChangedListener(status -> {
-            if (status == 0)
-                Preferences.writeBoolean(this, Constants.ALL_NOTIFICATION, false);
-            else
-                Preferences.writeBoolean(this, Constants.ALL_NOTIFICATION, true);
-        });
+        binding.segmentGroupAll.setOnPositionChangedListener(status -> Preferences.writeBoolean(this, Constants.ALL_NOTIFICATION, status != 0));
 
         notificationActivityVM.getNotificationList();
 
@@ -96,7 +92,7 @@ public class NotificationActivity extends BaseActivity implements RecyclerviewAd
         SegmentedButtonGroup segmentGroup = view.findViewById(R.id.segmentGroup);
         TextView tvTitle = view.findViewById(R.id.tv_title);
 
-        tvTitle.setText(item.name);
+        tvTitle.setText(item.getName(language));
 
         runOnUiThread(() -> {
             segmentGroup.setPosition(item.status.equals("1") ? 1 : 0);

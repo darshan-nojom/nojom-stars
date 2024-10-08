@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.task24.android.apps.freelancer.job.search",
+  "applicationId": "com.nojom.stars",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 107,
-      "versionName": "9.1",
+      "versionCode": 7,
+      "versionName": "1.6",
       "outputFile": "app-release.apk"
     }
   ],

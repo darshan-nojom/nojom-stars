@@ -1,0 +1,196 @@
+package com.nojom.adapter;
+
+import android.graphics.Point;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.nojom.R;
+import com.nojom.databinding.ItemAgentCompanyBinding;
+import com.nojom.databinding.ItemStoreBinding;
+import com.nojom.model.GetProduct.Data;
+import com.nojom.ui.BaseActivity;
+import com.nojom.util.ReOrderPeoductMoveCallback;
+import com.nojom.util.ReOrderStoreMoveCallback;
+
+import java.util.Collections;
+import java.util.List;
+
+public class MyProductsAdapter extends RecyclerView.Adapter<MyProductsAdapter.SimpleViewHolder> implements ReOrderPeoductMoveCallback.ItemTouchHelperContract {
+
+    private BaseActivity context;
+    public String path;
+    private List<Data> paymentList;
+    private OnClickListener onClickListener;
+    private boolean isDropDone = true;
+
+    public Data getData(int pos) {
+        return paymentList.get(pos);
+    }
+
+    public MyProductsAdapter(BaseActivity context, OnClickListener listener, UpdateSwipeListener updatelistener) {
+        this.context = context;
+        onClickListener = listener;
+        this.onClickPlatformListener = updatelistener;
+    }
+
+    public void doRefresh(List<Data> paymentList) {
+        this.paymentList = paymentList;
+        notifyDataSetChanged();
+    }
+
+    public void doRefresh(String path) {
+        this.path = path;
+    }
+
+    @NonNull
+    @Override
+    public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        ItemStoreBinding itemAccountBinding = ItemStoreBinding.inflate(layoutInflater, parent, false);
+        return new SimpleViewHolder(itemAccountBinding);
+    }
+
+    @Override
+    public void onBindViewHolder(final SimpleViewHolder holder, final int position) {
+        Data item = paymentList.get(position);
+
+        holder.binding.txtName.setText(item.title);
+        if (context.formatValue(item.price).equals("0")) {
+            holder.binding.txtUname.setVisibility(View.GONE);
+        } else {
+            holder.binding.txtUname.setVisibility(View.VISIBLE);
+            holder.binding.txtUname.setText(context.formatValue(item.price) + " " + (context.getCurrency().equals("SAR") ? context.getString(R.string.sar) : context.getString(R.string.dollar)));
+        }
+        switch (item.public_status) {
+            case 2://brands
+                holder.binding.txtStatus.setText(context.getString(R.string.brand_only));
+                holder.binding.txtStatus.setTextColor(context.getResources().getColor(R.color.c_075E45));
+                DrawableCompat.setTint(holder.binding.txtStatus.getBackground(), ContextCompat.getColor(context, R.color.c_C7EBD1));
+                break;
+            case 3://only me
+                holder.binding.txtStatus.setText(context.getString(R.string.only_me));
+                holder.binding.txtStatus.setTextColor(context.getResources().getColor(R.color.red_dark));
+                DrawableCompat.setTint(holder.binding.txtStatus.getBackground(), ContextCompat.getColor(context, R.color.c_FADCD9));
+                break;
+            default:
+                holder.binding.txtStatus.setText(context.getString(R.string.public_));
+                holder.binding.txtStatus.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+                DrawableCompat.setTint(holder.binding.txtStatus.getBackground(), ContextCompat.getColor(context, R.color.c_D4E4FA));
+                break;
+        }
+
+        Glide.with(context).load(path + item.filename).placeholder(R.drawable.dp).diskCacheStrategy(DiskCacheStrategy.ALL).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+//                    binding.progressBar.setVisibility(View.GONE);
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+//                    binding.progressBar.setVisibility(View.GONE);
+                return false;
+            }
+        }).into(holder.binding.imgProfile);
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return paymentList != null ? paymentList.size() : 0;
+    }
+
+    @Override
+    public void onRowMoved(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(paymentList, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(paymentList, i, i - 1);
+            }
+        }
+        Log.e("onRowMoved", " -- From - " + fromPosition + "  --- To - " + toPosition);
+        isDropDone = false;
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onActionDone() {
+        if (onClickPlatformListener != null && !isDropDone) {
+            onClickPlatformListener.onSwipeSuccessProduct(paymentList);
+            isDropDone = true;
+        }
+    }
+
+    @Override
+    public void onRowSelected(SimpleViewHolder myViewHolder) {
+//        myViewHolder.itemView.setBackgroundColor(Color.GRAY);
+    }
+
+    @Override
+    public void onRowClear(SimpleViewHolder myViewHolder) {
+//        myViewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
+    }
+
+    public class SimpleViewHolder extends RecyclerView.ViewHolder {
+
+        ItemStoreBinding binding;
+
+        SimpleViewHolder(ItemStoreBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
+
+            itemView.getRoot().setOnClickListener(v -> {
+//                Intent i = new Intent(context, PaymentActivity.class);
+//                i.putExtra(Constants.ACCOUNT_DATA, paymentList.get(getAdapterPosition()));
+//                context.startActivity(i);
+            });
+
+            binding.txtStatus.setOnClickListener(v -> {
+                if (onClickListener != null) {
+                    onClickListener.onClickShowProduct(paymentList.get(getAdapterPosition()), getAbsoluteAdapterPosition());
+                }
+            });
+            binding.imgMenu.setOnClickListener(v -> {
+                if (onClickListener != null) {
+                    int[] location = new int[2];
+                    binding.imgEdit.getLocationOnScreen(location);
+                    Point point = new Point();
+                    point.x = location[0];
+
+                    onClickListener.onClickMenuProduct(paymentList.get(getAdapterPosition()), getAbsoluteAdapterPosition(), binding.imgMenu, point.x);
+                }
+            });
+        }
+    }
+
+    public interface OnClickListener {
+        void onClickShowProduct(Data companies, int pos);
+
+        void onClickMenuProduct(Data companies, int pos, View view, int loc);
+    }
+
+    private UpdateSwipeListener onClickPlatformListener;
+
+    public interface UpdateSwipeListener {
+        void onSwipeSuccessProduct(List<Data> mDatasetFiltered);
+
+    }
+}

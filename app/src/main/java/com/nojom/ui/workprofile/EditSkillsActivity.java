@@ -38,6 +38,7 @@ public class EditSkillsActivity extends BaseActivity implements BaseActivity.OnP
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_skills);
         binding.setActivity(this);

@@ -16,6 +16,9 @@ public class CommonModel implements Serializable {
     @Expose
     @SerializedName("message")
     public String message;
+    @Expose
+    @SerializedName("token")
+    public String token;
 
     @Expose
     @SerializedName("messageAr")

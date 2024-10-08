@@ -42,6 +42,6 @@ public class GetSocialSurveyAPI implements APIRequest.APIRequestListener {
 
     @Override
     public void onResponseError(Throwable t, String urlEndPoint, String message) {
-
+        getSocialSurveyMutableLiveData().postValue(null);
     }
 }

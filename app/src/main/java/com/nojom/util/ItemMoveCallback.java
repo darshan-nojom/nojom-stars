@@ -1,6 +1,8 @@
 package com.nojom.util;
 
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,23 +40,20 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
-                          RecyclerView.ViewHolder target) {
+    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
         mAdapter.onRowMoved(viewHolder.getAdapterPosition(), target.getAdapterPosition());
-        return true;
+        return false;
     }
 
     @Override
-    public void onSelectedChanged(RecyclerView.ViewHolder viewHolder,
-                                  int actionState) {
-
+    public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
 
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             if (viewHolder instanceof SelectedPlatformAdapter.SimpleViewHolder) {
-                SelectedPlatformAdapter.SimpleViewHolder myViewHolder =
-                        (SelectedPlatformAdapter.SimpleViewHolder) viewHolder;
+                SelectedPlatformAdapter.SimpleViewHolder myViewHolder = (SelectedPlatformAdapter.SimpleViewHolder) viewHolder;
                 mAdapter.onRowSelected(myViewHolder);
             }
+        } else {
 
         }
 
@@ -62,20 +61,23 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public void clearView(RecyclerView recyclerView,
-                          RecyclerView.ViewHolder viewHolder) {
+    public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
 
         if (viewHolder instanceof SelectedPlatformAdapter.SimpleViewHolder) {
-            SelectedPlatformAdapter.SimpleViewHolder myViewHolder =
-                    (SelectedPlatformAdapter.SimpleViewHolder) viewHolder;
+            SelectedPlatformAdapter.SimpleViewHolder myViewHolder = (SelectedPlatformAdapter.SimpleViewHolder) viewHolder;
             mAdapter.onRowClear(myViewHolder);
+
+            Log.e("onSelectedChanged", " -- - ");
+            mAdapter.onActionDone();
         }
     }
 
     public interface ItemTouchHelperContract {
 
         void onRowMoved(int fromPosition, int toPosition);
+
+        void onActionDone();
 
         void onRowSelected(SelectedPlatformAdapter.SimpleViewHolder myViewHolder);
 

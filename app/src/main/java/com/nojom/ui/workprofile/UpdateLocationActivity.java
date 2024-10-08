@@ -28,7 +28,6 @@ import com.nojom.databinding.ActivityUpdateLocationBinding;
 import com.nojom.model.CityResponse;
 import com.nojom.model.CountryResponse;
 import com.nojom.model.ProfileResponse;
-import com.nojom.model.StateResponse;
 import com.nojom.ui.BaseActivity;
 import com.nojom.util.Preferences;
 import com.nojom.util.Utils;
@@ -50,6 +49,7 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update_location);
         profileData = Preferences.getProfileData(this);
@@ -85,15 +85,15 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
                 toastMessage(getString(R.string.select_country));
                 return;
             }
-            if (binding.txtState.getTag() == null) {
+            /*if (binding.txtState.getTag() == null) {
                 toastMessage(getString(R.string.select_state));
                 return;
             }
             if (binding.txtCity.getTag() == null) {
                 toastMessage(getString(R.string.select_city));
                 return;
-            }
-            updateLocationActivityVM.updateLocation((Integer) binding.txtCountry.getTag(), (Integer) binding.txtState.getTag(), (Integer) binding.txtCity.getTag());
+            }*/
+            updateLocationActivityVM.updateLocation((Integer) binding.txtCountry.getTag(), (Integer) binding.txtCity.getTag(), -1);
         });
 
         binding.txtCountry.setOnClickListener(v -> {
@@ -108,38 +108,45 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
 
             }
         });
-        binding.txtState.setOnClickListener(v -> {
+        /*binding.txtState.setOnClickListener(v -> {
             if (updateLocationActivityVM.getStateLiveData() != null && updateLocationActivityVM.getStateLiveData().getValue() != null
                     && updateLocationActivityVM.getStateLiveData().getValue().size() > 0) {
                 showStateSelectDialog(updateLocationActivityVM.getStateLiveData().getValue());
-            } /*else if (profileData.countryID != null) {
+            } *//*else if (profileData.countryID != null) {
                 updateLocationActivityVM.getStateFromCountry(profileData.countryID);
-            }*/
-        });
+            }*//*
+        });*/
 
         binding.txtCity.setOnClickListener(v -> {
             if (updateLocationActivityVM.getCityLiveData() != null && updateLocationActivityVM.getCityLiveData().getValue() != null
                     && updateLocationActivityVM.getCityLiveData().getValue().size() > 0) {
                 showCitySelectDialog(updateLocationActivityVM.getCityLiveData().getValue());
-            } /*else if (profileData.stateID != null) {
-                updateLocationActivityVM.getCityFromCountryState(profileData.stateID);
-            }*/
+            } else if (profileData.stateID != null) {
+                updateLocationActivityVM.getCityFromCountryState(2849);
+            }
         });
 
         if (profileData != null) {
-            binding.txtCountry.setText(profileData.countryName);
-            binding.txtCity.setText(profileData.cityName);
-            binding.txtState.setText(profileData.stateName);
+            binding.txtCountry.setText(profileData.getCountryName(language));
+            binding.txtCity.setText(profileData.getCityName(language));
+//            binding.txtState.setText(profileData.getStateName(language));
 
             binding.txtCountry.setTag(profileData.countryID);
             binding.txtCity.setTag(profileData.cityID);
-            binding.txtState.setTag(profileData.stateID);
+//            binding.txtState.setTag(profileData.stateID);
 
-            if (profileData.countryID != null) {
-                updateLocationActivityVM.getStateFromCountry(profileData.countryID);
-            }
-            if (profileData.stateID != null) {
-                updateLocationActivityVM.getCityFromCountryState(profileData.stateID);
+//            if (profileData.countryID != null) {
+//                updateLocationActivityVM.getStateFromCountry(profileData.countryID);
+//            }
+//            if (profileData.cityID != null) {
+//
+//            }
+
+            if (profileData.countryID == 194) {
+                binding.linCity.setVisibility(View.VISIBLE);
+                updateLocationActivityVM.getCityFromCountryState(2849);
+            } else {
+                binding.linCity.setVisibility(View.GONE);
             }
 
         }
@@ -147,11 +154,11 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
         updateLocationActivityVM.getResponseMutableLiveData().observe(this, generalModelResponse -> {
             if (profileData != null) {
                 profileData.countryName = getCountry();
-                profileData.stateName = getState();
+//                profileData.stateName = getState();
                 profileData.cityName = getCity();
 
                 profileData.countryID = (Integer) binding.txtCountry.getTag();
-                profileData.stateID = (Integer) binding.txtState.getTag();
+//                profileData.stateID = (Integer) binding.txtState.getTag();
                 profileData.cityID = (Integer) binding.txtCity.getTag();
 
                 Preferences.setProfileData(UpdateLocationActivity.this, profileData);
@@ -163,10 +170,10 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
             finish();
         });
 
-        updateLocationActivityVM.getIsShowStateProgress().observe(this, isShow -> {
+        /*updateLocationActivityVM.getIsShowStateProgress().observe(this, isShow -> {
             isClickableView = isShow;
             binding.progressBarState.setVisibility(isShow ? View.VISIBLE : View.GONE);
-        });
+        });*/
 
         updateLocationActivityVM.getIsShowCityProgress().observe(this, isShow -> {
             isClickableView = isShow;
@@ -202,7 +209,7 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
         try {
             if (arrayList != null && arrayList.size() > 0) {
                 for (CountryResponse.CountryData data : arrayList) {
-                    data.isSelected = data.countryName.equalsIgnoreCase(binding.txtCountry.getText().toString());
+                    data.isSelected = data.getCountryName(language).equalsIgnoreCase(binding.txtCountry.getText().toString());
                 }
                 selectCountryAdapter = new SelectCountryAdapter(this, arrayList);
                 rvTypes.setAdapter(selectCountryAdapter);
@@ -214,25 +221,31 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
 
         tvApply.setOnClickListener(v -> {
             if (selectCountryAdapter != null && selectCountryAdapter.getSelectedItem() != null) {
-                binding.txtCountry.setText(selectCountryAdapter.getSelectedItem().countryName);
+                binding.txtCountry.setText(selectCountryAdapter.getSelectedItem().getCountryName(language));
                 binding.txtCountry.setTag(selectCountryAdapter.getSelectedItem().id);
                 dialog.dismiss();
-                binding.txtState.setText("");
-                binding.txtState.setHint(getString(R.string.select_state));//clear state & city, when select other country
+//                binding.txtState.setText("");
+//                binding.txtState.setHint(getString(R.string.select_state));//clear state & city, when select other country
                 binding.txtCity.setText("");
                 binding.txtCity.setHint(getString(R.string.select_city));
-                binding.txtState.setTag(null);//clear tag [i.e ID]
+//                binding.txtState.setTag(null);//clear tag [i.e ID]
                 binding.txtCity.setTag(null);
 
-                if (updateLocationActivityVM.getStateLiveData() != null && updateLocationActivityVM.getStateLiveData().getValue() != null) {
-                    updateLocationActivityVM.getStateLiveData().getValue().clear();
-                }
+//                if (updateLocationActivityVM.getStateLiveData() != null && updateLocationActivityVM.getStateLiveData().getValue() != null) {
+//                    updateLocationActivityVM.getStateLiveData().getValue().clear();
+//                }
 
                 if (updateLocationActivityVM.getCityLiveData() != null && updateLocationActivityVM.getCityLiveData().getValue() != null) {
                     updateLocationActivityVM.getCityLiveData().getValue().clear();
                 }
+                if (selectCountryAdapter.getSelectedItem().id == 194) {
+                    binding.linCity.setVisibility(View.VISIBLE);
+                    updateLocationActivityVM.getCityFromCountryState(2849);
+                } else {
+                    binding.linCity.setVisibility(View.GONE);
+                }
 
-                updateLocationActivityVM.getStateFromCountry(selectCountryAdapter.getSelectedItem().id);
+
             } else {
                 toastMessage(getString(R.string.please_select_one_item));
             }
@@ -268,81 +281,81 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
         etSearch.requestFocus();
     }
 
-    void showStateSelectDialog(List<StateResponse.StateData> arrayList) {
-        @SuppressLint("PrivateResource") final Dialog dialog = new Dialog(this, R.style.Theme_Design_Light_BottomSheetDialog);
-        dialog.setTitle(null);
-        dialog.setContentView(R.layout.dialog_item_select_black);
-        dialog.setCancelable(true);
-
-        TextView tvCancel = dialog.findViewById(R.id.tv_cancel);
-        TextView tvApply = dialog.findViewById(R.id.tv_apply);
-        final EditText etSearch = dialog.findViewById(R.id.et_search);
-        RecyclerView rvTypes = dialog.findViewById(R.id.rv_items);
-
-        etSearch.setHint(String.format(getString(R.string.search_for), getString(R.string.country).toLowerCase()));
-
-        rvTypes.setLayoutManager(new LinearLayoutManager(this));
-        try {
-            if (arrayList != null && arrayList.size() > 0) {
-                for (StateResponse.StateData data : arrayList) {
-                    data.isSelected = data.stateName.equalsIgnoreCase(binding.txtState.getText().toString());
-                }
-                selectStateAdapter = new SelectStateAdapter(this, arrayList);
-                rvTypes.setAdapter(selectStateAdapter);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        tvCancel.setOnClickListener(v -> dialog.dismiss());
-
-        tvApply.setOnClickListener(v -> {
-            if (selectStateAdapter != null && selectStateAdapter.getSelectedItem() != null) {
-                binding.txtState.setText(selectStateAdapter.getSelectedItem().stateName);
-                binding.txtState.setTag(selectStateAdapter.getSelectedItem().id);
-                dialog.dismiss();
-                binding.txtCity.setText("");
-                binding.txtCity.setHint(getString(R.string.select_city));
-                binding.txtCity.setTag(null);
-
-                if (updateLocationActivityVM.getCityLiveData() != null && updateLocationActivityVM.getCityLiveData().getValue() != null) {
-                    updateLocationActivityVM.getCityLiveData().getValue().clear();
-                }
-
-                updateLocationActivityVM.getCityFromCountryState(selectStateAdapter.getSelectedItem().id);
-            } else {
-                toastMessage(getString(R.string.please_select_one_item));
-            }
-            dialog.dismiss();
-        });
-
-        etSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (selectStateAdapter != null)
-                    selectStateAdapter.getFilter().filter(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(Objects.requireNonNull(dialog.getWindow()).getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.gravity = Gravity.BOTTOM;
-        dialog.show();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().setAttributes(lp);
-        etSearch.setOnFocusChangeListener((v, hasFocus) -> etSearch.post(() -> Utils.openSoftKeyboard(this, etSearch)));
-        etSearch.requestFocus();
-    }
+//    void showStateSelectDialog(List<StateResponse.StateData> arrayList) {
+//        @SuppressLint("PrivateResource") final Dialog dialog = new Dialog(this, R.style.Theme_Design_Light_BottomSheetDialog);
+//        dialog.setTitle(null);
+//        dialog.setContentView(R.layout.dialog_item_select_black);
+//        dialog.setCancelable(true);
+//
+//        TextView tvCancel = dialog.findViewById(R.id.tv_cancel);
+//        TextView tvApply = dialog.findViewById(R.id.tv_apply);
+//        final EditText etSearch = dialog.findViewById(R.id.et_search);
+//        RecyclerView rvTypes = dialog.findViewById(R.id.rv_items);
+//
+//        etSearch.setHint(String.format(getString(R.string.search_for), getString(R.string.country).toLowerCase()));
+//
+//        rvTypes.setLayoutManager(new LinearLayoutManager(this));
+//        try {
+//            if (arrayList != null && arrayList.size() > 0) {
+//                for (StateResponse.StateData data : arrayList) {
+//                    data.isSelected = data.getStateName(language).equalsIgnoreCase(binding.txtState.getText().toString());
+//                }
+//                selectStateAdapter = new SelectStateAdapter(this, arrayList);
+//                rvTypes.setAdapter(selectStateAdapter);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        tvCancel.setOnClickListener(v -> dialog.dismiss());
+//
+//        tvApply.setOnClickListener(v -> {
+//            if (selectStateAdapter != null && selectStateAdapter.getSelectedItem() != null) {
+//                binding.txtState.setText(selectStateAdapter.getSelectedItem().getStateName(language));
+//                binding.txtState.setTag(selectStateAdapter.getSelectedItem().id);
+//                dialog.dismiss();
+//                binding.txtCity.setText("");
+//                binding.txtCity.setHint(getString(R.string.select_city));
+//                binding.txtCity.setTag(null);
+//
+//                if (updateLocationActivityVM.getCityLiveData() != null && updateLocationActivityVM.getCityLiveData().getValue() != null) {
+//                    updateLocationActivityVM.getCityLiveData().getValue().clear();
+//                }
+//
+//                updateLocationActivityVM.getCityFromCountryState(2849);
+//            } else {
+//                toastMessage(getString(R.string.please_select_one_item));
+//            }
+//            dialog.dismiss();
+//        });
+//
+//        etSearch.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (selectStateAdapter != null)
+//                    selectStateAdapter.getFilter().filter(s.toString());
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+//
+//        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+//        lp.copyFrom(Objects.requireNonNull(dialog.getWindow()).getAttributes());
+//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//        lp.gravity = Gravity.BOTTOM;
+//        dialog.show();
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.getWindow().setAttributes(lp);
+//        etSearch.setOnFocusChangeListener((v, hasFocus) -> etSearch.post(() -> Utils.openSoftKeyboard(this, etSearch)));
+//        etSearch.requestFocus();
+//    }
 
     void showCitySelectDialog(List<CityResponse.CityData> arrayList) {
         @SuppressLint("PrivateResource") final Dialog dialog = new Dialog(this, R.style.Theme_Design_Light_BottomSheetDialog);
@@ -361,7 +374,7 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
         try {
             if (arrayList != null && arrayList.size() > 0) {
                 for (CityResponse.CityData data : arrayList) {
-                    data.isSelected = data.cityName.equalsIgnoreCase(binding.txtCity.getText().toString());
+                    data.isSelected = data.getCityName(language).equalsIgnoreCase(binding.txtCity.getText().toString());
                 }
                 selectCityAdapter = new SelectCityAdapter(this, arrayList);
                 rvTypes.setAdapter(selectCityAdapter);
@@ -373,7 +386,7 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
 
         tvApply.setOnClickListener(v -> {
             if (selectCityAdapter != null && selectCityAdapter.getSelectedItem() != null) {
-                binding.txtCity.setText(selectCityAdapter.getSelectedItem().cityName);
+                binding.txtCity.setText(selectCityAdapter.getSelectedItem().getCityName(language));
                 binding.txtCity.setTag(selectCityAdapter.getSelectedItem().id);
                 dialog.dismiss();
             } else {
@@ -439,9 +452,9 @@ public class UpdateLocationActivity extends BaseActivity implements View.OnClick
         return Objects.requireNonNull(binding.txtCountry.getText()).toString().trim();
     }
 
-    public String getState() {
+    /*public String getState() {
         return Objects.requireNonNull(binding.txtState.getText()).toString().trim();
-    }
+    }*/
 
     private String getCity() {
         return Objects.requireNonNull(binding.txtCity.getText()).toString().trim();

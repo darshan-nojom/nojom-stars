@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         android:orientation="vertical"
         tools:context=".ui.workprofile.VerifyPaymentActivity">
 
@@ -26,18 +26,18 @@
                 android:padding="@dimen/_15sdp">
 
                 <android.textview.TextViewSFTextPro
-                    app:fonts="@string/sftext_bold"
+                    android:id="@+id/txt_id_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/upload_id"
-                    android:id="@+id/txt_id_title"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
+                    android:textSize="@dimen/_14sdp"
+                    app:fonts="@string/sftext_bold" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/white_rounded_corner_10">
 
                     <android.textview.TextViewSFTextPro
@@ -46,18 +46,17 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:drawableStart="@drawable/add"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:drawableTint="@color/colorPrimary"
+                        android:drawableStart="@drawable/add_square"
+                        android:drawablePadding="@dimen/_8sdp"
                         android:gravity="center_vertical"
                         android:paddingTop="@dimen/_10sdp"
                         android:paddingBottom="@dimen/_10sdp"
-                        android:text="@string/attach_file"
-                        android:textColor="@color/colorPrimary"
+                        android:text="@string/add_attachment"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         app:fonts="@string/sftext_regular"
                         tools:ignore="RelativeOverlap"
-                        tools:targetApi="m" />
+                         />
 
                     <android.textview.TextViewSFTextPro
                         android:layout_width="wrap_content"
@@ -70,6 +69,58 @@
                         app:fonts="@string/sftext_regular"
                         tools:ignore="RelativeOverlap" />
                 </RelativeLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_or"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:text="@string/or"
+                    android:visibility="gone"
+                    android:textColor="@color/graycolor"
+                    android:textSize="@dimen/_16sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_maw_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mawthooq_id_number"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    app:fonts="@string/sftext_bold" />
+
+                <android.edittext.EditTextSFTextRegular
+                    android:id="@+id/et_mawId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/round_corner"
+                    android:hint="@string/mawthooq_id_number"
+                    android:imeOptions="actionDone"
+                    android:visibility="gone"
+                    android:padding="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    android:textSize="@dimen/_14sdp" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:background="@drawable/blue_rounded_corner"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="@string/upload_id"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+
+                    app:fonts="@string/sftext_bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_files"
@@ -93,23 +144,40 @@
                     app:cpb_stroke_width="@dimen/_2sdp"
                     app:cpb_sweep_speed="1.0" />
 
-                <android.textview.TextViewSFTextPro
-                    app:fonts="@string/sftext_bold"
-                    android:id="@+id/tv_submit"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginTop="@dimen/_40sdp"
-                    android:background="@drawable/blue_rounded_corner"
-                    android:gravity="center"
-                    android:text="@string/upload_id"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14sdp"
-                    android:visibility="gone" />
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rel_review"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:backgroundTint="@color/yellow_light"
+                    android:background="@drawable/white_rounded_corner_10">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_review"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_information"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:drawableTint="@color/black"
+                        android:gravity="center_vertical"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="The Mawthooq number is under review"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="RelativeOverlap"
+                        />
+
+                </RelativeLayout>
 
                 <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txt_desc"
                     android:layout_marginTop="@dimen/_60sdp"
                     android:lineSpacingExtra="@dimen/_5sdp"
                     android:text="@string/please_provide_your_photo_id_so_that_we_can_verify_your_account_this_id_will_be_kept_private_and_will_be_used_for_verification_purposes"

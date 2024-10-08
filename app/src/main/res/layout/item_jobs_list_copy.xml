@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -8,20 +8,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/white_rounded_corner_10"
         android:paddingLeft="@dimen/_10sdp"
         android:paddingTop="@dimen/_20sdp"
         android:paddingRight="@dimen/_10sdp"
-        android:paddingBottom="@dimen/_20sdp"
-        android:background="@drawable/white_rounded_corner_10">
+        android:paddingBottom="@dimen/_20sdp">
 
         <android.textview.TextViewSFTextPro
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@color/black"
             android:gravity="start"
+            android:text="TextView"
             android:textAlignment="viewStart"
+            android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             app:fonts="@string/sfdiaply_bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,106 +37,43 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/tv_budget"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="budget"
-            android:textColor="@color/gray_text"
-            android:textSize="@dimen/_9sdp"
-            app:fonts="@string/sfdiaply_regular"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/txt_f_dot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:text="@string/u00b7"
-            android:textColor="@color/gray"
-            app:fonts="@string/sftext_bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_budget"/>
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_job_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textAlignment="viewStart"
+                android:text="@string/job_id_colon_"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_9sdp"
+                app:fonts="@string/sfdiaply_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt_t_dot" />
 
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/tv_daysleft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/_3_days"
-            android:textColor="@color/gray"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:textSize="@dimen/_9sdp"
-            app:fonts="@string/sfdiaply_regular"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txt_f_dot" />
-
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/txt_s_dot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:text="@string/u00b7"
-            android:textColor="@color/gray"
-            app:fonts="@string/sftext_bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_daysleft"/>
-
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/tv_bids"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/bid"
-            android:textColor="@color/gray"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:textSize="@dimen/_9sdp"
-            app:fonts="@string/sfdiaply_regular"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txt_s_dot" />
-
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/txt_t_dot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:text="@string/u00b7"
-            android:textColor="@color/gray"
-            app:fonts="@string/sftext_bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_bids"/>
-
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/tv_job_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="@string/job_id_colon_"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/_9sdp"
-            app:fonts="@string/sfdiaply_regular"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txt_t_dot" />
-
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/tv_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/_8sdp"
-            android:paddingTop="@dimen/_2sdp"
-            android:paddingRight="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_2sdp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/_9sdp"
-            app:fonts="@string/sftext_medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_job_id" />
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/_8sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_9sdp"
+                app:fonts="@string/sftext_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_job_id" />
+        </LinearLayout>
 
         <ImageView
             android:layout_width="@dimen/_10sdp"
@@ -159,19 +96,19 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:indeterminate="true"
+            android:visibility="gone"
             app:cpbStyle="@style/CircularProgressBar"
             app:cpb_color="@color/white"
             app:cpb_colors="@array/progressColor"
             app:cpb_max_sweep_angle="300"
-            android:visibility="gone"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:cpb_min_sweep_angle="10"
             app:cpb_rotation_speed="1.0"
             app:cpb_stroke_width="@dimen/_2sdp"
-            app:cpb_sweep_speed="1.0" />
+            app:cpb_sweep_speed="1.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

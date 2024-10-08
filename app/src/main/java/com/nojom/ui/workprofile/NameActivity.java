@@ -25,6 +25,7 @@ public class NameActivity extends BaseActivity implements ResponseListener, Base
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_name);
         nameActivityVM = ViewModelProviders.of(this).get(NameActivityVM.class);
@@ -51,7 +52,7 @@ public class NameActivity extends BaseActivity implements ResponseListener, Base
         if (nameActivityVM.isValid(this, getFirstName(), getLastName())) {
             binding.btnNext.setVisibility(View.INVISIBLE);
             binding.progressBar.setVisibility(View.VISIBLE);
-            nameActivityVM.updateName(this, getFirstName(), getLastName());
+            nameActivityVM.updateName(this, getFirstName(), getLastName(),RS_2_LOCATION);
         }
     }
 

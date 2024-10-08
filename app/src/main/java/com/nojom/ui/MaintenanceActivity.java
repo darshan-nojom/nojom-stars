@@ -15,6 +15,7 @@ public class MaintenanceActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityMaintainanceBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_maintainance);
         binding.btnChat.setOnClickListener(v -> Intercom.client().displayMessageComposer());

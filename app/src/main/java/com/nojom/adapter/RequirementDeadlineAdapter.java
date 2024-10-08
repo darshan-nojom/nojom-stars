@@ -40,7 +40,8 @@ public class RequirementDeadlineAdapter extends RecyclerView.Adapter<Requirement
         holder.binding.txName.setText(item.value + " " + (item.type == 2 ? "" + activity.getString(R.string.days)
                 : "" + activity.getString(R.string.hours)
         ));
-        holder.binding.txtPrice.setText("$" + Utils.getDecimalValue(String.valueOf(item.price)));
+        holder.binding.txtPrice.setText(activity.getCurrency().equals("SAR") ? Utils.getDecimalValue(String.valueOf(item.price)) + " "+activity.getString(R.string.sar)
+                : activity.getString(R.string.dollar) + Utils.getDecimalValue(String.valueOf(item.price)));
     }
 
     @Override

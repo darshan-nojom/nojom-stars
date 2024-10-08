@@ -7,779 +7,643 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background">
+        android:background="@color/white"
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
 
-        <include
+        <RelativeLayout
             android:id="@+id/llToolbar"
-            layout="@layout/toolbar_save" />
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
 
-        <androidx.core.widget.NestedScrollView
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/back"
+                app:tint="@color/black" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/edit_agency"
+                android:textColor="@color/C_020814"
+                android:textSize="@dimen/_16sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/llToolbar"
-            android:clipToPadding="false">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/llTopSkill"
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:id="@+id/llTopSkill"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/roundedImage"
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_agency_dp"
+                            app:riv_oval="true" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_cancel"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:src="@drawable/ic_close_black"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_add"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:src="@drawable/img_pick_port"
+                            android:visibility="visible" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_companyName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/gray_l_border_6">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/name"
+                            android:padding="@dimen/_5sdp"
+                            android:textColorHint="@color/C_3C3C43"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="filled"
+                            app:boxStrokeColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:hintTextColor="@color/C_3C3C43">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etAgencyName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:imeOptions="actionNext"
+                                android:maxLines="1"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/C_020814"
+                                android:textColorHint="@color/C_3C3C43"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:background="@drawable/gray_corner_30"
+                            android:drawableEnd="@drawable/arrow_down"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:drawableTint="@color/c_8E8E93"
+                            android:paddingStart="@dimen/_9sdp"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:paddingEnd="@dimen/_9sdp"
+                            android:paddingBottom="@dimen/_3sdp"
+                            android:text="@string/name"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_9sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_off_add"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.textview.TextViewSFTextPro
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:text="@string/professional_address"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sdp"
+                                app:fonts="@string/sftext_bold"
+                                tools:ignore="RelativeOverlap" />
+
+                            <com.nojom.segment.SegmentedButtonGroup
+                                android:id="@+id/sg_off_add"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_27sdp"
+                                android:layout_alignParentEnd="true"
+                                app:sbg_backgroundColor="@color/white"
+                                app:sbg_borderColor="@android:color/transparent"
+                                app:sbg_borderSize="1dp"
+                                app:sbg_dividerSize="0dp"
+                                app:sbg_position="0"
+                                app:sbg_radius="20dp"
+                                tools:ignore="RelativeOverlap">
+
+                                <com.nojom.segment.SegmentedButton
+                                    android:id="@+id/tab_offadd_pri"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_margin="@dimen/_1sdp"
+                                    android:paddingLeft="@dimen/_5sdp"
+                                    android:paddingTop="@dimen/_4sdp"
+                                    android:paddingRight="@dimen/_5sdp"
+                                    android:paddingBottom="@dimen/_4sdp"
+                                    app:sb_selectorColor="@color/background"
+                                    app:sb_text="@string/private_"
+                                    app:sb_textColor_onSelection="@color/textgray"
+                                    app:sb_textSize="@dimen/_10sdp"
+                                    app:sb_textTypefacePath="@string/sftext_regular" />
+
+                                <com.nojom.segment.SegmentedButton
+                                    android:id="@+id/tab_offadd_pub"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_margin="@dimen/_1sdp"
+                                    android:paddingLeft="@dimen/_5sdp"
+                                    android:paddingTop="@dimen/_4sdp"
+                                    android:paddingRight="@dimen/_5sdp"
+                                    android:paddingBottom="@dimen/_4sdp"
+                                    app:sb_selectorColor="@color/greendark"
+                                    app:sb_text="@string/public_"
+                                    app:sb_textColor_onSelection="@color/white"
+                                    app:sb_textSize="@dimen/_10sdp"
+                                    app:sb_textTypefacePath="@string/sftext_regular" />
+                            </com.nojom.segment.SegmentedButtonGroup>
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/round_corner"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/_10sdp">
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/tv_off_add"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sftext_regular" />
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_gravity="center_vertical"
+                                android:contentDescription="@string/app_name"
+                                android:padding="@dimen/_4sdp"
+                                android:src="@drawable/arrow_next" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/tv1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:text="@string/phonenumber"
+                                android:textColor="@color/C_020814"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sftext_bold"
+                                tools:ignore="RelativeOverlap" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/txt_status_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/gray_corner_30"
+                                android:drawableEnd="@drawable/arrow_down"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:drawableTint="@color/c_8E8E93"
+                                android:paddingStart="@dimen/_9sdp"
+                                android:paddingTop="@dimen/_3sdp"
+                                android:paddingEnd="@dimen/_9sdp"
+                                android:paddingBottom="@dimen/_3sdp"
+                                android:text="@string/name"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/_9sdp"
+                                app:fonts="@string/sfpro_text_bold" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:baselineAligned="false"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.6"
+                                    android:background="@drawable/gray_l_border_6"
+                                    android:gravity="center">
+
+                                    <com.nojom.ccp.CountryCodePicker
+                                        android:id="@+id/ccp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        app:ccp_defaultLanguage="ENGLISH"
+                                        app:ccp_showArrow="true"
+                                        app:ccp_showFlag="false"
+                                        app:ccp_showFullName="false"
+                                        app:ccp_showNameCode="false"
+                                        app:ccp_showPhoneCode="true" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_weight="0.7"
+                                    android:background="@drawable/gray_l_border_6">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:id="@+id/default_phone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/phone_optional"
+                                        android:padding="@dimen/_5sdp"
+                                        android:textColorHint="@color/C_3C3C43"
+                                        app:boxBackgroundColor="@color/white"
+                                        app:boxBackgroundMode="filled"
+                                        app:boxStrokeColor="@color/white"
+                                        app:boxStrokeWidth="0dp"
+                                        app:hintTextColor="@color/C_3C3C43">
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/tv_phone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@string/sfpro_text_regular"
+                                            android:imeOptions="actionNext"
+                                            android:inputType="phone|textNoSuggestions"
+                                            android:maxLength="13"
+                                            android:maxLines="1"
+                                            android:textAlignment="viewStart"
+                                            android:textColor="@color/C_020814"
+                                            android:textColorHint="@color/C_3C3C43"
+                                            android:textSize="@dimen/_13sdp" />
+
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/gray_l_border_6">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/agency_email_optional"
+                            android:padding="@dimen/_5sdp"
+                            android:textColorHint="@color/C_3C3C43"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="filled"
+                            app:boxStrokeColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:hintTextColor="@color/C_3C3C43">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tv_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:imeOptions="actionNext"
+                                android:maxLines="1"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/C_020814"
+                                android:textColorHint="@color/C_3C3C43"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_status_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:background="@drawable/gray_corner_30"
+                            android:drawableEnd="@drawable/arrow_down"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:drawableTint="@color/c_8E8E93"
+                            android:paddingStart="@dimen/_9sdp"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:paddingEnd="@dimen/_9sdp"
+                            android:paddingBottom="@dimen/_3sdp"
+                            android:text="@string/name"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_9sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/gray_l_border_6">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/website"
+                            android:padding="@dimen/_5sdp"
+                            android:textColorHint="@color/C_3C3C43"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="filled"
+                            app:boxStrokeColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:hintTextColor="@color/C_3C3C43">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tv_website"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:imeOptions="actionNext"
+                                android:maxLines="1"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/C_020814"
+                                android:textColorHint="@color/C_3C3C43"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_status_website"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:background="@drawable/gray_corner_30"
+                            android:drawableEnd="@drawable/arrow_down"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:drawableTint="@color/c_8E8E93"
+                            android:paddingStart="@dimen/_9sdp"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:paddingEnd="@dimen/_9sdp"
+                            android:paddingBottom="@dimen/_3sdp"
+                            android:text="@string/name"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_9sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/gray_l_border_6">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/address_optional"
+                            android:padding="@dimen/_5sdp"
+                            android:textColorHint="@color/C_3C3C43"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="filled"
+                            app:boxStrokeColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:hintTextColor="@color/C_3C3C43">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tv_address"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:imeOptions="actionDone"
+                                android:maxLines="1"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/C_020814"
+                                android:textColorHint="@color/C_3C3C43"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_status_adds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:background="@drawable/gray_corner_30"
+                            android:drawableEnd="@drawable/arrow_down"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:drawableTint="@color/c_8E8E93"
+                            android:paddingStart="@dimen/_9sdp"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:paddingEnd="@dimen/_9sdp"
+                            android:paddingBottom="@dimen/_3sdp"
+                            android:text="@string/name"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_9sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/gray_l_border_6">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/about_me_optional"
+                            android:padding="@dimen/_5sdp"
+                            android:textColorHint="@color/C_3C3C43"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="filled"
+                            app:boxStrokeColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:hintTextColor="@color/C_3C3C43">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tv_summary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:imeOptions="actionNext"
+                                android:maxLines="1"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/C_020814"
+                                android:textColorHint="@color/C_3C3C43"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_status_about"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:background="@drawable/gray_corner_30"
+                            android:drawableEnd="@drawable/arrow_down"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:drawableTint="@color/c_8E8E93"
+                            android:paddingStart="@dimen/_9sdp"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:paddingEnd="@dimen/_9sdp"
+                            android:paddingBottom="@dimen/_3sdp"
+                            android:text="@string/name"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_9sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <RelativeLayout
+                android:id="@+id/rel_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_15sdp">
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:background="@drawable/black_l_button_bg_10">
 
-                <LinearLayout
-                    android:id="@+id/ll_headline"
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_save"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <android.textview.TextViewSFTextPro
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:text="Agency Name"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            app:fonts="@string/sftext_bold"
-                            tools:ignore="RelativeOverlap" />
-
-                        <com.nojom.segment.SegmentedButtonGroup
-                            android:id="@+id/sg_agencyName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_27sdp"
-                            android:layout_alignParentEnd="true"
-                            app:sbg_backgroundColor="@color/white"
-                            app:sbg_borderColor="@android:color/transparent"
-                            app:sbg_borderSize="1dp"
-                            app:sbg_dividerSize="0dp"
-                            app:sbg_position="0"
-                            app:sbg_radius="20dp"
-                            tools:ignore="RelativeOverlap">
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_an_pri"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/background"
-                                app:sb_text="@string/private_"
-                                app:sb_textColor_onSelection="@color/textgray"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_an_pub"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/greendark"
-                                app:sb_text="@string/public_"
-                                app:sb_textColor_onSelection="@color/white"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-                        </com.nojom.segment.SegmentedButtonGroup>
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/round_corner"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/_10sdp">
-
-                        <android.edittext.EditTextSFTextRegular
-                            android:id="@+id/etAgencyName"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:background="@android:color/transparent"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:fonts="@string/sftext_regular" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_about"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <android.textview.TextViewSFTextPro
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:text="@string/about"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            app:fonts="@string/sftext_bold"
-                            tools:ignore="RelativeOverlap" />
-
-                        <com.nojom.segment.SegmentedButtonGroup
-                            android:id="@+id/sg_about"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_27sdp"
-                            android:layout_alignParentEnd="true"
-                            app:sbg_backgroundColor="@color/white"
-                            app:sbg_borderColor="@android:color/transparent"
-                            app:sbg_borderSize="1dp"
-                            app:sbg_dividerSize="0dp"
-                            app:sbg_position="0"
-                            app:sbg_radius="20dp"
-                            tools:ignore="RelativeOverlap">
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_abt_pri"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/background"
-                                app:sb_text="@string/private_"
-                                app:sb_textColor_onSelection="@color/textgray"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_abt_pub"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/greendark"
-                                app:sb_text="@string/public_"
-                                app:sb_textColor_onSelection="@color/white"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-                        </com.nojom.segment.SegmentedButtonGroup>
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/round_corner"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/_10sdp">
-
-                        <android.edittext.EditTextSFTextRegular
-                            android:id="@+id/tv_summary"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:text=""
-                            android:lines="3"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:fonts="@string/sftext_regular" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_off_add"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <android.textview.TextViewSFTextPro
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:text="@string/professional_address"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            app:fonts="@string/sftext_bold"
-                            tools:ignore="RelativeOverlap" />
-
-                        <com.nojom.segment.SegmentedButtonGroup
-                            android:id="@+id/sg_off_add"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_27sdp"
-                            android:layout_alignParentEnd="true"
-                            app:sbg_backgroundColor="@color/white"
-                            app:sbg_borderColor="@android:color/transparent"
-                            app:sbg_borderSize="1dp"
-                            app:sbg_dividerSize="0dp"
-                            app:sbg_position="0"
-                            app:sbg_radius="20dp"
-                            tools:ignore="RelativeOverlap">
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_offadd_pri"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/background"
-                                app:sb_text="@string/private_"
-                                app:sb_textColor_onSelection="@color/textgray"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_offadd_pub"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/greendark"
-                                app:sb_text="@string/public_"
-                                app:sb_textColor_onSelection="@color/white"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-                        </com.nojom.segment.SegmentedButtonGroup>
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/round_corner"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/_10sdp">
-
-                        <android.textview.TextViewSFTextPro
-                            android:id="@+id/tv_off_add"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:fonts="@string/sftext_regular" />
-
-                        <ImageView
-                            android:layout_width="@dimen/_15sdp"
-                            android:layout_height="@dimen/_15sdp"
-                            android:layout_gravity="center_vertical"
-                            android:contentDescription="@string/app_name"
-                            android:padding="@dimen/_4sdp"
-                            android:src="@drawable/arrow_next" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <android.textview.TextViewSFTextPro
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:text="@string/phone"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            app:fonts="@string/sftext_bold"
-                            tools:ignore="RelativeOverlap" />
-
-                        <com.nojom.segment.SegmentedButtonGroup
-                            android:id="@+id/sg_phone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_27sdp"
-                            android:layout_alignParentEnd="true"
-                            app:sbg_backgroundColor="@color/white"
-                            app:sbg_borderColor="@android:color/transparent"
-                            app:sbg_borderSize="1dp"
-                            app:sbg_dividerSize="0dp"
-                            app:sbg_position="0"
-                            app:sbg_radius="20dp"
-                            tools:ignore="RelativeOverlap">
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_ph_pri"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/background"
-                                app:sb_text="@string/private_"
-                                app:sb_textColor_onSelection="@color/textgray"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_ph_pub"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/greendark"
-                                app:sb_text="@string/public_"
-                                app:sb_textColor_onSelection="@color/white"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-                        </com.nojom.segment.SegmentedButtonGroup>
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/round_corner"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_10sdp">
-
-                        <android.edittext.EditTextSFTextRegular
-                            android:id="@+id/tv_phone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:background="@android:color/transparent"
-                            android:text=""
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:fonts="@string/sftext_regular" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <android.textview.TextViewSFTextPro
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:text="@string/email"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            app:fonts="@string/sftext_bold"
-                            tools:ignore="RelativeOverlap" />
-
-                        <com.nojom.segment.SegmentedButtonGroup
-                            android:id="@+id/sg_email"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_27sdp"
-                            android:layout_alignParentEnd="true"
-                            app:sbg_backgroundColor="@color/white"
-                            app:sbg_borderColor="@android:color/transparent"
-                            app:sbg_borderSize="1dp"
-                            app:sbg_dividerSize="0dp"
-                            app:sbg_position="0"
-                            app:sbg_radius="20dp"
-                            tools:ignore="RelativeOverlap">
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_email_pri"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/background"
-                                app:sb_text="@string/private_"
-                                app:sb_textColor_onSelection="@color/textgray"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_email_pub"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/greendark"
-                                app:sb_text="@string/public_"
-                                app:sb_textColor_onSelection="@color/white"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-                        </com.nojom.segment.SegmentedButtonGroup>
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/round_corner"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_10sdp">
-
-                        <android.edittext.EditTextSFTextRegular
-                            android:id="@+id/tv_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:background="@android:color/transparent"
-                            android:text=""
-                            android:inputType="textEmailAddress"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:fonts="@string/sftext_regular" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_website"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <android.textview.TextViewSFTextPro
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:text="@string/website"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            app:fonts="@string/sftext_bold"
-                            tools:ignore="RelativeOverlap" />
-
-                        <com.nojom.segment.SegmentedButtonGroup
-                            android:id="@+id/sg_website"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_27sdp"
-                            android:layout_alignParentEnd="true"
-                            app:sbg_backgroundColor="@color/white"
-                            app:sbg_borderColor="@android:color/transparent"
-                            app:sbg_borderSize="1dp"
-                            app:sbg_dividerSize="0dp"
-                            app:sbg_position="0"
-                            app:sbg_radius="20dp"
-                            tools:ignore="RelativeOverlap">
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_website_pri"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/background"
-                                app:sb_text="@string/private_"
-                                app:sb_textColor_onSelection="@color/textgray"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_website_pub"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/greendark"
-                                app:sb_text="@string/public_"
-                                app:sb_textColor_onSelection="@color/white"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-                        </com.nojom.segment.SegmentedButtonGroup>
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/round_corner"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/_10sdp">
-
-                        <android.edittext.EditTextSFTextRegular
-                            android:id="@+id/tv_website"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:inputType="textWebEmailAddress"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:fonts="@string/sftext_regular" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <android.textview.TextViewSFTextPro
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:text="@string/address"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            app:fonts="@string/sftext_bold"
-                            tools:ignore="RelativeOverlap" />
-
-                        <com.nojom.segment.SegmentedButtonGroup
-                            android:id="@+id/sg_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_27sdp"
-                            android:layout_alignParentEnd="true"
-                            app:sbg_backgroundColor="@color/white"
-                            app:sbg_borderColor="@android:color/transparent"
-                            app:sbg_borderSize="1dp"
-                            app:sbg_dividerSize="0dp"
-                            app:sbg_position="0"
-                            app:sbg_radius="20dp"
-                            tools:ignore="RelativeOverlap">
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_add_pri"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/background"
-                                app:sb_text="@string/private_"
-                                app:sb_textColor_onSelection="@color/textgray"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_add_pub"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/greendark"
-                                app:sb_text="@string/public_"
-                                app:sb_textColor_onSelection="@color/white"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-                        </com.nojom.segment.SegmentedButtonGroup>
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/round_corner"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/_10sdp">
-
-                        <android.edittext.EditTextSFTextRegular
-                            android:id="@+id/tv_address"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:ellipsize="end"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:inputType="text"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:fonts="@string/sftext_regular" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_note"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <android.textview.TextViewSFTextPro
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:text="@string/note"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            app:fonts="@string/sftext_bold"
-                            tools:ignore="RelativeOverlap" />
-
-                        <com.nojom.segment.SegmentedButtonGroup
-                            android:id="@+id/sg_note"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_27sdp"
-                            android:layout_alignParentEnd="true"
-                            app:sbg_backgroundColor="@color/white"
-                            app:sbg_borderColor="@android:color/transparent"
-                            app:sbg_borderSize="1dp"
-                            app:sbg_dividerSize="0dp"
-                            app:sbg_position="0"
-                            app:sbg_radius="20dp"
-                            tools:ignore="RelativeOverlap">
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_note_pri"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/background"
-                                app:sb_text="@string/private_"
-                                app:sb_textColor_onSelection="@color/textgray"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-
-                            <com.nojom.segment.SegmentedButton
-                                android:id="@+id/tab_note_pub"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="@dimen/_1sdp"
-                                android:paddingLeft="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_4sdp"
-                                android:paddingRight="@dimen/_5sdp"
-                                android:paddingBottom="@dimen/_4sdp"
-                                app:sb_selectorColor="@color/greendark"
-                                app:sb_text="@string/public_"
-                                app:sb_textColor_onSelection="@color/white"
-                                app:sb_textSize="@dimen/_10sdp"
-                                app:sb_textTypefacePath="@string/sftext_regular" />
-                        </com.nojom.segment.SegmentedButtonGroup>
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/round_corner"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/_10sdp">
-
-                        <android.edittext.EditTextSFTextRegular
-                            android:id="@+id/tv_note"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:ellipsize="end"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:inputType="text"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:fonts="@string/sftext_regular" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/save"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sfpro_text_midium" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/white"
+                    app:cpb_colors="@array/progressColor"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
+
+            </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
 </layout>

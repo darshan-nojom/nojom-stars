@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         android:orientation="vertical"
         tools:context=".ui.jobs.JobSummaryActivity">
 
@@ -94,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:text="@string/project_budget"
                     android:textColor="@color/textgrayAccent"
                     android:textSize="@dimen/_13sdp"
@@ -102,6 +103,7 @@
                 <android.textview.TextViewSFTextPro
                     android:id="@+id/tv_project_budget"
                     android:layout_width="wrap_content"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:gravity="center|start"

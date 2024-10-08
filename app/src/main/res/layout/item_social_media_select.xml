@@ -18,7 +18,6 @@
             android:layout_width="@dimen/_34sdp"
             android:layout_height="@dimen/_34sdp"
             android:contentDescription="@string/app_name"
-            android:elevation="@dimen/_3sdp"
             android:src="@drawable/ic_tiktok" />
 
         <ImageView

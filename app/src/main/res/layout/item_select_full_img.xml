@@ -6,7 +6,9 @@
         android:id="@+id/lin_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/img_flag"
@@ -15,15 +17,24 @@
             android:layout_gravity="center_vertical"
             android:padding="@dimen/_5sdp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            android:visibility="gone" />
 
         <android.textview.TextViewSFTextPro
             android:id="@+id/tv_title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:padding="@dimen/_8sdp"
-            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="@string/visible_to_everyone"
+            android:textColor="@color/C_020814"
+            android:textSize="@dimen/_13sdp"
+            app:fonts="@string/sftext_regular" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/C_3C3C43"
             android:textSize="@dimen/_13sdp"
             app:fonts="@string/sftext_regular" />
     </LinearLayout>

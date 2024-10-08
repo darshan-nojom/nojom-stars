@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.nojom.R;
+import com.nojom.databinding.ActivitySplashBinding;
+import com.nojom.databinding.ActivitySplashNewBinding;
 import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
 
@@ -27,19 +29,16 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        DataBindingUtil.setContentView(this, R.layout.activity_splash);
+        setStatusBarColor(true);
+        ActivitySplashNewBinding bin = DataBindingUtil.setContentView(this, R.layout.activity_splash_new);
+        if (language.equals("ar")) {
+            bin.imgText.setImageResource(R.drawable.logo_txt_splash_ar);
+        }
         activityViewModel = ViewModelProviders.of(this).get(SplashActivityVM.class);
         activityViewModel.init(this);
         Log.e("TOKEN ", getToken());
-        initData();
+//        initData();
+        activityViewModel.redirectIntent();
     }
 
     @Override
@@ -63,7 +62,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        try {
+        /*try {
             if (mRegistrationBroadcastReceiver != null) {
                 LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
                         new IntentFilter(Constants.REGISTRATION_COMPLETE));
@@ -74,12 +73,12 @@ public class SplashActivity extends BaseActivity {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+//        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
     }
 }

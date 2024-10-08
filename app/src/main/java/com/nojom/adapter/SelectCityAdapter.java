@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nojom.R;
 import com.nojom.databinding.ItemSelectFullBinding;
 import com.nojom.model.CityResponse;
+import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
 
 import java.util.ArrayList;
@@ -26,9 +28,9 @@ public class SelectCityAdapter extends RecyclerView.Adapter<SelectCityAdapter.Si
 
     private List<CityResponse.CityData> mDataset;
     private List<CityResponse.CityData> mDatasetFiltered;
-    private Context context;
+    private BaseActivity context;
 
-    public SelectCityAdapter(Context context, List<CityResponse.CityData> objects) {
+    public SelectCityAdapter(BaseActivity context, List<CityResponse.CityData> objects) {
         this.mDataset = objects;
         this.mDatasetFiltered = objects;
         this.context = context;
@@ -49,18 +51,20 @@ public class SelectCityAdapter extends RecyclerView.Adapter<SelectCityAdapter.Si
         try {
             CityResponse.CityData item = mDatasetFiltered.get(position);
 
-            holder.binding.tvTitle.setText(item.cityName);
+            holder.binding.tvTitle.setText(item.getCityName(context.language));
 
             if (item.isSelected) {
-                holder.binding.tvTitle.setBackground(ContextCompat.getDrawable(context, R.drawable.blue_button_bg));
+                holder.binding.imgChk.setVisibility(View.VISIBLE);
+                /*holder.binding.tvTitle.setBackground(isBlackColor ? ContextCompat.getDrawable(context, R.drawable.black_button_bg) : ContextCompat.getDrawable(context, R.drawable.blue_button_bg));
                 Typeface tf = Typeface.createFromAsset(context.getAssets(), Constants.SFTEXT_BOLD);
                 holder.binding.tvTitle.setTypeface(tf);
-                holder.binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.white));
+                holder.binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.white));*/
             } else {
-                holder.binding.tvTitle.setBackgroundColor(Color.TRANSPARENT);
+                holder.binding.imgChk.setVisibility(View.GONE);
+                /*holder.binding.tvTitle.setBackgroundColor(Color.TRANSPARENT);
                 holder.binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.black));
                 Typeface tf = Typeface.createFromAsset(context.getAssets(), Constants.SFTEXT_REGULAR);
-                holder.binding.tvTitle.setTypeface(tf);
+                holder.binding.tvTitle.setTypeface(tf);*/
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -134,7 +138,7 @@ public class SelectCityAdapter extends RecyclerView.Adapter<SelectCityAdapter.Si
                 } else {
                     List<CityResponse.CityData> filteredList = new ArrayList<>();
                     for (CityResponse.CityData row : mDataset) {
-                        String rowText = row.cityName.toLowerCase();
+                        String rowText = row.getCityName(context.language).toLowerCase();
                         if (!TextUtils.isEmpty(rowText)) {
                             if (rowText.contains(charString.toLowerCase())) {
                                 filteredList.add(row);

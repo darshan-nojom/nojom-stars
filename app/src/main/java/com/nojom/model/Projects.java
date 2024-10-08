@@ -54,6 +54,17 @@ public class Projects extends GeneralModel implements Serializable {
         @SerializedName("job_post_state_name")
         public String jobPostStateName;
         @Expose
+        @SerializedName("job_post_state_name_ar")
+        public String jobPostStateNameAr;
+
+        public String getStateName(String lang) {
+            if (lang.equals("ar")) {
+                return jobPostStateNameAr != null ? jobPostStateNameAr : jobPostStateName;
+            }
+            return jobPostStateName;
+        }
+
+        @Expose
         @SerializedName("range_to")
         public String rangeTo;
         @Expose

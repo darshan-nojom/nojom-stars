@@ -19,7 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background"
+            android:background="@color/C_F2F2F7"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -65,6 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/dollar"
+                        android:id="@+id/txt_sign"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_22sdp" />
 

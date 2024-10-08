@@ -12,13 +12,13 @@ allprojects {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
     defaultConfig {
-        applicationId "com.nojom.app"
+        applicationId "com.nojom.stars"
         minSdk 23
-        targetSdk 33
-        versionCode 2
-        versionName "1.0"
+        targetSdk 34
+        versionCode 9
+        versionName "1.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
@@ -58,6 +58,9 @@ android {
                 unstrippedNativeLibsDir 'build/unstripped'
             }
         }
+        debug {
+            signingConfig signingConfigs.release
+        }
     }
 
     compileOptions {
@@ -90,7 +93,7 @@ dependencies {
 //    implementation files('libs/volley.jar')
 //    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.browser:browser:1.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -106,11 +109,11 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.0'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     implementation 'net.jcip:jcip-annotations:1.0'
-    implementation ('com.google.firebase:firebase-messaging:23.1.0'){
-        exclude group: 'com.google.android.gms', module : 'play-services-ads-identifier'
+    implementation('com.google.firebase:firebase-messaging:23.1.0') {
+        exclude group: 'com.google.android.gms', module: 'play-services-ads-identifier'
     }
-    implementation ('com.google.firebase:firebase-crashlytics-buildtools:2.9.4'){
-        exclude group: 'com.google.android.gms', module : 'play-services-ads-identifier'
+    implementation('com.google.firebase:firebase-crashlytics-buildtools:2.9.4') {
+        exclude group: 'com.google.android.gms', module: 'play-services-ads-identifier'
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'com.github.devahamed:multi-view-adapter:1.2.3'
@@ -119,21 +122,21 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.facebook.android:facebook-login:16.0.0'
     implementation 'com.google.android.gms:play-services-location:20.0.0'
-    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+    implementation 'com.google.android.gms:play-services-auth:21.1.0'
 //    implementation 'com.google.firebase:firebase-core:19.0.1'
-    implementation ('com.google.firebase:firebase-auth:21.0.8'){
+    implementation('com.google.firebase:firebase-auth:21.0.8') {
         exclude module: "play-services-safetynet"
     }
 
     implementation 'com.google.firebase:firebase-config:21.1.2'
     implementation 'com.google.firebase:firebase-perf:20.1.1'
 
-    implementation ('com.google.firebase:firebase-crashlytics:18.2.13'){
-        exclude group: 'com.google.android.gms', module : 'play-services-ads-identifier'
+    implementation('com.google.firebase:firebase-crashlytics:18.2.13') {
+        exclude group: 'com.google.android.gms', module: 'play-services-ads-identifier'
     }
 //    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.6'
-    implementation ('com.google.firebase:firebase-analytics:21.1.1'){
-        exclude group: 'com.google.android.gms', module : 'play-services-ads-identifier'
+    implementation('com.google.firebase:firebase-analytics:21.1.1') {
+        exclude group: 'com.google.android.gms', module: 'play-services-ads-identifier'
     }
     implementation 'com.google.android.gms:play-services-tagmanager:18.0.2'
 
@@ -154,7 +157,10 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3'
 
     //remove this line while make LIVE build
-    implementation 'com.readystatesoftware.chuck:library:1.1.0'
+//    implementation group: 'com.github.chuckerteam.chucker', name: 'library', version: '4.0.0'
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+//    internalDevelopmentImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+//    internalTestingImplementation "com.github.chuckerteam.chucker:library:3.5.2"
 
     // Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
@@ -181,7 +187,7 @@ dependencies {
     implementation 'com.jmedeisis:draglinearlayout:1.1.0'
     implementation 'com.github.florent37:viewtooltip:1.2.0'
 //    implementation 'com.nbsp:materialfilepicker:1.9.1'
-    implementation 'com.google.android.play:app-update:2.0.1'
+    implementation 'com.google.android.play:app-update:2.1.0'
     implementation 'me.saket:better-link-movement-method:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'com.google.firebase:firebase-appcheck-safetynet:16.1.0'
@@ -191,9 +197,20 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.3'
     implementation 'com.duolingo.open:rtl-viewpager:2.0.0'
 
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
     //debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
     //releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
 //    implementation 'com.uxcam:uxcam:3.6.4'
+    implementation 'io.github.chaosleung:pinview:1.4.4'
+    implementation 'com.google.android.play:integrity:1.3.0'
+
+    def appCenterSdkVersion = '5.0.4'
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'com.github.douglasjunior:android-simple-tooltip:1.1.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
+    implementation "com.github.skydoves:balloon:1.4.7"
 }
 
 apply plugin: 'com.google.gms.google-services'

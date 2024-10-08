@@ -25,7 +25,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background">
+            android:background="@color/C_F2F2F7">
 
             <include
                 android:id="@+id/toolbar"
@@ -97,7 +97,7 @@
                         <android.textview.TextViewSFTextPro
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/first_name"
+                            android:text="@string/english_name"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
                             app:fonts="@string/sftext_bold" />
@@ -108,7 +108,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:background="@drawable/round_corner"
-                            android:hint="@string/first_name"
+                            android:hint="@string/english_name"
                             android:imeOptions="actionNext"
                             android:inputType="textCapSentences"
                             android:padding="@dimen/_10sdp"
@@ -129,7 +129,7 @@
                         <android.textview.TextViewSFTextPro
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/last_name"
+                            android:text="@string/arabic_name"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
                             app:fonts="@string/sftext_bold" />
@@ -140,7 +140,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:background="@drawable/round_corner"
-                            android:hint="@string/last_name"
+                            android:hint="@string/arabic_name"
                             android:imeOptions="actionNext"
                             android:inputType="textCapSentences"
                             android:padding="@dimen/_10sdp"
@@ -154,11 +154,11 @@
                 <android.textview.TextViewSFTextPro
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:text="@string/username"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
                     app:fonts="@string/sftext_bold" />
 
                 <android.edittext.EditTextSFTextRegular
@@ -171,7 +171,6 @@
                     android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
                     android:enabled="false"
                     android:hint="@string/username"
-                    android:visibility="gone"
                     android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:padding="@dimen/_10sdp"
@@ -179,7 +178,8 @@
                     android:text='@{profileData!=null?TextUtils.isEmpty(profileData.username)?"":profileData.username:""}'
                     android:textAlignment="viewStart"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
+                    android:textSize="@dimen/_14sdp"
+                    android:visibility="gone" />
 
                 <android.textview.TextViewSFTextPro
                     android:layout_width="wrap_content"
@@ -217,8 +217,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_12sdp">
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_10sdp">
 
                     <android.textview.TextViewSFTextPro
                         android:id="@+id/tv_phone_prefix"
@@ -269,6 +269,75 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/lin_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:orientation="horizontal">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="@string/gender"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+
+                        <com.nojom.util.SegmentedButtonGroupNew
+                            android:id="@+id/segmentLoginGroupGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:background="@color/white"
+                            app:borderWidth="0dp"
+                            app:divider="@color/iron"
+                            app:dividerWidth="0dp"
+                            app:radius="@dimen/_20sdp"
+                            app:selectedBackground="@color/black"
+                            app:selectedButtonRadius="@dimen/_20sdp">
+
+                            <com.nojom.util.SegmentedButtonNew
+                                android:id="@+id/tab_male"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:padding="@dimen/_6sdp"
+                                android:shadowRadius="20"
+                                app:selectedTextColor="@color/white"
+                                app:text="@string/male"
+                                app:textColor="@color/tab_gray"
+                                app:textSize="@dimen/_12sdp" />
+
+                            <com.nojom.util.SegmentedButtonNew
+                                android:id="@+id/tab_female"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:padding="@dimen/_6sdp"
+                                app:selectedTextColor="@color/white"
+                                app:text="@string/female"
+                                app:textColor="@color/tab_gray"
+                                app:textSize="@dimen/_12sdp" />
+
+                        </com.nojom.util.SegmentedButtonGroupNew>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
                 <View
                     android:id="@+id/line_view"
                     android:layout_width="match_parent"
@@ -280,8 +349,8 @@
                     android:id="@+id/txt_pass_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/password"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/password"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     app:fonts="@string/sftext_bold" />

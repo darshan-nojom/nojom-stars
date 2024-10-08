@@ -38,6 +38,7 @@ public class LanguagesActivity extends BaseActivity implements ResponseListener,
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_languages);
         binding.setLangAct(this);

@@ -101,5 +101,6 @@ public class RequiremetList extends GeneralModel {
     public static class CustomData implements Serializable {
         public String dataValue = "";
         public String dataReq = "";
+        public int id;
     }
 }

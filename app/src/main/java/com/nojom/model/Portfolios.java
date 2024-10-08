@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Portfolios extends GeneralModel implements Serializable {
+    public List<Portfolios> data;
 
 
     @Expose
@@ -30,6 +31,28 @@ public class Portfolios extends GeneralModel implements Serializable {
     @SerializedName("portfolio_files")
     public List<PortfolioFiles> portfolioFiles;
 
+    @SerializedName("filename")
+    public String filename;
+    @SerializedName("company_id")
+    public int company_id;
+    @SerializedName("display_order")
+    public int display_order;
+    @SerializedName("public_status")
+    public int public_status;
+
+    @SerializedName("company_name")
+    public String company_name;
+    @SerializedName("company_name_ar")
+    public String company_name_ar;
+    @SerializedName("company_filename")
+    public String company_filename;
+
+    public String getName(String lang) {
+        if (lang.equals("ar")) {
+            return company_name_ar != null ? company_name_ar : company_name;
+        }
+        return company_name;
+    }
 
     public static class PortfolioFiles implements Serializable {
         @Expose

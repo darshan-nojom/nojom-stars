@@ -18,7 +18,7 @@ import static com.nojom.util.Constants.AGENT_PROFILE;
 import static com.nojom.util.Constants.PLATFORM;
 
 public class AuthenticationRequest {
-    String username, password, facebook_id, google_id, email, device_token, first_name, last_name;
+    String username, password, facebook_id, google_id, email, device_token, first_name, last_name, contactNo, mobile_prefix;
     int profile_type_id = AGENT_PROFILE, device_type = PLATFORM;
 
     public AuthenticationRequest() {
@@ -27,6 +27,14 @@ public class AuthenticationRequest {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setPhone(String phone) {
+        this.contactNo = phone;
+    }
+
+    public void setPreFix(String prefix) {
+        this.mobile_prefix = prefix;
     }
 
     public void setPassword(String password) {
@@ -86,7 +94,9 @@ public class AuthenticationRequest {
     public String toString() {
         try {
             return AESHelper.encrypt(new GsonBuilder().create().toJson(this, AuthenticationRequest.class));
-        } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException |
+                 InvalidAlgorithmParameterException | InvalidKeyException | BadPaddingException |
+                 IllegalBlockSizeException e) {
             e.printStackTrace();
         }
         return "";

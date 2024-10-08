@@ -41,6 +41,7 @@ public class ChooseOfferActivity extends BaseActivity implements ChooseOfferAdap
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         chooseOfferActivity = this;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_choose_offer);
@@ -234,6 +235,7 @@ public class ChooseOfferActivity extends BaseActivity implements ChooseOfferAdap
                     if (data.requirmentDetails.get(0).featureName != null) {
                         gigPack.featureTitle = "" + data.requirmentDetails.get(0).featureName;
                         gigPack.dataReq = "" + data.requirmentDetails.get(0).featureName;
+                        gigPack.id = data.requirmentDetails.get(0).id;
                     }
 
                     if (data.requirmentDetails.size() > 1 && data.gigRequirementType != 1) {//this is for custom requirement
@@ -246,6 +248,7 @@ public class ChooseOfferActivity extends BaseActivity implements ChooseOfferAdap
                                 RequiremetList.CustomData customData = new RequiremetList.CustomData();
                                 customData.dataReq = custViewData.featureName;
                                 customData.dataValue = "" + custViewData.price;
+                                customData.id = custViewData.id;
                                 customDataList.add(customData);
                             }
                         }

@@ -19,6 +19,7 @@ public class Pro24TaskDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pro24_task_detail);
         binding.setActvity(this);

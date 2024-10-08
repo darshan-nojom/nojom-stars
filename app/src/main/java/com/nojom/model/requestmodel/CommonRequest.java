@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.GsonBuilder;
 
+import java.util.List;
+
 public class CommonRequest {
 
     public static class EditPaymentAccount {
@@ -91,6 +93,58 @@ public class CommonRequest {
         }
     }
 
+    public static class SendOTP {
+        String email;
+        String phone;
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, SendOTP.class);
+        }
+    }
+
+    public static class CheckContacts {
+        String email;
+        String contact;
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public void setContact(String contact) {
+            this.contact = contact;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, CheckContacts.class);
+        }
+    }
+
+    public static class SendOtpPhone {
+        String phone;
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, SendOtpPhone.class);
+        }
+    }
+
     public static class ResetPassword {
         String email, password, otp;
 
@@ -113,11 +167,64 @@ public class CommonRequest {
         }
     }
 
+    public static class ResetPasswordByToken {
+        String password;
+
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, ResetPasswordByToken.class);
+        }
+    }
+
+    public static class ResetPasswordByPhone {
+        String phone, password;
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, ResetPasswordByPhone.class);
+        }
+    }
+
+    public static class CheckContact {
+        String contact;
+
+        public void setContact(String contact) {
+            this.contact = contact;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, CheckContact.class);
+        }
+    }
+
     public static class UpdateWebsite {
         String website;
+        int status;
 
         public void setWebsite(String website) {
             this.website = website;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
         }
 
         @NonNull
@@ -129,6 +236,11 @@ public class CommonRequest {
 
     public static class UpdateSummary {
         String content;
+        Integer public_status;
+
+        public void setPublic_status(Integer public_status) {
+            this.public_status = public_status;
+        }
 
         public void setContent(String content) {
             this.content = content;
@@ -387,17 +499,22 @@ public class CommonRequest {
     }
 
     public static class AddAddress {
-        Integer cityID, stateID, countryID;
+        String cityID, stateID, countryID;
+//        int registration_step;
 
-        public void setCityID(Integer cityID) {
+//        public void setRegistration_step(int registration_step) {
+//            this.registration_step = registration_step;
+//        }
+
+        public void setCityID(String cityID) {
             this.cityID = cityID;
         }
 
-        public void setStateID(Integer stateID) {
+        public void setStateID(String stateID) {
             this.stateID = stateID;
         }
 
-        public void setCountryID(Integer countryID) {
+        public void setCountryID(String countryID) {
             this.countryID = countryID;
         }
 
@@ -525,7 +642,7 @@ public class CommonRequest {
 
     public static class AddAgencyInfo {
         String name, about, phone, email, website, address, note;
-        int id,name_public,about_public,phone_public,email_public,website_public,address_public,note_public;
+        int id, name_public, about_public, phone_public, email_public, website_public, address_public;
 
         public void setName(String name) {
             this.name = name;
@@ -581,10 +698,6 @@ public class CommonRequest {
 
         public void setAddress_public(int address_public) {
             this.address_public = address_public;
-        }
-
-        public void setNote_public(int note_public) {
-            this.note_public = note_public;
         }
 
         @NonNull
@@ -663,6 +776,20 @@ public class CommonRequest {
         }
     }
 
+    public static class DeleteStore {
+        int id;
+
+        public void setId(int portfolio_id) {
+            this.id = portfolio_id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, DeleteStore.class);
+        }
+    }
+
     public static class AddNotification {
         int notification_id, status;
 
@@ -734,6 +861,11 @@ public class CommonRequest {
 
     public static class AddSkills {
         String skill_id, rating;
+//        Integer public_status;
+
+//        public void setPublic_status(int public_status) {
+//            this.public_status = public_status;
+//        }
 
         public void setSkill_id(String skill_id) {
             this.skill_id = skill_id;
@@ -747,6 +879,42 @@ public class CommonRequest {
         @Override
         public String toString() {
             return new GsonBuilder().create().toJson(this, AddSkills.class);
+        }
+    }
+
+    public static class AddCategory {
+        List<Integer> category_ids, ratings;
+
+        public void setCategory_ids(List<Integer> category_ids) {
+            this.category_ids = category_ids;
+        }
+
+        public void setRatings(List<Integer> ratings) {
+            this.ratings = ratings;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddCategory.class);
+        }
+    }
+
+    public static class AddTags {
+        List<Integer> tag_ids, ratings;
+
+        public void setTag_ids(List<Integer> tag_ids) {
+            this.tag_ids = tag_ids;
+        }
+
+        public void setRatings(List<Integer> ratings) {
+            this.ratings = ratings;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddTags.class);
         }
     }
 
@@ -825,7 +993,37 @@ public class CommonRequest {
     }
 
     public static class UpdateProfile {
-        String first_name, last_name, email, mobile_prefix, contactNo, username;
+        String first_name, last_name, email, mobile_prefix, contactNo, username, birth_date, about_me, whatsapp_number, bussiness_email, settings_order;
+        Integer gender, show_age, show_email, show_whatsapp, show_message_button, show_send_offer_button, price_range_public_status, gender_public_status, registration_step, is_verified, location_public;
+        Double min_price, max_price;
+
+        public void setLocation_public(Integer location_public) {
+            this.location_public = location_public;
+        }
+
+        public void setIs_verify(Integer is_verify) {
+            this.is_verified = is_verify;
+        }
+
+        public void setRegistration_step(Integer registration_step) {
+            this.registration_step = registration_step;
+        }
+
+        public void setPrice_range_public_status(Integer price_range_public_status) {
+            this.price_range_public_status = price_range_public_status;
+        }
+
+        public void setGender_public_status(Integer gender_public_status) {
+            this.gender_public_status = gender_public_status;
+        }
+
+        public void setSettings_order(String settings_order) {
+            this.settings_order = settings_order;
+        }
+
+        public void setShow_email(Integer show_email) {
+            this.show_email = show_email;
+        }
 
         public void setFirst_name(String first_name) {
             this.first_name = first_name;
@@ -847,8 +1045,52 @@ public class CommonRequest {
             this.username = username;
         }
 
+        public void setGender(Integer gender) {
+            this.gender = gender;
+        }
+
+        public void setShowAge(Integer age) {
+            this.show_age = age;
+        }
+
         public void setContactNo(String contactNo) {
             this.contactNo = contactNo;
+        }
+
+        public void setBirthDate(String dob) {
+            this.birth_date = dob;
+        }
+
+        public void setMinPrice(Double minPrice) {
+            this.min_price = minPrice;
+        }
+
+        public void setMaxPrice(Double maxPrice) {
+            this.max_price = maxPrice;
+        }
+
+        public void setAbout_me(String about_me) {
+            this.about_me = about_me;
+        }
+
+        public void setWhatsapp_number(String whatsapp_number) {
+            this.whatsapp_number = whatsapp_number;
+        }
+
+        public void setBussiness_email(String bussiness_email) {
+            this.bussiness_email = bussiness_email;
+        }
+
+        public void setShow_whatsapp(Integer show_whatsapp) {
+            this.show_whatsapp = show_whatsapp;
+        }
+
+        public void setShow_message_button(Integer show_message_button) {
+            this.show_message_button = show_message_button;
+        }
+
+        public void setShow_send_offer_button(Integer show_send_offer_button) {
+            this.show_send_offer_button = show_send_offer_button;
         }
 
         @NonNull
@@ -858,8 +1100,45 @@ public class CommonRequest {
         }
     }
 
+    public static class UpdateMawthooqStatus {
+        Integer public_status, id;
+
+        public void setPublic_status(Integer public_status) {
+            this.public_status = public_status;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, UpdateMawthooqStatus.class);
+        }
+    }
+
+    public static class UpdateProfileVerification {
+        Integer is_verified;
+
+        public void setIs_verified(Integer is_verified) {
+            this.is_verified = is_verified;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, UpdateProfileVerification.class);
+        }
+    }
+
     public static class UpdateProfileName {
         String first_name, last_name;
+        int registration_step;
+
+        public void setRegistration_step(int registration_step) {
+            this.registration_step = registration_step;
+        }
 
         public void setFirst_name(String first_name) {
             this.first_name = first_name;
@@ -877,7 +1156,7 @@ public class CommonRequest {
     }
 
     public static class SocialPlatform {
-        String social_platform_url,platform_id,social_platform_followers;
+        String social_platform_url, platform_id, social_platform_followers;
 
         public void setSocial_platform_url(String social_platform_url) {
             this.social_platform_url = social_platform_url;
@@ -909,6 +1188,20 @@ public class CommonRequest {
         @Override
         public String toString() {
             return new GsonBuilder().create().toJson(this, VerifyFb.class);
+        }
+    }
+
+    public static class GoogleId {
+        String google_id;
+
+        public void setGoogle_id(String google_id) {
+            this.google_id = google_id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, GoogleId.class);
         }
     }
 
@@ -978,16 +1271,115 @@ public class CommonRequest {
     }
 
     public static class ProfileVerification {
-        String type;
+        String type, mawthooq_number;
 
         public void setType(String type) {
             this.type = type;
+        }
+
+        public void setMawthooq_number(String mawthooq_number) {
+            this.mawthooq_number = mawthooq_number;
         }
 
         @NonNull
         @Override
         public String toString() {
             return new GsonBuilder().create().toJson(this, ProfileVerification.class);
+        }
+    }
+
+    public static class MawSubmit {
+        String mawthooq, password;
+
+        public void setMawthooq(String mawthooq) {
+            this.mawthooq = mawthooq;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, MawSubmit.class);
+        }
+    }
+
+    public static class MawOldSubmit {
+        String password;
+        MawOld mawthooq;
+
+        public void setMawthooq(MawOld mawthooq) {
+            this.mawthooq = mawthooq;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, MawOldSubmit.class);
+        }
+    }
+
+    public static class MawOld {
+        String old_number, new_number;
+
+        public void setOld_number(String old_number) {
+            this.old_number = old_number;
+        }
+
+        public void setNew_number(String new_number) {
+            this.new_number = new_number;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, MawOld.class);
+        }
+    }
+
+    public static class EmailOtp {
+        String email, otp, phone;
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public void setOtp(String otp) {
+            this.otp = otp;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, EmailOtp.class);
+        }
+    }
+
+    public static class PhoneOtp {
+        String otp, phone;
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public void setOtp(String otp) {
+            this.otp = otp;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, PhoneOtp.class);
         }
     }
 
@@ -1075,6 +1467,51 @@ public class CommonRequest {
         }
     }
 
+    public static class AddPayment {
+        String beneficiary_name, iban;
+        Integer bank_id, id, is_primary;
+
+        public void setBeneficiary_name(String beneficiary_name) {
+            this.beneficiary_name = beneficiary_name;
+        }
+
+        public void setIban(String iban) {
+            this.iban = iban;
+        }
+
+        public void setBank_id(int bank_id) {
+            this.bank_id = bank_id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public void setIs_primary(Integer is_primary) {
+            this.is_primary = is_primary;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddPayment.class);
+        }
+    }
+
+    public static class DeleteBank {
+        Integer id;
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, DeleteBank.class);
+        }
+    }
+
     public static class SendFileMail {
         int file_attribute_id;
 
@@ -1104,6 +1541,20 @@ public class CommonRequest {
         @Override
         public String toString() {
             return new GsonBuilder().create().toJson(this, ClientReview.class);
+        }
+    }
+
+    public static class SendEmail {
+        String email;
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, SendEmail.class);
         }
     }
 
@@ -1155,6 +1606,11 @@ public class CommonRequest {
 
     public static class ExpertiseRequest {
         String experience, service_category_id;
+        Integer public_status;
+
+        public void setCategory_public_status(Integer category_public_status) {
+            this.public_status = category_public_status;
+        }
 
         public void setExperience(String experience) {
             this.experience = experience;
@@ -1241,6 +1697,579 @@ public class CommonRequest {
         @Override
         public String toString() {
             return new GsonBuilder().create().toJson(this, DeleteSurveyImage.class);
+        }
+    }
+
+    public static class AddSocialMedia {
+        String username;
+        int social_platform_type_id, social_platform_id, followers, is_public;
+
+        public void setFollowers(int followers) {
+            this.followers = followers;
+        }
+
+        public void setIs_public(int is_public) {
+            this.is_public = is_public;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public void setSocial_platform_type_id(int social_platform_type_id) {
+            this.social_platform_type_id = social_platform_type_id;
+        }
+
+        public void setSocial_platform_id(int social_platform_id) {
+            this.social_platform_id = social_platform_id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddSocialMedia.class);
+        }
+    }
+
+    public static class EditSocialMedia {
+        String username;
+        int social_platform_id;
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public void setSocial_platform_id(int social_platform_id) {
+            this.social_platform_id = social_platform_id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, EditSocialMedia.class);
+        }
+    }
+
+    public static class DeleteSocialMedia {
+        int social_platform_id;
+
+        public void setSocial_platform_id(int social_platform_id) {
+            this.social_platform_id = social_platform_id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, DeleteSocialMedia.class);
+        }
+    }
+
+    public static class ReOrderMedia {
+        //        JSONObject jsonObject;
+        String reorder;
+
+//        public void setJsonObject(JSONObject jsonObject) {
+//            this.jsonObject = jsonObject;
+//        }
+
+        public void setReorder(String reorder) {
+            this.reorder = reorder;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, ReOrderMedia.class);
+        }
+    }
+
+    public static class AddWebsiteRequest {
+        String link, platform_name;
+
+        public void setPlatoform_name(String platoform_name) {
+            this.platform_name = platoform_name;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddWebsiteRequest.class);
+        }
+    }
+
+    public static class AddCompany {
+        Integer company_id, times, times_public_status, public_status, campaign_date_public_status, contract_public_status;
+        String campaign_date, contract_start_date, contract_end_date;
+        String company_name, company_link;
+
+        public void setCompany_name(String company_name) {
+            this.company_name = company_name;
+        }
+
+        public void setCompany_link(String company_link) {
+            this.company_link = company_link;
+        }
+
+        public void setCompany_id(Integer company_id) {
+            this.company_id = company_id;
+        }
+
+        public void setTimes(Integer times) {
+            this.times = times;
+        }
+
+        public void setTimes_public_status(Integer times_public_status) {
+            this.times_public_status = times_public_status;
+        }
+
+        public void setPublic_status(Integer public_status) {
+            this.public_status = public_status;
+        }
+
+        public void setCampaign_date_public_status(Integer campaign_date_public_status) {
+            this.campaign_date_public_status = campaign_date_public_status;
+        }
+
+        public void setCampaign_date(String campaign_date) {
+            this.campaign_date = campaign_date;
+        }
+
+        public void setContract_start_date(String contract_start_date) {
+            this.contract_start_date = contract_start_date;
+        }
+
+        public void setContract_end_date(String contract_end_date) {
+            this.contract_end_date = contract_end_date;
+        }
+
+        public void setContract_public_status(Integer contract_public_status) {
+            this.contract_public_status = contract_public_status;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddCompany.class);
+        }
+    }
+
+    public static class AddPartners {
+        int company_id;
+        String link, code;
+        String company_name, company_link;
+
+        public void setCompany_name(String company_name) {
+            this.company_name = company_name;
+        }
+
+        public void setCompany_link(String company_link) {
+            this.company_link = company_link;
+        }
+
+        public void setCompany_id(int company_id) {
+            this.company_id = company_id;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddPartners.class);
+        }
+    }
+
+    public static class UpdateCompany {
+        Integer company_id, times, status, times_public_status, public_status, campaign_date_public_status, contract_public_status;
+        int id;
+        String campaign_date, contract_start_date, contract_end_date;
+        String company_name, company_link;
+//        1 - public
+//2 - brand
+//3- only me
+
+        public void setCompany_name(String company_name) {
+            this.company_name = company_name;
+        }
+
+        public void setCompany_link(String company_link) {
+            this.company_link = company_link;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setPublic_status(Integer public_status) {
+            this.public_status = public_status;
+        }
+
+        public void setCompany_id(Integer company_id) {
+            this.company_id = company_id;
+        }
+
+        public void setTimes(Integer times) {
+            this.times = times;
+        }
+
+        public void setStatus(Integer status) {
+            this.status = status;
+        }
+
+        public void setTimes_public_status(Integer times_public_status) {
+            this.times_public_status = times_public_status;
+        }
+
+        public void setCampaign_date_public_status(Integer campaign_date_public_status) {
+            this.campaign_date_public_status = campaign_date_public_status;
+        }
+
+        public void setContract_public_status(Integer contract_public_status) {
+            this.contract_public_status = contract_public_status;
+        }
+
+        public void setCampaign_date(String campaign_date) {
+            this.campaign_date = campaign_date;
+        }
+
+        public void setContract_start_date(String contract_start_date) {
+            this.contract_start_date = contract_start_date;
+        }
+
+        public void setContract_end_date(String contract_end_date) {
+            this.contract_end_date = contract_end_date;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, UpdateCompany.class);
+        }
+    }
+
+    public static class UpdatePartner {
+        int company_id, status; /*1 or 2 = 1 = active, 2 = hide*/
+        int public_status, id;
+        String link, code;
+        String company_name, company_link;
+//        1 - public
+//2 - brand
+//3- only me
+
+
+        public void setCompany_name(String company_name) {
+            this.company_name = company_name;
+        }
+
+        public void setCompany_link(String company_link) {
+            this.company_link = company_link;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setPublic_status(int public_status) {
+            this.public_status = public_status;
+        }
+
+        public void setCompany_id(int company_id) {
+            this.company_id = company_id;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, UpdatePartner.class);
+        }
+    }
+
+    public static class DeleteCompany {
+        int id;
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, DeleteCompany.class);
+        }
+    }
+
+    public static class AddNewPortfolio {
+        Integer company_id, public_status;
+        String company_name, company_link;
+
+        public void setCompany_name(String company_name) {
+            this.company_name = company_name;
+        }
+
+        public void setCompany_link(String company_link) {
+            this.company_link = company_link;
+        }
+
+        public void setPublic_status(Integer public_status) {
+            this.public_status = public_status;
+        }
+
+        public void setCompany_id(Integer company_id) {
+            this.company_id = company_id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddNewPortfolio.class);
+        }
+    }
+
+    public static class AddNewCompany {
+        String company_name, company_link;
+
+        public void setCompany_name(String company_name) {
+            this.company_name = company_name;
+        }
+
+        public void setCompany_link(String company_link) {
+            this.company_link = company_link;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddNewCompany.class);
+        }
+    }
+
+    public static class AddStores {
+        String title, link;
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddStores.class);
+        }
+    }
+
+    public static class AddProduct {
+        String title, url, price;
+        int currency;
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
+
+        public void setCurrency(int currency) {
+            this.currency = currency;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddProduct.class);
+        }
+    }
+
+    public static class UpdateProduct {
+        String title, url, price;
+        int currency, id;
+        Integer public_status;
+
+        public void setPublic_status(Integer public_status) {
+            this.public_status = public_status;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
+
+        public void setCurrency(int currency) {
+            this.currency = currency;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, UpdateProduct.class);
+        }
+    }
+
+    public static class UpdateNewPortfolio {
+        int company_id, portfolio_id, status, public_status; /*1 or 2 = 1 = active, 2 = hide*/
+
+        public void setPublic_status(int public_status) {
+            this.public_status = public_status;
+        }
+
+        public void setCompany_id(int company_id) {
+            this.company_id = company_id;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        public void setPortfolio_id(int portfolio_id) {
+            this.portfolio_id = portfolio_id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, UpdateNewPortfolio.class);
+        }
+    }
+
+    public static class UpdateStores {
+        int id, status, public_status; /*1 or 2 = 1 = active, 2 = hide*/
+        String title, link;
+
+        public void setPublic_status(int public_status) {
+            this.public_status = public_status;
+        }
+
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, UpdateStores.class);
+        }
+    }
+
+    public static class UpdateSocialMedia {
+        String username;
+        int social_platform_id, followers, is_public, public_status;
+
+        public void setPublic_status(int public_status) {
+            this.public_status = public_status;
+        }
+
+        public void setFollowers(int followers) {
+            this.followers = followers;
+        }
+
+        public void setIs_public(int is_public) {
+            this.is_public = is_public;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public void setSocial_platform_id(int social_platform_id) {
+            this.social_platform_id = social_platform_id;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, UpdateSocialMedia.class);
+        }
+    }
+
+    public static class AddYoutube {
+        String link;
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddYoutube.class);
+        }
+    }
+
+    public static class UpdateYoutube {
+        Integer public_status, id;
+        String link;
+
+        //        1 - public
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public void setPublic_status(Integer public_status) {
+            this.public_status = public_status;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, UpdateYoutube.class);
         }
     }
 }

@@ -13,6 +13,7 @@
         android:layout_gravity="center"
         android:padding="@dimen/_20sdp"
         android:background="@drawable/white_rounded_corner_15"
+        android:backgroundTint="@color/C_F2F2F7"
         android:orientation="vertical">
 
         <ImageView

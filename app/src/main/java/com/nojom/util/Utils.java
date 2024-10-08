@@ -1,17 +1,6 @@
 package com.nojom.util;
 
-import static com.nojom.util.Constants.FOLLOWER_1;
-import static com.nojom.util.Constants.FOLLOWER_2;
-import static com.nojom.util.Constants.FOLLOWER_3;
-import static com.nojom.util.Constants.FOLLOWER_4;
-import static com.nojom.util.Constants.FOLLOWER_5;
-import static com.nojom.util.Constants.FOLLOWER_6;
-import static com.nojom.util.Constants.FOLLOWER_7;
-import static com.nojom.util.Constants.KEY_LIVE_BASE_URL;
-import static com.nojom.util.Constants.KEY_LIVE_BASE_URL_GIG;
-import static com.nojom.util.Constants.SELECT_FOLLOWER;
 import static com.nojom.util.FilePath.getDataColumn;
-import static com.nojom.Task24Application.BASE_URL_GIG;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -55,10 +44,8 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.nojom.BuildConfig;
 import com.nojom.R;
 import com.nojom.Task24Application;
-import com.nojom.api.ApiClient;
 import com.nojom.model.ServicesModel;
 import com.nojom.model.UserModel;
 import com.nojom.ui.BaseActivity;
@@ -85,6 +72,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Utils {
 
@@ -192,15 +181,26 @@ public class Utils {
         }
     }
 
-    public static String priceWith$(Object object) {
+    public static String priceWith$(Object object, BaseActivity activity) {
         String price = String.valueOf(object);
         if (TextUtils.isEmpty(price)) {
-            return "$0";
+            return activity.getString(R.string.dollar) + "0";
         }
-        if (price.contains("$")) {
-            price = price.replace("$", "");
+        if (price.contains(activity.getString(R.string.dollar))) {
+            price = price.replace(activity.getString(R.string.dollar), "");
         }
-        return "$" + price.trim();
+        return activity.getString(R.string.dollar) + price.trim();
+    }
+
+    public static String priceWithSAR(BaseActivity activity, Object object) {
+        String price = String.valueOf(object);
+        if (TextUtils.isEmpty(price)) {
+            return "0 " + activity.getString(R.string.sar);
+        }
+        if (price.contains("SAR")) {
+            price = price.replace(activity.getString(R.string.sar), "");
+        }
+        return price.trim() + " " + activity.getString(R.string.sar);
     }
 
     public static String priceWithout$(Object object) {
@@ -210,11 +210,24 @@ public class Utils {
         }
         if (price.contains("$")) {
             price = price.replace("$", "");
+        } else if (price.contains("ريال")) {
+            price = price.replace("ريال", "");
         }
         return price.trim();
     }
 
-    private static String numberFormat(String number) {
+    public static String priceWithoutSAR(BaseActivity activity, Object object) {
+        String price = String.valueOf(object);
+        if (TextUtils.isEmpty(price)) {
+            return "0";
+        }
+        if (price.contains(activity.getString(R.string.sar))) {
+            price = price.replace(activity.getString(R.string.sar), "");
+        }
+        return price.trim();
+    }
+
+    public static String numberFormat(String number) {
         try {
             Double d = Double.parseDouble(number);
             NumberFormat nf = new DecimalFormat("#.####");
@@ -391,65 +404,50 @@ public class Utils {
         return level;
     }
 
-    public static int getPlatformId(String platform) {
+    public static int getPlatformId(String platform, BaseActivity context) {
         int level = 0;
-        switch (platform) {
-            case SELECT_FOLLOWER:
-                level = 0;
-                break;
-            case FOLLOWER_1:
-                level = 1;
-                break;
-            case FOLLOWER_2:
-                level = 2;
-                break;
-            case FOLLOWER_3:
-                level = 3;
-                break;
-            case FOLLOWER_4:
-                level = 4;
-                break;
-            case FOLLOWER_5:
-                level = 5;
-                break;
-            case FOLLOWER_6:
-                level = 6;
-                break;
-            case FOLLOWER_7:
-                level = 7;
-                break;
+        if (platform.equals(context.getString(R.string.select_followers))) {
+            level = 0;
+        } else if (platform.equals(context.getString(R.string._1k_10k))) {
+            level = 1;
+        } else if (platform.equals(context.getString(R.string._10k_50k))) {
+            level = 2;
+        } else if (platform.equals(context.getString(R.string._50k_100k))) {
+            level = 3;
+        } else if (platform.equals(context.getString(R.string._100k_500k))) {
+            level = 4;
+        } else if (platform.equals(context.getString(R.string._500k_1m))) {
+            level = 5;
+        } else if (platform.equals(context.getString(R.string._1m_10m))) {
+            level = 6;
+        } else if (platform.equals(context.getString(R.string._10m))) {
+            level = 7;
         }
+
         return level;
     }
 
-    public static String getPlatformTxt(int platformId) {
+    public static String getPlatformTxt(int platformId, BaseActivity context) {
         String level = "";
-        switch (platformId) {
-            case 0:
-                level = SELECT_FOLLOWER;
-                break;
-            case 1:
-                level = FOLLOWER_1;
-                break;
-            case 2:
-                level = FOLLOWER_2;
-                break;
-            case 3:
-                level = FOLLOWER_3;
-                break;
-            case 4:
-                level = FOLLOWER_4;
-                break;
-            case 5:
-                level = FOLLOWER_5;
-                break;
-            case 6:
-                level = FOLLOWER_6;
-                break;
-            case 7:
-                level = FOLLOWER_7;
-                break;
+
+        if (platformId == 0) {
+            level = context.getString(R.string.select_followers);
+        } else if (platformId == 1) {
+            level = context.getString(R.string._1k_10k);
+        } else if (platformId == 2) {
+            level = context.getString(R.string._10k_50k);
+        } else if (platformId == 3) {
+            level = context.getString(R.string._50k_100k);
+        } else if (platformId == 4) {
+            level = context.getString(R.string._100k_500k);
+        } else if (platformId == 5) {
+            level = context.getString(R.string._500k_1m);
+        } else if (platformId == 6) {
+            level = context.getString(R.string._1m_10m);
+        } else if (platformId == 7) {
+            level = context.getString(R.string._10m);
         }
+
         return level;
     }
 
@@ -741,6 +739,30 @@ public class Utils {
             return "";
         }
     }
+    public static String setDeadLine1(BaseActivity activity, String deadline) {
+        try {
+            String[] deadlineText = deadline.split(" ");
+            String date = deadlineText[0];
+            String time = deadlineText[1];
+            String outputFormat = "EEEE, dd MMMM yyyy";
+            String outputFormatTime = "hh:mm a";
+
+            if (activity.language.equals("ar")) {
+                outputFormat = "EEEE, dd MMMM yyyy";
+                outputFormatTime = "hh:mm a";
+            }
+
+            String inputFormat = "yyyy-MM-dd";
+            String inputFormatTime = "HH:mm";
+
+            String formattedDate = TimeStampConverter(inputFormat, date, outputFormat);
+            String formattedTime = TimeStampConverter(inputFormatTime, time, outputFormatTime);
+            return (String.format("%s, %s", formattedDate, formattedTime));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
 
     public static String TimeStampConverter(final String inputFormat,
                                             String inputTimeStamp, final String outputFormat)
@@ -819,21 +841,21 @@ public class Utils {
                             return;
                         }
 
-                        if (!BuildConfig.DEBUG) {
-                            String liveBaseUrl = remoteConfig.getString(KEY_LIVE_BASE_URL);
-                            if (!TextUtils.isEmpty(liveBaseUrl)) {
-                                Task24Application.LIVE_URL = liveBaseUrl;
-                            }
-                            Log.e("Remote LIVE BASE ", "" + Task24Application.LIVE_URL);
-                            ApiClient.retrofit = null;
-                        }
-
-                        if (!BuildConfig.DEBUG) {
-                            String liveBaseUrl = remoteConfig.getString(KEY_LIVE_BASE_URL_GIG);
-                            Log.e("Remote LIVE BASE GIG ", "" + liveBaseUrl);
-                            BASE_URL_GIG = liveBaseUrl;
-                            ApiClient.retrofitGig = null;
-                        }
+//                        if (!BuildConfig.DEBUG) {
+//                            String liveBaseUrl = remoteConfig.getString(KEY_LIVE_BASE_URL);
+//                            if (!TextUtils.isEmpty(liveBaseUrl)) {
+//                                Task24Application.LIVE_URL = liveBaseUrl;
+//                            }
+//                            Log.e("Remote LIVE BASE ", "" + Task24Application.LIVE_URL);
+//                            ApiClient.retrofit = null;
+//                        }
+//
+//                        if (!BuildConfig.DEBUG) {
+//                            String liveBaseUrl = remoteConfig.getString(KEY_LIVE_BASE_URL_GIG);
+//                            Log.e("Remote LIVE BASE GIG ", "" + liveBaseUrl);
+//                            BASE_URL_GIG = liveBaseUrl;
+//                            ApiClient.retrofitGig = null;
+//                        }
 
                         if (remoteConfig.getString(Constants.KEY_FOR_MAINTENANCE).equalsIgnoreCase("true")) {
                             if (!isActivityRunning(MaintenanceActivity.class, activity, false)) {
@@ -1091,6 +1113,59 @@ public class Utils {
     }
 
     public enum WindowScreen {
-        NAME, USERNAME, WEBSITE, OFFER, MESSAGE
+        NAME, USERNAME, WEBSITE, OFFER, MESSAGE, IMG, GENDER, DOB, COUNTRY, ABOUT_ME,EMAIL
+    }
+
+    public static boolean validateWebsite(String input) {
+        String regex = "^https://.*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+
+        if (!matcher.matches()) {
+            // If the input doesn't match the expected pattern, show an error
+            return false;
+        } else {
+            // Clear the error if the input is valid
+            return true;
+        }
+    }
+
+    public static int calculateAge(String birthdate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+        try {
+            // Parse the birthdate string into a Date object
+            Date birthDate = sdf.parse(birthdate);
+
+            // Get the current date
+            Calendar currentDate = Calendar.getInstance();
+
+            // Get the birthdate year and month
+            Calendar birthDateCal = Calendar.getInstance();
+            if (birthDate != null) {
+                birthDateCal.setTime(birthDate);
+            }
+            int birthYear = birthDateCal.get(Calendar.YEAR);
+            int birthMonth = birthDateCal.get(Calendar.MONTH);
+            int birthDay = birthDateCal.get(Calendar.DAY_OF_MONTH);
+
+            // Get the current year, month, and day
+            int currentYear = currentDate.get(Calendar.YEAR);
+            int currentMonth = currentDate.get(Calendar.MONTH);
+            int currentDay = currentDate.get(Calendar.DAY_OF_MONTH);
+
+            // Calculate the age
+            int age = currentYear - birthYear;
+
+            // Check if the birthday has occurred this year
+            if (currentMonth < birthMonth || (currentMonth == birthMonth && currentDay < birthDay)) {
+                age--;
+            }
+
+            return age;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return -1; // Return -1 if there's an error parsing the date
+        }
     }
 }

@@ -47,6 +47,18 @@ class EasyFragmentVM extends AndroidViewModel implements View.OnClickListener {
 
         binding.tvHowItWorks.setPaintFlags(binding.tvHowItWorks.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+        if (fragment.activity.getCurrency().equals("SAR")) {
+            binding.txtTitle.setText(fragment.activity.getString(R.string.get_12_sar));
+            binding.txtGooglePlay.setText(fragment.activity.getString(R.string.google_play_2_sar));
+            binding.txtGoogle.setText(fragment.activity.getString(R.string.google_2_sar));
+            binding.txtFb.setText(fragment.activity.getString(R.string.facebook_2_sar));
+            binding.txtTp.setText(fragment.activity.getString(R.string.trustpilot_2_sar));
+            binding.txtSj.setText(fragment.activity.getString(R.string.sitejabber_2_sar));
+            binding.txtT3.setText(fragment.activity.getString(R.string.get_2_for_every_review_sar));
+            binding.txtT3D.setText(fragment.activity.getString(R.string.you_will_get_2_for_one_review_on_social_platform_sar));
+            binding.tvTermsOfUse.setText(fragment.activity.getString(R.string.earn_money_footer_sar));
+        }
+
         binding.tvHowItWorks.setOnClickListener(this);
         binding.txtStart.setOnClickListener(this);
         binding.relAppStore.setOnClickListener(this);

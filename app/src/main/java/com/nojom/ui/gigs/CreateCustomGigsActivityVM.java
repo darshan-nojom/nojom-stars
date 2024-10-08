@@ -4,10 +4,10 @@ import static com.nojom.util.Constants.API_ACTIVE_INACTIVE_GIG;
 import static com.nojom.util.Constants.API_CREATE_CUSTOM_GIG;
 import static com.nojom.util.Constants.API_CREATE_OFFER;
 import static com.nojom.util.Constants.API_DELETE_GIG;
+import static com.nojom.util.Constants.API_GET_CONNECTED_PLATFORM;
 import static com.nojom.util.Constants.API_GET_GIG_CUSTOM_SERVICE_CAT;
 import static com.nojom.util.Constants.API_GET_GIG_LANGUAGE;
 import static com.nojom.util.Constants.API_GET_GIG_SERVICE_BY_CAT;
-import static com.nojom.util.Constants.API_GET_INF_PLATFORM;
 import static com.nojom.util.Constants.API_GET_REQUIREMENTS_CATEGORY;
 import static com.nojom.util.Constants.API_GIG_CAT_CHARGES;
 import static com.nojom.util.Constants.API_UPDATE_CUSTOM_GIG;
@@ -16,13 +16,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.nojom.api.APIRequest;
+import com.nojom.model.ConnectedSocialMedia;
 import com.nojom.model.CreateOfferResponse;
 import com.nojom.model.GigCatCharges;
 import com.nojom.model.GigCategoryModel;
 import com.nojom.model.GigSubCategoryModel;
 import com.nojom.model.Language;
 import com.nojom.model.RequiremetList;
-import com.nojom.model.SocialPlatformResponse;
 import com.nojom.ui.BaseActivity;
 import com.nojom.util.Preferences;
 
@@ -32,25 +32,25 @@ import java.util.HashMap;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class CreateCustomGigsActivityVM extends ViewModel implements APIRequest.JWTRequestResponseListener {
+public class CreateCustomGigsActivityVM extends ViewModel implements APIRequest.JWTRequestResponseListener, APIRequest.APIRequestListener {
 
     private BaseActivity activity;
-    private MutableLiveData<Integer> isShowProgress = new MutableLiveData<>();
-    private MutableLiveData<Integer> isHideProgress = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isCreateSuccess = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isDeleteGigSuccess = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isActiveInactiveSuccess = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isShowProgressCreateOffer = new MutableLiveData<>();
-    private MutableLiveData<CreateOfferResponse> createOfferSuccess = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<GigCatCharges.Data>> gigCatCharges = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<GigCategoryModel.Data>> gigCategoryList = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<SocialPlatformResponse.Data>> socialDataList = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<GigSubCategoryModel.Data>> gigSubCatList = new MutableLiveData<>();
+    private final MutableLiveData<Integer> isShowProgress = new MutableLiveData<>();
+    private final MutableLiveData<Integer> isHideProgress = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isCreateSuccess = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isDeleteGigSuccess = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isActiveInactiveSuccess = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isShowProgressCreateOffer = new MutableLiveData<>();
+    private final MutableLiveData<CreateOfferResponse> createOfferSuccess = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<GigCatCharges.Data>> gigCatCharges = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<GigCategoryModel.Data>> gigCategoryList = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<ConnectedSocialMedia.Data>> socialDataList = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<GigSubCategoryModel.Data>> gigSubCatList = new MutableLiveData<>();
     //    private MutableLiveData<ArrayList<GigDeliveryTimeModel.Data>> gigDeliveryList = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<Language.Data>> languageList = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<RequiremetList.Data>> requirementList = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<Language.Data>> languageList = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<RequiremetList.Data>> requirementList = new MutableLiveData<>();
 
-    public MutableLiveData<ArrayList<SocialPlatformResponse.Data>> getSocialDataList() {
+    public MutableLiveData<ArrayList<ConnectedSocialMedia.Data>> getSocialDataList() {
         return socialDataList;
     }
 
@@ -140,14 +140,15 @@ public class CreateCustomGigsActivityVM extends ViewModel implements APIRequest.
         apiRequest.apiRequestJWT(this, activity, url, false, null);
     }
 
+
     public void getInfluencerPlatform() {
         if (!activity.isNetworkConnected())
             return;
 
-        getIsShowProgress().postValue(14);
+//        getIsShowProgress().postValue(15);
 
         APIRequest apiRequest = new APIRequest();
-        apiRequest.apiRequestJWT(this, activity, API_GET_INF_PLATFORM, false, null);
+        apiRequest.makeAPIRequest(activity, API_GET_CONNECTED_PLATFORM, null, false, this);
     }
 
     /*public void getDeliveryTime() {
@@ -212,13 +213,6 @@ public class CreateCustomGigsActivityVM extends ViewModel implements APIRequest.
                 getCreateOfferSuccess().postValue(createOffer);
             }
             getIsShowProgressCreateOffer().postValue(false);
-        } else if (url.equalsIgnoreCase(API_GET_INF_PLATFORM)) {
-            SocialPlatformResponse gigCategories = SocialPlatformResponse.getSocialPlatforms(responseBody);
-            if (gigCategories != null && gigCategories.data != null && gigCategories.data.size() > 0) {
-                getSocialDataList().postValue(gigCategories.data);
-//                Preferences.saveGigCategory(activity, gigCategories.data);
-            }
-            getIsHideProgress().postValue(14);
         } else {
             GigSubCategoryModel gigCategories = GigSubCategoryModel.getGigSubCategories(responseBody);
             if (gigCategories != null && gigCategories.data != null && gigCategories.data.size() > 0) {
@@ -244,8 +238,6 @@ public class CreateCustomGigsActivityVM extends ViewModel implements APIRequest.
         } else if (url.equalsIgnoreCase(API_CREATE_OFFER)) {
             activity.toastMessage(message);
             getIsShowProgressCreateOffer().postValue(false);
-        } else if (url.equalsIgnoreCase(API_GET_INF_PLATFORM)) {
-            getIsHideProgress().postValue(14);
         } else {
             getIsHideProgress().postValue(2);
         }
@@ -268,7 +260,7 @@ public class CreateCustomGigsActivityVM extends ViewModel implements APIRequest.
         }
         APIRequest apiRequest = new APIRequest();
         apiRequest.apiImageUploadRequestBodyCustomGig(this, activity, endpointUrl, body, gigTitleBody, gigDescBody, gigCatIdBody, gigSubCatIdBody, gigPackagesBody,
-                gigOtherBody, status, gigId, searTagsList, language, profileBody, deadlineArray, mainPriceBody, deadlineDesc,platformBody);
+                gigOtherBody, status, gigId, searTagsList, language, profileBody, deadlineArray, mainPriceBody, deadlineDesc, platformBody);
     }
 
     public void duplicateGig(RequestBody gigTitleBody, RequestBody gigDescBody, RequestBody gigCatIdBody, RequestBody gigSubCatIdBody,
@@ -279,7 +271,7 @@ public class CreateCustomGigsActivityVM extends ViewModel implements APIRequest.
         getIsShowProgress().postValue(isLive ? 10 : 11);
 
         APIRequest apiRequest = new APIRequest();
-        apiRequest.gigDuplicateRequestCustomGig(this, activity, API_CREATE_CUSTOM_GIG, body, gigTitleBody, gigDescBody, gigCatIdBody, gigSubCatIdBody, gigPackagesBody, gigOtherReqBody, status, gigId, searTagsList, language, fileToDelete, isDuplicate, profileBody, deadlineType, mainPriceBody, deadlineDesc,platformBody);
+        apiRequest.gigDuplicateRequestCustomGig(this, activity, API_CREATE_CUSTOM_GIG, body, gigTitleBody, gigDescBody, gigCatIdBody, gigSubCatIdBody, gigPackagesBody, gigOtherReqBody, status, gigId, searTagsList, language, fileToDelete, isDuplicate, profileBody, deadlineType, mainPriceBody, deadlineDesc, platformBody);
     }
 
     public void deleteGig(int gigId) {
@@ -340,5 +332,25 @@ public class CreateCustomGigsActivityVM extends ViewModel implements APIRequest.
 
         APIRequest apiRequest = new APIRequest();
         apiRequest.apiRequestBodyJWT(this, activity, API_CREATE_OFFER, map);
+    }
+
+    @Override
+    public void onResponseSuccess(String decryptedData, String urlEndPoint, String msg) {
+        if (urlEndPoint.equals(API_GET_CONNECTED_PLATFORM)) {
+            ConnectedSocialMedia gigCategories = ConnectedSocialMedia.getSocialPlatforms(decryptedData);
+            if (gigCategories != null) {
+                getSocialDataList().postValue(gigCategories.data);
+//                Preferences.saveGigCategory(activity, gigCategories.data);
+            }
+            getIsHideProgress().postValue(14);
+        }
+    }
+
+    @Override
+    public void onResponseError(Throwable t, String urlEndPoint, String message) {
+        getIsHideProgress().postValue(14);
+        if (urlEndPoint.equals(API_GET_CONNECTED_PLATFORM)) {
+            getSocialDataList().postValue(null);
+        }
     }
 }

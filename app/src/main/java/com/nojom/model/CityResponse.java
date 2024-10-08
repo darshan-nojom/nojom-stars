@@ -22,8 +22,18 @@ public class CityResponse extends GeneralModel implements Serializable {
         @SerializedName("cityName")
         public String cityName;
         @Expose
+        @SerializedName("cityNameAr")
+        public String cityNameAr;
+        @Expose
         @SerializedName("stateID")
         public int stateID;
+
+        public String getCityName(String lang) {
+            if (lang.equals("ar")) {
+                return cityNameAr != null ? cityNameAr : cityName;
+            }
+            return cityName;
+        }
 
         public boolean isSelected;
     }

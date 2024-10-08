@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/C_F2F2F7"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -46,6 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/phone_number"
+                        android:layoutDirection="ltr"
                         android:textSize="@dimen/_11sdp"
                         app:fonts="@string/sftext_regular" />
                 </LinearLayout>
@@ -149,6 +150,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/phone_number"
                         android:textSize="@dimen/_11sdp"
+                        android:layoutDirection="ltr"
                         app:fonts="@string/sftext_regular" />
                 </LinearLayout>
             </LinearLayout>
@@ -251,6 +253,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/phone_number"
                         android:textSize="@dimen/_11sdp"
+                        android:layoutDirection="ltr"
                         app:fonts="@string/sftext_regular" />
                 </LinearLayout>
             </LinearLayout>

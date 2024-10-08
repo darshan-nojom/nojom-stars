@@ -115,7 +115,7 @@ public class GetProjectListAPI implements APIRequest.APIRequestListener {
         getSomethingWrong().postValue(true);
         getJobList().postValue(null);
         if (getPageNo().getValue() == null || getPageNo().getValue() == 1) {
-            fragment.activity.toastMessage(message);
+//            fragment.activity.toastMessage(message);
             if(jobListResponseListener!=null) {
                 jobListResponseListener.onJobsResponse(null, 1);
             }

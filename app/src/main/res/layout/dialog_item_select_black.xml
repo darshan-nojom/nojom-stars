@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@drawable/dialog_round_corner_top"
-        android:backgroundTint="@color/background"
+        android:backgroundTint="@color/C_F2F2F7"
         android:minHeight="@dimen/_280sdp"
         android:orientation="vertical"
         android:padding="@dimen/_15sdp"

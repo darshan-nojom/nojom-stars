@@ -81,8 +81,11 @@ class AddSurveyActivityVM extends AndroidViewModel implements View.OnClickListen
     }
 
     private void initData() {
-        selectedGender =activity.getString(R.string.male);
+        selectedGender = activity.getString(R.string.male);
 
+        if (activity.getCurrency().equals("SAR")) {
+            binding.txtFooter.setText(activity.getString(R.string.we_will_review_your_survey_within_few_hours_and_deposit_5_to_your_balance_today_we_will_also_pick_a_winner_for_100_sar));
+        }
         binding.imgBack.setOnClickListener(this);
         binding.btnAddSurvey.setOnClickListener(this);
         binding.txtFemale.setOnClickListener(this);
@@ -109,9 +112,9 @@ class AddSurveyActivityVM extends AndroidViewModel implements View.OnClickListen
         servicesList = new ArrayList<>();
         servicesList.addAll(Preferences.getTopServices(activity));
 
-        GridLayoutManager manager = new GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false);
-        binding.rvServices.setLayoutManager(manager);
-        binding.rvServices.addItemDecoration(new EqualSpacingItemDecoration(16));
+//        GridLayoutManager manager = new GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false);
+//        binding.rvServices.setLayoutManager(manager);
+//        binding.rvServices.addItemDecoration(new EqualSpacingItemDecoration(16));
 
         if (servicesList != null && servicesList.size() > 0) {
             setData();
@@ -156,10 +159,10 @@ class AddSurveyActivityVM extends AndroidViewModel implements View.OnClickListen
                     activity.toastMessage(activity.getString(R.string.please_select_about_us));
                     return;
                 }
-                if (selectedService == -1) {
-                    activity.toastMessage(activity.getString(R.string.please_select_service));
-                    return;
-                }
+//                if (selectedService == -1) {
+//                    activity.toastMessage(activity.getString(R.string.please_select_service));
+//                    return;
+//                }
                 if (binding.tvCountry.getText().toString().trim().equalsIgnoreCase(activity.getString(R.string.select_country))) {
                     activity.toastMessage(activity.getString(R.string.select_country));
                     return;
@@ -209,9 +212,9 @@ class AddSurveyActivityVM extends AndroidViewModel implements View.OnClickListen
     }
 
     private void setData() {
-        mAdapter = new RecyclerviewAdapter((ArrayList<?>) servicesList, R.layout.item_skills_edit, this);
-        binding.rvServices.setAdapter(mAdapter);
-        binding.rvServices.setFocusable(false);
+//        mAdapter = new RecyclerviewAdapter((ArrayList<?>) servicesList, R.layout.item_skills_edit, this);
+//        binding.rvServices.setAdapter(mAdapter);
+//        binding.rvServices.setFocusable(false);
     }
 
     @Override
@@ -244,13 +247,13 @@ class AddSurveyActivityVM extends AndroidViewModel implements View.OnClickListen
         dialog.setTitle(null);
         dialog.setContentView(R.layout.dialog_item_select_black);
         dialog.setCancelable(true);
-        List<CCPCountry> countryList = getLibraryMasterCountriesEnglish();
+        List<CCPCountry> countryList = getLibraryMasterCountriesEnglish(activity);
         TextView tvCancel = dialog.findViewById(R.id.tv_cancel);
         TextView tvApply = dialog.findViewById(R.id.tv_apply);
         final EditText etSearch = dialog.findViewById(R.id.et_search);
         RecyclerView rvTypes = dialog.findViewById(R.id.rv_items);
 
-        etSearch.setHint(String.format(activity.getString(R.string.search_for), activity.getString(R.string.language).toLowerCase()));
+        etSearch.setHint(String.format(activity.getString(R.string.search_for), activity.getString(R.string.country).toLowerCase()));
 
         rvTypes.setLayoutManager(new LinearLayoutManager(activity));
         if (countryList.size() > 0) {
@@ -387,10 +390,10 @@ class AddSurveyActivityVM extends AndroidViewModel implements View.OnClickListen
             objectQue5.put("survey_text", socialAdapter.getSelectedItem());
             jsonArray.put(objectQue5);
 
-            JSONObject objectQue6 = new JSONObject();
-            objectQue6.put("survey_question_id", 6);
-            objectQue6.put("survey_text", servicesList.get(selectedService).name);
-            jsonArray.put(objectQue6);
+//            JSONObject objectQue6 = new JSONObject();
+//            objectQue6.put("survey_question_id", 6);
+//            objectQue6.put("survey_text", servicesList.get(selectedService).name);
+//            jsonArray.put(objectQue6);
 
         } catch (Exception e) {
             e.printStackTrace();

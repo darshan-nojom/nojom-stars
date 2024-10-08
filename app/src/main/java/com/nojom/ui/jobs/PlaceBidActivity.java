@@ -36,6 +36,7 @@ public class PlaceBidActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_place_bid);
         placeBidActivityVM = ViewModelProviders.of(this).get(PlaceBidActivityVM.class);
@@ -65,13 +66,16 @@ public class PlaceBidActivity extends BaseActivity {
 
         if (isEdit && projectData != null) {
             binding.etAmount.setText(String.format("%s", projectData.jobPostBids.jpcFixedPrice != null ? Utils.getDecimalValue(projectData.jobPostBids.jpcFixedPrice.toString()) : Utils.getDecimalValue(projectData.jobPostBids.amount.toString())));
-            binding.tvCurrency.setText(projectData.jobPostBids.currency);
+            binding.tvCurrency.setText(getCurrency().equals("SAR") ? getString(R.string.sar) : projectData.jobPostBids.currency);
             binding.tvDeadlineType.setText(projectData.jobPostBids.deadlineType);
             binding.etDeadlineValue.setText(String.format("%d", projectData.jobPostBids.deadlineValue));
             binding.etDescribeBid.setText(projectData.jobPostBids.message);
 
             //binding.tvPlaceBid.setText(getString(R.string.save_bid));
+        } else {
+            binding.tvCurrency.setText(getCurrency().equals("SAR") ? getString(R.string.sar) : getString(R.string.dollar));
         }
+        binding.tvCurrencyRec.setText(getCurrency().equals("SAR") ? getString(R.string.sar) : getString(R.string.dollar));
 
         placeBidActivityVM.getValidateError().observe(this, isShowError -> {
             if (isShowError && projectData != null) {
@@ -105,7 +109,7 @@ public class PlaceBidActivity extends BaseActivity {
         return binding.etDescribeBid.getText().toString().trim();
     }
 
-    private String getCurrency() {
+    private String getCurrence() {
         return binding.tvCurrency.getText().toString().trim();
     }
 
@@ -137,7 +141,7 @@ public class PlaceBidActivity extends BaseActivity {
         public void onClick(View v) {
             if (projectData != null) {
                 if (placeBidActivityVM.isValid(getAmount(), getDeadlineValue(), getBidText(), projectData)) {
-                    placeBidActivityVM.placeBid(projectData, getAmount(), isEdit, getBidText(), getCurrency(), getDeadlineType(),
+                    placeBidActivityVM.placeBid(projectData, getAmount(), isEdit, getBidText(), getCurrence(), getDeadlineType(),
                             getDeadlineValue());
                 }
             }
@@ -207,7 +211,7 @@ public class PlaceBidActivity extends BaseActivity {
                 }
                 if (!isEmpty(getAmount()) && projectData != null) {
                     //double bidFee = projectData.jobPostContracts.bidCharges;
-                    double bidDollarCharges = projectData.jobPostCharges != null ? projectData.jobPostCharges.bidDollarCharges : 0;
+//                    double bidDollarCharges = projectData.jobPostCharges != null ? projectData.jobPostCharges.bidDollarCharges : 0;
 
                     double bidPercFee = projectData.jobPostCharges != null ? projectData.jobPostCharges.bidPercentCharges : 0;
 
@@ -215,14 +219,22 @@ public class PlaceBidActivity extends BaseActivity {
                     double percentage = (Double.parseDouble(getAmount()) * bidPercFee) / 100;
                     double total = 0;
 
-                    if (percentage > bidDollarCharges) {
-                        total = Double.parseDouble(getAmount()) - percentage;
+//                    if (percentage > bidDollarCharges) {
+                    total = Double.parseDouble(getAmount()) - percentage;
+//                    } else {
+//                        total = Double.parseDouble(getAmount()) - bidDollarCharges;
+//                    }
+                    if (getCurrency().equals("SAR")) {
+                        binding.tvBidAmountFee.setText(String.format("%s %s %s %s %s%%)", getString(R.string.nojom_will_get), removeTrailingZeros(percentage), getString(R.string.sar), getString(R.string.as_service_fee), "("+removeTrailingZeros(bidPercFee)));
+//                        binding.tvBidAmountFee.setText(String.format(getString(R.string.you_will_get_total_amount) + getString(R.string.s_sar_s_fee), get2DecimalPlaces(total), get2DecimalPlaces(bidPercFee + "%")));
                     } else {
-                        total = Double.parseDouble(getAmount()) - bidDollarCharges;
+                        binding.tvBidAmountFee.setText(String.format("%s %s%s %s%s%%)", getString(R.string.nojom_will_get), getString(R.string.dollar), removeTrailingZeros(percentage), getString(R.string.as_service_fee), removeTrailingZeros(bidPercFee)));
                     }
 
-                    binding.tvBidAmountFee.setText(String.format(getString(R.string.you_will_get_total_amount) + ": $%s (%s fee)", get2DecimalPlaces(total), get2DecimalPlaces(percentage > bidDollarCharges ? bidPercFee + "%" : "$" + bidDollarCharges)));
+                    binding.etRecAmount.setText(String.format("%s", removeTrailingZeros(total)));
+
                 } else {
+                    binding.etRecAmount.setText("");
                     binding.tvBidAmountFee.setText("");
                 }
             } catch (Exception e) {

@@ -6,6 +6,7 @@ import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.nojom.R;
 import com.nojom.interfaces.PermissionListener;
 import com.nojom.ui.BaseActivity;
 
@@ -26,6 +27,8 @@ public class PermissionRequest {
     public void checkStorageCameraRequest(BaseActivity activity) {
         Dexter.withActivity(activity)
                 .withPermissions(
+                        Manifest.permission.READ_MEDIA_IMAGES,
+                        Manifest.permission.READ_MEDIA_VIDEO,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.CAMERA)
@@ -40,7 +43,7 @@ public class PermissionRequest {
                         }
 
                         if (report.isAnyPermissionPermanentlyDenied()) {
-                            activity.toastMessage("Please give permission");
+                            activity.toastMessage(activity.getString(R.string.please_give_permission));
                         }
                     }
 
@@ -67,7 +70,7 @@ public class PermissionRequest {
                         }
 
                         if (report.isAnyPermissionPermanentlyDenied()) {
-                            activity.toastMessage("Please give permission");
+                            activity.toastMessage(activity.getString(R.string.please_give_permission));
                         }
                     }
 

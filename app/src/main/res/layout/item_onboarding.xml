@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_290sdp"
+        android:background="@color/C_F2F2F7"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/board_1" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:text="@string/shine_with_the_stars"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_22sdp"
+            app:fonts="@string/sfpro_text_bold" />
+
+        <android.textview.TextViewSFTextPro
+            android:id="@+id/tv_desciption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/join_our_platform_to_be_part_of_an_exclusive_community_of_celebrities_and_influencers"
+            android:textColor="@color/C_3C3C43"
+            android:textSize="@dimen/_12sdp"
+            app:fonts="@string/sftext_regular" />
+    </LinearLayout>
+
+
+</layout>

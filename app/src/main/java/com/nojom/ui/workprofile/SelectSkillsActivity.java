@@ -42,6 +42,7 @@ public class SelectSkillsActivity extends BaseActivity implements RecyclerviewAd
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_skills);
         skillsActivityViewModel = ViewModelProviders.of(this).get(SelectSkillsActivityVM.class);
@@ -226,7 +227,7 @@ public class SelectSkillsActivity extends BaseActivity implements RecyclerviewAd
             if (skillsActivityViewModel.getListMutableLiveData().getValue() != null) {
                 UserSkillsModel.SkillLists skills = skillsActivityViewModel.getListMutableLiveData().getValue().get(position);
 
-                txtSkill.setText(skills.name);
+                txtSkill.setText(skills.getName(language));
 
                 if (skills.isSelected) {
                     imgRemove.setImageResource(R.drawable.close_red);
@@ -315,7 +316,7 @@ public class SelectSkillsActivity extends BaseActivity implements RecyclerviewAd
                 binding.toolbar.tvSave.setVisibility(View.INVISIBLE);
                 binding.toolbar.progressBar.setVisibility(View.VISIBLE);
                 disableEnableTouch(true);
-                skillsActivityViewModel.addSkills(skillsId, ratingsId);
+                skillsActivityViewModel.addSkills(skillsId, ratingsId,1);
 
             } else {
                 toastMessage(getString(R.string.please_select_a_skill_first));

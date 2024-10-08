@@ -27,7 +27,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
+import static com.nojom.util.Constants.API_ADD_CATEGORY;
 import static com.nojom.util.Constants.API_ADD_SKILL;
+import static com.nojom.util.Constants.API_ADD_TAGS;
 
 public class SelectSkillsActivityVM extends ViewModel implements APIRequest.APIRequestListener {
     @SuppressLint("StaticFieldLeak")
@@ -85,7 +87,7 @@ public class SelectSkillsActivityVM extends ViewModel implements APIRequest.APIR
         experienceLevel = new ArrayList<>(Arrays.asList(experience));
     }
 
-    void addSkills(String skillsIds, String ratingIds) {
+    void addSkills(String skillsIds, String ratingIds, int pubStatus) {
         if (!activity.isNetworkConnected())
             return;
 
@@ -94,9 +96,42 @@ public class SelectSkillsActivityVM extends ViewModel implements APIRequest.APIR
         CommonRequest.AddSkills addSkills = new CommonRequest.AddSkills();
         addSkills.setRating(ratingIds);
         addSkills.setSkill_id(skillsIds);
+//        addSkills.setPublic_status(pubStatus);
 
         APIRequest apiRequest = new APIRequest();
         apiRequest.makeAPIRequest(activity, API_ADD_SKILL, addSkills.toString(), true, this);
+
+    }
+
+    void addCategory(ArrayList<Integer> catIds, ArrayList<Integer> ratingIds) {
+        if (!activity.isNetworkConnected())
+            return;
+
+//        activity.showProgress();
+
+        CommonRequest.AddCategory addSkills = new CommonRequest.AddCategory();
+        addSkills.setCategory_ids(catIds);
+        addSkills.setRatings(ratingIds);
+//        addSkills.setPublic_status(pubStatus);
+
+        APIRequest apiRequest = new APIRequest();
+        apiRequest.makeAPIRequest(activity, API_ADD_CATEGORY, addSkills.toString(), true, this);
+
+    }
+
+    void addTags(ArrayList<Integer> tagIds, ArrayList<Integer> ratingIds) {
+        if (!activity.isNetworkConnected())
+            return;
+
+//        activity.showProgress();
+
+        CommonRequest.AddTags addSkills = new CommonRequest.AddTags();
+        addSkills.setTag_ids(tagIds);
+        addSkills.setRatings(ratingIds);
+//        addSkills.setPublic_status(pubStatus);
+
+        APIRequest apiRequest = new APIRequest();
+        apiRequest.makeAPIRequest(activity, API_ADD_TAGS, addSkills.toString(), true, this);
 
     }
 

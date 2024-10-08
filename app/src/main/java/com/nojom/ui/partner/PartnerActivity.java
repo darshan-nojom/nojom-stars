@@ -60,6 +60,7 @@ public class PartnerActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_partner_with_us);
 
@@ -430,7 +431,7 @@ public class PartnerActivity extends BaseActivity {
         try {
             if (arrayList != null && arrayList.size() > 0) {
                 for (CountryResponse.CountryData data : arrayList) {
-                    data.isSelected = data.countryName.equalsIgnoreCase(binding.tvCountry.getText().toString());
+                    data.isSelected = data.getCountryName(language).equalsIgnoreCase(binding.tvCountry.getText().toString());
                 }
                 selectCountryAdapter = new SelectCountryAdapter(this, arrayList);
                 selectCountryAdapter.setBlackColor(true);
@@ -443,7 +444,7 @@ public class PartnerActivity extends BaseActivity {
 
         tvApply.setOnClickListener(v -> {
             if (selectCountryAdapter != null && selectCountryAdapter.getSelectedItem() != null) {
-                binding.tvCountry.setText(selectCountryAdapter.getSelectedItem().countryName);
+                binding.tvCountry.setText(selectCountryAdapter.getSelectedItem().getCountryName(language));
                 binding.tvCountry.setTag(selectCountryAdapter.getSelectedItem().id);
                 dialog.dismiss();
             } else {

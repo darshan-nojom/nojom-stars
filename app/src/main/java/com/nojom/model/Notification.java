@@ -13,11 +13,21 @@ public class Notification extends GeneralModel {
     @SerializedName("name")
     public String name;
     @Expose
+    @SerializedName("nameAr")
+    public String nameAr;
+    @Expose
     @SerializedName("id")
     public int id;
     @Expose
     @SerializedName("status")
     public String status;
+
+    public String getName(String lang) {
+        if (lang.equals("ar")) {
+            return nameAr != null ? nameAr : name;
+        }
+        return name;
+    }
 
     public static List<Notification> getNotifications(String jsonData) {
         try {

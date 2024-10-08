@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,19 +11,73 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/dialog_round_corner_top_bg"
+        android:backgroundTint="@color/C_F2F2F7"
         android:orientation="vertical">
 
-        <android.textview.TextViewSFTextPro
-            android:id="@+id/txt_cancel"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:text="@string/cancel"
-            android:textColor="@color/red_dark"
-            android:textSize="@dimen/_12sdp"
-            app:fonts="@string/sfpro_text_semibold" />
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal">
 
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/cancel"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sfpro_text_semibold" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/username"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sfpro_text_semibold" />
+
+            <RelativeLayout
+                android:id="@+id/rel_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|end">
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/save"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_13sdp"
+                    app:fonts="@string/sfpro_text_midium" />
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:contentDescription="@string/app_name"
+                    android:indeterminateTint="@color/colorPrimary"
+                    android:progressTint="@color/colorPrimary"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,7 +103,7 @@
                     <android.textview.TextViewSFTextPro
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/first_name"
+                        android:text="@string/english_name"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp"
                         app:fonts="@string/sfpro_text_bold" />
@@ -62,9 +115,10 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/round_corner"
                         android:fontFamily="@string/sfpro_text_regular"
-                        android:hint="@string/first_name"
+                        android:hint="@string/english_name"
                         android:imeOptions="actionNext"
                         android:inputType="textCapSentences"
+                        android:maxLength="50"
                         android:padding="@dimen/_10sdp"
                         android:singleLine="true"
                         android:textAlignment="viewStart"
@@ -80,7 +134,7 @@
                     <android.textview.TextViewSFTextPro
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/last_name"
+                        android:text="@string/arabic_name"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp"
                         app:fonts="@string/sfpro_text_bold" />
@@ -92,9 +146,10 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/round_corner"
                         android:fontFamily="@string/sfpro_text_regular"
-                        android:hint="@string/last_name"
+                        android:hint="@string/arabic_name"
                         android:imeOptions="actionNext"
                         android:inputType="textCapSentences"
+                        android:maxLength="50"
                         android:padding="@dimen/_10sdp"
                         android:singleLine="true"
                         android:textAlignment="viewStart"
@@ -105,9 +160,9 @@
             <LinearLayout
                 android:id="@+id/lin_userName"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -132,9 +187,51 @@
                         android:fontFamily="@string/sfpro_text_regular"
                         android:hint="@string/username"
                         android:imeOptions="actionDone"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
                         android:inputType="textCapSentences"
+                        android:maxLength="20"
                         android:padding="@dimen/_10sdp"
                         android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_me"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sfpro_text_bold" />
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_aboutme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/round_corner"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:gravity="start"
+                        android:hint="@string/about_me"
+                        android:imeOptions="actionDone"
+                        android:lines="3"
+                        android:minLines="3"
+                        android:padding="@dimen/_10sdp"
                         android:textAlignment="viewStart"
                         android:textSize="@dimen/_14sdp" />
                 </LinearLayout>
@@ -145,8 +242,8 @@
                 android:id="@+id/lin_website"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -171,48 +268,512 @@
                         android:fontFamily="@string/sfpro_text_regular"
                         android:hint="@string/website"
                         android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:padding="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/_14sdp" />
+
+
+                    <com.nojom.util.SegmentedButtonGroupNew
+                        android:id="@+id/segmentLoginGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:background="@color/white"
+                        app:borderWidth="0dp"
+                        app:divider="@color/iron"
+                        app:dividerWidth="0dp"
+                        app:radius="@dimen/_20sdp"
+                        app:selectedBackground="@color/full_dark_green"
+                        app:selectedButtonRadius="@dimen/_20sdp">
+
+                        <com.nojom.util.SegmentedButtonNew
+                            android:id="@+id/tab_notActive"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@string/sfpro_text_regular"
+                            android:padding="@dimen/_6sdp"
+                            android:shadowRadius="20"
+                            app:selectedTextColor="@color/white"
+                            app:text="@string/not_active"
+                            app:textColor="@color/tab_gray"
+                            app:textSize="@dimen/_12sdp" />
+
+                        <com.nojom.util.SegmentedButtonNew
+                            android:id="@+id/tab_active"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@string/sfpro_text_regular"
+                            android:padding="@dimen/_6sdp"
+                            app:selectedTextColor="@color/white"
+                            app:text="@string/active"
+                            app:textColor="@color/tab_gray"
+                            app:textSize="@dimen/_12sdp" />
+
+                    </com.nojom.util.SegmentedButtonGroupNew>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.nojom.util.SegmentedButtonGroupNew
+                    android:id="@+id/segmentLoginGroupGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/white"
+                    app:borderWidth="0dp"
+                    app:divider="@color/iron"
+                    app:dividerWidth="0dp"
+                    app:radius="@dimen/_20sdp"
+                    app:selectedBackground="@color/black"
+                    app:selectedButtonRadius="@dimen/_20sdp">
+
+                    <com.nojom.util.SegmentedButtonNew
+                        android:id="@+id/tab_male"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:padding="@dimen/_6sdp"
+                        android:shadowRadius="20"
+                        app:selectedTextColor="@color/white"
+                        app:text="@string/male"
+                        app:textColor="@color/tab_gray"
+                        app:textSize="@dimen/_12sdp" />
+
+                    <com.nojom.util.SegmentedButtonNew
+                        android:id="@+id/tab_female"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:padding="@dimen/_6sdp"
+                        app:selectedTextColor="@color/white"
+                        app:text="@string/female"
+                        app:textColor="@color/tab_gray"
+                        app:textSize="@dimen/_12sdp" />
+
+                </com.nojom.util.SegmentedButtonGroupNew>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="start|center_vertical"
+                            android:text="@string/show_your_age"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                        <com.nojom.util.SegmentedButtonGroupNew
+                            android:id="@+id/segmentLoginGroupAge"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/divider"
+                            app:borderWidth="0dp"
+                            app:divider="@color/iron"
+                            app:dividerWidth="0dp"
+                            app:radius="@dimen/_20sdp"
+                            app:selectedBackground="@color/greendark"
+                            app:selectedButtonRadius="@dimen/_20sdp">
+
+                            <com.nojom.util.SegmentedButtonNew
+                                android:id="@+id/tab_no"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:padding="@dimen/_6sdp"
+                                android:shadowRadius="20"
+                                app:selectedTextColor="@color/white"
+                                app:text="@string/private_"
+                                app:textColor="@color/tab_gray"
+                                app:textSize="@dimen/_12sdp" />
+
+                            <com.nojom.util.SegmentedButtonNew
+                                android:id="@+id/tab_yes"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:padding="@dimen/_6sdp"
+                                app:selectedTextColor="@color/white"
+                                app:text="@string/public_"
+                                app:textColor="@color/tab_gray"
+                                app:textSize="@dimen/_12sdp" />
+
+                        </com.nojom.util.SegmentedButtonGroupNew>
+                    </LinearLayout>
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@drawable/round_corner"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:hint="@string/enter_your_date_of_birth"
+                        android:imeOptions="actionDone"
                         android:inputType="textCapSentences"
                         android:padding="@dimen/_10sdp"
                         android:singleLine="true"
                         android:textAlignment="viewStart"
                         android:textSize="@dimen/_14sdp" />
 
-                    <com.nojom.segment.SegmentedButtonGroup
-                        android:id="@+id/segmentLoginGroup"
+                    <DatePicker
+                        android:id="@+id/birthDatePicker"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:calendarViewShown="false"
+                        android:datePickerMode="spinner" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_button_bg"
+                        android:orientation="horizontal">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_country"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/pressed_bg"
+                            android:gravity="center_vertical|start"
+                            android:hint="@string/select_country"
+                            android:padding="@dimen/_8sdp"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfdiaply_regular" />
+
+                        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                            android:id="@+id/progress_bar_country"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_gravity="center_vertical|start"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:indeterminate="true"
+                            android:textAlignment="viewStart"
+                            android:visibility="gone"
+                            app:cpbStyle="@style/CircularProgressBar"
+                            app:cpb_color="@color/colorPrimary"
+                            app:cpb_colors="@array/progressColorPrimary"
+                            app:cpb_max_sweep_angle="300"
+                            app:cpb_min_sweep_angle="10"
+                            app:cpb_rotation_speed="1.0"
+                            app:cpb_stroke_width="@dimen/_2sdp"
+                            app:cpb_sweep_speed="1.0" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_12sdp"
+                            android:layout_height="@dimen/_12sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:contentDescription="@string/app_name"
+                            android:rotation="90"
+                            android:src="@drawable/arrow_next" />
+
+                    </LinearLayout>
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/_20sdp"-->
+<!--                        android:background="@drawable/white_button_bg"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <android.textview.TextViewSFTextPro-->
+<!--                            android:id="@+id/txt_state"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:backgroundTint="@color/pressed_bg"-->
+<!--                            android:hint="@string/select_state"-->
+<!--                            android:padding="@dimen/_8sdp"-->
+<!--                            android:textAlignment="viewStart"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="@dimen/_12sdp"-->
+<!--                            app:fonts="@string/sfdiaply_regular" />-->
+
+<!--                        <fr.castorflex.android.circularprogressbar.CircularProgressBar-->
+<!--                            android:id="@+id/progress_bar_state"-->
+<!--                            android:layout_width="@dimen/_17sdp"-->
+<!--                            android:layout_height="@dimen/_17sdp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                            android:indeterminate="true"-->
+<!--                            android:visibility="gone"-->
+<!--                            app:cpbStyle="@style/CircularProgressBar"-->
+<!--                            app:cpb_color="@color/colorPrimary"-->
+<!--                            app:cpb_colors="@array/progressColorPrimary"-->
+<!--                            app:cpb_max_sweep_angle="300"-->
+<!--                            app:cpb_min_sweep_angle="10"-->
+<!--                            app:cpb_rotation_speed="1.0"-->
+<!--                            app:cpb_stroke_width="@dimen/_2sdp"-->
+<!--                            app:cpb_sweep_speed="1.0" />-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="@dimen/_12sdp"-->
+<!--                            android:layout_height="@dimen/_12sdp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_marginEnd="@dimen/_15sdp"-->
+<!--                            android:contentDescription="@string/app_name"-->
+<!--                            android:rotation="90"-->
+<!--                            android:src="@drawable/arrow_next" />-->
+<!--                    </LinearLayout>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        app:sbg_backgroundColor="@color/white"
-                        app:sbg_borderColor="@android:color/transparent"
-                        app:sbg_borderSize="2dp"
-                        app:sbg_dividerSize="0dp"
-                        app:sbg_position="0"
-                        app:sbg_radius="@dimen/_20sdp"
-                        app:sbg_selectorColor="@color/full_dark_green">
+                        android:id="@+id/lin_city"
+                        android:visibility="gone"
+                        android:background="@drawable/white_button_bg"
+                        android:orientation="horizontal">
 
-                        <com.nojom.segment.SegmentedButton
-                            android:id="@+id/tab_notActive"
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_city"
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:padding="@dimen/_5sdp"
-                            app:sb_text="@string/not_active"
-                            app:sb_textColor_onSelection="@color/white"
-                            app:sb_textSize="@dimen/_11sdp"
-                            app:sb_textTypefacePath="@string/sfpro_text_regular" />
+                            android:backgroundTint="@color/pressed_bg"
+                            android:hint="@string/select_city"
+                            android:padding="@dimen/_8sdp"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfdiaply_regular" />
 
-                        <com.nojom.segment.SegmentedButton
-                            android:id="@+id/tab_active"
+                        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                            android:id="@+id/progress_bar_city"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:cpbStyle="@style/CircularProgressBar"
+                            app:cpb_color="@color/colorPrimary"
+                            app:cpb_colors="@array/progressColorPrimary"
+                            app:cpb_max_sweep_angle="300"
+                            app:cpb_min_sweep_angle="10"
+                            app:cpb_rotation_speed="1.0"
+                            app:cpb_stroke_width="@dimen/_2sdp"
+                            app:cpb_sweep_speed="1.0" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_12sdp"
+                            android:layout_height="@dimen/_12sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:contentDescription="@string/app_name"
+                            android:rotation="90"
+                            android:src="@drawable/arrow_next" />
+                    </LinearLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|center"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/or"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_17sdp"
+                        app:fonts="@string/sfpro_text_regular"
+                        app:textAllCaps="true" />
+
+                    <RelativeLayout
+                        android:id="@+id/rel_allow_loc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:background="@drawable/blue_rounded_corner">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/btn_update_loc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:padding="@dimen/_8sdp"
+                            android:text="@string/access_my_location"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                            android:id="@+id/progress_bar_save"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:cpbStyle="@style/CircularProgressBar"
+                            app:cpb_color="@color/white"
+                            app:cpb_colors="@array/progressColor"
+                            app:cpb_max_sweep_angle="300"
+                            app:cpb_min_sweep_angle="10"
+                            app:cpb_rotation_speed="1.0"
+                            app:cpb_stroke_width="@dimen/_2sdp"
+                            app:cpb_sweep_speed="1.0" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_emailView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_title_email"
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
                             android:layout_weight="1"
-                            android:padding="@dimen/_5sdp"
-                            app:sb_text="@string/active"
-                            app:sb_textColor_onSelection="@color/white"
-                            app:sb_textSize="@dimen/_11sdp"
-                            app:sb_textTypefacePath="@string/sfpro_text_regular" />
-                    </com.nojom.segment.SegmentedButtonGroup>
+                            android:ellipsize="end"
+                            android:gravity="start|center_vertical"
+                            android:text="@string/show_your_email"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                        <com.nojom.util.SegmentedButtonGroupNew
+                            android:id="@+id/segmentLoginGroupEmail"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/divider"
+                            app:borderWidth="0dp"
+                            app:divider="@color/iron"
+                            app:dividerWidth="0dp"
+                            app:radius="@dimen/_20sdp"
+                            app:selectedBackground="@color/greendark"
+                            app:selectedButtonRadius="@dimen/_20sdp">
+
+                            <com.nojom.util.SegmentedButtonNew
+                                android:id="@+id/tab_private"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:padding="@dimen/_6sdp"
+                                android:shadowRadius="20"
+                                app:selectedTextColor="@color/white"
+                                app:text="@string/private_"
+                                app:textColor="@color/tab_gray"
+                                app:textSize="@dimen/_12sdp" />
+
+                            <com.nojom.util.SegmentedButtonNew
+                                android:id="@+id/tab_public"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@string/sfpro_text_regular"
+                                android:padding="@dimen/_6sdp"
+                                app:selectedTextColor="@color/white"
+                                app:text="@string/public_"
+                                app:textColor="@color/tab_gray"
+                                app:textSize="@dimen/_12sdp" />
+
+                        </com.nojom.util.SegmentedButtonGroupNew>
+                    </LinearLayout>
+
+                    <android.edittext.EditTextSFTextRegular
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@drawable/round_corner"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:hint="@string/email_address"
+                        android:imeOptions="actionDone"
+                        android:inputType="textCapSentences"
+                        android:padding="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/_14sdp" />
 
                 </LinearLayout>
 
@@ -220,39 +781,6 @@
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/rel_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_30sdp"
-            android:background="@drawable/black_bg_50">
-
-            <android.textview.TextViewSFTextPro
-                android:id="@+id/tv_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="@dimen/_10sdp"
-                android:text="@string/save"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_13sdp"
-                app:fonts="@string/sfpro_text_midium" />
-
-            <ProgressBar
-                android:id="@+id/progress"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:contentDescription="@string/app_name"
-                android:progressTint="@color/white"
-                android:indeterminateTint="@color/white"
-                android:visibility="gone" />
-        </RelativeLayout>
 
     </LinearLayout>
 </layout>

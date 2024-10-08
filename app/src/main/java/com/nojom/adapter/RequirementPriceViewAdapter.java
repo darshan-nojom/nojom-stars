@@ -40,10 +40,18 @@ public class RequirementPriceViewAdapter extends RecyclerView.Adapter<Requiremen
 
         holder.binding.txName.setText(item.dataReq);
         if (!TextUtils.isEmpty(item.dataValue)) {
-            if (!item.dataValue.startsWith("$")) {
-                holder.binding.txtPrice.setText("$" + Utils.getDecimalValue(item.dataValue));
+            if (activity.getCurrency().equals("SAR")) {
+                if (!item.dataValue.endsWith(activity.getString(R.string.sar))) {
+                    holder.binding.txtPrice.setText(Utils.getDecimalValue(item.dataValue) + " "+activity.getString(R.string.sar));
+                } else {
+                    holder.binding.txtPrice.setText(Utils.getDecimalValue(item.dataValue.replace(activity.getString(R.string.sar), "")) + " "+activity.getString(R.string.sar));
+                }
             } else {
-                holder.binding.txtPrice.setText("$" + Utils.getDecimalValue(item.dataValue.replace("$", "")));
+                if (!item.dataValue.startsWith(activity.getString(R.string.dollar))) {
+                    holder.binding.txtPrice.setText(activity.getString(R.string.dollar) + Utils.getDecimalValue(item.dataValue));
+                } else {
+                    holder.binding.txtPrice.setText(activity.getString(R.string.dollar) + Utils.getDecimalValue(item.dataValue.replace(activity.getString(R.string.dollar), "")));
+                }
             }
         }
     }

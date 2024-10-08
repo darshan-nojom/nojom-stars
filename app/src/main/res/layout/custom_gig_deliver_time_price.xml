@@ -11,7 +11,7 @@
         android:id="@+id/lin_delivery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         android:orientation="vertical"
         android:paddingTop="@dimen/_10sdp">
 
@@ -79,7 +79,6 @@
                     android:hint="@string/enter_time"
                     android:inputType="number"
                     android:textAlignment="viewStart"
-                    android:maxLength="3"
                     android:padding="@dimen/_5sdp"
                     android:singleLine="true"
                     android:textColor="@color/black"
@@ -116,8 +115,8 @@
                     android:gravity="center"
                     android:hint="@string/price"
                     android:textAlignment="center"
+                    android:singleLine="true"
                     android:inputType="number"
-                    android:maxLength="7"
                     android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />

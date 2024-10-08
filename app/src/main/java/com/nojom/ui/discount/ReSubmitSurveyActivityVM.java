@@ -139,8 +139,13 @@ class ReSubmitSurveyActivityVM extends AndroidViewModel implements View.OnClickL
                 activity.getString(R.string.submit_survey_step_1_), R.color.black));
         binding.txtStep2Label.setText(Utils.getColorString(activity, activity.getString(R.string.submit_survey_step_2),
                 activity.getString(R.string.submit_survey_step_2_), R.color.black));
-        binding.txtStep3Label.setText(Utils.getColorString(activity, activity.getString(R.string.submit_survey_step_3),
-                activity.getString(R.string.submit_survey_step_3_), R.color.black));
+        if (activity.getCurrency().equals("SAR")) {
+            binding.txtStep3Label.setText(Utils.getColorString(activity, activity.getString(R.string.submit_survey_step_3_sar),
+                    activity.getString(R.string.submit_survey_step_3__sar), R.color.black));
+        } else {
+            binding.txtStep3Label.setText(Utils.getColorString(activity, activity.getString(R.string.submit_survey_step_3),
+                    activity.getString(R.string.submit_survey_step_3_), R.color.black));
+        }
 
         fileList = new ArrayList<>();
         attachmentsList = new ArrayList<>();

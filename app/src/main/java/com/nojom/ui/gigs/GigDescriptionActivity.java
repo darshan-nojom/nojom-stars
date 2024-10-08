@@ -31,6 +31,7 @@ public class GigDescriptionActivity extends BaseActivity implements Constants {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gig_title);
         runOnUiThread(this::initData);
@@ -62,6 +63,12 @@ public class GigDescriptionActivity extends BaseActivity implements Constants {
                 binding.title1.setText(getString(R.string.create_desc_min_120_char));
                 binding.title2.setText(getString(R.string.desc_more_then_100_word));
                 binding.title3.setText("•  " + getString(R.string.u25cf_description_should_not_be_all_uppercase_letters));
+                if (language.equals("ar")) {
+                    binding.title3.setVisibility(View.GONE);
+                } else {
+                    binding.title3.setVisibility(View.VISIBLE);
+                }
+
                 binding.etHeadline.setHint(getString(R.string.write_your_gig_description));
                 binding.tvCharacter.setText("0/1200 " + getString(R.string.max));
             } else if (screen == GIG_TITLE) {
@@ -69,6 +76,11 @@ public class GigDescriptionActivity extends BaseActivity implements Constants {
                 binding.etHeadline.setText(getString(R.string.i_will) + " ");
                 Selection.setSelection(binding.etHeadline.getText(), binding.etHeadline.getText().length());
                 binding.tvCharacter.setText("0/80 " + getString(R.string.max));
+                if (language.equals("ar")) {
+                    binding.title2.setVisibility(View.GONE);
+                } else {
+                    binding.title2.setVisibility(View.VISIBLE);
+                }
             } else if (screen == GIG_PACKAGE_NAME) {
                 binding.toolbar.tvTitle.setText(selectedTab + " " + getString(R.string.package_name));
                 binding.etHeadline.setHint("Gig package name");
@@ -237,15 +249,26 @@ public class GigDescriptionActivity extends BaseActivity implements Constants {
         finishToRight();
     }
 
-    public static boolean isContainLowerCase(String s) {
+    public boolean isContainLowerCase(String s) {
         boolean isContainLowerCase = false;
         for (int i = 0; i < s.length(); i++) {
 
-            if (Character.isLowerCase(s.charAt(i))) {
-                isContainLowerCase = true;
+            if (language.equals("ar")) {
+                if (isLowerCaseArabic(s.charAt(i))) {
+                    isContainLowerCase = true;
+                }
+            } else {
+                if (Character.isLowerCase(s.charAt(i))) {
+                    isContainLowerCase = true;
+                }
             }
         }
         return isContainLowerCase;
+    }
+
+    private static boolean isLowerCaseArabic(char ch) {
+        // Check if the character is in the Unicode range for lowercase Arabic letters
+        return (ch >= '\u0600' && ch <= '\u06FF') || (ch >= '\u0750' && ch <= '\u077F');
     }
 
     private boolean checkTitleValidation() {

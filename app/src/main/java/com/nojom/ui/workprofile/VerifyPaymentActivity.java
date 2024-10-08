@@ -34,12 +34,13 @@ public class VerifyPaymentActivity extends BaseActivity {
     private VerifyPaymentActivityVM verifyPaymentActivityVM;
     private ActivityVerifyPaymentBinding binding;
     private final int REQ_PAYMENT_CODE = 9001;
-    private String token = "",clientToken;
+    private String token = "", clientToken;
     public static DropInClient client = null;
     DropInRequest dropInRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_verify_payment);
         verifyPaymentActivityVM = ViewModelProviders.of(this).get(VerifyPaymentActivityVM.class);
@@ -52,6 +53,10 @@ public class VerifyPaymentActivity extends BaseActivity {
         dropInRequest.setCardDisabled(true);
         dropInRequest.setVenmoDisabled(true);
         dropInRequest.setGooglePayDisabled(true);
+
+        if (getCurrency().equals("SAR")) {
+            binding.txtVerify.setText(getString(R.string.verify_your_payment_method_for_only_0_50_sar));
+        }
 
         client = new DropInClient(this, new ClientTokenProvider() {
             @Override
@@ -92,7 +97,7 @@ public class VerifyPaymentActivity extends BaseActivity {
         });
 
         verifyPaymentActivityVM.getGenerateTokenSuccess().observe(this, token -> {
-            clientToken=token;
+            clientToken = token;
             DropInClient dropInClient = client;
             dropInClient.invalidateClientToken();
             dropInClient.setListener(new DropInListener() {

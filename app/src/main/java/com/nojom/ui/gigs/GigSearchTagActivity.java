@@ -26,6 +26,7 @@ public class GigSearchTagActivity extends BaseActivity implements Constants {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search_tags);
         binding.toolbar.tvTitle.setText(getString(R.string.search_tag));
@@ -82,12 +83,12 @@ public class GigSearchTagActivity extends BaseActivity implements Constants {
                     toastMessage(getString(R.string.you_can_add_max_five_tags));
                     return;
                 }
-                if (selectedTags != null && selectedTags.contains(selectedSkill.name)) {
-                    toastMessage(selectedSkill.name + " "+getString(R.string.already_selected));
+                if (selectedTags != null && selectedTags.contains(selectedSkill.getName(language))) {
+                    toastMessage(selectedSkill.getName(language) + " " + getString(R.string.already_selected));
                     binding.etSearchTags.setText("");
                     return;
                 }
-                addTag(selectedSkill.name);
+                addTag(selectedSkill.getName(language));
             });
         } catch (Exception e) {
             e.printStackTrace();

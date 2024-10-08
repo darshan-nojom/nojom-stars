@@ -11,10 +11,12 @@ import com.nojom.model.CreateOfferResponse;
 import com.nojom.model.GigCatCharges;
 import com.nojom.model.GigCategoryModel;
 import com.nojom.model.GigPackages;
+import com.nojom.model.GigSubCategoryModel;
 import com.nojom.model.Language;
 import com.nojom.model.ProfileResponse;
 import com.nojom.model.ServicesModel;
 import com.nojom.model.UserModel;
+import com.nojom.ui.BaseActivity;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -216,6 +218,27 @@ public class Preferences {
         prefsEditor.apply();
     }
 
+    public static void setInflSubCategory(Context context, List<GigSubCategoryModel.Data> services) {
+        SharedPreferences mPrefs = context.getSharedPreferences(Constants.PREF_TOP_SERVICES, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString("inf_sub_cat", new Gson().toJson(services));
+        prefsEditor.apply();
+    }
+
+    public static List<GigSubCategoryModel.Data> getInfSubCatList(Context context) {
+        List<GigSubCategoryModel.Data> services;
+        SharedPreferences mPrefs = context.getSharedPreferences(Constants.PREF_TOP_SERVICES, MODE_PRIVATE);
+        String json = mPrefs.getString("inf_sub_cat", "");
+        if (json.isEmpty()) {
+            services = new ArrayList<>();
+        } else {
+            Type type = new TypeToken<List<GigSubCategoryModel.Data>>() {
+            }.getType();
+            services = new Gson().fromJson(json, type);
+        }
+        return services;
+    }
+
     public static List<ServicesModel.Data> getTopServices(Context context) {
         List<ServicesModel.Data> services;
         SharedPreferences mPrefs = context.getSharedPreferences(Constants.PREF_TOP_SERVICES, MODE_PRIVATE);
@@ -309,14 +332,24 @@ public class Preferences {
 
     public static HashMap<String, String> getMultipleAccounts(Context context) {
         //get from shared prefs
-        SharedPreferences mPrefs = context.getSharedPreferences("accounts", MODE_PRIVATE);
-        String storedHashMapString = mPrefs.getString("hashAccount", "");
-        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>() {
-        }.getType();
+        try {
+            SharedPreferences mPrefs = context.getSharedPreferences("accounts", MODE_PRIVATE);
+            String storedHashMapString = "";
+            java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>() {
+            }.getType();
+            if (mPrefs != null) {
+                storedHashMapString = mPrefs.getString("hashAccount", "");
 
-        //convert to string using gson
-        Gson gson = new Gson();
+            }
+            //convert to string using gson
+            Gson gson = new Gson();
 
-        return gson.fromJson(storedHashMapString, type);
+            return gson.fromJson(storedHashMapString, type);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

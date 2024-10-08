@@ -2,6 +2,7 @@ package com.nojom.ui.workprofile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,17 +13,27 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.facebook.CallbackManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
 import com.nojom.R;
 import com.nojom.adapter.RecyclerviewAdapter;
 import com.nojom.databinding.ActivityVerificationBinding;
 import com.nojom.model.ProfileResponse;
 import com.nojom.model.TrustPoint;
+import com.nojom.model.requestmodel.AuthenticationRequest;
 import com.nojom.ui.BaseActivity;
+import com.nojom.ui.auth.LoginSignUpActivity;
 import com.nojom.util.Constants;
 import com.nojom.util.Preferences;
 import com.nojom.util.Utils;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class VerificationActivity extends BaseActivity implements RecyclerviewAdapter.OnViewBindListner, BaseActivity.OnProfileLoadListener {
 
@@ -36,9 +47,12 @@ public class VerificationActivity extends BaseActivity implements RecyclerviewAd
     private static final int REQ_ID_VERIFICATION = 103;
     private static final int REQ_PAYMENT_VERIFICATION = 104;
     private RecyclerviewAdapter mAdapter;
+    private GoogleSignInClient mGoogleSignInClient;
+    private int RC_SIGN_IN = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_verification);
         verificationActivityVM = ViewModelProviders.of(this).get(VerificationActivityVM.class);
@@ -47,6 +61,9 @@ public class VerificationActivity extends BaseActivity implements RecyclerviewAd
     }
 
     private void initData() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getResources().getString(R.string.default_web_client_id)).requestEmail().build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         binding.toolbar.imgBack.setOnClickListener(view -> onBackPressed());
 
         callbackManager = CallbackManager.Factory.create();
@@ -120,6 +137,11 @@ public class VerificationActivity extends BaseActivity implements RecyclerviewAd
         if (arrayList.get(position).point == 0) {
             tvVerified.setVisibility(View.INVISIBLE);
             tvPoints.setBackground(ContextCompat.getDrawable(this, R.drawable.red_rounded_corner));
+            if (position == 2 && profileData.mawthooq_status != null) {
+                if (profileData.mawthooq_status.status.equals("1")) {//pending
+                    tvPoints.setBackground(ContextCompat.getDrawable(this, R.drawable.yellow_bg_20));
+                }
+            }
         } else {
             tvVerified.setVisibility(View.VISIBLE);
             tvPoints.setBackground(ContextCompat.getDrawable(this, R.drawable.green_rounded_corner));
@@ -167,10 +189,19 @@ public class VerificationActivity extends BaseActivity implements RecyclerviewAd
                     toastMessage(getString(R.string.you_already_done_verifyid));
                 }
             } else if (item.equals(getString(R.string.mawthooq))) {
-                if (arrayList.get(position).point == 0) {
-                    Intent i = new Intent(this, VerifyIDActivity.class);
+//                if (arrayList.get(position).point == 0) {
+                    Intent i = new Intent(this, VerifyMawthooqActivity.class);
                     i.putExtra("screen", "maw");
                     startActivityForResult(i, REQ_ID_VERIFICATION);
+//                } else {
+//                    toastMessage(getString(R.string.you_already_done_verifyid));
+//                }
+            } else if (item.equals(getString(R.string.google))) {
+                if (arrayList.get(position).point == 0) {
+                    Utils.hideSoftKeyboard(this);
+                    mGoogleSignInClient.signOut();
+                    Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                    startActivityForResult(signInIntent, RC_SIGN_IN);
                 } else {
                     toastMessage(getString(R.string.you_already_done_verifyid));
                 }
@@ -194,23 +225,23 @@ public class VerificationActivity extends BaseActivity implements RecyclerviewAd
 
             int trustScore = 0;
             if (data.trustRate.email != 0) {
-                trustScore = trustScore + 5;
+                trustScore = trustScore + 30;
             }
             if (data.trustRate.phoneNumber != 0) {
-                trustScore = trustScore + 5;
+                trustScore = trustScore + 30;
             }
-            if (data.trustRate.google != 0) {
-                trustScore = trustScore + 10;
-            }
-            if (data.trustRate.payment != 0) {
-                trustScore = trustScore + 20;
-            }
+//            if (data.trustRate.google != 0) {
+//                trustScore = trustScore + 10;
+//            }
+//            if (data.trustRate.payment != 0) {
+//                trustScore = trustScore + 20;
+//            }
             if (data.trustRate.mawthooq != 0) {
-                trustScore = trustScore + 30;
+                trustScore = trustScore + 40;
             }
-            if (data.trustRate.verifyId != 0) {
-                trustScore = trustScore + 30;
-            }
+//            if (data.trustRate.verifyId != 0) {
+//                trustScore = trustScore + 35;
+//            }
 
             binding.tvCurrentTrustScore.setText(String.format(getString(R.string.current_trust_score), Utils.nFormate(trustScore)));
 
@@ -237,14 +268,46 @@ public class VerificationActivity extends BaseActivity implements RecyclerviewAd
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQ_PHONE_VERIFICATION:
-            case REQ_EMAIL_VERIFICATION:
-            case REQ_ID_VERIFICATION:
-            case REQ_PAYMENT_VERIFICATION:
-                getProfile();
-                break;
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                if (account != null) {
+                    String json = new Gson().toJson(account);
+                    Log.e("Google Response", json);
+
+//                    String username = "agent_" + new Random().nextInt(10000);
+                    AuthenticationRequest authenticationRequest = new AuthenticationRequest();
+                    authenticationRequest.setUsername("");
+                    authenticationRequest.setEmail(account.getEmail());
+                    authenticationRequest.setDevice_token(getToken());
+                    authenticationRequest.setGoogle_id(account.getId());
+                    authenticationRequest.setFirst_name(account.getGivenName());
+                    authenticationRequest.setLast_name(account.getFamilyName());
+                    authenticationRequest.setDevice_type(1);
+
+//                    activityViewModel.loginSignup(API_LOGIN, authenticationRequest, false, true);
+                    verificationActivityVM.verifyGoogle(account.getId());
+
+                    Utils.trackFirebaseEvent(this, "Login_With_Gmail_Success");
+                }
+            } catch (ApiException e) {
+                Log.e("Google fails", Objects.requireNonNull(e.getMessage()));
+                Utils.trackFirebaseEvent(this, "Login_With_Google_Error");
+            }
+        } else {
+            switch (requestCode) {
+                case REQ_PHONE_VERIFICATION:
+                case REQ_EMAIL_VERIFICATION:
+                case REQ_ID_VERIFICATION:
+                case REQ_PAYMENT_VERIFICATION:
+                    getProfile();
+                    break;
+            }
         }
+
+
     }
 
     @Override

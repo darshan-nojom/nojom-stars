@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nojom.R;
 import com.nojom.databinding.ItemProjectsListCopyBinding;
 import com.nojom.model.Projects;
+import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
 import com.nojom.util.Utils;
 
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.SimpleViewHolder> {
 
-    private Context context;
+    private BaseActivity context;
     private List<Projects.Data> projectsList;
     private PrettyTime p = new PrettyTime();
     private boolean isState;
@@ -43,7 +44,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Simple
         isState = state;
     }
 
-    public ProjectsAdapter(Context context, JobClickListener jobClickListener) {
+    public ProjectsAdapter(BaseActivity context, JobClickListener jobClickListener) {
         this.context = context;
         this.jobClickListener = jobClickListener;
     }
@@ -107,38 +108,44 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Simple
             holder.binding.tvBids.setText(item.bidsCount > 1 ? String.format(context.getString(R.string.bids), Utils.nFormate(item.bidsCount)) : String.format(context.getString(R.string.bid), Utils.nFormate(item.bidsCount)));
         }
 
-        if (item.clientRateId == 0 && item.budget != null) {
-            holder.binding.tvBudget.setText("$" + Utils.getDecimalValue("" + item.budget) + "");
+        /*if (item.clientRateId == 0 && item.budget != null) {
+            holder.binding.tvBudget.setText(context.getCurrency().equals("SAR") ? Utils.getDecimalValue("" + item.budget) + " "+context.getString(R.string.sar)
+                    : context.getString(R.string.dollar) + Utils.getDecimalValue("" + item.budget) + "");
         } else {
             if (item.rangeFrom != null && item.rangeTo != null) {
                 if (!TextUtils.isEmpty(item.rangeTo) && !item.rangeTo.equals("null")) {
-                    holder.binding.tvBudget.setText(String.format("$%s - $%s", item.rangeFrom, item.rangeTo));
+                    holder.binding.tvBudget.setText(String.format(context.getCurrency().equals("SAR") ? context.getString(R.string.s_sar_s_sar) : "$%s - $%s", item.rangeFrom, item.rangeTo));
                 } else {
-                    holder.binding.tvBudget.setText(String.format("$%s", item.rangeFrom));
+                    holder.binding.tvBudget.setText(String.format(context.getCurrency().equals("SAR") ? context.getString(R.string.s_sar) : context.getString(R.string.dollar)+"%s", item.rangeFrom));
                 }
             } else if (item.budget != null) {
-                holder.binding.tvBudget.setText("$" + Utils.getDecimalValue("" + item.budget) + "");
+                holder.binding.tvBudget.setText(context.getCurrency().equals("SAR") ? Utils.getDecimalValue("" + item.budget) + " "+context.getString(R.string.sar)
+                        : context.getString(R.string.dollar) + Utils.getDecimalValue("" + item.budget) + "");
             } else {
                 holder.binding.tvBudget.setText(context.getString(R.string.free));
             }
-        }
+        }*/
 
         switch (item.jobPostStateId) {
             case Constants.BIDDING:
-                updateStatus(holder.binding.tvStatus, item.jobPostStateName, ContextCompat.getDrawable(context, R.drawable.yellow_border_5), ContextCompat.getColor(context, R.color.yellow));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.yellow_border_5), ContextCompat.getColor(context, R.color.yellow));
                 holder.binding.tvRefunds.setVisibility(View.GONE);
                 break;
             case 7:
             case Constants.WAITING_FOR_ACCEPTANCE:
-                updateStatus(holder.binding.tvStatus, item.jobPostStateName, ContextCompat.getDrawable(context, R.drawable.lovender_border_5), ContextCompat.getColor(context, R.color.lovender));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.lovender_border_5), ContextCompat.getColor(context, R.color.lovender));
                 holder.binding.tvRefunds.setVisibility(View.GONE);
                 break;
             case Constants.WAITING_FOR_DEPOSIT:
-                updateStatus(holder.binding.tvStatus, item.jobPostStateName, ContextCompat.getDrawable(context, R.drawable.red_border_5), ContextCompat.getColor(context, R.color.red_dark));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.red_border_5), ContextCompat.getColor(context, R.color.red_dark));
+                holder.binding.tvRefunds.setVisibility(View.GONE);
+                break;
+            case Constants.BANK_TRANSFER_REVIEW:
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.orange_border_5), ContextCompat.getColor(context, R.color.orange_light));
                 holder.binding.tvRefunds.setVisibility(View.GONE);
                 break;
             case Constants.IN_PROGRESS:
-                updateStatus(holder.binding.tvStatus, item.jobPostStateName, ContextCompat.getDrawable(context, R.drawable.blue_border_5), ContextCompat.getColor(context, R.color.colorPrimary));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.blue_border_5), ContextCompat.getColor(context, R.color.colorPrimary));
                 if (item.jobRefunds != null) {//refund case
                     holder.binding.tvRefunds.setVisibility(View.VISIBLE);
                 } else {
@@ -147,7 +154,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Simple
                 break;
             case Constants.SUBMIT_WAITING_FOR_PAYMENT:
             case Constants.COMPLETED:
-                updateStatus(holder.binding.tvStatus, item.jobPostStateName, ContextCompat.getDrawable(context, R.drawable.green_border_5), ContextCompat.getColor(context, R.color.greendark));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.green_border_5), ContextCompat.getColor(context, R.color.greendark));
                 if (item.jobRefunds != null) {//refund case
                     holder.binding.tvRefunds.setVisibility(View.VISIBLE);
                 } else {
@@ -155,11 +162,11 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Simple
                 }
                 break;
             case Constants.CANCELLED:
-                updateStatus(holder.binding.tvStatus, item.jobPostStateName, ContextCompat.getDrawable(context, R.drawable.black_gray_border_5), ContextCompat.getColor(context, R.color.gray_text));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.black_gray_border_5), ContextCompat.getColor(context, R.color.gray_text));
                 holder.binding.tvRefunds.setVisibility(View.GONE);
                 break;
             case Constants.REFUNDED:
-                updateStatus(holder.binding.tvStatus, item.jobPostStateName, ContextCompat.getDrawable(context, R.drawable.orange_border_5), ContextCompat.getColor(context, R.color.orange_light));
+                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.orange_border_5), ContextCompat.getColor(context, R.color.orange_light));
                 holder.binding.tvRefunds.setVisibility(View.GONE);
                 break;
         }

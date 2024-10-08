@@ -2,7 +2,6 @@ package com.nojom.ui.gigs;
 
 import static com.nojom.ui.workprofile.ChooseOfferActivity.chooseOfferActivity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -20,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
@@ -38,9 +36,7 @@ import com.nojom.R;
 import com.nojom.adapter.GigViewAsImageAdapter;
 import com.nojom.adapter.RequirementDeadlineAdapter;
 import com.nojom.adapter.RequirementPriceViewAdapter;
-import com.nojom.databinding.ActivityGigCustomViewBinding;
 import com.nojom.databinding.ActivityGigOfferViewBinding;
-import com.nojom.databinding.ItemCustomOptionBinding;
 import com.nojom.model.GigCategoryModel;
 import com.nojom.model.GigDetails;
 import com.nojom.model.ProfileResponse;
@@ -51,12 +47,15 @@ import com.nojom.ui.BaseActivity;
 import com.nojom.util.Preferences;
 import com.nojom.util.Utils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
@@ -127,23 +126,19 @@ public class OfferGigViewActivity extends BaseActivity {
             binding.ratingbar.setRating(0);
         }
 
-        Glide.with(this).load(getImageUrl() + profileData.profilePic)
-                .placeholder(R.mipmap.ic_launcher)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+        Glide.with(this).load(getImageUrl() + profileData.profilePic).placeholder(R.mipmap.ic_launcher).diskCacheStrategy(DiskCacheStrategy.ALL).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
 
-                        return false;
-                    }
+                return false;
+            }
 
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
 
-                        return false;
-                    }
-                })
-                .into(binding.imgProfile);
+                return false;
+            }
+        }).into(binding.imgProfile);
 
         binding.tvTitle.applyCustomFontBold();
         binding.tvTitle.setText(title);
@@ -184,22 +179,14 @@ public class OfferGigViewActivity extends BaseActivity {
 
         if (gigDetails.parentCategoryID == 4352 && selectedPlatform != null) {//social influencer
             binding.linPlatform.setVisibility(View.VISIBLE);
-            if (!TextUtils.isEmpty(selectedPlatform.name)) {
-                binding.txtPlatform.setText(selectedPlatform.name);
+            if (!TextUtils.isEmpty(selectedPlatform.getName(language))) {
+                binding.txtPlatform.setText(selectedPlatform.getName(language));
             }
             if (!TextUtils.isEmpty(selectedPlatform.username)) {
                 binding.tvSocial.setText(selectedPlatform.username);
             }
 
-            binding.imgPlatform.setOnClickListener(v -> ViewTooltip
-                    .on(this, binding.imgPlatform)
-                    .color(getResources().getColor(R.color.black))
-                    .textColor(getResources().getColor(R.color.white))
-                    .autoHide(true, 3000)
-                    .corner(30)
-                    .position(ViewTooltip.Position.BOTTOM)
-                    .text(Utils.getPlatformTxt(selectedPlatform.followers) + " "+getString(R.string.followers))
-                    .show());
+            binding.imgPlatform.setOnClickListener(v -> ViewTooltip.on(this, binding.imgPlatform).color(getResources().getColor(R.color.black)).textColor(getResources().getColor(R.color.white)).autoHide(true, 3000).corner(30).position(ViewTooltip.Position.BOTTOM).text(Utils.getPlatformTxt(selectedPlatform.followers, this) + " " + getString(R.string.followers)).show());
         }
     }
 
@@ -221,7 +208,7 @@ public class OfferGigViewActivity extends BaseActivity {
                 binding.imgNext.setEnabled(true);
             }
 
-            final String[] value = {deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? ""+getString(R.string.days) : ""+getString(R.string.hours))};
+            final String[] value = {deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? "" + getString(R.string.days) : "" + getString(R.string.hours))};
             binding.tvDeadline.setText(value[0]);
 
 
@@ -233,7 +220,7 @@ public class OfferGigViewActivity extends BaseActivity {
                 }
 
                 position[0] = position[0] - 1;
-                value[0] = deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? ""+getString(R.string.days) : ""+getString(R.string.hours));
+                value[0] = deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? "" + getString(R.string.days) : "" + getString(R.string.hours));
                 binding.tvDeadline.setText(value[0]);
 
                 if (position[0] == 0) {
@@ -252,7 +239,7 @@ public class OfferGigViewActivity extends BaseActivity {
                 if (position[0] != deadlineList.size() - 1) {
                     position[0] = position[0] + 1;
                 }
-                value[0] = deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? ""+getString(R.string.days) : ""+getString(R.string.hours));
+                value[0] = deadlineList.get(position[0]).value + " " + (deadlineList.get(position[0]).type == 2 ? "" + getString(R.string.days) : "" + getString(R.string.hours));
                 binding.tvDeadline.setText(value[0]);
 
                 if (position[0] == deadlineList.size() - 1) {
@@ -272,8 +259,7 @@ public class OfferGigViewActivity extends BaseActivity {
     }
 
     private void setRequirement() {
-        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ArrayList<RequiremetList.Data> sortedList = new ArrayList<>();
 
         for (RequiremetList.Data reqData : requirementByCatListBinding) {
@@ -293,7 +279,7 @@ public class OfferGigViewActivity extends BaseActivity {
                     tvReqTitle.setText(reqData.name);
                     //etQty.setText(reqData.dataValue);
 
-                    reqData.selectedPrice = Double.parseDouble(Utils.priceWithout$(reqData.dataValue));
+                    reqData.selectedPrice = Double.parseDouble(getCurrency().equals("SAR") ? Utils.priceWithoutSAR(this, reqData.dataValue) : Utils.priceWithout$(reqData.dataValue));
                     reqData.selectedQty = 0;
 
                     imgInfo.setOnClickListener(view1 -> {
@@ -306,7 +292,6 @@ public class OfferGigViewActivity extends BaseActivity {
                         currentValue = String.valueOf(Integer.parseInt(currentValue) + 1);
                         etQty.setText(currentValue);
 
-//                        reqData.selectedPrice = Double.parseDouble(Utils.priceWithout$(reqData.dataValue));
                         reqData.selectedQty = Double.parseDouble(currentValue);
                         calculatePrice();
                     });
@@ -357,10 +342,18 @@ public class OfferGigViewActivity extends BaseActivity {
 
                     tvReqTitle.setText(reqData.name);
 
-                    if (reqData.dataValue.startsWith("$")) {
-                        tvAmnt.setText(reqData.dataValue);
+                    if (getCurrency().equals("SAR")) {
+                        if (reqData.dataValue.endsWith(getString(R.string.sar))) {
+                            tvAmnt.setText(reqData.dataValue);
+                        } else {
+                            tvAmnt.setText(Utils.getDecimalValue(reqData.dataValue) + " " + getString(R.string.sar));
+                        }
                     } else {
-                        tvAmnt.setText("$" + Utils.getDecimalValue(reqData.dataValue));
+                        if (reqData.dataValue.startsWith(getString(R.string.dollar))) {
+                            tvAmnt.setText(reqData.dataValue);
+                        } else {
+                            tvAmnt.setText(getString(R.string.dollar) + Utils.getDecimalValue(reqData.dataValue));
+                        }
                     }
 
                     imgInfo.setOnClickListener(view1 -> {
@@ -370,7 +363,7 @@ public class OfferGigViewActivity extends BaseActivity {
                     imgCheck.setOnCheckedChangeListener((buttonView, isChecked) -> {
                         if (isChecked) {
                             reqData.selectedQty = 1;
-                            reqData.selectedPrice = Double.parseDouble(Utils.priceWithout$(reqData.dataValue));
+                            reqData.selectedPrice = Double.parseDouble(getCurrency().equals("SAR") ? Utils.priceWithoutSAR(this, reqData.dataValue) : Utils.priceWithout$(reqData.dataValue));
                         } else {
                             reqData.selectedPrice = 0;
                             reqData.selectedQty = 0;
@@ -387,7 +380,7 @@ public class OfferGigViewActivity extends BaseActivity {
                 tvAmnt.setText("" + reqData.dataValue);
 
                 reqData.selectedQty = 1;
-                reqData.selectedPrice = Double.parseDouble(Utils.priceWithout$(reqData.dataValue));
+                reqData.selectedPrice = Double.parseDouble(getCurrency().equals("SAR") ? Utils.priceWithoutSAR(this, reqData.dataValue) : Utils.priceWithout$(reqData.dataValue));
 
                 imgInfo.setOnClickListener(view1 -> {
                     priceDialogCustom(reqData, null, null, 2);
@@ -401,6 +394,7 @@ public class OfferGigViewActivity extends BaseActivity {
         }
     }
 
+    final int[] position = {0};
     private View customViewOptions(LayoutInflater inflater, RequiremetList.Data reqData) {
         View view = inflater.inflate(R.layout.item_custom_gig_view_option, null);
         TextView tvReqTitle = view.findViewById(R.id.tv_req_name);
@@ -415,17 +409,17 @@ public class OfferGigViewActivity extends BaseActivity {
         RequiremetList.CustomData cuData = new RequiremetList.CustomData();
         cuData.dataReq = reqData.dataReq;
         cuData.dataValue = reqData.dataValue;
+        cuData.id = reqData.id;
         customDataList.add(cuData);
         if (reqData.customData != null && reqData.customData.size() > 0) {
             customDataList.addAll(reqData.customData);
         }
-        final int[] position = {0};
 
         final String[] value = {customDataList.get(position[0]).dataReq};
         tvAmnt.setText(value[0]);
 
         reqData.selectedQty = 1;
-        reqData.selectedPrice = Double.parseDouble(Utils.priceWithout$(reqData.dataValue));
+        reqData.selectedPrice = Double.parseDouble(getCurrency().equals("SAR") ? Utils.priceWithoutSAR(this, reqData.dataValue) : Utils.priceWithout$(reqData.dataValue));
 
         if (customDataList.size() == 1) {
             imgBack.setColorFilter(ContextCompat.getColor(this, R.color.placeholder_bg), android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -458,7 +452,7 @@ public class OfferGigViewActivity extends BaseActivity {
             imgNext.setColorFilter(ContextCompat.getColor(this, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
 
             reqData.selectedQty = 1;
-            reqData.selectedPrice = Double.parseDouble(Utils.priceWithout$(customDataList.get(position[0]).dataValue));
+            reqData.selectedPrice = Double.parseDouble(getCurrency().equals("SAR") ? Utils.priceWithoutSAR(this, customDataList.get(position[0]).dataValue) : Utils.priceWithout$(customDataList.get(position[0]).dataValue));
             calculatePrice();
         });
 
@@ -478,7 +472,8 @@ public class OfferGigViewActivity extends BaseActivity {
             imgBack.setColorFilter(ContextCompat.getColor(this, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
 
             reqData.selectedQty = 1;
-            reqData.selectedPrice = Double.parseDouble(Utils.priceWithout$(customDataList.get(position[0]).dataValue));
+            reqData.selectedPrice = Double.parseDouble(getCurrency().equals("SAR") ? Utils.priceWithoutSAR(this, customDataList.get(position[0]).dataValue)
+                    : Utils.priceWithout$(customDataList.get(position[0]).dataValue));
 
             calculatePrice();
         });
@@ -490,70 +485,8 @@ public class OfferGigViewActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-    public class CustomOptionGigAdapter extends RecyclerView.Adapter<CustomOptionGigAdapter.SimpleViewHolder> {
-        LayoutInflater layoutInflater;
-        private Activity activity;
-        private List<RequiremetList.CustomData> arrList;
-        public Map<Integer, RequiremetList.CustomData> mapSelect;
 
-        public CustomOptionGigAdapter(Activity context, List<RequiremetList.CustomData> arrList, Map<Integer, RequiremetList.CustomData> mapSelect
-                , RequiremetList.Data data) {
-            this.activity = context;
-            this.arrList = arrList;
-            this.mapSelect = mapSelect;
-
-            layoutInflater = activity.getLayoutInflater();
-        }
-
-        @NonNull
-        @Override
-        public SimpleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            ItemCustomOptionBinding popularBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_custom_option, parent, false);
-            return new SimpleViewHolder(popularBinding);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull SimpleViewHolder holder, int position) {
-            final int pos = position;
-            RequiremetList.CustomData item = arrList.get(pos);
-
-            holder.binding.txtSubName.setText("" + item.dataReq);
-            holder.binding.txtPrice.setText("$" + item.dataValue);
-
-            holder.binding.loutMain.setOnClickListener(v -> {
-                mapSelect.clear();
-                mapSelect.put(pos, item);
-                notifyDataSetChanged();
-            });
-
-            if (mapSelect.containsKey(pos)) {
-                mapSelect.put(pos, item);
-                holder.binding.loutMain.setBackgroundResource(R.drawable.green_custom_option_bg);
-                holder.binding.imgChecked.setChecked(true);
-            } else {
-                mapSelect.remove(pos);
-                holder.binding.loutMain.setBackgroundResource(R.drawable.gray_border_5);
-                holder.binding.imgChecked.setChecked(false);
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return arrList.size();
-        }
-
-        class SimpleViewHolder extends RecyclerView.ViewHolder {
-            ItemCustomOptionBinding binding;
-
-            public SimpleViewHolder(ItemCustomOptionBinding itemView) {
-                super(itemView.getRoot());
-                binding = itemView;
-            }
-        }
-    }
-
-    private void priceDialogCustom(RequiremetList.Data reqData, ArrayList<RequiremetList.CustomData> customDataList
-            , ArrayList<GigCategoryModel.Deadline> deadlineList, int viewType) {
+    private void priceDialogCustom(RequiremetList.Data reqData, ArrayList<RequiremetList.CustomData> customDataList, ArrayList<GigCategoryModel.Deadline> deadlineList, int viewType) {
 
         final Dialog dialog = new Dialog(this, R.style.Theme_Design_Light_BottomSheetDialog);
         dialog.setTitle(null);
@@ -590,9 +523,7 @@ public class OfferGigViewActivity extends BaseActivity {
             params.height = (int) getResources().getDimension(R.dimen._250sdp);
             rvCustom.setLayoutParams(params);
         } else {
-            rvCustom.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            rvCustom.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         }
 
         if (viewType == 1) {//delivery time
@@ -601,10 +532,11 @@ public class OfferGigViewActivity extends BaseActivity {
         } else if (viewType == 2) {
             linView.setVisibility(View.VISIBLE);
             txtReq.setText("" + reqData.dataReq);
-            if (reqData.dataValue.startsWith("$")) {
+
+            if (reqData.dataValue.startsWith(getString(R.string.dollar)) || reqData.dataValue.endsWith(getString(R.string.sar))) {
                 txtValue.setText(reqData.dataValue);
             } else {
-                txtValue.setText("$" + reqData.dataValue);
+                txtValue.setText(getCurrency().equals("SAR") ? reqData.dataValue + " " + getString(R.string.sar) : getString(R.string.dollar) + reqData.dataValue);
             }
         } else if (viewType == 3) {
             RequirementPriceViewAdapter customOptionGigAdapter = new RequirementPriceViewAdapter(this, customDataList);
@@ -640,9 +572,26 @@ public class OfferGigViewActivity extends BaseActivity {
             RequestBody gigID = RequestBody.create("" + gigDetails.gigID, MultipartBody.FORM);
             RequestBody clientProfileIdBody = RequestBody.create("" + cUserid, MultipartBody.FORM);
 
+            JSONArray jsonArray = new JSONArray();
+            if (gigDetails.customPackages != null && gigDetails.customPackages.size() > 0) {
+
+                for (GigDetails.CustomRequirements data : gigDetails.customPackages) {
+                    JSONObject object = new JSONObject();
+                    try {
+                        object.put("gig_requirment_id", data.id);
+                        object.put("customPackageID", data.requirmentDetails.get(position[0]).id);
+                        jsonArray.put(object);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            RequestBody reqBody = RequestBody.create(jsonArray.toString(), MediaType.parse("application/json"));
+
             HashMap<String, RequestBody> map = new HashMap<>();
             map.put("gigID", gigID);
             map.put("clientID", clientProfileIdBody);
+            map.put("requirments", reqBody);
 
             createCustomGigsActivityVM.createOfferGig(map);
         });
@@ -666,7 +615,11 @@ public class OfferGigViewActivity extends BaseActivity {
         }
 
         double finalAmount = amount + selectedDeadlinePrice;
-        binding.txtPrice.setText(getString(R.string.price)+" (" + Utils.priceWith$(Utils.getDecimalValue("" + finalAmount)) + ")");
+        if (getCurrency().equals("SAR")) {
+            binding.txtPrice.setText(getString(R.string.price) + " (" + Utils.priceWithSAR(this, Utils.getDecimalValue("" + finalAmount)) + ")");
+        } else {
+            binding.txtPrice.setText(getString(R.string.price) + " (" + Utils.priceWith$(Utils.getDecimalValue("" + finalAmount), this) + ")");
+        }
         binding.txtPrice.setTag(finalAmount);
     }
 }

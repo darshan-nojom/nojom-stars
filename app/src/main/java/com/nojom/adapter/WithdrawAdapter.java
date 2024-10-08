@@ -66,20 +66,24 @@ public class WithdrawAdapter extends RecyclerView.Adapter<WithdrawAdapter.Simple
     @Override
     public void onBindViewHolder(final SimpleViewHolder holder, final int position) {
         Withdrawal item = withdrawList.get(position);
-        holder.binding.tvJobId.setText(item.account);
-        if (activity.language.equals("ar")) {
-            holder.binding.tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "dd MMM, yyyy hh:mm:ss a", item.timestamp));
-        } else {
-            holder.binding.tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "MMM dd, yyyy hh:mm:ss a", item.timestamp));
-        }
-
+        holder.binding.tvJobId.setText(item.beneficiary_name);
+//        if (activity.language.equals("ar")) {
+//            holder.binding.tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "dd MMM, yyyy hh:mm:ss a", item.timestamp));
+//        } else {
+//            holder.binding.tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "MMM dd, yyyy hh:mm:ss a", item.timestamp));
+//        }
+        holder.binding.tvDate.setText(item.iban);
         switch (item.status) {
             case PENDING:
                 holder.binding.tvStatus.setText(context.getString(R.string.pending));
                 holder.binding.tvStatus.setBackground(ContextCompat.getDrawable(context, R.drawable.blue_border_5));
                 holder.binding.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
                 holder.binding.tvBalance.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
-                holder.binding.tvBalance.setText(String.format("+%s", Utils.priceWith$(Utils.getDecimalValue("" + item.amount))));
+                if (activity.getCurrency().equals("SAR")) {
+                    holder.binding.tvBalance.setText(String.format("+%s", Utils.priceWithSAR(activity, Utils.getDecimalValue("" + item.amount))));
+                } else {
+                    holder.binding.tvBalance.setText(String.format("+%s", Utils.priceWith$(Utils.getDecimalValue("" + item.amount),activity)));
+                }
                 holder.binding.tvBalance.setPaintFlags(0);
                 break;
             case DONE:
@@ -87,7 +91,11 @@ public class WithdrawAdapter extends RecyclerView.Adapter<WithdrawAdapter.Simple
                 holder.binding.tvStatus.setBackground(ContextCompat.getDrawable(context, R.drawable.green_border_5));
                 holder.binding.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.greendark));
                 holder.binding.tvBalance.setTextColor(ContextCompat.getColor(context, R.color.greendark));
-                holder.binding.tvBalance.setText(String.format("+%s", Utils.priceWith$(Utils.getDecimalValue("" + item.amount))));
+                if (activity.getCurrency().equals("SAR")) {
+                    holder.binding.tvBalance.setText(String.format("+%s", Utils.priceWithSAR(activity, Utils.getDecimalValue("" + item.amount))));
+                } else {
+                    holder.binding.tvBalance.setText(String.format("+%s", Utils.priceWith$(Utils.getDecimalValue("" + item.amount),activity)));
+                }
                 holder.binding.tvBalance.setPaintFlags(0);
                 break;
             case CANCELLED:
@@ -95,7 +103,11 @@ public class WithdrawAdapter extends RecyclerView.Adapter<WithdrawAdapter.Simple
                 holder.binding.tvStatus.setBackground(ContextCompat.getDrawable(context, R.drawable.black_gray_border_5));
                 holder.binding.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.gray_text));
                 holder.binding.tvBalance.setTextColor(ContextCompat.getColor(context, R.color.gray_text));
-                holder.binding.tvBalance.setText(Utils.priceWith$(Utils.getDecimalValue("" + item.amount)));
+                if (activity.getCurrency().equals("SAR")) {
+                    holder.binding.tvBalance.setText(Utils.priceWithSAR(activity, Utils.getDecimalValue("" + item.amount)));
+                } else {
+                    holder.binding.tvBalance.setText(Utils.priceWith$(Utils.getDecimalValue("" + item.amount),activity));
+                }
                 holder.binding.tvBalance.setPaintFlags(holder.binding.tvBalance.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 break;
             case REJECTED:
@@ -103,7 +115,11 @@ public class WithdrawAdapter extends RecyclerView.Adapter<WithdrawAdapter.Simple
                 holder.binding.tvStatus.setBackground(ContextCompat.getDrawable(context, R.drawable.red_border_5));
                 holder.binding.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.red_dark));
                 holder.binding.tvBalance.setTextColor(ContextCompat.getColor(context, R.color.red_dark));
-                holder.binding.tvBalance.setText(String.format("-%s", Utils.priceWith$(Utils.getDecimalValue("" + item.amount))));
+                if (activity.getCurrency().equals("SAR")) {
+                    holder.binding.tvBalance.setText(String.format("-%s", Utils.priceWithSAR(activity, Utils.getDecimalValue("" + item.amount))));
+                } else {
+                    holder.binding.tvBalance.setText(String.format("-%s", Utils.priceWith$(Utils.getDecimalValue("" + item.amount),activity)));
+                }
                 holder.binding.tvBalance.setPaintFlags(0);
                 break;
         }
@@ -163,14 +179,18 @@ public class WithdrawAdapter extends RecyclerView.Adapter<WithdrawAdapter.Simple
         TextView tvOk = dialog.findViewById(R.id.tv_ok);
         TextView tvStatus = dialog.findViewById(R.id.tv_status);
 
-        tvEmail.setText(data.account);
-        tvProvider.setText(String.format("(%s)", data.provider));
-        tvTotal.setText(String.format("+%s", Utils.priceWith$(Utils.getDecimalValue("" + data.amount))));
+        tvEmail.setText(data.beneficiary_name + "\n" + data.iban);
+//        tvProvider.setText(String.format("(%s)", data.provider));
+        if (activity.getCurrency().equals("SAR")) {
+            tvTotal.setText(String.format("+%s", Utils.priceWithSAR(activity, Utils.getDecimalValue("" + data.amount))));
+        } else {
+            tvTotal.setText(String.format("+%s", Utils.priceWith$(Utils.getDecimalValue("" + data.amount),activity)));
+        }
 
         if (activity.language.equals("ar")) {
-            tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "dd MMM, yyyy hh:mm:ss a", data.timestamp));
+            tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "dd MMM, yyyy hh:mm a", data.timestamp));
         } else {
-            tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "MMM dd, yyyy hh:mm:ss a", data.timestamp));
+            tvDate.setText(Utils.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss", "MMM dd, yyyy hh:mm a", data.timestamp));
         }
 
         tvStatus.setText(context.getString(R.string.pending));

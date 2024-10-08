@@ -5,6 +5,7 @@ import static com.nojom.util.Constants.COUNTRY_CODE;
 
 import android.annotation.SuppressLint;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 
 import androidx.lifecycle.MutableLiveData;
@@ -42,7 +43,7 @@ public class PrivateInfoActivityVM extends ViewModel implements APIRequest.APIRe
         return showProgress;
     }
 
-    void updateProfile(String fNme, String lName, String emailId, String mobile, String mobPrefix, String username, File profileFile) {
+    void updateProfile(String fNme, String lName, String emailId, String mobile, String mobPrefix, String username, File profileFile,int gender) {
         if (!activity.isNetworkConnected())
             return;
 
@@ -76,7 +77,12 @@ public class PrivateInfoActivityVM extends ViewModel implements APIRequest.APIRe
         updateProfile.setFirst_name(fNme);
         updateProfile.setLast_name(lName);
         updateProfile.setMobile_prefix(mobPrefix);
-        updateProfile.setUsername(username);
+        if (username != null && !TextUtils.isEmpty(username)) {
+            updateProfile.setUsername(username);
+        }
+        if (gender != -1) {
+            updateProfile.setGender(gender);
+        }
 
         APIRequest apiRequest = new APIRequest();
         apiRequest.makeAPIRequestFileUpload(activity, API_UPDATE_PROFILE, updateProfile.toString(), this, body);

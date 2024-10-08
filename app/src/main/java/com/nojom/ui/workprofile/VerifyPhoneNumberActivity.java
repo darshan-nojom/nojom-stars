@@ -43,6 +43,7 @@ public class VerifyPhoneNumberActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_phone_verify);
         verifyPhoneNumberActivityVM = ViewModelProviders.of(this).get(VerifyPhoneNumberActivityVM.class);

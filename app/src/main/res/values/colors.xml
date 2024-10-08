@@ -11,13 +11,25 @@
     <color name="textgrayAccent">#959595</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="c_080921">#080921</color>
     <color name="black_50">#80000000</color>
     <color name="black_60">#99000000</color>
     <color name="black_80">#CC000000</color>
+    <color name="c_AAAAAC">#AAAAAC</color>
     <color name="orange">#FF7900</color>
+    <color name="c_ED8A00">#ED8A00</color>
+    <color name="c_FFFFFF80">#80FFFFFF</color>
+    <color name="c_D4E4FA">#D4E4FA</color>
     <color name="orange_light">#F5A623</color>
+    <color name="c_AEAEB2">#AEAEB2</color>
     <color name="yellow">#FCBE05</color>
+    <color name="yellow_light">#33FFD500</color>
     <color name="background">#F2F2F2</color>
+    <color name="c_FADCD9">#FADCD9</color>
+    <color name="c_075E45">#075E45</color>
+    <color name="c_C7EBD1">#C7EBD1</color>
+    <color name="c_34A853">#34A853</color>
+    <color name="c_F3F3F7">#F3F3F7</color>
     <color name="red">#E70E3B</color>
     <color name="red_dark">#D0021B</color>
     <color name="reset_pw_btn">#D0555A</color>
@@ -50,6 +62,13 @@
     <color name="facebook">#3C5998</color>
     <color name="darkGray">#868E96</color>
     <color name="c_b2b2b2">#B2B2B2</color>
+    <color name="c_8E8E93">#8E8E93</color>
+    <color name="C_8E8E93">#8E8E93</color>
+    <color name="C_F2F2F7">#F2F2F7</color>
+    <color name="C_F2F2F7_70">#70F2F2F7</color>
+    <color name="C_E5E5EA">#E5E5EA</color>
+    <color name="C_EAF9EE">#EAF9EE</color>
+    <color name="C_FFEBEA">#FFEBEA</color>
 
     <color name="placeholder_bg">#dddddd</color>
     <color name="black_34">#57000000</color>
@@ -70,12 +89,19 @@
     <color name="C_44A2E2">#44A2E2</color>
     <color name="C_5A5A5A">#5A5A5A</color>
     <color name="C_444444">#444444</color>
+    <color name="C_3C3C43">#993C3C43</color>
+    <color name="C_020814">#020814</color>
+    <color name="C_62656A">#62656A</color>
+    <color name="C_FF3B30">#FF3B30</color>
 
     <integer-array name="progressColor">
         <item>@color/white</item>
     </integer-array>
     <integer-array name="progressColorGray">
         <item>@color/textgray</item>
+    </integer-array>
+    <integer-array name="progressColorDarkGray">
+        <item>@color/C_62656A</item>
     </integer-array>
     <integer-array name="progressColorPrimary">
         <item>@color/colorPrimary</item>

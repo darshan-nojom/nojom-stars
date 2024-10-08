@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.facebook.AccessToken;
@@ -83,6 +84,9 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
     private String email;
     private boolean isSignUp;
 
+    public MutableLiveData<Boolean> isShowProgressForget = new MutableLiveData<>();
+    public MutableLiveData<Boolean> sendCodeSuccess = new MutableLiveData<>();
+
     public void setLayoutBinderHelper(LoginSignUpActivity.LayoutBinderHelper layoutBinderHelper) {
         this.layoutBinderHelper = layoutBinderHelper;
     }
@@ -102,7 +106,7 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
         if (!activity.isNetworkConnected())
             return;
 
-        if (!isSocialLogin) {
+        if (layoutBinderHelper != null && !isSocialLogin) {
             layoutBinderHelper.setIsLoading(true);
         }
 
@@ -141,7 +145,7 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
                         }
 
                     } else {
-                        activity.toastMessage(TextUtils.isEmpty(apiResponse.getMessage(activity.language)) ? "Something went wrong" : apiResponse.getMessage(activity.language));
+                        activity.toastMessage(TextUtils.isEmpty(apiResponse.getMessage(activity.language)) ? activity.getString(R.string.something_went_wrong) : apiResponse.getMessage(activity.language));
 //                        activity.hideProgress();
                         if (!isSocialLogin) {
                             layoutBinderHelper.setIsLoading(false);
@@ -178,7 +182,9 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
         UserModel userModel = null;//get logged in user data from JWT token
         try {
             userModel = new Gson().fromJson(AESHelper.decrypt(data), UserModel.class);
-        } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException |
+                 InvalidAlgorithmParameterException | InvalidKeyException | BadPaddingException |
+                 IllegalBlockSizeException e) {
             e.printStackTrace();
         }
         if (userModel != null) {
@@ -198,11 +204,11 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
 
             HashMap<String, String> accounts = Preferences.getMultipleAccounts(activity);
             if (accounts != null && accounts.size() > 0) {
-                if (!accounts.containsKey(userModel.username)) {
-                    Preferences.addMultipleAccounts(activity, jwtToken, userModel.username);
-                }
+//                if (!accounts.containsKey(userModel.username)) {
+                Preferences.addMultipleAccounts(activity, jwtToken, userModel.email);
+//                }
             } else {
-                Preferences.addMultipleAccounts(activity, jwtToken, userModel.username);
+                Preferences.addMultipleAccounts(activity, jwtToken, userModel.email);
             }
 
             try {
@@ -265,7 +271,7 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
 
     boolean validLoginData(LoginSignUpActivity.LayoutBinderHelper layoutBinderHelper, ActivityLoginSignUpBinding binding) {
         if (activity.isEmpty(layoutBinderHelper.getShow_login() ? Objects.requireNonNull(binding.etUsername.getText()).toString() : Objects.requireNonNull(binding.etSUsername.getText()).toString())) {
-            activity.validationError(activity.getString(R.string.enter_valid_email));
+            activity.validationError(activity.getString(R.string.enter_valid_email_or_username));
             return false;
         }
 
@@ -282,7 +288,7 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
         return true;
     }
 
-    boolean validSignUpData(LoginSignUpActivity.LayoutBinderHelper layoutBinderHelper, ActivityLoginSignUpBinding binding, String email) {
+    boolean validSignUpData(LoginSignUpActivity.LayoutBinderHelper layoutBinderHelper, ActivityLoginSignUpBinding binding, String email, String phone) {
 
         if (!activity.isValidEmail(email)) {
             activity.validationError(activity.getString(R.string.enter_valid_email));
@@ -293,6 +299,16 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
 //            activity.validationError(activity.getString(R.string.enter_username));
 //            return false;
 //        }
+
+        if (TextUtils.isEmpty(phone)) {
+            activity.toastMessage(activity.getString(R.string.please_enter_mobile));
+            return false;
+        }
+
+        if (phone.startsWith("0") || phone.startsWith("00")) {
+            activity.toastMessage(activity.getString(R.string.number_should_not_start_with_0));
+            return false;
+        }
 
         if (activity.isEmpty(layoutBinderHelper.getShow_login() ? Objects.requireNonNull(binding.etPassword.getText()).toString() : Objects.requireNonNull(binding.etSPassword.getText()).toString())) {
             activity.validationError(activity.getString(R.string.enter_password));
@@ -352,6 +368,19 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
         this.email = email;
 
         activity.disableEnableTouch(true);
+
+        CommonRequest.ForgetPassword forgetPassword = new CommonRequest.ForgetPassword();
+        forgetPassword.setEmail(email);
+
+        APIRequest apiRequest = new APIRequest();
+        apiRequest.makeAPIRequest(activity, API_FORGET_PASSWORD, forgetPassword.toString(), true, this);
+    }
+
+    public void forgotPassword(final String email) {
+        if (!activity.isNetworkConnected())
+            return;
+        activity.disableEnableTouch(true);
+        isShowProgressForget.postValue(true);
 
         CommonRequest.ForgetPassword forgetPassword = new CommonRequest.ForgetPassword();
         forgetPassword.setEmail(email);
@@ -452,11 +481,11 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
                             AuthenticationRequest authenticationRequest = new AuthenticationRequest();
                             authenticationRequest.setUsername("");
                             authenticationRequest.setEmail(email);
-                            authenticationRequest.setDevice_token(activity.getToken());
+//                            authenticationRequest.setDevice_token(activity.getToken());
                             authenticationRequest.setFacebook_id(id);
                             authenticationRequest.setFirst_name(first_name);
                             authenticationRequest.setLast_name(last_name);
-                            authenticationRequest.setDevice_type(1);
+//                            authenticationRequest.setDevice_type(1);
 
                             loginSignup(API_LOGIN, authenticationRequest, false, true);
 
@@ -522,6 +551,7 @@ public class LoginSignUpActivityVM extends ViewModel implements APIRequest.APIRe
             btn.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
             progressDialog.dismiss();
+            isShowProgressForget.postValue(false);
         } else if (urlEndPoint.equalsIgnoreCase(API_RESET_PASSWORD)) {
             activity.failureError(activity.getString(R.string.reset_password_failed));
             btn.setVisibility(View.VISIBLE);

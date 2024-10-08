@@ -20,7 +20,7 @@
             android:background="?attr/selectableItemBackground"
             android:contentDescription="@string/app_name"
             android:padding="@dimen/_7sdp"
-            android:src="@drawable/intercom_back"
+            android:src="@drawable/back"
             app:tint="@color/black" />
 
         <android.textview.TextViewSFTextPro
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:id="@+id/relEdit"
             android:layout_marginEnd="@dimen/_10sdp"
             android:background="@drawable/blue_rounded_corner">
 

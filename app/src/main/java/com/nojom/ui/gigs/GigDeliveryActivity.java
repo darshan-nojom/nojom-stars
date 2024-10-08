@@ -24,6 +24,7 @@ public class GigDeliveryActivity extends BaseActivity implements GigDeliveryTime
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_delivery_time);
         binding.shimmerLayout.setVisibility(View.GONE);

@@ -16,7 +16,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         tools:context="com.nojom.ui.workprofile.NameActivity">
 
         <include
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_25sdp"
-                android:hint="@string/first_name"
+                android:hint="@string/english_name"
                 android:imeOptions="actionNext"
                 android:paddingBottom="@dimen/_10sdp"
                 android:inputType="textCapSentences"
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:hint="@string/last_name"
+                android:hint="@string/arabic_name"
                 android:imeOptions="actionDone"
                 android:inputType="textCapSentences"
                 android:paddingBottom="@dimen/_10sdp"

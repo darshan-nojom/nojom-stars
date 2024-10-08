@@ -1,9 +1,13 @@
 package com.nojom.ui.gigs;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.app.Application;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -39,48 +43,54 @@ class ContractPaymentFragmentVM extends AndroidViewModel {
                     binding.llBidding.setVisibility(View.VISIBLE);
                     break;
                 case Constants.WAITING_FOR_ACCEPTANCE:
-                    binding.llProjectStatus.setVisibility(View.VISIBLE);
+                    binding.llBidding.setVisibility(View.VISIBLE);
                     binding.llPaymentStatus.setVisibility(View.GONE);
-                    binding.tvNoDeposit.setText(fragment.activity.getString(R.string.accept_your_job));
+                    binding.tvPaymentText.setText(fragment.activity.getString(R.string.accept_your_job));
+                    binding.tvDepositDone.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", 0));
+                    binding.tvReleaseDone.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", 0));
                     break;
+                case Constants.BANK_TRANSFER_REVIEW:
                 case Constants.WAITING_FOR_DEPOSIT:
-                    binding.llProjectStatus.setVisibility(View.VISIBLE);
+                    binding.llBidding.setVisibility(View.VISIBLE);
                     binding.llPaymentStatus.setVisibility(View.VISIBLE);
-                    binding.tvNoDeposit.setText(fragment.activity.getString(R.string.remind_your_employer));
+                    binding.tvPaymentText.setText(fragment.activity.getString(R.string.remind_your_employer));
+                    binding.tvDepositDone.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", 0));
+                    binding.tvReleaseDone.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", 0));
                     break;
                 case 7:
                 case Constants.IN_PROGRESS:
-                    binding.llProjectStatus.setVisibility(View.VISIBLE);
+                    binding.llBidding.setVisibility(View.VISIBLE);
                     binding.llPaymentStatus.setVisibility(View.VISIBLE);
 
                     if (projectData.gigStateID == 7) {
-                        binding.tvNoDeposit.setText(fragment.activity.getString(R.string.accept_agent_acceptance));
+                        binding.tvPaymentText.setText(fragment.activity.getString(R.string.accept_agent_acceptance));
                     } else {
-                        binding.tvNoDeposit.setText(fragment.activity.getString(R.string.submit_your_job));
+                        binding.tvPaymentText.setText(fragment.activity.getString(R.string.submit_your_job));
                     }
 
 
                     binding.llDepositDone.setVisibility(View.VISIBLE);
-                    binding.tvDepositDone.setText(String.format("$%s", Utils.getDecimalValue("" + projectData.totalPrice)));
+                    setTotal(projectData.totalPrice, binding.tvDepositDone, null);
+                    binding.tvReleaseDone.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", 0));
                     break;
                 case Constants.SUBMIT_WAITING_FOR_PAYMENT:
-                    binding.llProjectStatus.setVisibility(View.VISIBLE);
+                    binding.llBidding.setVisibility(View.VISIBLE);
                     binding.llPaymentStatus.setVisibility(View.VISIBLE);
 
                     binding.llDepositDone.setVisibility(View.VISIBLE);
-                    binding.tvNoDeposit.setText(fragment.activity.getString(R.string.remind_employer_check_job));
-                    binding.tvDepositDone.setText(String.format("$%s", Utils.getDecimalValue("" + projectData.totalPrice)));
-
+                    binding.tvPaymentText.setText(fragment.activity.getString(R.string.remind_employer_check_job));
+                    setTotal(projectData.totalPrice, binding.tvDepositDone, null);
+                    binding.tvReleaseDone.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", 0));
                     break;
                 case Constants.COMPLETED:
-                    binding.llProjectStatus.setVisibility(View.VISIBLE);
+                    binding.llBidding.setVisibility(View.VISIBLE);
                     binding.llPaymentStatus.setVisibility(View.VISIBLE);
 
                     binding.llDepositDone.setVisibility(View.VISIBLE);
                     binding.llReleaseDone.setVisibility(View.VISIBLE);
-                    binding.tvNoDeposit.setText(fragment.activity.getString(R.string.completed_paid_info));
-                    binding.tvReleaseDone.setText(String.format("$%s", Utils.getDecimalValue("" + projectData.totalPrice)));
-
+                    binding.tvPaymentText.setText(fragment.activity.getString(R.string.completed_paid_info));
+                    setTotal(projectData.totalPrice, binding.tvReleaseDone, null);
+                    binding.tvDepositDone.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", 0));
                     ClickableSpan balanceClick = new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View view) {
@@ -94,28 +104,42 @@ class ContractPaymentFragmentVM extends AndroidViewModel {
                         }
                     };
 
-                    Utils.makeLinks(binding.tvNoDeposit, new String[]{fragment.activity.getString(R.string.balance)
+                    Utils.makeLinks(binding.tvPaymentText, new String[]{fragment.activity.getString(R.string.balance)
                     }, new ClickableSpan[]{balanceClick});
 
                     break;
                 case Constants.CANCELLED:
-                    binding.llProjectStatus.setVisibility(View.VISIBLE);
+                    binding.llBidding.setVisibility(View.VISIBLE);
                     //  llBidding.setVisibility(View.VISIBLE);
                     // tvPaymentText.setText(getString(R.string.no_payment_cancel));
-                    binding.tvNoDeposit.setText(fragment.activity.getString(R.string.no_payment_cancel));
+                    binding.tvPaymentText.setText(fragment.activity.getString(R.string.no_payment_cancel));
                     break;
 
                 case Constants.REFUNDED:
-                    binding.llProjectStatus.setVisibility(View.VISIBLE);
+                    binding.llBidding.setVisibility(View.VISIBLE);
                     // llBidding.setVisibility(View.VISIBLE);
                     //tvPaymentText.setText(getString(R.string.no_payment_refunded));
-                    binding.tvNoDeposit.setText(fragment.activity.getString(R.string.no_payment_refunded));
+                    binding.tvPaymentText.setText(fragment.activity.getString(R.string.no_payment_refunded));
                     break;
             }
 
 //            if (projectData.jobPostBids != null)
             if (fragment.activity != null && projectData.totalPrice != 0) {
-                binding.tvTotal.setText(String.format("$%s", Utils.getDecimalValue("" + projectData.totalPrice)));
+//                binding.tvTotal.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : "$%s", Utils.getDecimalValue("" + projectData.totalPrice)));
+
+                binding.linRange.setVisibility(GONE);
+                binding.linTotal.setVisibility(VISIBLE);
+                binding.linDepAmnt.setVisibility(VISIBLE);
+                binding.linServAmnt.setVisibility(VISIBLE);
+                binding.view.setVisibility(VISIBLE);
+
+                binding.txtDepAmnt.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", Utils.numberFormat(String.valueOf(projectData.totalPrice))));
+                setTotal(projectData.totalPrice, binding.txtTotalAmnt, binding.txtServAmnt);
+                binding.txtSerFee.setText(String.format(fragment.getString(R.string.service_fee_5), Utils.getDecimalValue(""+projectData.jobPostCharges.bidCharges)));
+//                double val = projectData.totalPrice * 5 / 100;//TODO: its static percentage here (5%)
+//                binding.txtServAmnt.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : "$%s", Utils.numberFormat(val, 2)));
+//                double totalAmnt = val + projectData.totalPrice;
+//                binding.txtTotalAmnt.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : "$%s", Utils.numberFormat(totalAmnt, 2)));
             }
         }
 
@@ -134,5 +158,20 @@ class ContractPaymentFragmentVM extends AndroidViewModel {
 
         Utils.makeLinks(binding.tvTnc, new String[]{fragment.activity.getString(R.string.terms_and_conditions)}, new ClickableSpan[]{tandc});
 
+    }
+
+    private void setTotal(Double amount, TextView txtView, TextView txtService) {
+        if (amount == null) {
+            amount = 0.0;
+        }
+
+        double bidCharge = projectData.jobPostCharges.bidCharges;
+
+        double val = amount * bidCharge / 100;//TODO: its static percentage here (5%)
+        if (txtService != null) {
+            txtService.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", Utils.numberFormat(val, 2)));
+        }
+        double totalAmnt = amount - val;
+        txtView.setText(String.format(fragment.activity.getCurrency().equals("SAR") ? fragment.getString(R.string.s_sar) : fragment.getString(R.string.dollar) + "%s", Utils.numberFormat(totalAmnt, 2)));
     }
 }

@@ -15,12 +15,19 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -33,6 +40,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +52,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.fragment.app.Fragment;
@@ -67,12 +78,19 @@ import com.nojom.model.ProfileResponse;
 import com.nojom.model.UserModel;
 import com.nojom.model.requestmodel.CommonRequest;
 import com.nojom.multitypepicker.FilePath;
-import com.nojom.ui.auth.LoginSignUpActivity;
+import com.nojom.ui.auth.GenderActivity;
+import com.nojom.ui.auth.LoginActivity;
+import com.nojom.ui.auth.ProfilePicActivity;
+import com.nojom.ui.auth.SignupActivity;
+import com.nojom.ui.auth.SocialActivity;
+import com.nojom.ui.auth.UsernameActivity;
 import com.nojom.ui.chat.chatInterface.ChatInterface;
 import com.nojom.ui.chat.chatInterface.NewMessageForList;
 import com.nojom.ui.chat.chatInterface.OnlineOfflineListener;
 import com.nojom.ui.startup.MainActivity;
-import com.nojom.ui.startup.SelectAccountActivity;
+import com.nojom.ui.startup.OnboardingActivity;
+import com.nojom.ui.workprofile.LocationActivity;
+import com.nojom.ui.workprofile.NewNameActivity;
 import com.nojom.util.Constants;
 import com.nojom.util.Preferences;
 import com.nojom.util.Utils;
@@ -81,6 +99,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -109,14 +128,27 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         this.networkListener = networkListener;
     }
 
+    public void setStatusBarColor(boolean darkStatusBarTint) {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(getResources().getColor(R.color.C_F2F2F7));
+        int flag = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        window.getDecorView().setSystemUiVisibility(darkStatusBarTint ? flag : 0);
+    }
+
+    public void setStatusBarColor(int color, boolean darkStatusBarTint) {
+
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         language = Preferences.readString(this, PREF_SELECTED_LANGUAGE, "en");
         if (language.equals("ar"))
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-        else
-            getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        else getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
         loadAppLanguage();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -124,6 +156,10 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         if (isLogin()) {
             connectSocket(this);
         }
+    }
+
+    public String getCurrency() {
+        return Preferences.readString(this, Constants.PREF_SELECTED_CURRENCY, "SAR");
     }
 
     public void loadAppLanguage() {
@@ -169,8 +205,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public void failureError(String message) {
-        if (!isEmpty(message))
-            toastMessage(message);
+        if (!isEmpty(message)) toastMessage(message);
     }
 
     public void validationError(String message) {
@@ -191,8 +226,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
 
     public void openClientAppOnPlaystore() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(
-                "https://play.google.com/store/apps/details?id=com.nojom.client&hl=en_IN"));
+        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.nojom.brands&hl=en_IN"));
 //        intent.setPackage("com.android.vending");
         startActivity(intent);
     }
@@ -207,24 +241,15 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public void addFragment(@NonNull Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, fragment)
-                .disallowAddToBackStack()
-                .commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).disallowAddToBackStack().commit();
     }
 
     public void replaceFragment(@NonNull Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, fragment)
-                .addToBackStack(fragment.getClass().getName())
-                .commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack(fragment.getClass().getName()).commit();
     }
 
     public boolean checkStatus(GeneralModel model) {
-        if (model == null)
-            return false;
+        if (model == null) return false;
 
         if (model.success != null) {
             if ("1".equals(model.success)) {
@@ -233,7 +258,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         } else if (model.flag == 1) {
             return true;
         } else if (model.flag == 0) {
-            if (model.msg != null && model.msg.equalsIgnoreCase("Expired Token.")) {
+            if (model.getMessage(language) != null && model.msg.equalsIgnoreCase("Expired Token.")) {
                 Preferences.clearPreferences(this);
                 Preferences.saveUserData(this, null);
                 Preferences.setProfileData(this, null);
@@ -241,13 +266,12 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
                 return false;
             }
         }
-        failureError(model.msg);
+        failureError(model.getMessage(language));
         return false;
     }
 
     public boolean checkStatus(String response) {
-        if (isEmpty(response))
-            return false;
+        if (isEmpty(response)) return false;
 
         try {
             JSONObject jsonObject = new JSONObject(response);
@@ -295,14 +319,21 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public String get2DecimalPlaces(Object o) {
-        if (o instanceof Double)
-            return Utils.numberFormat((double) o, 2);
-        else if (o instanceof Integer)
-            return Utils.numberFormat((int) o, 2);
-        else if (o instanceof Float)
-            return Utils.numberFormat((float) o, 2);
+        if (o instanceof Double) return Utils.numberFormat((double) o, 2);
+        else if (o instanceof Integer) return Utils.numberFormat((int) o, 2);
+        else if (o instanceof Float) return Utils.numberFormat((float) o, 2);
 
         return Utils.numberFormat((String) o, 2);
+    }
+
+    public static String removeTrailingZeros(double number) {
+        // Convert the double to a string
+        String str = String.valueOf(number);
+
+        // Remove trailing zeros and decimal point if present
+        str = str.indexOf(".") < 0 ? str : str.replaceAll("0*$", "").replaceAll("\\.$", "");
+
+        return str;
     }
 
 //    public String get1DecimalPlaces(Object o) {
@@ -330,6 +361,11 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public Integer getIsVerified() {
+        ProfileResponse userData = Preferences.getProfileData(this);
+        return userData.is_verified != null ? userData.is_verified : 0;
     }
 
     public int getUserID() {
@@ -392,6 +428,17 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         return FilePath.URL_IMAGE_ID;
     }
 
+    public String getMawthooqIdUrl() {
+        if (TextUtils.isEmpty(FilePath.URL_MAWTHOOQ_ID)) {
+            ProfileResponse profileResponse = getProfileData();
+            if (profileResponse != null && profileResponse.filePaths != null && !TextUtils.isEmpty(profileResponse.filePaths.mawthooq_id)) {
+                FilePath.URL_MAWTHOOQ_ID = profileResponse.filePaths.mawthooq_id;
+                return profileResponse.filePaths.mawthooq_id;
+            }
+        }
+        return FilePath.URL_MAWTHOOQ_ID;
+    }
+
     public String getClientImageUrl() {
         if (TextUtils.isEmpty(FilePath.URL_CLIENT_IMAGE)) {
             ProfileResponse profileResponse = getProfileData();
@@ -412,6 +459,17 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
             }
         }
         return FilePath.URL_RESUME;
+    }
+
+    public String getBankCertiUrl() {
+        if (TextUtils.isEmpty(FilePath.URL_BANK)) {
+            ProfileResponse profileResponse = getProfileData();
+            if (profileResponse != null && profileResponse.filePaths != null && !TextUtils.isEmpty(profileResponse.filePaths.bank_certificate)) {
+                FilePath.URL_BANK = profileResponse.filePaths.bank_certificate;
+                return profileResponse.filePaths.bank_certificate;
+            }
+        }
+        return FilePath.URL_BANK;
     }
 
     public String getSubmittedFileUrl() {
@@ -495,6 +553,15 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         }
     }
 
+    public void gotoMain(int screen) {
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra(Constants.SCREEN_NAME, screen);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        finish();
+        finishToRight();
+    }
+
     public void gotoMainActivity(int screen, int tabInsideScreen) {
         if (getParent() != null) {
             ((MainActivity) getParent()).gotoMainActivity(screen);
@@ -510,11 +577,19 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public void goToLoginSignup(boolean isLogin, boolean isNeedToFinish) {
-        Intent i = new Intent(this, LoginSignUpActivity.class);
+        Intent i = new Intent(this, LoginActivity.class);
         i.putExtra(Constants.FROM_LOGIN, isLogin);
         i.putExtra(Constants.LOGIN_FINISH, isNeedToFinish);
         startActivity(i);
         openToTop();
+    }
+
+    public void goToLoginSignup(boolean isLogin) {
+        Intent i = new Intent(this, isLogin ? LoginActivity.class : SignupActivity.class);
+        i.putExtra(Constants.FROM_LOGIN, isLogin);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        finishToRight();
     }
 
     public void clearTopActivity(Class<?> activityClass) {
@@ -549,7 +624,11 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public void openToLeft() {
-        overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+        if (language.equals("ar")) {
+            overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        } else {
+            overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+        }
     }
 
     public void finishToBottom() {
@@ -568,13 +647,19 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public boolean isValidMobile(String phone) {
-        if (phone.contains("+"))
-            phone = phone.replace("+", "");
+        if (phone.contains("+")) phone = phone.replace("+", "");
         return (!isEmpty(phone) && Double.parseDouble(phone) > 0 && Patterns.PHONE.matcher(phone).matches() && phone.length() > 6);
     }
 
     public boolean isValidUrl(String url) {
         return (!isEmpty(url) && Patterns.WEB_URL.matcher(url.toLowerCase()).matches());
+    }
+
+    public boolean isValidHttpOrHttpsUrl(String url) {
+        String regex = "^(http|https)://.*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(url);
+        return matcher.matches() && Patterns.WEB_URL.matcher(url).matches();
     }
 
     public boolean isEmpty(String s) {
@@ -591,7 +676,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
             customTabsIntent.launchUrl(this, uri);
         } catch (Exception e) {
             e.printStackTrace();
-            toastMessage("Something went wrong");
+            toastMessage(getString(R.string.something_went_wrong));
         }
     }
 
@@ -659,8 +744,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public void sendFeedback(String message) {
-        if (!isNetworkConnected())
-            return;
+        if (!isNetworkConnected()) return;
 
         CommonRequest.SenFeedback senFeedback = new CommonRequest.SenFeedback();
         senFeedback.setApp_version(BuildConfig.VERSION_NAME);
@@ -675,6 +759,14 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + getPackageName());
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, "Share via..."));
+    }
+
+    public void shareApp(String txt) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, txt);
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, "Share via..."));
     }
@@ -804,42 +896,35 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public void makeCall() {
-        Dexter.withActivity(BaseActivity.this)
-                .withPermission(Manifest.permission.CALL_PHONE)
-                .withListener(new PermissionListener() {
-                    @SuppressLint("MissingPermission")
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        try {
-                            Intent intent = new Intent(Intent.ACTION_CALL,
-                                    Uri.parse("tel:" + getString(R.string.phone_number)));
-                            startActivity(intent);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            toastMessage("Failed to invoke call");
-                        }
-                    }
+        Dexter.withActivity(BaseActivity.this).withPermission(Manifest.permission.CALL_PHONE).withListener(new PermissionListener() {
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onPermissionGranted(PermissionGrantedResponse response) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + getString(R.string.phone_number)));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    toastMessage("Failed to invoke call");
+                }
+            }
 
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-                        toastMessage("Please Give Permission to make call");
-                    }
+            @Override
+            public void onPermissionDenied(PermissionDeniedResponse response) {
+                toastMessage("Please Give Permission to make call");
+            }
 
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).check();
+            @Override
+            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                token.continuePermissionRequest();
+            }
+        }).check();
     }
 
     public void openWhatsApp() {
         try {
             String toNumber = getString(R.string.phone_number_);
-            toNumber = toNumber.replace("+", "")
-                    .replace("(", "")
-                    .replace(")", "")
-                    .replace("-", "")
-                    .replace(" ", "");
+            toNumber = toNumber.replace("+", "").replace("(", "").replace(")", "").replace("-", "").replace(" ", "");
 
             Intent sendIntent = new Intent("android.intent.action.MAIN");
             sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
@@ -858,16 +943,15 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
 
     public void openMessenger() {
         try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("m.me/24Task")));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/nojomApps")));
         } catch (Exception e) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.messenger.com/t/24Task")));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/nojomApps")));
         }
     }
 
     public void openEmail() {
         try {
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto", getString(R.string.email_text).toLowerCase(), null));
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", getString(R.string.email_text).toLowerCase(), null));
             startActivity(Intent.createChooser(emailIntent, "Send email..."));
         } catch (Exception e) {
             toastMessage("Mail apps not installed");
@@ -888,8 +972,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public void getProfile() {
-        if (!isNetworkConnected())
-            return;
+        if (!isNetworkConnected()) return;
 
         APIRequest apiRequest = new APIRequest();
         apiRequest.makeAPIRequest(this, API_GET_PROFILE, null, false, BaseActivity.this);
@@ -910,12 +993,11 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         } else if (urlEndPoint.equalsIgnoreCase(API_ADD_FEEDBACK)) {
             progressBarFeedback.setVisibility(View.GONE);
             txtSendFeedback.setVisibility(View.VISIBLE);
-            if (dialogFeedback != null)
-                dialogFeedback.dismiss();
+            if (dialogFeedback != null) dialogFeedback.dismiss();
 
-            disableEnableTouch(false);
             toastMessage(message);
         }
+        disableEnableTouch(false);
 
     }
 
@@ -924,9 +1006,8 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         if (urlEndPoint.equalsIgnoreCase(API_ADD_FEEDBACK)) {
             progressBarFeedback.setVisibility(View.GONE);
             txtSendFeedback.setVisibility(View.VISIBLE);
-
-            disableEnableTouch(false);
         }
+        disableEnableTouch(false);
     }
 
     public interface OnProfileLoadListener {
@@ -934,8 +1015,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public String getProperName(String firstName, String lastName, String username) {
-        if (!isEmpty(username) && !username.equalsIgnoreCase("null"))
-            return username;
+        if (!isEmpty(username) && !username.equalsIgnoreCase("null")) return username;
 
         if (isEmpty(firstName) || firstName.equals("null")) {
             return username;
@@ -1014,24 +1094,67 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
 
     public void toastMessage(String message) {
         if (inflater != null) {
-            View layout = inflater.inflate(R.layout.toast,
-                    findViewById(R.id.toast_layout_root));
+            View layout = inflater.inflate(R.layout.toast, findViewById(R.id.toast_layout_root));
 
             TextView text = layout.findViewById(R.id.text);
             text.setText(message);
 
             Toast toast = new Toast(getApplicationContext());
-            toast.setGravity(Gravity.TOP, 0, 40);
+            toast.setGravity(Gravity.BOTTOM, 0, 140);
             toast.setDuration(Toast.LENGTH_SHORT);
             toast.setView(layout);
             toast.show();
         }
     }
 
+    public void toastMessage(String message, boolean isError) {
+        if (inflater != null) {
+            View layout = inflater.inflate(R.layout.toast_new, findViewById(R.id.toast_layout_root));
+
+            TextView text = layout.findViewById(R.id.text);
+            LinearLayout relativeLayout = layout.findViewById(R.id.toast_layout_root);
+            SeekBar seekBar = layout.findViewById(R.id.seekbar);
+
+            if (isError) {
+                DrawableCompat.setTint(relativeLayout.getBackground(), ContextCompat.getColor(this, R.color.C_FFEBEA));
+                Drawable img = getResources().getDrawable(R.drawable.close_red);
+                text.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+            } else {
+                DrawableCompat.setTint(relativeLayout.getBackground(), ContextCompat.getColor(this, R.color.C_EAF9EE));
+                Drawable img = getResources().getDrawable(R.drawable.check_done);
+                text.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+            }
+
+            text.setText(message);
+
+            int durationInMillis = 5000 * 1000;
+
+            Toast toast = new Toast(getApplicationContext());
+            toast.setGravity(Gravity.BOTTOM, 0, 150);
+//            toast.setDuration(durationInMillis);
+            toast.setView(layout);
+            toast.show();
+
+            final int[] progressPlus = {0};
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (progressPlus[0] == 200) {
+                        toast.cancel();
+                    } else {
+                        seekBar.setProgress(progressPlus[0]);
+                        progressPlus[0] += 15;
+                        handler.postDelayed(this, 80);
+                    }
+                }
+            }, 80);
+        }
+    }
+
     public void disableEnableTouch(boolean isLoading) {
         if (isLoading) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         }
@@ -1040,8 +1163,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         try {
-            if (!isClickableView)
-                return super.dispatchTouchEvent(ev);
+            if (!isClickableView) return super.dispatchTouchEvent(ev);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
@@ -1057,8 +1179,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         mSocket.on(Socket.EVENT_ERROR, onError);
         mSocket.on("offlineParticularUser", offlineParticularUser);
         mSocket.on("onlineParticularUser", onlineParticularUser);
-        if (!mSocket.connected())
-            mSocket.connect();
+        if (!mSocket.connected()) mSocket.connect();
     }
 
     public void onVerifyUser() {
@@ -1098,8 +1219,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
             runOnUiThread(() -> {
                 onVerifyUser();
                 Log.e("AAAAA", "start connect..");
-                if (chatInterface != null)
-                    chatInterface.onConnect(true);
+                if (chatInterface != null) chatInterface.onConnect(true);
             });
         }
     };
@@ -1109,8 +1229,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         public void call(Object... args) {
             runOnUiThread(() -> {
                 Log.e("AAAAA", "diconnected");
-                if (chatInterface != null)
-                    chatInterface.disconnect(true);
+                if (chatInterface != null) chatInterface.disconnect(true);
             });
         }
     };
@@ -1119,8 +1238,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         public void call(Object... args) {
             Log.e("AAAAAA", "onlineParticularUser args...." + args[0].toString());
             moUserStatus = new Gson().fromJson(args[0].toString(), ChatList.Datum.class);
-            if (onlineOfflineListener != null)
-                onlineOfflineListener.onlineUser(moUserStatus);
+            if (onlineOfflineListener != null) onlineOfflineListener.onlineUser(moUserStatus);
         }
     };
     private final Emitter.Listener offlineParticularUser = new Emitter.Listener() {
@@ -1128,19 +1246,16 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         public void call(Object... args) {
             Log.e("AAAAAA", "offlineParticularUser  args...." + args[0].toString());
             moUserStatus = new Gson().fromJson(args[0].toString(), ChatList.Datum.class);
-            if (onlineOfflineListener != null)
-                onlineOfflineListener.offlineUsr(moUserStatus);
+            if (onlineOfflineListener != null) onlineOfflineListener.offlineUsr(moUserStatus);
         }
     };
     private final Emitter.Listener onError = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
             runOnUiThread(() -> {
-                if (chatInterface != null)
-                    chatInterface.onError(args);
+                if (chatInterface != null) chatInterface.onError(args);
 
-                if (!mSocket.connected())
-                    mSocket.connect();
+                if (!mSocket.connected()) mSocket.connect();
             });
         }
     };
@@ -1150,8 +1265,7 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
     }
 
     public boolean checkStoragePermission() {
-        return ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
 
     public String getReferralCode() {
@@ -1170,12 +1284,14 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
         Preferences.setProfileData(this, null);
         Preferences.refreshAccount(this, new HashMap<>());//remove all other accounts if exist
         Preferences.writeBoolean(this, Constants.IS_LOGIN, false);
+        Preferences.writeBoolean(this, Constants.IS_SHOW_FIRST_TIME, false);
         Preferences.writeString(this, Constants.JWT, "");
         if (this.mSocket != null && this.mSocket.connected()) {
             this.mSocket.disconnect();
         }
 
-        Intent i = new Intent(this, SelectAccountActivity.class);
+//        Intent i = new Intent(this, SelectAccountActivity.class);
+        Intent i = new Intent(this, OnboardingActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
         openToLeft();
@@ -1241,13 +1357,10 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
                 intent.addCategory(Intent.CATEGORY_DEFAULT);
             } else {
 
-                String[] mimeTypes =
-                        {"application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .doc & .docx
-                                "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .ppt & .pptx
-                                "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // .xls & .xlsx
-                                "text/plain",
-                                "application/pdf",
-                                "application/zip", "application/vnd.android.package-archive"};
+                String[] mimeTypes = {"application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .doc & .docx
+                        "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .ppt & .pptx
+                        "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // .xls & .xlsx
+                        "text/plain", "application/pdf", "application/zip", "application/vnd.android.package-archive"};
 
                 intent = new Intent(Intent.ACTION_GET_CONTENT); // or ACTION_OPEN_DOCUMENT
                 intent.setType("*/*");
@@ -1270,13 +1383,10 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
                 intent.addCategory(Intent.CATEGORY_DEFAULT);
             } else {
 
-                String[] mimeTypes =
-                        {"application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .doc & .docx
-                                "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .ppt & .pptx
-                                "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // .xls & .xlsx
-                                "text/plain",
-                                "application/pdf",
-                                "application/zip", "application/vnd.android.package-archive"};
+                String[] mimeTypes = {"application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .doc & .docx
+                        "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .ppt & .pptx
+                        "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // .xls & .xlsx
+                        "text/plain", "application/pdf", "application/zip", "application/vnd.android.package-archive"};
 
                 intent = new Intent(Intent.ACTION_GET_CONTENT); // or ACTION_OPEN_DOCUMENT
                 intent.setType("*/*");
@@ -1287,6 +1397,174 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
             activity.startActivityForResult(intent, 4545);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void openWhatsappChat() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("https://wa.me/966502475630"));
+        startActivity(intent);
+    }
+
+    public String get1DecimalPlaces(Object o) {
+        if (o instanceof Double) return Utils.numberFormat((double) o, 1);
+        else if (o instanceof Integer) return Utils.numberFormat((int) o, 1);
+        else if (o instanceof Float) return Utils.numberFormat((float) o, 1);
+
+        return Utils.numberFormat((String) o, 1);
+    }
+
+    public String formatNumber(long number) {
+        if (number >= 1_000_000_000) {
+            return format(number / 1_000_000_000.0) + " B";
+        } else if (number >= 1_000_000) {
+            return format(number / 1_000_000.0) + " M";
+        } else if (number >= 1_000) {
+            return format(number / 1_000.0) + " K";
+        } else {
+            return String.valueOf(number);
+        }
+    }
+
+    private String format(double value) {
+        // Use DecimalFormat to format the number with one decimal place
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        return decimalFormat.format(value);
+    }
+
+    public boolean checkAndRequestPermissions() {
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) && (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) && (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)) {
+
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1212);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void openSteps(int steps) {
+        switch (steps) {
+            case RS_1_NAME:
+                redirectActivity(NewNameActivity.class);
+                break;
+            case RS_2_LOCATION:
+                redirectActivity(LocationActivity.class);
+                break;
+            case RS_3_GENDER:
+                redirectActivity(GenderActivity.class);
+                break;
+            case RS_4_SOCIAL:
+                redirectActivity(SocialActivity.class);
+                break;
+            case RS_5_PROFILE:
+                redirectActivity(ProfilePicActivity.class);
+                break;
+            case RS_6_USERNAME:
+                redirectActivity(UsernameActivity.class);
+                break;
+            default:
+                gotoMainActivity(TAB_HOME);
+                break;
+        }
+    }
+
+    public void setArFont(TextView textView, int style) {
+        Typeface typeface = null;
+        switch (style) {
+            case FONT_AR_REGULAR:
+                typeface = Typeface.createFromAsset(getAssets(), getString(R.string.san_ar_regular));
+                textView.setTypeface(typeface);
+                break;
+            case FONT_AR_SEMI_BOLD:
+                typeface = Typeface.createFromAsset(getAssets(), getString(R.string.san_ar_semibold));
+                textView.setTypeface(typeface);
+                break;
+            case FONT_AR_BOLD:
+                typeface = Typeface.createFromAsset(getAssets(), getString(R.string.san_ar_bold));
+                textView.setTypeface(typeface);
+                break;
+            case FONT_AR_LIGHT:
+                typeface = Typeface.createFromAsset(getAssets(), getString(R.string.san_ar_light));
+                textView.setTypeface(typeface);
+                break;
+            case FONT_AR_MEDIUM:
+                typeface = Typeface.createFromAsset(getAssets(), getString(R.string.san_ar_medium));
+                textView.setTypeface(typeface);
+                break;
+            case FONT_AR_THIN:
+                typeface = Typeface.createFromAsset(getAssets(), getString(R.string.san_ar_thin));
+                textView.setTypeface(typeface);
+                break;
+        }
+    }
+
+    private static final String EMAIL_PATTERN = "^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
+
+    public boolean isValidEmailData(String email) {
+        if (email == null) {
+            return false;
+        }
+        // Check if the email matches the pattern and also doesn't contain any spaces
+        return Pattern.compile(EMAIL_PATTERN).matcher(email).matches() && !email.contains(" ");
+    }
+
+    public class ArabicInputFilter implements InputFilter {
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                if (!Character.toString(source.charAt(i)).matches("[\\u0600-\\u06FF\\s]")) {
+                    return ""; // Invalid character, return empty string to reject it
+                }
+            }
+            return null; // Accept the valid input
+        }
+    }
+
+    public class EnglishInputFilter implements InputFilter {
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                if (!Character.toString(source.charAt(i)).matches("[a-zA-Z\\s]")) {
+                    return ""; // Invalid character, return empty string to reject it
+                }
+            }
+            return null; // Accept the valid input
+        }
+    }
+
+    Dialog dialogCustomProgress;
+
+    public void showCustomProgress(BaseActivity activity) {
+        dialogCustomProgress = new Dialog(activity, R.style.Theme_AppCompat_Dialog);
+        dialogCustomProgress.setTitle(null);
+        dialogCustomProgress.setContentView(R.layout.dialog_progress_circle);
+        dialogCustomProgress.setCancelable(false);
+
+        CircularProgressBar pb = dialogCustomProgress.findViewById(R.id.progress_bar);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(Objects.requireNonNull(dialogCustomProgress.getWindow()).getAttributes());
+        lp.gravity = Gravity.CENTER;
+        dialogCustomProgress.show();
+        dialogCustomProgress.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogCustomProgress.getWindow().setAttributes(lp);
+    }
+
+    public void hideCustomProgress() {
+        if (dialogCustomProgress != null && dialogCustomProgress.isShowing()) {
+            dialogCustomProgress.dismiss();
+        }
+    }
+
+    public String formatValue(double value) {
+        // If there's no fraction part, show without decimal
+        if (value == (long) value) {
+            return String.format("%d", (long) value);
+        } else {
+            // Else, show with decimal
+            return String.valueOf(value);
         }
     }
 }

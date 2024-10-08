@@ -20,6 +20,7 @@ public class VerifyEmailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_email_verify);
         verifyEmailActivityVM = ViewModelProviders.of(this).get(VerifyEmailActivityVM.class);
@@ -31,7 +32,7 @@ public class VerifyEmailActivity extends BaseActivity {
         binding.tvSubmit.setOnClickListener(v -> {
 //            if (binding.tvSubmit.getText().toString().equals(getString(R.string.send_verification_email))) {
             if (verifyEmailActivityVM.isValid(this, getEmail())) {
-                verifyEmailActivityVM.verifyEmail(this);
+                verifyEmailActivityVM.verifyEmail(this, getEmail());
             }
         });
 

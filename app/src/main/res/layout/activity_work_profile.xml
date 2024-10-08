@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         android:orientation="vertical"
         tools:context=".ui.workprofile.WorkProfileActivity">
 
@@ -474,6 +474,50 @@
                         android:src="@drawable/arrow_next" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/ll_payments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{()->activity.onClickPayment()}"
+                    android:padding="@dimen/_5sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/payment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_payment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/arrow_next" />
+                </LinearLayout>
+
                 <android.textview.TextViewSFTextPro
                     android:id="@+id/tv_profile_complete"
                     android:layout_width="match_parent"
@@ -500,8 +544,8 @@
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:gravity="center"
-                    android:padding="@dimen/_10sdp"
                     android:lineSpacingExtra="@dimen/_10sdp"
+                    android:padding="@dimen/_10sdp"
                     android:text="@string/to_verify_your_account_you_need_to_have_a_trust_score_of_at_least_50_on_your_profile"
                     android:textColor="@color/C_444444"
                     android:textSize="@dimen/_12sdp"

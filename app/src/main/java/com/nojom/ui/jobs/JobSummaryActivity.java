@@ -25,6 +25,7 @@ public class JobSummaryActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_job_summary);
         jobSummaryActivityVM = ViewModelProviders.of(this).get(JobSummaryActivityVM.class);
@@ -87,29 +88,30 @@ public class JobSummaryActivity extends BaseActivity {
             binding.tvJobTitle.setText(projectData.title);
             binding.tvDetails.setText(projectData.description);
             String budget = null;
-            if (projectData.clientRateId == 0) {
-                budget = "$" + projectData.jobBudget;
+            if (projectData.clientRateId == 0 && projectData.jobBudget != null) {
+                budget = getCurrency().equals("SAR") ? projectData.jobBudget + " " + getString(R.string.sar) : getString(R.string.dollar) + projectData.jobBudget;
             } else {
                 if (projectData.clientRate != null) {
                     if (projectData.clientRate.rangeTo != null && projectData.clientRate.rangeTo != 0) {
-                        budget = "$" + projectData.clientRate.rangeFrom + " - $" + projectData.clientRate.rangeTo;
+                        budget = getCurrency().equals("SAR") ? projectData.clientRate.rangeFrom + " " + getString(R.string.sar) + " - " + projectData.clientRate.rangeTo + " " + getString(R.string.sar)
+                                : getString(R.string.dollar) + projectData.clientRate.rangeFrom + " - "+getString(R.string.dollar) + projectData.clientRate.rangeTo;
                     } else {
-                        budget = "$" + projectData.clientRate.rangeFrom;
+                        budget = getCurrency().equals("SAR") ? projectData.clientRate.rangeFrom + " " + getString(R.string.sar) : getString(R.string.dollar) + projectData.clientRate.rangeFrom;
                     }
                 } else if (projectData.jobBudget != null) {
-                    budget = "$" + projectData.jobBudget;
+                    budget = getCurrency().equals("SAR") ? projectData.jobBudget + " " + getString(R.string.sar) : getString(R.string.dollar) + projectData.jobBudget;
                 } else {
                     budget = getString(R.string.free);
                 }
             }
 
-            if (!TextUtils.isEmpty(budget)) {
-                if (budget.equalsIgnoreCase(getString(R.string.free))) {
-                    binding.tvProjectBudget.setText(String.format("%s", getString(R.string.free)));
-                } else {
-                    binding.tvProjectBudget.setText(String.format("%s USD", budget));
-                }
-            }
+//            if (!TextUtils.isEmpty(budget)) {
+//                if (budget.equalsIgnoreCase(getString(R.string.free))) {
+//                    binding.tvProjectBudget.setText(String.format("%s", getString(R.string.free)));
+//                } else {
+//                    binding.tvProjectBudget.setText(String.format(getCurrency().equals("SAR") ? getString(R.string.s_sar) : "%s", budget));
+//                }
+//            }
 
 //            if (projectData.scName != null)
 //                binding.tvService.setText(projectData.scName);
@@ -131,7 +133,7 @@ public class JobSummaryActivity extends BaseActivity {
 
             if (!TextUtils.isEmpty(projectData.deadline)) {
                 String deadline = projectData.deadline.replace("T", " ");
-                binding.tvDeadline.setText(Utils.setDeadLine(this, deadline));
+                binding.tvDeadline.setText(Utils.setDeadLine1(this, deadline));
             } else {
                 binding.tvDeadline.setText("-");
             }

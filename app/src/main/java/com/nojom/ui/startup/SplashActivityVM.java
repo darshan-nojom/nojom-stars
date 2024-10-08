@@ -1,14 +1,11 @@
 package com.nojom.ui.startup;
 
 import static com.nojom.util.Constants.API_GET_GIG_LANGUAGE;
-import static com.nojom.util.Constants.KEY_LIVE_BASE_URL;
-import static com.nojom.util.Constants.KEY_LIVE_BASE_URL_GIG;
-import static com.nojom.Task24Application.BASE_URL_GIG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -24,10 +21,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.nojom.BuildConfig;
 import com.nojom.R;
-import com.nojom.Task24Application;
 import com.nojom.api.APIRequest;
-import com.nojom.api.ApiClient;
-import com.nojom.apis.GetGigPackages;
 import com.nojom.interfaces.NetworkListener;
 import com.nojom.model.Language;
 import com.nojom.ui.BaseActivity;
@@ -47,10 +41,10 @@ public class SplashActivityVM extends ViewModel implements APIRequest.JWTRequest
         activity.runOnUiThread(() -> {
             if (activity.isLogin()) {
                 getGigLanguage();
-                GetGigPackages gigPackages = new GetGigPackages();
-                gigPackages.init(activity);
-                gigPackages.getGigPackages();
-                gigPackages.getStndrdServiceCategories();
+//                GetGigPackages gigPackages = new GetGigPackages();
+//                gigPackages.init(activity);
+//                gigPackages.getGigPackages();
+//                gigPackages.getStndrdServiceCategories();
                 activity.getProfile();
             }
         });
@@ -86,21 +80,21 @@ public class SplashActivityVM extends ViewModel implements APIRequest.JWTRequest
 
                     appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
 
-                        if (!BuildConfig.DEBUG) {
-                            String liveBaseUrl = remoteConfig.getString(KEY_LIVE_BASE_URL);
-                            if (!TextUtils.isEmpty(liveBaseUrl)) {
-                                Task24Application.LIVE_URL = liveBaseUrl;
-                            }
-                            Log.e("Remote LIVE BASE ", "" + Task24Application.LIVE_URL);
-                            ApiClient.retrofit = null;
-                        }
-
-                        if (!BuildConfig.DEBUG) {
-                            String liveBaseUrl = remoteConfig.getString(KEY_LIVE_BASE_URL_GIG);
-                            Log.e("Remote LIVE BASE GIG ", "" + liveBaseUrl);
-                            BASE_URL_GIG = liveBaseUrl;
-                            ApiClient.retrofitGig = null;
-                        }
+//                        if (!BuildConfig.DEBUG) {
+//                            String liveBaseUrl = remoteConfig.getString(KEY_LIVE_BASE_URL);
+//                            if (!TextUtils.isEmpty(liveBaseUrl)) {
+//                                Task24Application.LIVE_URL = liveBaseUrl;
+//                            }
+//                            Log.e("Remote LIVE BASE ", "" + Task24Application.LIVE_URL);
+//                            ApiClient.retrofit = null;
+//                        }
+//
+//                        if (!BuildConfig.DEBUG) {
+//                            String liveBaseUrl = remoteConfig.getString(KEY_LIVE_BASE_URL_GIG);
+//                            Log.e("Remote LIVE BASE GIG ", "" + liveBaseUrl);
+//                            BASE_URL_GIG = liveBaseUrl;
+//                            ApiClient.retrofitGig = null;
+//                        }
 
 
                         if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
@@ -116,9 +110,7 @@ public class SplashActivityVM extends ViewModel implements APIRequest.JWTRequest
                         }
                     });
 
-                    appUpdateInfoTask.addOnFailureListener(fail -> {
-                        redirectIntent();
-                    });
+                    appUpdateInfoTask.addOnFailureListener(fail -> redirectIntent());
 
                     /*String appVersion = BuildConfig.VERSION_NAME;
 
@@ -185,10 +177,8 @@ public class SplashActivityVM extends ViewModel implements APIRequest.JWTRequest
         activity.startActivity(intent);
     }
 
-    private void redirectIntent() {
-        if (activity.isNetworkConnected()) {
-            new Handler().postDelayed(() -> redirectToScreen(), 4000);
-        }
+    public void redirectIntent() {
+        new Handler().postDelayed(this::redirectToScreen, 1000);
     }
 
     private void redirectToScreen() {
@@ -211,7 +201,8 @@ public class SplashActivityVM extends ViewModel implements APIRequest.JWTRequest
             }
 
         } else {
-            intentMain = new Intent(activity, SelectAccountActivity.class);
+//            intentMain = new Intent(activity, SelectAccountActivity.class);
+            intentMain = new Intent(activity, OnboardingActivity.class);
         }
         intentMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);

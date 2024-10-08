@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nojom.R;
 import com.nojom.databinding.ItemSelectFullBinding;
 import com.nojom.model.StateResponse;
+import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
 
 import java.util.ArrayList;
@@ -26,9 +27,9 @@ public class SelectStateAdapter extends RecyclerView.Adapter<SelectStateAdapter.
 
     private List<StateResponse.StateData> mDataset;
     private List<StateResponse.StateData> mDatasetFiltered;
-    private Context context;
+    private BaseActivity context;
 
-    public SelectStateAdapter(Context context, List<StateResponse.StateData> objects) {
+    public SelectStateAdapter(BaseActivity context, List<StateResponse.StateData> objects) {
         this.mDataset = objects;
         this.mDatasetFiltered = objects;
         this.context = context;
@@ -49,7 +50,7 @@ public class SelectStateAdapter extends RecyclerView.Adapter<SelectStateAdapter.
         try {
             StateResponse.StateData item = mDatasetFiltered.get(position);
 
-            holder.binding.tvTitle.setText(item.stateName);
+            holder.binding.tvTitle.setText(item.getStateName(context.language));
 
             if (item.isSelected) {
                 holder.binding.tvTitle.setBackground(ContextCompat.getDrawable(context, R.drawable.blue_button_bg));
@@ -134,7 +135,7 @@ public class SelectStateAdapter extends RecyclerView.Adapter<SelectStateAdapter.
                 } else {
                     List<StateResponse.StateData> filteredList = new ArrayList<>();
                     for (StateResponse.StateData row : mDataset) {
-                        String rowText = row.stateName.toLowerCase();
+                        String rowText = row.getStateName(context.language).toLowerCase();
                         if (!TextUtils.isEmpty(rowText)) {
                             if (rowText.contains(charString.toLowerCase())) {
                                 filteredList.add(row);

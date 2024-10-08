@@ -26,6 +26,7 @@ public class MyPlatformActivity extends BaseActivity implements MyPlatformAdapte
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_platform);
         nameActivityVM = ViewModelProviders.of(this).get(MyPlatformActivityVM.class);

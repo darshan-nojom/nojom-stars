@@ -13,6 +13,7 @@ public class NewPolicyActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityNewPolicyBinding newPolicyBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_policy);
         new NewPolicyActivityVM(Task24Application.getActivity(), newPolicyBinding, this);

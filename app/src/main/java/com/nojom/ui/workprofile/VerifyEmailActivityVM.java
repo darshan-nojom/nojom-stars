@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.nojom.R;
 import com.nojom.api.APIRequest;
+import com.nojom.model.requestmodel.CommonRequest;
 import com.nojom.ui.BaseActivity;
 
 import static com.nojom.util.Constants.API_EMAIL_VERIFICATION;
@@ -26,13 +27,17 @@ public class VerifyEmailActivityVM extends ViewModel implements APIRequest.APIRe
         return isShowLoading;
     }
 
-    void verifyEmail(BaseActivity activity) {
+    void verifyEmail(BaseActivity activity, String email) {
         if (!activity.isNetworkConnected())
             return;
         this.activity = activity;
         getIsShowLoading().postValue(true);
+
+        CommonRequest.SendEmail clientProfile = new CommonRequest.SendEmail();
+        clientProfile.setEmail(email);
+
         APIRequest apiRequest = new APIRequest();
-        apiRequest.makeAPIRequest(activity, API_EMAIL_VERIFICATION, null, false, this);
+        apiRequest.makeAPIRequest(activity, API_EMAIL_VERIFICATION, clientProfile.toString(), true, this);
     }
 
     boolean isValid(BaseActivity activity, String email) {

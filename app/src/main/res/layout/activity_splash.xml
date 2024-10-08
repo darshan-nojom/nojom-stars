@@ -5,9 +5,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:gravity="center_vertical"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_text"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_below="@+id/img_logo"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_minus40sdp"
+            android:src="@drawable/ic_logo_en" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_logo"
@@ -17,16 +26,6 @@
             android:contentDescription="@string/app_name"
             android:src="@mipmap/nojom_splash" />
 
-        <android.textview.TextViewSFTextPro
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/img_logo"
-            android:layout_centerInParent="true"
-            android:text="@string/nojom"
-            android:textColor="@color/c_37D9DE"
-            android:textSize="@dimen/_34sdp"
-            android:textStyle="bold"
-            app:font="@string/sfpro_text_bold" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -37,8 +36,8 @@
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/_20sdp"
             android:indeterminate="true"
-            android:visibility="gone"
-            android:progressTint="@color/c_37D9DE" />
+            android:progressTint="@color/c_37D9DE"
+            android:visibility="gone" />
 
     </RelativeLayout>
 </layout>

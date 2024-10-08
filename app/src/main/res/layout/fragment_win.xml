@@ -7,7 +7,7 @@
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/C_F2F2F7"
         android:scrollbars="none"
         app:layout_scrollFlags="scroll">
 
@@ -106,6 +106,7 @@
                         android:gravity="center"
                         android:paddingLeft="@dimen/_5sdp"
                         android:paddingTop="@dimen/_2sdp"
+                        android:backgroundTint="@color/C_E5E5EA"
                         android:paddingRight="@dimen/_5sdp"
                         android:paddingBottom="@dimen/_2sdp"
                         android:text="@string/under_review"
@@ -158,6 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:text="@string/get_12"
+                    android:id="@+id/txt_title"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_24sdp"
                     app:font="@string/sftext_bold" />
@@ -203,6 +205,7 @@
                         android:background="@drawable/gray_rounded_corner_20"
                         android:gravity="center"
                         android:paddingLeft="@dimen/_5sdp"
+                        android:backgroundTint="@color/C_E5E5EA"
                         android:paddingTop="@dimen/_2sdp"
                         android:paddingRight="@dimen/_5sdp"
                         android:paddingBottom="@dimen/_2sdp"
@@ -238,6 +241,7 @@
                         android:paddingBottom="@dimen/_5sdp"
                         android:text="@string/google_play_2"
                         android:textColor="@color/black"
+                        android:id="@+id/txt_googlePlay"
                         android:textSize="@dimen/_14sdp"
                         app:font="@string/sftext_regular"
                         tools:ignore="RelativeOverlap" />
@@ -250,6 +254,7 @@
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:layout_toStartOf="@+id/img_right_googlepay"
                         android:background="@drawable/gray_rounded_corner_20"
+                        android:backgroundTint="@color/C_E5E5EA"
                         android:gravity="center"
                         android:paddingLeft="@dimen/_5sdp"
                         android:paddingTop="@dimen/_2sdp"
@@ -287,6 +292,7 @@
                         android:paddingBottom="@dimen/_5sdp"
                         android:text="@string/google_2"
                         android:textColor="@color/black"
+                        android:id="@+id/txt_google"
                         android:textSize="@dimen/_14sdp"
                         app:font="@string/sftext_regular"
                         tools:ignore="RelativeOverlap" />
@@ -300,6 +306,7 @@
                         android:layout_toStartOf="@+id/img_right_google"
                         android:background="@drawable/gray_rounded_corner_20"
                         android:gravity="center"
+                        android:backgroundTint="@color/C_E5E5EA"
                         android:paddingLeft="@dimen/_5sdp"
                         android:paddingTop="@dimen/_2sdp"
                         android:paddingRight="@dimen/_5sdp"
@@ -334,6 +341,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/_5sdp"
                         android:paddingBottom="@dimen/_5sdp"
+                        android:id="@+id/txt_fb"
                         android:text="@string/facebook_2"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp"
@@ -349,6 +357,7 @@
                         android:layout_toStartOf="@+id/img_right_facebook"
                         android:background="@drawable/gray_rounded_corner_20"
                         android:gravity="center"
+                        android:backgroundTint="@color/C_E5E5EA"
                         android:paddingLeft="@dimen/_5sdp"
                         android:paddingTop="@dimen/_2sdp"
                         android:paddingRight="@dimen/_5sdp"
@@ -384,6 +393,7 @@
                         android:paddingTop="@dimen/_5sdp"
                         android:paddingBottom="@dimen/_5sdp"
                         android:text="@string/trustpilot_2"
+                        android:id="@+id/txt_tp"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp"
                         app:font="@string/sftext_regular"
@@ -399,6 +409,7 @@
                         android:background="@drawable/gray_rounded_corner_20"
                         android:gravity="center"
                         android:paddingLeft="@dimen/_5sdp"
+                        android:backgroundTint="@color/C_E5E5EA"
                         android:paddingTop="@dimen/_2sdp"
                         android:paddingRight="@dimen/_5sdp"
                         android:paddingBottom="@dimen/_2sdp"
@@ -434,6 +445,7 @@
                         android:paddingBottom="@dimen/_5sdp"
                         android:text="@string/sitejabber_2"
                         android:textColor="@color/black"
+                        android:id="@+id/txt_sj"
                         android:textSize="@dimen/_14sdp"
                         app:font="@string/sftext_regular"
                         tools:ignore="RelativeOverlap" />
@@ -448,6 +460,7 @@
                         android:background="@drawable/gray_rounded_corner_20"
                         android:gravity="center"
                         android:paddingLeft="@dimen/_5sdp"
+                        android:backgroundTint="@color/C_E5E5EA"
                         android:paddingTop="@dimen/_2sdp"
                         android:paddingRight="@dimen/_5sdp"
                         android:paddingBottom="@dimen/_2sdp"
@@ -550,6 +563,7 @@
                 android:text="@string/get_2_for_every_review"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_18sdp"
+                android:id="@+id/txt_t3"
                 app:font="@string/sftext_bold" />
 
             <android.textview.TextViewSFTextPro
@@ -557,6 +571,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center_vertical"
+                android:id="@+id/txt_t3_d"
                 android:text="@string/you_will_get_2_for_one_review_on_social_platform"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"

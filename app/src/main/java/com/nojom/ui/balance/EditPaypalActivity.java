@@ -21,6 +21,7 @@ public class EditPaypalActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_paypal);
         binding.setEditAct(this);
@@ -41,8 +42,8 @@ public class EditPaypalActivity extends BaseActivity {
             return;
         }
 
-        binding.txtLbl.setText(getString(R.string.edit) + " " + paymentData.provider);
-        binding.txtTitle.setText(paymentData.provider + " " + getString(R.string.account_email));
+        binding.txtLbl.setText(getString(R.string.edit) + " " + paymentData.getProvider(language));
+        binding.txtTitle.setText(paymentData.getProvider(language) + " " + getString(R.string.account_email));
 
         if (TextUtils.isEmpty(paymentData.token) && !paymentData.verified.equalsIgnoreCase("1")) {
             binding.tvStatus.setText(getString(R.string.not_verified));

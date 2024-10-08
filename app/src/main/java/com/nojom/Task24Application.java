@@ -20,6 +20,9 @@ import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderF
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
 import com.nojom.util.Foreground;
@@ -61,7 +64,7 @@ public class Task24Application extends MultiDexApplication implements Constants 
     }
 
     public static String LIVE_URL = "https://74i1n3rop0.execute-api.me-central-1.amazonaws.com/prod/";
-    public static String BASE_URL_GIG = "https://5wd1inrz7g.execute-api.me-central-1.amazonaws.com/prod/";
+    public static String BASE_URL_GIG = "https://zap31dqqtk.execute-api.me-central-1.amazonaws.com/prod/";
 //    public WebSocketClient clientNew;
 
     private Socket mSocketMsg;
@@ -90,10 +93,16 @@ public class Task24Application extends MultiDexApplication implements Constants 
 //        new Thread(() -> {
         try {
             ProviderInstaller.installIfNeeded(getApplicationContext());
-        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+        } catch (GooglePlayServicesRepairableException |
+                 GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
         }
-        Intercom.initialize(this, "android_sdk-59492598d6d65b76b06a22396d76da69dc6d3431", "ck9u1r6v");
+
+        if (!AppCenter.isConfigured()) {
+            AppCenter.start(this, "959ada3b-7e59-47d2-a255-ecaba6cae3a5", Analytics.class, Crashes.class);
+        }
+
+        Intercom.initialize(this, "android_sdk-1c34857d121a5aca7c6b046b3ffe9ccc6f8605fa", "cmde9nds");
         Registration registration = Registration.create();
         if (Preferences.getUserData(this) != null) {
             registration.withEmail(Objects.requireNonNull(Preferences.getUserData(this)).email);

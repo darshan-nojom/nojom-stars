@@ -1,0 +1,19 @@
+<!-- res/menu/popup_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_edit"
+        android:title="@string/edit" />
+    <item
+        android:id="@+id/action_view"
+        android:title="@string/view">
+        <menu>
+            <item
+                android:id="@+id/action_view_public"
+                android:title="@string/public_" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_delete"
+        android:title="@string/delete_"
+        android:titleTextColor="@android:color/holo_red_dark" />
+</menu>

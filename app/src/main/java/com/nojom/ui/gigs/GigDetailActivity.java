@@ -138,7 +138,7 @@ public class GigDetailActivity extends BaseActivity {
                 textViewName.setTextColor(getResources().getColor(R.color.tab_gray));
             }
 
-            textViewName.setText("$" + Math.round(packages.get(listPosition).price));
+            textViewName.setText(getCurrency().equals("SAR") ? Math.round(packages.get(listPosition).price) + " "+getString(R.string.sar) : getString(R.string.dollar) + Math.round(packages.get(listPosition).price));
             textViewName.setTag(packages.get(listPosition).id);
 
             if (packages.size() == 3 || packages.size() == 2) {

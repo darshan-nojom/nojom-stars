@@ -13,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         tools:context=".ui.balance.ChooseAccountActivity">
 
         <RelativeLayout
@@ -33,58 +33,109 @@
                 app:tint="@color/black" />
         </RelativeLayout>
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/ll_bottom"
             android:layout_below="@+id/rl_header"
-            android:orientation="vertical"
-            android:padding="@dimen/_15sdp">
+            android:fillViewport="true"
+            android:layout_above="@id/ll_bottom"
+            android:layout_height="match_parent">
 
-            <android.textview.TextViewSFTextPro
-                app:fonts="@string/sftext_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/choose_account"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_22sdp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_accounts"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:visibility="gone" />
+                android:layout_height="match_parent"
+                android:layout_above="@+id/ll_bottom"
+                android:layout_below="@+id/rl_header"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_account"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_22sdp"
+                    app:fonts="@string/sftext_bold" />
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_accounts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:visibility="gone" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:orientation="vertical">
 
-                    <include layout="@layout/item_choose_account_ph" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <include layout="@layout/item_choose_account_ph" />
+                        <include layout="@layout/item_choose_account_ph" />
 
-                    <include layout="@layout/item_choose_account_ph" />
+                        <include layout="@layout/item_choose_account_ph" />
 
-                    <include layout="@layout/item_choose_account_ph" />
+                        <include layout="@layout/item_choose_account_ph" />
 
-                    <include layout="@layout/item_choose_account_ph" />
+                        <include layout="@layout/item_choose_account_ph" />
+
+                        <include layout="@layout/item_choose_account_ph" />
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_90sdp"
+                    android:gravity="center|center_vertical"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/tv_no_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_ph_accounts"
+                        android:textSize="@dimen/_14sdp"
+                        app:fonts="@string/sftext_bold" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_no_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:gravity="center"
+                        android:text="You don't have any accounts"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sfpro_text_bold" />
                 </LinearLayout>
-            </com.facebook.shimmer.ShimmerFrameLayout>
 
-            <include
-                android:id="@+id/noData"
-                layout="@layout/no_data_layout" />
-        </LinearLayout>
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/tv_add_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/white_rounded_corner_20"
+                    android:elevation="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:text="@string/add_new_account"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_semibold" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
             android:id="@+id/ll_bottom"
@@ -94,11 +145,9 @@
             android:background="@color/background"
             android:elevation="@dimen/_5sdp"
             android:orientation="vertical"
-            android:padding="@dimen/_15sdp"
-            tools:targetApi="lollipop">
+            android:padding="@dimen/_15sdp">
 
             <android.textview.TextViewSFTextPro
-                app:fonts="@string/sftext_semibold"
                 android:id="@+id/tv_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +159,8 @@
                 android:padding="@dimen/_8sdp"
                 android:text="@string/save"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_11sdp" />
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sftext_semibold" />
         </LinearLayout>
     </RelativeLayout>
 </layout>

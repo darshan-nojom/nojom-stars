@@ -13,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/C_F2F2F7"
         tools:context=".ui.workprofile.WorkSettingActivity">
 
         <include
@@ -91,7 +91,6 @@
                     android:id="@+id/rl_language"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:onClick="@{()->workAct.onClickLanguage()}"
                     android:paddingTop="@dimen/_5sdp"
                     android:paddingBottom="@dimen/_5sdp">
@@ -360,7 +359,6 @@
                 <RelativeLayout
                     android:id="@+id/rl_delete_account"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:onClick="@{()->workAct.onClickDataPrivacy()}"

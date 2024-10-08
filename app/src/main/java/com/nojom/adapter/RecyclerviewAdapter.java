@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapter.SimpleViewHolder> {
 
     private ArrayList<?> mDataset;
-    private int layoutId;
+    public int layoutId;
     private OnViewBindListner onViewBindListner;
 
     public RecyclerviewAdapter(ArrayList<?> objects, int layoutId, OnViewBindListner onViewBindListner) {

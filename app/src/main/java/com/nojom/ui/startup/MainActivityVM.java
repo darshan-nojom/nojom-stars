@@ -1,6 +1,7 @@
 package com.nojom.ui.startup;
 
 import static com.nojom.util.Constants.API_SET_COORDINATE;
+import static com.nojom.util.Constants.PREF_SELECTED_LANGUAGE;
 import static com.nojom.util.Constants.TAB_HOME;
 import static com.nojom.util.Constants.TAB_JOB_LIST;
 import static com.nojom.util.Constants.TAB_PROFILE;
@@ -12,12 +13,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,11 +57,14 @@ import com.nojom.model.ProfileResponse;
 import com.nojom.model.UserModel;
 import com.nojom.model.requestmodel.CommonRequest;
 import com.nojom.multitypepicker.FilePath;
+import com.nojom.ui.auth.LoginActivity;
 import com.nojom.ui.auth.LoginSignUpActivity;
 import com.nojom.ui.chat.ChatActivity;
 import com.nojom.ui.chat.ChatMessagesActivity;
+import com.nojom.ui.gigs.ProfileUpdateActivity;
 import com.nojom.ui.gigs.UserAccountActivity;
 import com.nojom.ui.home.WorkHomeActivity;
+import com.nojom.ui.jobs.SoonActivity;
 import com.nojom.ui.projects.MyProjectsActivity;
 import com.nojom.ui.workprofile.WorkMoreActivity;
 import com.nojom.util.AESHelper;
@@ -86,11 +96,20 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
     @SuppressLint("StaticFieldLeak")
     private MainActivity activity;
     private int SCREEN_TAB = -1;
-    private GoogleApiClient mGoogleApiClient;
-    private Location mLastLocation;
-    private LocationRequest mLocationRequest;
-    private double latitude;
-    private double longitude;
+    //    private GoogleApiClient mGoogleApiClient;
+//    private Location mLastLocation;
+//    private LocationRequest mLocationRequest;
+//    private double latitude;
+//    private double longitude;
+
+    public void setBar() {
+        Window window = activity.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(activity.getResources().getColor(R.color.black));
+        int flag = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        window.getDecorView().setSystemUiVisibility(0);
+    }
 
     MainActivityVM(Application application, ActivityMainBinding mainBinding, MainActivity mainActivity) {
         super(application);
@@ -101,11 +120,11 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
 
     private void initData() {
 
-        mGoogleApiClient = new GoogleApiClient.Builder(activity)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
+//        mGoogleApiClient = new GoogleApiClient.Builder(activity)
+//                .addConnectionCallbacks(this)
+//                .addOnConnectionFailedListener(this)
+//                .addApi(LocationServices.API)
+//                .build();
 
         int screen = 0;
         if (activity.getIntent() != null) {
@@ -127,11 +146,11 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
             }
         }
 
-        setTab("home", R.drawable.tab_home, WorkHomeActivity.class);
-        setTab("chat", R.drawable.tab_chat, ChatActivity.class);
-        setTab("plus", R.drawable.tab_profile, UserAccountActivity.class/* : Pro24TaskActivity.class*/);
-        setTab("project", R.drawable.tab_project, MyProjectsActivity.class);
-        setTab("profile", R.drawable.tab_more, WorkMoreActivity.class);
+        setTab("plus", R.drawable.tab_profile, ProfileUpdateActivity.class/*UserAccountActivity.class*/, 0);
+//        setTab("home", R.drawable.tab_home, WorkHomeActivity.class);
+        setTab("project", R.drawable.tab_project, MyProjectsActivity.class, 1);
+        setTab("chat", R.drawable.tab_chat, ChatActivity.class, 2);
+        setTab("profile", R.drawable.tab_more, WorkMoreActivity.class, 3);
 
         binding.tabhost.setOnTabChangedListener(this);
 
@@ -143,10 +162,92 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
         }
 
         //get current location and update it to server
-        if (mGoogleApiClient.isConnected())
-            getLocation();
-        else
-            mGoogleApiClient.connect();
+//        if (mGoogleApiClient.isConnected())
+//            getLocation();
+//        else
+//            mGoogleApiClient.connect();
+
+        binding.tabhost.setCurrentTab(0);
+        setHomeTab(true);
+        //setBar();
+        binding.linHome.setOnClickListener(view -> {
+            activity.setStatusBarColor(activity.getResources().getColor(R.color.black), false);
+            binding.tabhost.setCurrentTab(0);
+            setHomeTab(true);
+            setCampaignTag(false);
+            setChatTab(false);
+            setMoreTab(false);
+        });
+        binding.linProject.setOnClickListener(view -> {
+            binding.tabhost.setCurrentTab(1);
+            activity.setStatusBarColor(activity.getResources().getColor(R.color.C_F2F2F7), true);
+            setHomeTab(false);
+            setCampaignTag(true);
+            setChatTab(false);
+            setMoreTab(false);
+        });
+        binding.linChat.setOnClickListener(view -> {
+            activity.setStatusBarColor(activity.getResources().getColor(R.color.C_F2F2F7), true);
+            binding.tabhost.setCurrentTab(2);
+            setHomeTab(false);
+            setCampaignTag(false);
+            setChatTab(true);
+            setMoreTab(false);
+        });
+        binding.linMore.setOnClickListener(view -> {
+            activity.setStatusBarColor(activity.getResources().getColor(R.color.C_F2F2F7), true);
+            binding.tabhost.setCurrentTab(3);
+            setHomeTab(false);
+            setCampaignTag(false);
+            setChatTab(false);
+            setMoreTab(true);
+        });
+
+        binding.text.setText(activity.getString(R.string.profile));
+        binding.textProj.setText(activity.getString(R.string.campaign));
+        binding.textChat.setText(activity.getString(R.string.chats));
+        binding.textProfile.setText(activity.getString(R.string.more));
+
+    }
+
+    private void setHomeTab(boolean isSelect) {
+        if (isSelect) {
+            binding.text.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+            binding.imgTab.setImageResource(R.drawable.ic_t_profile_select);
+        } else {
+            binding.text.setTextColor(activity.getResources().getColor(R.color.C_3C3C43));
+            binding.imgTab.setImageResource(R.drawable.ic_t_profile);
+        }
+    }
+
+    private void setCampaignTag(boolean isSelect) {
+        if (isSelect) {
+            binding.textProj.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+            binding.imgTabProj.setImageResource(R.drawable.ic_t_camp_select);
+        } else {
+            binding.textProj.setTextColor(activity.getResources().getColor(R.color.C_3C3C43));
+            binding.imgTabProj.setImageResource(R.drawable.ic_t_camp);
+        }
+    }
+
+    private void setChatTab(boolean isSelect) {
+        if (isSelect) {
+            binding.textChat.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+            binding.imgTabChat.setImageResource(R.drawable.ic_t_chat_select);
+        } else {
+            binding.textChat.setTextColor(activity.getResources().getColor(R.color.C_3C3C43));
+            binding.imgTabChat.setImageResource(R.drawable.ic_t_chat);
+        }
+    }
+
+    private void setMoreTab(boolean isSelect) {
+        if (isSelect) {
+            binding.textProfile.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+            binding.imgTabProfile.setImageResource(R.drawable.ic_t_more_select);
+        } else {
+            binding.textProfile.setTextColor(activity.getResources().getColor(R.color.C_3C3C43));
+            binding.imgTabProfile.setImageResource(R.drawable.ic_t_more);
+        }
     }
 
     void checkForIntentData(Intent intent) {
@@ -176,7 +277,11 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
             Intent i;
             i = new Intent(activity, ChatMessagesActivity.class);
             i.putExtra(Constants.CHAT_DATA, chatMap);
-            activity.startActivity(i);
+            if (getIsVerified() == 1) {
+                activity.startActivity(i);
+            } else {
+                Toast.makeText(activity, activity.getString(R.string.verification_is_pending_please_complete_the_verification_first_before_chatting_with_them), Toast.LENGTH_SHORT).show();
+            }
         } else if (intent.hasExtra(Constants.M_TYPE)) {
             String mType = intent.getStringExtra(Constants.M_TYPE);
             String projectId = intent.getStringExtra(Constants.M_PROJECTID);
@@ -259,15 +364,19 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
 //        }
     }
 
-    private void setTab(String tag, int drawable, Class<?> activityClass) {
+    private void setTab(String tag, int drawable, Class<?> activityClass, int index) {
         Intent intent = new Intent(activity, activityClass);
         if (SCREEN_TAB != -1) {//the flag is used for Bidding TAB [After place bid have to redirect at Bidding TAB]
             intent.putExtra(Constants.SCREEN_TAB, SCREEN_TAB);
         }
+
         TabHost.TabSpec tabSpec = binding.tabhost.newTabSpec(tag)
                 .setIndicator("", ContextCompat.getDrawable(activity, drawable))
                 .setContent(intent);
         binding.tabhost.addTab(tabSpec);
+//        TextView tv = binding.tabhost.getTabWidget().getChildAt(index).findViewById(android.R.id.title); //Unselected Tabs
+//        tv.setText(tag);
+//        tv.setTextColor(Color.parseColor("#000000"));
     }
 
     @Override
@@ -298,7 +407,7 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
     }
 
     void goToLoginSignup() {
-        Intent i = new Intent(activity, LoginSignUpActivity.class);
+        Intent i = new Intent(activity, LoginActivity.class);
         i.putExtra(Constants.FROM_LOGIN, true);
         i.putExtra(Constants.LOGIN_FINISH, true);
         activity.startActivity(i);
@@ -377,7 +486,7 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
         return FilePath.URL_IMAGE;
     }
 
-    private void setCoordinatesAPI() {
+   /* private void setCoordinatesAPI() {
         if (!activity.isNetworkConnected())
             return;
 
@@ -413,11 +522,11 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
                 activity.failureError(activity.getString(R.string.add_coordinates_failed));
             }
         });
-    }
+    }*/
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        settingRequest();
+        //settingRequest();
     }
 
     @Override
@@ -444,38 +553,38 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
 
     }
 
-    private void settingRequest() {
-        mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);    // 10 seconds, in milliseconds
-        mLocationRequest.setFastestInterval(1000);   // 1 second, in milliseconds
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//    private void settingRequest() {
+//        mLocationRequest = new LocationRequest();
+//        mLocationRequest.setInterval(10000);    // 10 seconds, in milliseconds
+//        mLocationRequest.setFastestInterval(1000);   // 1 second, in milliseconds
+//        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//
+//        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+//                .addLocationRequest(mLocationRequest);
+//
+//        PendingResult<LocationSettingsResult> result =
+//                LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient,
+//                        builder.build());
+//
+//        result.setResultCallback(result1 -> {
+//            final Status status = result1.getStatus();
+//            switch (status.getStatusCode()) {
+//                case LocationSettingsStatusCodes.SUCCESS:
+//                    getLocation();
+//                    break;
+//                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+//                    try {
+//                        status.startResolutionForResult(activity, 1000);
+//                    } catch (IntentSender.SendIntentException ignored) {
+//                    }
+//                    break;
+//                case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+//                    break;
+//            }
+//        });
+//    }
 
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                .addLocationRequest(mLocationRequest);
-
-        PendingResult<LocationSettingsResult> result =
-                LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient,
-                        builder.build());
-
-        result.setResultCallback(result1 -> {
-            final Status status = result1.getStatus();
-            switch (status.getStatusCode()) {
-                case LocationSettingsStatusCodes.SUCCESS:
-                    getLocation();
-                    break;
-                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                    try {
-                        status.startResolutionForResult(activity, 1000);
-                    } catch (IntentSender.SendIntentException ignored) {
-                    }
-                    break;
-                case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                    break;
-            }
-        });
-    }
-
-    private void getLocation() {
+    /*private void getLocation() {
         Dexter.withActivity(activity)
                 .withPermissions(
                         Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -502,7 +611,7 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
                         }
 
                         if (report.isAnyPermissionPermanentlyDenied()) {
-                            Utils.toastMessage(activity, activity.getString(R.string.please_give_permission));
+//                            Utils.toastMessage(activity, activity.getString(R.string.please_give_permission));
                         }
                     }
 
@@ -513,5 +622,14 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
                 })
                 .onSameThread()
                 .check();
+    }*/
+
+    public Integer getIsVerified() {
+        ProfileResponse userData = Preferences.getProfileData(activity);
+        return userData.is_verified;
+    }
+
+    public String language() {
+        return Preferences.readString(activity, PREF_SELECTED_LANGUAGE, "en");
     }
 }

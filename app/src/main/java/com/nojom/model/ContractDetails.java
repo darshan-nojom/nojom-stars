@@ -151,7 +151,7 @@ public class ContractDetails extends CommonModel implements Serializable {
     public static class JobPostCharge implements Serializable {
         @Expose
         @SerializedName("bid_charges")
-        public int bidCharges;
+        public int bidCharges = 10;
         @Expose
         @SerializedName("bid_percent_charges")
         public int bidPercentCharges;
@@ -167,6 +167,17 @@ public class ContractDetails extends CommonModel implements Serializable {
         @Expose
         @SerializedName("country")
         public String country;
+        @Expose
+        @SerializedName("countryAr")
+        public String countryAr;
+
+        public String getCountry(String lang) {
+            if (lang.equals("ar")) {
+                return countryAr != null ? countryAr : country;
+            }
+            return country;
+        }
+
         @Expose
         @SerializedName("city")
         public String city;

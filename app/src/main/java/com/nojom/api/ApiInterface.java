@@ -3,8 +3,10 @@ package com.nojom.api;
 import static com.nojom.util.Constants.BASE_URL_CHAT;
 
 import com.nojom.model.APIResponse;
+import com.nojom.model.APIResponseArray;
 import com.nojom.model.ChatList;
 import com.nojom.model.CommonModel;
+import com.nojom.model.MawData;
 
 import java.util.HashMap;
 
@@ -33,12 +35,27 @@ public interface ApiInterface {
     @POST
     Call<APIResponse> requestAPIHeader(@Header("sys_id") String sysId,@Header("Authorization") String token, @Url String url, @Part("data") RequestBody data);
 
+    @Multipart
+    @POST
+    Call<APIResponseArray> simpleRequestAPIHeader(@Header("sys_id") String sysId,@Header("Authorization") String token, @Url String url, @Part("data") RequestBody data);
+
     @GET
     Call<APIResponse> requestAPIHeader(@Header("Authorization") String token, @Url String url);
+
+    @GET
+    Call<APIResponseArray> simpleRequestAPIHeader(@Header("Authorization") String token, @Url String url);
+
+    @GET
+    Call<MawData> simpleMawStatus(@Header("Authorization") String token, @Url String url);
 
     @Multipart
     @POST
     Call<APIResponse> requestAPIHeaderFileUpload(@Header("Authorization") String token, @Url String url, @Part("data") RequestBody data, @Part MultipartBody.Part file);
+
+    @Multipart
+    @POST
+    Call<APIResponse> requestAPIHeaderFileUpload(@Header("Authorization") String token, @Url String url, @Part("data") RequestBody data, @Part MultipartBody.Part file
+            , @Part MultipartBody.Part file1);
 
     @Multipart
     @POST
@@ -86,8 +103,8 @@ public interface ApiInterface {
                                                    @Part("gigTitle") RequestBody gigTitle, @Part("parentServiceCategoryID") RequestBody parentServiceCategoryID,
                                                    @Part("subServiceCategoryID") RequestBody subServiceCategoryID
             , @Part("description") RequestBody description, @Part("custom_requirments") RequestBody packages, @Part("custom_other_requirments") RequestBody otherReqBody
-            , /*@Part("searchTags") RequestBody searchTags,*/ @Part("status") RequestBody status, @Part("duplicateGigID") RequestBody gigID
-            , /*@Part("languageIDs") RequestBody languages,*/ @Part("fileToDelete") RequestBody fileToDelete,
+            , @Part("searchTags") RequestBody searchTags, @Part("status") RequestBody status, @Part("duplicateGigID") RequestBody gigID
+            , @Part("languageIDs") RequestBody languages, @Part("fileToDelete") RequestBody fileToDelete,
                                                    @Part("isDuplicate") RequestBody isDuplicate, @Part("profile_id") RequestBody profileId, @Part("deadlines") RequestBody deadlineType
             , @Part("minPrice") RequestBody mainPrice, @Header("Authorization") String token, @Part("deadlineDescription") RequestBody deadlineDesc
             , @Part("social_platform") RequestBody platformBody);

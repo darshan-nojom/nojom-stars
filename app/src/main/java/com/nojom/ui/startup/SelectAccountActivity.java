@@ -10,7 +10,7 @@ import com.nojom.R;
 import com.nojom.adapter.HireItemsAdapter;
 import com.nojom.databinding.ActivitySelectAccountBinding;
 import com.nojom.ui.BaseActivity;
-import com.nojom.ui.auth.LoginSignUpActivity;
+import com.nojom.ui.auth.LoginActivity;
 import com.nojom.util.EqualSpacingItemDecoration;
 import com.nojom.util.Utils;
 
@@ -59,6 +59,6 @@ public class SelectAccountActivity extends BaseActivity {
     }
 
     public void onClickWork() {
-        redirectActivity(LoginSignUpActivity.class);
+        redirectActivity(LoginActivity.class);
     }
 }

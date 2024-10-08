@@ -14,6 +14,7 @@ public class HireFreelancersActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(true);
         super.onCreate(savedInstanceState);
         ActivityHireFreelancerBinding settingBinding = DataBindingUtil.setContentView(this, R.layout.activity_hire_freelancer);
         settingBinding.setHireAct(this);
