@@ -91,6 +91,7 @@ public class EditProfileActivity extends BaseActivity implements ProfileMenuAdap
             setArFont(binding.tv2, Constants.FONT_AR_BOLD);
             setArFont(binding.tv3, Constants.FONT_AR_BOLD);
             setArFont(binding.txtPrev, Constants.FONT_AR_BOLD);
+            setArFont(binding.txtcont, Constants.FONT_AR_BOLD);
             setArFont(binding.txtOffer, Constants.FONT_AR_REGULAR);
             setArFont(binding.tv4, Constants.FONT_AR_BOLD);
             setArFont(binding.txtStatusOffer, Constants.FONT_AR_BOLD);
@@ -195,6 +196,7 @@ public class EditProfileActivity extends BaseActivity implements ProfileMenuAdap
             setPublicStatusValue(profileData.show_whatsapp, binding.txtStatusWapp);
             setPublicStatusValue(profileData.show_email, binding.txtStatusBEmail);
 
+            binding.swChat.setChecked(profileData.chat_allowed == 1);
             setPreview();
 
             if (profileData.whatsapp_number != null) {
@@ -241,8 +243,12 @@ public class EditProfileActivity extends BaseActivity implements ProfileMenuAdap
                 binding.tvSave.setTextColor(getResources().getColor(R.color.white));
             } else {
                 DrawableCompat.setTint(binding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
-                binding.tvSave.setTextColor(getResources().getColor(R.color.c_AEAEB2));
+                binding.tvSave.setTextColor(getResources().getColor(R.color.C_020814));
             }
+        });
+
+        binding.swChat.setOnCheckedChangeListener((compoundButton, b) -> {
+            isAnyChanges.postValue(true);
         });
 
         binding.txtStatusBEmail.setOnClickListener(view -> whoCanSeeDialog(binding.txtStatusBEmail, 2));
@@ -375,7 +381,7 @@ public class EditProfileActivity extends BaseActivity implements ProfileMenuAdap
         }
         editProfileActivityVM.updateProfile(getFirstName(), getEmail(), getMobile(), getMobilePrefix(),
                 getUsername(), profileFile, -1, getArName(), 1, Integer.parseInt(binding.txtStatusOffer.getTag().toString()),
-                Integer.parseInt(binding.txtStatusBEmail.getTag().toString()), Integer.parseInt(binding.txtStatusWapp.getTag().toString()));
+                Integer.parseInt(binding.txtStatusBEmail.getTag().toString()), Integer.parseInt(binding.txtStatusWapp.getTag().toString()), binding.swChat.isChecked() ? 1 : 0);
     }
 
     TextWatcher watcher = new TextWatcher() {
@@ -874,9 +880,7 @@ public class EditProfileActivity extends BaseActivity implements ProfileMenuAdap
             onBackPressed();
         });
 
-        dialogDiscardBinding.relSave.setOnClickListener(v -> {
-            saveData(dialogDiscard);
-        });
+        dialogDiscardBinding.relSave.setOnClickListener(v -> saveData(dialogDiscard));
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(Objects.requireNonNull(dialogDiscard.getWindow()).getAttributes());

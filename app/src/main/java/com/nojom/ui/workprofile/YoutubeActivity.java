@@ -192,8 +192,10 @@ public class YoutubeActivity extends BaseActivity implements YoutubeAdapter.OnCl
         isAnyChanges.observe(this, aBoolean -> {
             if (aBoolean) {
                 DrawableCompat.setTint(addYoutubeBinding.relSave.getBackground(), ContextCompat.getColor(YoutubeActivity.this, R.color.black));
+                addYoutubeBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
             } else {
-                DrawableCompat.setTint(addYoutubeBinding.relSave.getBackground(), ContextCompat.getColor(YoutubeActivity.this, R.color.c_AEAEB2));
+                DrawableCompat.setTint(addYoutubeBinding.relSave.getBackground(), ContextCompat.getColor(YoutubeActivity.this, R.color.C_E5E5EA));
+                addYoutubeBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
             }
         });
 
@@ -246,7 +248,8 @@ public class YoutubeActivity extends BaseActivity implements YoutubeAdapter.OnCl
         dialogAddYoutube.setContentView(addYoutubeBinding.getRoot());
         dialogAddYoutube.setCancelable(true);
         isAnyChanges.setValue(false);
-        DrawableCompat.setTint(addYoutubeBinding.relSave.getBackground(), ContextCompat.getColor(YoutubeActivity.this, R.color.c_AEAEB2));
+        DrawableCompat.setTint(addYoutubeBinding.relSave.getBackground(), ContextCompat.getColor(YoutubeActivity.this, R.color.C_E5E5EA));
+        addYoutubeBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
         if (data != null) {
             addYoutubeBinding.etName.setText(data.link);
         }
@@ -264,22 +267,25 @@ public class YoutubeActivity extends BaseActivity implements YoutubeAdapter.OnCl
                     addYoutubeBinding.etName.setCompoundDrawablePadding(15);
                     addYoutubeBinding.etName.setTag("");
 //                    DrawableCompat.setTint(addYoutubeBinding.relSave.getBackground(), ContextCompat.getColor(YoutubeActivity.this, R.color.c_AEAEB2));
-                    isAnyChanges.setValue(false);
+//                    isAnyChanges.setValue(false);
                 } else {
                     if (isValid()) {
                         DrawableCompat.setTint(addYoutubeBinding.relSave.getBackground(), ContextCompat.getColor(YoutubeActivity.this, R.color.black));
-                        isAnyChanges.setValue(true);
+                        addYoutubeBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
+//                        isAnyChanges.setValue(true);
                         addYoutubeBinding.error.setVisibility(View.GONE);
                         addYoutubeBinding.relView.setBackground(getResources().getDrawable(R.drawable.gray_l_border_6));
                         addYoutubeBinding.defaultTextInputLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.C_3C3C43)));
                     } else {
-                        DrawableCompat.setTint(addYoutubeBinding.relSave.getBackground(), ContextCompat.getColor(YoutubeActivity.this, R.color.c_AEAEB2));
-                        isAnyChanges.setValue(false);
+                        DrawableCompat.setTint(addYoutubeBinding.relSave.getBackground(), ContextCompat.getColor(YoutubeActivity.this, R.color.C_E5E5EA));
+                        addYoutubeBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
+//                        isAnyChanges.setValue(false);
                         addYoutubeBinding.error.setVisibility(View.VISIBLE);
                         addYoutubeBinding.relView.setBackground(getResources().getDrawable(R.drawable.red_l_border_6));
                         addYoutubeBinding.defaultTextInputLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.C_FF3B30)));
                     }
                 }
+                isAnyChanges.setValue(true);
             }
 
             @Override
@@ -402,7 +408,7 @@ public class YoutubeActivity extends BaseActivity implements YoutubeAdapter.OnCl
             setArFont(dialogDeleteBinding.tvSend, Constants.FONT_AR_BOLD);
             setArFont(dialogDeleteBinding.tvCancel, Constants.FONT_AR_BOLD);
         }
-        dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_youtube_video));
+        dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_youtube_video)+" "+title);
         dialogDeleteBinding.txtDesc.setText(String.format(getString(R.string.you_re_going_to_delete_the_s), title) + getString(R.string._are_you_sure));
         dialogDeleteBinding.tvSend.setText(getString(R.string.yes_delete));
         dialogDeleteBinding.tvCancel.setText(getString(R.string.no_keep_it));

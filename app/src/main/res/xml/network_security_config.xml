@@ -5,5 +5,6 @@
         <domain includeSubdomains="true">agent.24task.com</domain>
         <domain includeSubdomains="true">15.184.217.235</domain>
         <domain includeSubdomains="true">6fo9b3v2wg.execute-api.us-east-2.amazonaws.com</domain>
+        <domain includeSubdomains="true">ec2-15-184-217-235.me-south-1.compute.amazonaws.com</domain>
     </domain-config>
 </network-security-config>

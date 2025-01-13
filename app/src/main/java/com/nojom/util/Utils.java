@@ -1168,4 +1168,18 @@ public class Utils {
             return -1; // Return -1 if there's an error parsing the date
         }
     }
+
+    public static String decimalFormat(String number) {
+        try {
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+            Double d = Double.parseDouble(String.valueOf(number));
+            DecimalFormat format = new DecimalFormat();
+            format.setDecimalFormatSymbols(symbols);
+            format.setDecimalSeparatorAlwaysShown(false);
+            return format.format(d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return number;
+    }
 }

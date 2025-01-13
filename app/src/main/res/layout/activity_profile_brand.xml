@@ -177,7 +177,7 @@
                                 android:layout_centerVertical="true"
                                 android:contentDescription="@string/back"
                                 android:padding="@dimen/_5sdp"
-                                android:src="@drawable/intercom_back"
+                                android:src="@drawable/back"
                                 app:tint="@color/black" />
 
                             <de.hdodenhof.circleimageview.CircleImageView

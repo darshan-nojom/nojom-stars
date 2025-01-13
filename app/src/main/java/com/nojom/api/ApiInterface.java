@@ -1,25 +1,37 @@
 package com.nojom.api;
 
-import static com.nojom.util.Constants.BASE_URL_CHAT;
-
 import com.nojom.model.APIResponse;
 import com.nojom.model.APIResponseArray;
+import com.nojom.model.AddCard;
+import com.nojom.model.CampListResponse;
+import com.nojom.model.CampaignUrls;
 import com.nojom.model.ChatList;
 import com.nojom.model.CommonModel;
 import com.nojom.model.MawData;
+import com.nojom.model.ServicesData;
+import com.nojom.model.UpdateCard;
+import com.nojom.model.WalletResponse;
+import com.nojom.model.WalletTxnResponse;
+import com.nojom.model.WithdrawAmount;
+import com.nojom.model.requestmodel.CommonRequest;
 
 import java.util.HashMap;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Url;
@@ -33,11 +45,11 @@ public interface ApiInterface {
 
     @Multipart
     @POST
-    Call<APIResponse> requestAPIHeader(@Header("sys_id") String sysId,@Header("Authorization") String token, @Url String url, @Part("data") RequestBody data);
+    Call<APIResponse> requestAPIHeader(@Header("sys_id") String sysId, @Header("Authorization") String token, @Url String url, @Part("data") RequestBody data);
 
     @Multipart
     @POST
-    Call<APIResponseArray> simpleRequestAPIHeader(@Header("sys_id") String sysId,@Header("Authorization") String token, @Url String url, @Part("data") RequestBody data);
+    Call<APIResponseArray> simpleRequestAPIHeader(@Header("sys_id") String sysId, @Header("Authorization") String token, @Url String url, @Part("data") RequestBody data);
 
     @GET
     Call<APIResponse> requestAPIHeader(@Header("Authorization") String token, @Url String url);
@@ -47,6 +59,9 @@ public interface ApiInterface {
 
     @GET
     Call<MawData> simpleMawStatus(@Header("Authorization") String token, @Url String url);
+
+    @GET
+    Call<ServicesData> getServices(@Header("Authorization") String token, @Url String url);
 
     @Multipart
     @POST
@@ -125,12 +140,57 @@ public interface ApiInterface {
 
     @FormUrlEncoded
 //    @POST(BASE_URL_CHAT + "users/getAllUsersV1")
-    @POST(BASE_URL_CHAT + "users/getAllUsers")
-    Call<ChatList> getUser(@Field("profileId") String profileID, @Field("profile_type_id") String profileTypeID);
+    @POST
+    Call<ChatList> getUser(@Url String method, @Field("profileId") String profileID, @Field("profile_type_id") String profileTypeID);
 
     @FormUrlEncoded
     @POST
     Call<CommonModel> withdrawOffer(@Url String method, @Field("offerID") String offerID, @Field("PK") String pk, @Field("SK") String sk, @Header("Authorization") String token);
 
+    @GET
+    Call<CampListResponse> getCampaign(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);
+
+    @PATCH
+    Call<CampListResponse> campStatus(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);
+
+    @Multipart
+    @POST
+    Call<CampListResponse> uploadCampAttach(@Url String method, @Part MultipartBody.Part[] file, @Header("Authorization") String token);
+
+    @POST
+    Call<CampListResponse> uploadCampAttachUrls(@Url String method, @Header("Authorization") String token,
+                                                @Body CampaignUrls campaignType, @Header("sys_id") String sysId);
+
+    @GET
+    Call<CampListResponse> getCampById(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);
+
+    @GET
+    Call<WalletResponse> getWalletBalance(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);
+
+    @GET
+    Call<WalletTxnResponse> getWallet(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);
+
+    @GET
+    Call<WalletResponse> getAccounts(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);
+
+    @POST
+    Call<CommonModel> withdrawAmount(@Url String method, @Header("Authorization") String token,
+                                     @Body WithdrawAmount withdrawAmount, @Header("sys_id") String sysId);
+
+    @POST
+    Call<CommonModel> addCard(@Url String method, @Header("Authorization") String token,
+                              @Body AddCard addCard, @Header("sys_id") String sysId);
+
+    @PUT
+    Call<CommonModel> updateCard(@Url String method, @Header("Authorization") String token,
+                                 @Body UpdateCard addCard, @Header("sys_id") String sysId);
+
+//    @DELETE
+    @HTTP(method = "DELETE", hasBody = true)
+    Call<CommonModel> deleteCard(@Url String method, @Header("Authorization") String token,
+                                 @Body CommonRequest.DeleteBank addCard, @Header("sys_id") String sysId);
+
+    @GET
+    Call<WalletResponse> getHistory(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);
 }
 

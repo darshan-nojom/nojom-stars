@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_profile"
+                        android:layout_width="@dimen/_37sdp"
+                        android:layout_height="@dimen/_37sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_invoice" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_receiver_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/job_id"
+                            android:textColor="@color/C_020814"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:orientation="horizontal">
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/tv_budget"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:drawableStart="@drawable/icon__2_"
+                                android:drawablePadding="@dimen/_3sdp"
+                                android:text="@string/_0"
+                                android:textColor="@color/C_020814"
+                                android:textSize="@dimen/_9sdp"
+                                app:fonts="@string/sfpro_text_regular" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:text="@string/hr"
+                                android:textColor="@color/c_3C3C4399"
+                                android:textSize="@dimen/_9sdp"
+                                app:fonts="@string/sfpro_text_regular" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_chat"
+                        android:layout_width="@dimen/_75sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:background="@drawable/black_bg_20"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/chat"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sfpro_text_midium" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/C_E5E5EA" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:text="Sunday, 23 Jan,2024 "
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/C_020814"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sftext_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black_alpha_50"
+                        android:paddingStart="@dimen/_7sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_7sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/pending"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/_9sdp"
+                        app:fonts="@string/sftext_regular" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:orientation="horizontal">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0%"
+                        android:textColor="@color/C_3C3C43"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_3sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:max="100"
+                        app:indicatorColor="@color/colorAccent"
+                        app:trackColor="@color/C_EAECF0"
+                        app:trackCornerRadius="@dimen/_7sdp"
+                        app:trackThickness="@dimen/_3sdp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/C_E5E5EA" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="@string/campaign_title"
+                        android:textColor="@color/c_3C3C4399"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="TextContrastCheck" />
+
+
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_campaign_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:text="@string/title"
+                    android:textColor="@color/C_020814"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular"
+                    tools:ignore="TextContrastCheck" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/C_E5E5EA" />
+
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="@string/details"
+                    android:textColor="@color/c_3C3C4399"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular"
+                    tools:ignore="TextContrastCheck" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/C_020814"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/C_E5E5EA" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="@string/platform"
+                        android:textColor="@color/c_3C3C4399"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sftext_regular"
+                        tools:ignore="TextContrastCheck" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/plus"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPlatform"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/C_E5E5EA" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="@string/job_id"
+                    android:textColor="@color/c_3C3C4399"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular"
+                    tools:ignore="TextContrastCheck" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_camp_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="123456"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/C_020814"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/C_E5E5EA" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="@string/attach_file"
+                    android:textColor="@color/c_3C3C4399"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular"
+                    tools:ignore="TextContrastCheck" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgFile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/file_type_icon" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_file_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_toEndOf="@+id/imgFile"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/C_344054"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sfpro_text_midium"
+                        tools:ignore="TextContrastCheck" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/C_E5E5EA" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="@string/note_"
+                    android:textColor="@color/c_3C3C4399"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sftext_regular"
+                    tools:ignore="TextContrastCheck" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_notes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/C_020814"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sftext_regular" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/C_E5E5EA" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/lin_button_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/rel_approved"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_button_bg">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/txt_approve"
+                    android:src="@drawable/sent"
+                    app:tint="@color/white" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_approve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/_7sdp"
+                    android:text="@string/approved"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sfpro_text_midium" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_reject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/red_border_6">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/txt_reject"
+                    android:src="@drawable/x_close" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txt_reject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/_7sdp"
+                    android:text="@string/rejected"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/_11sdp"
+                    app:fonts="@string/sfpro_text_midium" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_camp_complete"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/blue_button_bg_10"
+            android:padding="@dimen/_5sdp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/txt_complete"
+                android:src="@drawable/sent"
+                app:tint="@color/white" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:padding="@dimen/_7sdp"
+                android:text="@string/campaign_complete"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp"
+                app:fonts="@string/sfpro_text_midium" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

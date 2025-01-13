@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#1A62F5</color>
+    <color name="colorPrimary_10">#1A1A62F5</color>
     <color name="colorPrimaryDark">#1A62F5</color>
     <color name="colorAccent">#1A62F5</color>
     <color name="vw_BgToolBar">#1A62F5</color>
@@ -69,6 +70,7 @@
     <color name="C_E5E5EA">#E5E5EA</color>
     <color name="C_EAF9EE">#EAF9EE</color>
     <color name="C_FFEBEA">#FFEBEA</color>
+    <color name="C_EAECF0">#EAECF0</color>
 
     <color name="placeholder_bg">#dddddd</color>
     <color name="black_34">#57000000</color>
@@ -93,6 +95,16 @@
     <color name="C_020814">#020814</color>
     <color name="C_62656A">#62656A</color>
     <color name="C_FF3B30">#FF3B30</color>
+    <color name="c_3C3C4399">#993C3C43</color>
+    <color name="black_alpha_60">#99000000</color>
+    <color name="C_AEAEB2">#AEAEB2</color>
+    <color name="C_8080808C">#8080808C</color>
+    <color name="C_080921">#080921</color>
+    <color name="black_alpha_50">#80000000</color>
+    <color name="C_344054">#344054</color>
+    <color name="C_1D2939">#1D2939</color>
+    <color name="C_FF9500">#FF9500</color>
+    <color name="c_3C3C4330">#4D3C3C43</color>
 
     <integer-array name="progressColor">
         <item>@color/white</item>

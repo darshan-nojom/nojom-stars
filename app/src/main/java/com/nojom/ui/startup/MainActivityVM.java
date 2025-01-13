@@ -65,6 +65,7 @@ import com.nojom.ui.gigs.ProfileUpdateActivity;
 import com.nojom.ui.gigs.UserAccountActivity;
 import com.nojom.ui.home.WorkHomeActivity;
 import com.nojom.ui.jobs.SoonActivity;
+import com.nojom.ui.projects.MyCampaignActivity;
 import com.nojom.ui.projects.MyProjectsActivity;
 import com.nojom.ui.workprofile.WorkMoreActivity;
 import com.nojom.util.AESHelper;
@@ -148,7 +149,7 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
 
         setTab("plus", R.drawable.tab_profile, ProfileUpdateActivity.class/*UserAccountActivity.class*/, 0);
 //        setTab("home", R.drawable.tab_home, WorkHomeActivity.class);
-        setTab("project", R.drawable.tab_project, MyProjectsActivity.class, 1);
+        setTab("project", R.drawable.tab_project, MyCampaignActivity.class, 1);
         setTab("chat", R.drawable.tab_chat, ChatActivity.class, 2);
         setTab("profile", R.drawable.tab_more, WorkMoreActivity.class, 3);
 

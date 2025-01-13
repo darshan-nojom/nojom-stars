@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.textview.TextViewSFTextPro;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
@@ -38,6 +40,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.nojom.R;
 import com.nojom.databinding.ActivityAgencyInfoBinding;
+import com.nojom.databinding.DialogDiscardBinding;
 import com.nojom.interfaces.PermissionListener;
 import com.nojom.model.ProfileResponse;
 import com.nojom.multitypepicker.Constant;
@@ -58,6 +61,7 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
     private ActivityAgencyInfoBinding binding;
     private AgencyInfoActivityVM agencyInfoActivityVM;
     private ProfileResponse profileData;
+    private MutableLiveData<Boolean> isAnyChanges = new MutableLiveData<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
         binding = DataBindingUtil.setContentView(this, R.layout.activity_agency_info);
         agencyInfoActivityVM = ViewModelProviders.of(this).get(AgencyInfoActivityVM.class);
         agencyInfoActivityVM.init(this);
+        isAnyChanges.postValue(false);
         if (language.equals("ar")) {
             setArFont(binding.etAgencyName, Constants.FONT_AR_REGULAR);
             setArFont(binding.txtStatus, Constants.FONT_AR_BOLD);
@@ -92,6 +97,11 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
 
         binding.relSave.setOnClickListener(v -> {
             if (isValid(true)) {
+                if (Boolean.FALSE.equals(isAnyChanges.getValue())) {
+                    finish();
+                    finishToRight();
+                    return;
+                }
                 agencyInfoActivityVM.addAgencyInfoAPI(binding.etAgencyName.getText().toString(), binding.tvSummary.getText().toString(), binding.tvPhone.getText().toString(), binding.tvEmail.getText().toString(), binding.tvWebsite.getText().toString(), binding.tvAddress.getText().toString(), null, profileData.profile_agencies != null ? profileData.profile_agencies.id : 0, Integer.parseInt(binding.txtStatus.getTag().toString()), Integer.parseInt(binding.txtStatusAdds.getTag().toString()), Integer.parseInt(binding.txtStatusAbout.getTag().toString()), Integer.parseInt(binding.txtStatusPhone.getTag().toString()), Integer.parseInt(binding.txtStatusEmail.getTag().toString()), Integer.parseInt(binding.txtStatusWebsite.getTag().toString()), 1, profileFile);
             }
         });
@@ -101,11 +111,12 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
             binding.tvSave.setVisibility(aBoolean ? View.INVISIBLE : View.VISIBLE);
         });
 
-        agencyInfoActivityVM.getIsAgencyAddSuccess().observe(this, aBoolean -> {
-            if (aBoolean) {
-                onBackPressed();
-            }
-        });
+//        agencyInfoActivityVM.getIsAgencyAddSuccess().observe(this, aBoolean -> {
+//            if (aBoolean) {
+//                finish();
+//                finishToRight();
+//            }
+//        });
         binding.imgAdd.setOnClickListener(v -> {
             if (checkAndRequestPermissions()) {
                 /*Intent mediaIntent = new Intent(Intent.ACTION_PICK);
@@ -144,10 +155,13 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                isAnyChanges.postValue(true);
                 if (isValid(false)) {
-                    binding.relSave.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.black_button_bg_10, null));
+                    DrawableCompat.setTint(binding.relSave.getBackground(), ContextCompat.getColor(AgencyInfoActivity.this, R.color.black));
+                    binding.tvSave.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    binding.relSave.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.black_l_button_bg_10, null));
+                    DrawableCompat.setTint(binding.relSave.getBackground(), ContextCompat.getColor(AgencyInfoActivity.this, R.color.C_E5E5EA));
+                    binding.tvSave.setTextColor(getResources().getColor(R.color.C_020814));
                 }
             }
 
@@ -292,7 +306,8 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
             profileData = data;
             refreshViews();
             agencyInfoActivityVM.getIsShowProgress().postValue(false);
-            onBackPressed();
+            finish();
+            finishToRight();
         }
     }
 
@@ -368,16 +383,19 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
             chkMe.setChecked(true);
             chkBrand.setChecked(false);
             chkPublic.setChecked(false);
+            isAnyChanges.postValue(true);
         });
         chkBrand.setOnClickListener(v -> {
             chkMe.setChecked(false);
             chkBrand.setChecked(true);
             chkPublic.setChecked(false);
+            isAnyChanges.postValue(true);
         });
         chkPublic.setOnClickListener(v -> {
             chkMe.setChecked(false);
             chkBrand.setChecked(false);
             chkPublic.setChecked(true);
+            isAnyChanges.postValue(true);
         });
 
         tvCancel.setOnClickListener(v -> dialog.dismiss());
@@ -399,7 +417,8 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
 //            myStoreActivityVM.updateStores(status, companies.id, "", companies.title, companies.link);
 
             setPublicStatusValue(status, txtStatus);
-            binding.relSave.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.black_button_bg_10, null));
+            DrawableCompat.setTint(binding.relSave.getBackground(), ContextCompat.getColor(AgencyInfoActivity.this, R.color.black));
+            binding.tvSave.setTextColor(getResources().getColor(R.color.white));
             dialog.dismiss();
         });
 
@@ -454,9 +473,11 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
                         }).into(binding.roundedImage);
                         if (profileData != null) {
                             if (profileData.profile_agencies != null) {
-                                binding.relSave.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.black_button_bg_10, null));
+                                DrawableCompat.setTint(binding.relSave.getBackground(), ContextCompat.getColor(AgencyInfoActivity.this, R.color.black));
+                                binding.tvSave.setTextColor(getResources().getColor(R.color.white));
                             }
                         }
+                        isAnyChanges.postValue(true);
                     } else {
                         toastMessage(getString(R.string.image_not_selected));
                     }
@@ -470,5 +491,73 @@ public class AgencyInfoActivity extends BaseActivity implements BaseActivity.OnP
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    Dialog dialogDiscard;
+    DialogDiscardBinding dialogDiscardBinding;
+
+    public void discardChangesDialog() {
+        dialogDiscard = new Dialog(this, R.style.Theme_Design_Light_BottomSheetDialog);
+        dialogDiscard.setTitle(null);
+        dialogDiscardBinding = DataBindingUtil.inflate(LayoutInflater.from(getApplicationContext()), R.layout.dialog_discard, null, false);
+        if (language.equals("ar")) {
+            setArFont(dialogDiscardBinding.txtTitle, Constants.FONT_AR_MEDIUM);
+            setArFont(dialogDiscardBinding.txtDesc, Constants.FONT_AR_REGULAR);
+            setArFont(dialogDiscardBinding.tvSend, Constants.FONT_AR_BOLD);
+            setArFont(dialogDiscardBinding.tvCancel, Constants.FONT_AR_BOLD);
+        }
+        dialogDiscardBinding.txtTitle.setText(getString(R.string.save_changes));
+        dialogDiscardBinding.txtDesc.setText(getString(R.string.would_you_like_to_save_before_exiting));
+        dialogDiscardBinding.tvSend.setText(getString(R.string.save));
+        dialogDiscardBinding.tvCancel.setText(getString(R.string.discard_1));
+        dialogDiscard.setContentView(dialogDiscardBinding.getRoot());
+//        dialog.setContentView(R.layout.dialog_discard);
+        dialogDiscard.setCancelable(true);
+//        TextView tvSend = dialog.findViewById(R.id.tv_send);
+//        CircularProgressBar progressBar = dialog.findViewById(R.id.progress_bar);
+
+
+        dialogDiscardBinding.tvCancel.setOnClickListener(v -> {
+            dialogDiscard.dismiss();
+            finish();
+            finishToRight();
+        });
+
+        dialogDiscardBinding.relSave.setOnClickListener(v -> {
+            if (isValid(true)) {
+                if (Boolean.FALSE.equals(isAnyChanges.getValue())) {
+                    dialogDiscard.dismiss();
+                    finish();
+                    finishToRight();
+                    return;
+                }
+                dialogDiscard.dismiss();
+                agencyInfoActivityVM.addAgencyInfoAPI(binding.etAgencyName.getText().toString(), binding.tvSummary.getText().toString(), binding.tvPhone.getText().toString(), binding.tvEmail.getText().toString(), binding.tvWebsite.getText().toString(), binding.tvAddress.getText().toString(), null, profileData.profile_agencies != null ? profileData.profile_agencies.id : 0, Integer.parseInt(binding.txtStatus.getTag().toString()), Integer.parseInt(binding.txtStatusAdds.getTag().toString()), Integer.parseInt(binding.txtStatusAbout.getTag().toString()), Integer.parseInt(binding.txtStatusPhone.getTag().toString()), Integer.parseInt(binding.txtStatusEmail.getTag().toString()), Integer.parseInt(binding.txtStatusWebsite.getTag().toString()), 1, profileFile);
+            }
+        });
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(Objects.requireNonNull(dialogDiscard.getWindow()).getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.gravity = Gravity.BOTTOM;
+        dialogDiscard.show();
+        dialogDiscard.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogDiscard.getWindow().setAttributes(lp);
+    }
+
+    @Override
+    public void onBackPressed() {
+        try {
+            if (Boolean.FALSE.equals(isAnyChanges.getValue())) {
+                //dialogDiscard.dismiss();
+                finish();
+                finishToRight();
+                return;
+            }
+            discardChangesDialog();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //finishToRight();
     }
 }

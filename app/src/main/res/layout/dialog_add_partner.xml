@@ -204,7 +204,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@drawable/black_l_button_bg_10">
+                    android:background="@drawable/black_button_bg_60"
+                    android:backgroundTint="@color/C_E5E5EA">
 
                     <android.textview.TextViewSFTextPro
                         android:id="@+id/tv_send"
@@ -214,9 +215,9 @@
                         android:gravity="center"
                         android:text="@string/save"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/C_020814"
                         android:textSize="@dimen/_12sdp"
-                        app:fonts="@string/sfdiaply_bold" />
+                        app:fonts="@string/sfpro_text_midium" />
 
                     <fr.castorflex.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/progress_bar"

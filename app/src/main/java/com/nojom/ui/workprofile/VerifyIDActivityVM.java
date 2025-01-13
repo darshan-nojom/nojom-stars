@@ -38,6 +38,7 @@ public class VerifyIDActivityVM extends ViewModel implements APIRequest.APIReque
     private MutableLiveData<MawthouqStatus> mawthouqStatusMutableLiveData;
     private BaseActivity activity;
     private MutableLiveData<Boolean> isShowProgress = new MutableLiveData<>();
+    public MutableLiveData<Boolean> success = new MutableLiveData<>();
 
     public MutableLiveData<Boolean> getIsShowProgress() {
         return isShowProgress;
@@ -156,7 +157,7 @@ public class VerifyIDActivityVM extends ViewModel implements APIRequest.APIReque
             if (!TextUtils.isEmpty(mawNo)) {
                 profileVerification.setMawthooq("" + mawNo);
             }
-            profileVerification.setPassword(pass);
+//            profileVerification.setPassword(pass);
 
             APIRequest apiRequest = new APIRequest();
             apiRequest.submitMawthooq(activity, API_ADD_MAWTHOUQ, profileVerification.toString(), true, this);
@@ -169,7 +170,7 @@ public class VerifyIDActivityVM extends ViewModel implements APIRequest.APIReque
                 old.setNew_number(mawNo);
                 profileVerification.setMawthooq(old);
             }
-            profileVerification.setPassword(pass);
+//            profileVerification.setPassword(pass);
 
             APIRequest apiRequest = new APIRequest();
             apiRequest.submitMawthooq(activity, API_ADD_MAWTHOUQ, profileVerification.toString(), true, this);
@@ -224,9 +225,7 @@ public class VerifyIDActivityVM extends ViewModel implements APIRequest.APIReque
         } else if (urlEndPoint.equalsIgnoreCase(API_ADD_MAWTHOUQ)) {
             activity.getProfile();
             activity.toastMessage(msg);
-            Intent intent = new Intent(activity, ResetPasswordDoneActivity.class);
-            intent.putExtra("isFrom", true);
-            activity.startActivity(intent);
+            success.postValue(true);
         } else if (urlEndPoint.equalsIgnoreCase(API_MAW_REQUEST_STATUS)) {
             MawthouqStatus status = MawthouqStatus.getStatus(decryptedData);
             if (status != null) {

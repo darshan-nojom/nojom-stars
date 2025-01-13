@@ -102,6 +102,7 @@ public class NewProfileActivity extends BaseActivity implements ProfileMenuAdapt
         profileMenuListOrigin.add(new ProfileMenu(getString(R.string.youtube), 6));
         profileMenuListOrigin.add(new ProfileMenu(getString(R.string.partners), 7));
         profileMenuListOrigin.add(new ProfileMenu(getString(R.string.agency), 8));
+        profileMenuListOrigin.add(new ProfileMenu(getString(R.string.service), 9));
 
         if (profileData != null) {
             if (profileData.settings_order != null) {

@@ -494,8 +494,8 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
-                            android:layoutDirection="locale"
-                            android:layout_weight="0.8">
+                            android:layout_weight="0.8"
+                            android:layoutDirection="locale">
 
                             <android.edittext.EditTextSFTextRegular
                                 android:id="@+id/et_mobile"
@@ -510,10 +510,10 @@
                                 android:paddingStart="@dimen/_10sdp"
                                 android:paddingTop="@dimen/_5sdp"
                                 android:paddingEnd="@dimen/_10sdp"
-                                android:textColor="@color/C_020814"
                                 android:paddingBottom="@dimen/_5sdp"
                                 android:singleLine="true"
                                 android:textAlignment="viewStart"
+                                android:textColor="@color/C_020814"
                                 android:textSize="@dimen/_13sdp"
                                 app:fonts="@string/sftext_regular"
                                 tools:ignore="SpeakableTextPresentCheck" />
@@ -522,6 +522,31 @@
 
                     </LinearLayout>
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_15sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txtcont"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/enable_chat"
+                            android:textColor="@color/c_080921"
+                            android:textSize="@dimen/_13sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/swChat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:checked="true"
+                            android:theme="@style/SCBSwitch" />
+                    </RelativeLayout>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
         </LinearLayout>
@@ -531,7 +556,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/black_l_button_bg_10"
+            android:background="@drawable/black_button_bg_60"
             android:backgroundTint="@color/C_E5E5EA">
 
             <android.textview.TextViewSFTextPro
@@ -543,7 +568,7 @@
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
                 android:text="@string/save"
-                android:textColor="@color/c_AEAEB2"
+                android:textColor="@color/C_020814"
                 android:textSize="@dimen/_13sdp"
                 app:fonts="@string/sfpro_text_midium" />
 

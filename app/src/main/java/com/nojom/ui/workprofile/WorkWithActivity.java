@@ -226,9 +226,11 @@ public class WorkWithActivity extends BaseActivity implements AgentCompaniesAdap
         isAnyChanges.observe(this, aBoolean -> {
             if (addWorkwithBinding != null) {
                 if (isValid()) {
-                    DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(WorkWithActivity.this, R.color.black));
+                    DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.black));
+                    addWorkwithBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(WorkWithActivity.this, R.color.c_AEAEB2));
+                    DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
+                    addWorkwithBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
                 }
             }
         });
@@ -328,7 +330,8 @@ public class WorkWithActivity extends BaseActivity implements AgentCompaniesAdap
             setPublicStatusValue(2, addWorkwithBinding.txtStatusContractDate);
         }
 
-        DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(WorkWithActivity.this, R.color.c_AEAEB2));
+        DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
+        addWorkwithBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
 
         addWorkwithBinding.swContract.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -411,7 +414,8 @@ public class WorkWithActivity extends BaseActivity implements AgentCompaniesAdap
                     addWorkwithBinding.etName.setCompoundDrawablePadding(15);
                     addWorkwithBinding.etName.setTag("");
                     addWorkwithBinding.rvCompany.setVisibility(View.GONE);
-                    DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(WorkWithActivity.this, R.color.c_AEAEB2));
+                    DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(WorkWithActivity.this, R.color.C_E5E5EA));
+                    addWorkwithBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
                 } else {
                     if (adapter1 != null) {
                         adapter1.getFilter().filter("" + s);
@@ -659,7 +663,7 @@ public class WorkWithActivity extends BaseActivity implements AgentCompaniesAdap
             setArFont(dialogDeleteBinding.tvCancel, Constants.FONT_AR_BOLD);
         }
 
-        dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_company));
+        dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_company)+" "+ data.getName(language));
         dialogDeleteBinding.txtDesc.setText(getString(R.string.you_re_going_to_delete_the_sm) + " \"" + data.getName(language) + "\"" + getString(R.string._are_you_sure));
         dialogDeleteBinding.tvSend.setText(getString(R.string.yes_delete));
         dialogDeleteBinding.tvCancel.setText(getString(R.string.no_keep_it));
@@ -871,9 +875,11 @@ public class WorkWithActivity extends BaseActivity implements AgentCompaniesAdap
 
         addWorkwithBinding.rvCompany.setVisibility(View.GONE);
         if (isValid()) {
-            DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(WorkWithActivity.this, R.color.black));
+            DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.black));
+            addWorkwithBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
         } else {
-            DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(WorkWithActivity.this, R.color.c_AEAEB2));
+            DrawableCompat.setTint(addWorkwithBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
+            addWorkwithBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
         }
 
     }

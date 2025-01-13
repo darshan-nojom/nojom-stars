@@ -28,13 +28,13 @@
             android:padding="@dimen/_10sdp">
 
             <android.textview.TextViewSFTextPro
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="@string/add_company"
-                android:id="@+id/title"
                 android:textColor="@color/c_080921"
                 android:textSize="@dimen/_14sdp"
-                android:layout_centerVertical="true"
                 app:fonts="@string/sfpro_text_bold" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -195,9 +195,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:imeOptions="actionDone"
-                            android:focusable="false"
                             android:clickable="true"
+                            android:focusable="false"
+                            android:imeOptions="actionDone"
                             android:maxLines="1"
                             android:textAlignment="viewStart"
                             android:textColor="@color/C_020814"
@@ -237,12 +237,12 @@
                     android:layout_marginBottom="@dimen/_10sdp">
 
                     <android.textview.TextViewSFTextPro
+                        android:id="@+id/txtcont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:drawableEnd="@drawable/danger_circle"
                         android:drawablePadding="@dimen/_8sdp"
-                        android:id="@+id/txtcont"
                         android:text="@string/have_contract"
                         android:textColor="@color/c_080921"
                         android:textSize="@dimen/_13sdp"
@@ -253,9 +253,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:theme="@style/SCBSwitch"
                         android:layout_centerVertical="true"
-                        android:checked="false" />
+                        android:checked="false"
+                        android:theme="@style/SCBSwitch" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -269,13 +269,13 @@
                     android:visibility="gone">
 
                     <android.textview.TextViewSFTextPro
+                        android:id="@+id/c_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:drawableEnd="@drawable/danger_circle"
                         android:drawablePadding="@dimen/_8sdp"
                         android:text="@string/contract_date"
-                        android:id="@+id/c_date"
                         android:textColor="@color/c_080921"
                         android:textSize="@dimen/_13sdp"
                         app:fonts="@string/sfpro_text_bold" />
@@ -336,10 +336,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
+                                android:clickable="true"
+                                android:focusable="false"
                                 android:imeOptions="actionNext"
                                 android:maxLines="1"
-                                android:focusable="false"
-                                android:clickable="true"
                                 android:textColor="@color/C_020814"
                                 android:textColorHint="@color/C_3C3C43"
                                 android:textSize="@dimen/_12sdp" />
@@ -380,10 +380,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
+                                android:clickable="true"
+                                android:focusable="false"
                                 android:imeOptions="actionNext"
                                 android:maxLines="1"
-                                android:focusable="false"
-                                android:clickable="true"
                                 android:textColor="@color/C_020814"
                                 android:textColorHint="@color/C_3C3C43"
                                 android:textSize="@dimen/_12sdp" />
@@ -406,7 +406,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@drawable/black_l_button_bg_10">
+                    android:background="@drawable/black_button_bg_60"
+                    android:backgroundTint="@color/C_E5E5EA">
 
                     <android.textview.TextViewSFTextPro
                         android:id="@+id/tv_send"
@@ -416,9 +417,9 @@
                         android:gravity="center"
                         android:text="@string/save"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/C_020814"
                         android:textSize="@dimen/_12sdp"
-                        app:fonts="@string/sfdiaply_bold" />
+                        app:fonts="@string/sfpro_text_midium" />
 
                     <fr.castorflex.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/progress_bar"

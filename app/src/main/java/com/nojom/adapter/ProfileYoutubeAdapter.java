@@ -1,5 +1,8 @@
 package com.nojom.adapter;
 
+import static com.nojom.util.YouTubeTitleFetcher.fetchVideoTitle;
+import static com.nojom.util.YouTubeTitleFetcher.getVideoId;
+
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
@@ -37,6 +40,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -82,7 +86,19 @@ public class ProfileYoutubeAdapter extends RecyclerView.Adapter<ProfileYoutubeAd
 
         String youtubeId = extractYTId(item.link);
         String videothumb = getYoutubeThumbnailUrl(youtubeId);
-        new FetchVideoTitleTask(holder.binding.txtMainPhoto).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, item.link);
+//        new FetchVideoTitleTask(holder.binding.txtMainPhoto).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, item.link);
+
+//        String youtubeUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Example URL
+        String videoId = getVideoId(item.link);
+
+        if (videoId != null) {
+            String title = fetchVideoTitle(videoId);
+            holder.binding.txtMainPhoto.setText(title);
+        } else {
+            System.out.println("Invalid YouTube URL");
+            holder.binding.txtMainPhoto.setText("----");
+        }
+
         Glide.with(context).load(videothumb).placeholder(R.mipmap.ic_launcher).diskCacheStrategy(DiskCacheStrategy.ALL).listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -173,8 +189,10 @@ public class ProfileYoutubeAdapter extends RecyclerView.Adapter<ProfileYoutubeAd
                 if (!titleElements.isEmpty()) {
                     return titleElements.attr("content");
                 }
-            } catch (IOException e) {
+            } catch (MalformedURLException e) {
                 e.printStackTrace();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
             return null;
         }

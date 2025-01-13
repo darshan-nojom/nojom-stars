@@ -14,6 +14,7 @@ public class SocialMediaResponse extends GeneralModel {
     public ArrayList<Data> data;
 
     public static class Data implements Serializable {
+
         @Expose
         @SerializedName("name")
         public String name;
@@ -57,6 +58,8 @@ public class SocialMediaResponse extends GeneralModel {
         @SerializedName("id")
         public int id;
 
+        public boolean isSelect;
+
         public String getName(String lang) {
             if (lang.equals("ar")) {
                 return nameAr != null ? nameAr : name;
@@ -74,5 +77,41 @@ public class SocialMediaResponse extends GeneralModel {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static class PlatformPrice implements Serializable {
+
+        public String name, file;
+        public String nameAr, price;
+        public int id;
+
+        public PlatformPrice() {
+        }
+
+        public PlatformPrice(String name, String file, String nameAr, String price, int id) {
+            this.name = name;
+            this.file = file;
+            this.nameAr = nameAr;
+            this.price = price;
+            this.id = id;
+        }
+
+        public String getName(String lang) {
+            if (lang.equals("ar")) {
+                return nameAr != null ? nameAr : name;
+            }
+            return name;
+        }
+    }
+
+    public static class Price implements Serializable {
+
+        public Double price;
+        public int platform_id;
+
+        public Price(Double price, int platform_id) {
+            this.price = price;
+            this.platform_id = platform_id;
+        }
     }
 }

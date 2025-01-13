@@ -34,6 +34,7 @@ import com.nojom.model.UserModel;
 import com.nojom.ui.BaseActivity;
 import com.nojom.ui.auth.LoginActivity;
 import com.nojom.ui.balance.BalanceActivity;
+import com.nojom.ui.balance.WalletActivity;
 import com.nojom.ui.clientprofile.FreelancerProfileActivity;
 import com.nojom.ui.discount.GetDiscountActivity;
 import com.nojom.ui.partner.PartnerActivity;
@@ -96,7 +97,7 @@ public class WorkMoreActivity extends BaseActivity implements BaseActivity.OnPro
     }
 
     public void onClickBalance() {
-        redirectActivity(BalanceActivity.class);
+        redirectActivity(WalletActivity.class);
     }
 
     public void onClickDiscount() {

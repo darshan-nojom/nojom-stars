@@ -212,8 +212,10 @@ public class MyPartnerActivity extends BaseActivity implements AgentCompaniesAda
         isAnyChanges.observe(this, aBoolean -> {
             if (aBoolean) {
                 DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.black));
+                addPartnerBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
             } else {
-                DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.c_AEAEB2));
+                DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.C_E5E5EA));
+                addPartnerBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
             }
         });
 
@@ -286,7 +288,8 @@ public class MyPartnerActivity extends BaseActivity implements AgentCompaniesAda
                     });
 
         }
-        DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.c_AEAEB2));
+        DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.C_E5E5EA));
+        addPartnerBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
 
         addPartnerBinding.etName.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
@@ -310,7 +313,8 @@ public class MyPartnerActivity extends BaseActivity implements AgentCompaniesAda
                     addPartnerBinding.etName.setCompoundDrawablePadding(15);
                     addPartnerBinding.etName.setTag("");
                     addPartnerBinding.rvCompany.setVisibility(View.GONE);
-                    DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.c_AEAEB2));
+                    DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.C_E5E5EA));
+                    addPartnerBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
                     isAnyChanges.setValue(false);
                 } else {
                     if (adapter1 != null) {
@@ -340,9 +344,11 @@ public class MyPartnerActivity extends BaseActivity implements AgentCompaniesAda
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (isValid()) {
                     DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.black));
+                    addPartnerBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
                     isAnyChanges.setValue(true);
                 } else {
-                    DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.c_AEAEB2));
+                    DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.C_E5E5EA));
+                    addPartnerBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
                     isAnyChanges.setValue(false);
                 }
             }
@@ -554,7 +560,7 @@ public class MyPartnerActivity extends BaseActivity implements AgentCompaniesAda
             setArFont(dialogDeleteBinding.tvSend, Constants.FONT_AR_BOLD);
             setArFont(dialogDeleteBinding.tvCancel, Constants.FONT_AR_BOLD);
         }
-        dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_partner));
+        dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_partner) + " " + data.getName(language));
         dialogDeleteBinding.txtDesc.setText(Html.fromHtml(getString(R.string.you_re_going_to_delete_the_sm) + "<b> \"" + data.getName(language) + "\"</b><br>" + getString(R.string._are_you_sure)));
         dialogDeleteBinding.tvSend.setText(getString(R.string.yes_delete));
         dialogDeleteBinding.tvCancel.setText(getString(R.string.no_keep_it));
@@ -631,16 +637,19 @@ public class MyPartnerActivity extends BaseActivity implements AgentCompaniesAda
             chkMe.setChecked(true);
             chkBrand.setChecked(false);
             chkPublic.setChecked(false);
+            isAnyChanges.postValue(true);
         });
         chkBrand.setOnClickListener(v -> {
             chkMe.setChecked(false);
             chkBrand.setChecked(true);
             chkPublic.setChecked(false);
+            isAnyChanges.postValue(true);
         });
         chkPublic.setOnClickListener(v -> {
             chkMe.setChecked(false);
             chkBrand.setChecked(false);
             chkPublic.setChecked(true);
+            isAnyChanges.postValue(true);
         });
 
         tvCancel.setOnClickListener(v -> {
@@ -782,11 +791,14 @@ public class MyPartnerActivity extends BaseActivity implements AgentCompaniesAda
         addPartnerBinding.rvCompany.setVisibility(View.GONE);
         if (isValid()) {
             DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.black));
-            isAnyChanges.setValue(true);
+            addPartnerBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
+//            isAnyChanges.setValue(true);
         } else {
-            DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.c_AEAEB2));
-            isAnyChanges.setValue(false);
+            DrawableCompat.setTint(addPartnerBinding.relSave.getBackground(), ContextCompat.getColor(MyPartnerActivity.this, R.color.C_E5E5EA));
+            addPartnerBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
+//            isAnyChanges.setValue(false);
         }
+        isAnyChanges.postValue(true);
     }
 
     private boolean isValid() {

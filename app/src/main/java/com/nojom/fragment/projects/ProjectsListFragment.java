@@ -23,6 +23,7 @@ import com.nojom.apis.JobDetailAPI;
 import com.nojom.databinding.FragmentProjectsListBinding;
 import com.nojom.fragment.BaseFragment;
 import com.nojom.model.ContractDetails;
+import com.nojom.model.Projects;
 import com.nojom.ui.balance.BalanceActivity;
 import com.nojom.ui.gigs.ContractDetailsActivity;
 import com.nojom.ui.projects.MyProjectsActivity;
@@ -226,19 +227,21 @@ public class ProjectsListFragment extends BaseFragment implements ProjectsAdapte
     }
 
     @Override
-    public void onClickJob(int jobId, int selctedPos, String jobType, String gigType) {
+    public void onClickJob(Projects.Data data, int jobId, int selctedPos, String jobType, String gigType) {
         selectedAdapterPos = selctedPos;
         activity.isClickableView = true;
-//        getProjectById(jobId);
         try {
-            if (jobType.equalsIgnoreCase("job")) {//job
+            if (jobType.equalsIgnoreCase("paid")) {//new detail screen
+                activity.isClickableView = false;
+                activity.runOnUiThread(() -> {
+                    mAdapter.getData().get(selectedAdapterPos).isShowProgress = false;
+                    mAdapter.notifyItemChanged(selectedAdapterPos);
+                });
+                Intent intent = new Intent(activity, CampaignDetailActivity.class);
+                intent.putExtra(Constants.PROJECT, data);
+                activity.startActivity(intent);
+            } else {//other
                 jobDetailAPI.getProjectById(jobId);
-            } else {//gig
-                if (gigType.equals("1") || gigType.equals("3")) {//custom
-                    getCustomGigDetails(jobId);
-                } else {//standard
-                    getGigDetailAPI(jobId);
-                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -293,10 +296,9 @@ public class ProjectsListFragment extends BaseFragment implements ProjectsAdapte
             mAdapter.getData().get(selectedAdapterPos).isShowProgress = false;
             mAdapter.notifyItemChanged(selectedAdapterPos);
             activity.isClickableView = false;
-            if(activity instanceof BalanceActivity) {
+            if (activity instanceof BalanceActivity) {
                 ((BalanceActivity) activity).hideShowHorizontalProgressBar(View.GONE);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

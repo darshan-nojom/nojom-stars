@@ -58,6 +58,7 @@ public class VerifyMawthooqActivity extends BaseActivity implements VerifyFilesA
     private VerifyIDActivityVM verifyIDActivityVM;
     private ActivityMawthooqNewBinding binding;
     private VerifyFilesAdapter mAdapter;
+    private boolean isFromOverview = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class VerifyMawthooqActivity extends BaseActivity implements VerifyFilesA
     String screen = null;
 
     private void initData() {
-
+        isFromOverview = getIntent().getBooleanExtra("from", false);
         binding.etMaNoNew.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -96,7 +97,7 @@ public class VerifyMawthooqActivity extends BaseActivity implements VerifyFilesA
         binding.txtUpdate.setOnClickListener(view -> {
             binding.txtUpdate.setVisibility(View.INVISIBLE);
             binding.relNewNo.setVisibility(View.VISIBLE);
-            binding.relPass.setVisibility(View.VISIBLE);
+//            binding.relPass.setVisibility(View.VISIBLE);
             binding.relBtn.setVisibility(View.VISIBLE);
             binding.tvSubmit.setTextColor(getResources().getColor(R.color.C_F2F2F7));
         });
@@ -109,14 +110,21 @@ public class VerifyMawthooqActivity extends BaseActivity implements VerifyFilesA
             if (TextUtils.isEmpty(binding.etMaNoNew.getText().toString().trim())) {
                 return;
             }
-            if (TextUtils.isEmpty(binding.etMaNoPas.getText().toString().trim())) {
-                return;
-            }
+//            if (TextUtils.isEmpty(binding.etMaNoPas.getText().toString().trim())) {
+//                return;
+//            }
             Utils.hideSoftKeyboard(this);
             verifyIDActivityVM.submitMawthouq(this, binding.etMaNo.getText().toString(), binding.etMaNoNew.getText().toString(), binding.etMaNoPas.getText().toString());
         });
 
 
+        verifyIDActivityVM.success.observe(this, aBoolean -> {
+            Intent intent = new Intent(this, ResetPasswordDoneActivity.class);
+            intent.putExtra("isFrom", true);
+            intent.putExtra("from", isFromOverview);
+            startActivity(intent);
+            finish();
+        });
         verifyIDActivityVM.getMawthooqStatus(this);
 
 //        verifyIDActivityVM.getListMutableLiveData().observe(this, this::setAdapter);
@@ -179,14 +187,14 @@ public class VerifyMawthooqActivity extends BaseActivity implements VerifyFilesA
             } else {
                 binding.relOld.setVisibility(View.GONE);
                 binding.relNewNo.setVisibility(View.VISIBLE);
-                binding.relPass.setVisibility(View.VISIBLE);
+//                binding.relPass.setVisibility(View.VISIBLE);
                 binding.txtUpdate.setVisibility(View.GONE);
                 binding.relBtn.setVisibility(View.VISIBLE);
             }
         } else {
             binding.relOld.setVisibility(View.GONE);
             binding.relNewNo.setVisibility(View.VISIBLE);
-            binding.relPass.setVisibility(View.VISIBLE);
+//            binding.relPass.setVisibility(View.VISIBLE);
             binding.txtUpdate.setVisibility(View.GONE);
             binding.relBtn.setVisibility(View.VISIBLE);
             binding.etMaNo.setText("");

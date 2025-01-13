@@ -3,6 +3,7 @@ package com.nojom.model.requestmodel;
 import androidx.annotation.NonNull;
 
 import com.google.gson.GsonBuilder;
+import com.nojom.model.SocialMediaResponse;
 
 import java.util.List;
 
@@ -900,6 +901,29 @@ public class CommonRequest {
         }
     }
 
+    public static class AddService {
+        List<SocialMediaResponse.Price> prices;
+        String description;
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public void setPrices(List<SocialMediaResponse.Price> prices) {
+            this.prices = prices;
+        }
+
+//        public void setAll_platforms_price(String all_platforms_price) {
+//            this.all_platforms_price = all_platforms_price;
+//        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return new GsonBuilder().create().toJson(this, AddService.class);
+        }
+    }
+
     public static class AddTags {
         List<Integer> tag_ids, ratings;
 
@@ -994,8 +1018,12 @@ public class CommonRequest {
 
     public static class UpdateProfile {
         String first_name, last_name, email, mobile_prefix, contactNo, username, birth_date, about_me, whatsapp_number, bussiness_email, settings_order;
-        Integer gender, show_age, show_email, show_whatsapp, show_message_button, show_send_offer_button, price_range_public_status, gender_public_status, registration_step, is_verified, location_public;
+        Integer gender, show_age, show_email, show_whatsapp, show_message_button, show_send_offer_button, price_range_public_status, gender_public_status, registration_step, is_verified, location_public, chat_allowed;
         Double min_price, max_price;
+
+        public void setChat_allowed(Integer chat_allowed) {
+            this.chat_allowed = chat_allowed;
+        }
 
         public void setLocation_public(Integer location_public) {
             this.location_public = location_public;
@@ -1289,15 +1317,15 @@ public class CommonRequest {
     }
 
     public static class MawSubmit {
-        String mawthooq, password;
+        String mawthooq/*, password*/;
 
         public void setMawthooq(String mawthooq) {
             this.mawthooq = mawthooq;
         }
 
-        public void setPassword(String password) {
-            this.password = password;
-        }
+//        public void setPassword(String password) {
+//            this.password = password;
+//        }
 
         @NonNull
         @Override
@@ -1307,16 +1335,16 @@ public class CommonRequest {
     }
 
     public static class MawOldSubmit {
-        String password;
+//        String password;
         MawOld mawthooq;
 
         public void setMawthooq(MawOld mawthooq) {
             this.mawthooq = mawthooq;
         }
 
-        public void setPassword(String password) {
-            this.password = password;
-        }
+//        public void setPassword(String password) {
+//            this.password = password;
+//        }
 
         @NonNull
         @Override

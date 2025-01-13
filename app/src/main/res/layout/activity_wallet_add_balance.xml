@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/C_F2F2F7"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/background"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/_7sdp"
+                    android:src="@drawable/intercom_back"
+                    app:tint="@color/black" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/withdraw_money"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    app:fonts="@string/sftext_medium" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:text="@string/history"
+                    android:id="@+id/txt_history"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_regular" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingRight="@dimen/_15sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blue_button_bg_10"
+                    android:backgroundTint="@color/colorPrimary_10"
+                    android:padding="@dimen/_10sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/lbl_ab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_balance"
+                        android:textColor="@color/c_3C3C4399"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_wallet_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lbl_ab"
+                        android:text="@string/_0"
+                        android:textColor="@color/C_020814"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/frame_wallet" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/white_button_bg_7"
+                    android:padding="@dimen/_10sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/lbl_sm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Set Amount"
+                        android:textColor="@color/C_020814"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/lbl_sm_d"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lbl_sm"
+                        android:text="@string/how_much_would_you_like_to_top_up"
+                        android:textColor="@color/c_3C3C4399"
+                        android:textSize="@dimen/_11sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lbl_sm_d"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/et_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/_00"
+                            android:inputType="numberDecimal"
+                            android:singleLine="true"
+                            android:textColor="@color/C_020814"
+                            android:textColorHint="@color/c_3C3C4330"
+                            android:textSize="@dimen/_35sdp" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_sign"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:text="@string/sar"
+                            android:textColor="@color/c_3C3C4399"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_show_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pending_balance"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RelativeOverlap" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_pending_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@string/_0"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RelativeOverlap" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_balance"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_total_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@string/_0"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sftext_regular"
+                            tools:ignore="RelativeOverlap" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/img_arrow_up"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/circle_round"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/_8sdp"
+                        android:rotation="180"
+                        android:src="@drawable/arrow_down"
+                        app:tint="@color/black" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_method"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/withdraw_to"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/blue_border_5"
+                        android:id="@+id/rel_addAccount"
+                        android:backgroundTint="@color/colorPrimary_10"
+                        android:padding="@dimen/_5sdp">
+
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="@string/add_beneficiary"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/black_bg_20">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/txt_add_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/continue_"
+                android:textColor="@color/C_F2F2F7"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sfpro_text_regular" />
+
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:cpbStyle="@style/CircularProgressBar"
+                app:cpb_color="@color/white"
+                app:cpb_colors="@array/progressColor"
+                app:cpb_max_sweep_angle="300"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_stroke_width="@dimen/_2sdp"
+                app:cpb_sweep_speed="1.0" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

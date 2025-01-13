@@ -1,46 +1,46 @@
 {
   "project_info": {
-    "project_number": "780634167419",
-    "firebase_url": "https://nojom-852e2-default-rtdb.firebaseio.com",
-    "project_id": "nojom-852e2",
-    "storage_bucket": "nojom-852e2.appspot.com"
+    "project_number": "778696382886",
+    "firebase_url": "https://nojoom-bd27b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "nojoom-bd27b",
+    "storage_bucket": "nojoom-bd27b.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:780634167419:android:03a12af90ebbecbd362ade",
+        "mobilesdk_app_id": "1:778696382886:android:9fbd48ad55bcbf1ca69767",
         "android_client_info": {
           "package_name": "com.nojom.brands"
         }
       },
       "oauth_client": [
         {
-          "client_id": "780634167419-4ii0iu9dkoknqm3q0e8t88uo85cuqs7p.apps.googleusercontent.com",
+          "client_id": "778696382886-rh2gfbegf154652hkbshvs4hi5322i2u.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.nojom.brands",
-            "certificate_hash": "c57c6af5ba92282c88a8ab5739c0c58d5fa3bcc3"
+            "certificate_hash": "8e9d8d8b88f2abf88b04721768d5bcd596161ed4"
           }
         },
         {
-          "client_id": "780634167419-kupbpuijemgjbi8uetcdp7ba3hin8dkd.apps.googleusercontent.com",
+          "client_id": "778696382886-dtgij2ervakv87cv1ur6s0uh0atala8i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAbNAgUYn3uIom76TEQllDtKdIJnwtRsW0"
+          "current_key": "AIzaSyB-ntF_RMsB99CWAWQhu4R0Hv3kFAdEg5U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "780634167419-kupbpuijemgjbi8uetcdp7ba3hin8dkd.apps.googleusercontent.com",
+              "client_id": "778696382886-dtgij2ervakv87cv1ur6s0uh0atala8i.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "780634167419-8e4cs547tnills00bcc6fp3u49b5u7b6.apps.googleusercontent.com",
+              "client_id": "778696382886-p6p5b5lsuphk31jjs2rgh1q6dgh4m5s6.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.24task.designing",
@@ -53,39 +53,31 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:780634167419:android:6c1489b7f9ce2add362ade",
+        "mobilesdk_app_id": "1:778696382886:android:f63f13be00ac0381a69767",
         "android_client_info": {
           "package_name": "com.nojom.stars"
         }
       },
       "oauth_client": [
         {
-          "client_id": "780634167419-8fg49f4n4b9i5rgdjoo9t5k44e1aqdh4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.nojom.stars",
-            "certificate_hash": "b6b3828bf016704b24313f424db9d1ad79a3ea87"
-          }
-        },
-        {
-          "client_id": "780634167419-kupbpuijemgjbi8uetcdp7ba3hin8dkd.apps.googleusercontent.com",
+          "client_id": "778696382886-dtgij2ervakv87cv1ur6s0uh0atala8i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAbNAgUYn3uIom76TEQllDtKdIJnwtRsW0"
+          "current_key": "AIzaSyB-ntF_RMsB99CWAWQhu4R0Hv3kFAdEg5U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "780634167419-kupbpuijemgjbi8uetcdp7ba3hin8dkd.apps.googleusercontent.com",
+              "client_id": "778696382886-dtgij2ervakv87cv1ur6s0uh0atala8i.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "780634167419-8e4cs547tnills00bcc6fp3u49b5u7b6.apps.googleusercontent.com",
+              "client_id": "778696382886-p6p5b5lsuphk31jjs2rgh1q6dgh4m5s6.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.24task.designing",

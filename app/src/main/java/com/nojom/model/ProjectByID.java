@@ -18,6 +18,9 @@ public class ProjectByID extends GeneralModel implements Serializable {
     @SerializedName("title")
     @Expose
     public String title;
+    @SerializedName("brief")
+    @Expose
+    public String brief;
     @SerializedName("description")
     @Expose
     public String description;
@@ -251,7 +254,7 @@ public class ProjectByID extends GeneralModel implements Serializable {
 
         @SerializedName("bid_charges")
         @Expose
-        public Double bidCharges=10.0;
+        public Double bidCharges = 10.0;
         @SerializedName("bid_percent_charges")
         @Expose
         public Double bidPercentCharges;
@@ -490,6 +493,35 @@ public class ProjectByID extends GeneralModel implements Serializable {
         @Expose
         @SerializedName("id")
         public int id;
+    }
+
+    public static class Services implements Serializable {
+        @Expose
+        @SerializedName("price")
+        public double price;
+        @Expose
+        @SerializedName("attachment")
+        public String attachment;
+        @Expose
+        @SerializedName("description")
+        public String description;
+        @Expose
+        @SerializedName("platform_logo")
+        public String platform_logo;
+
+        @Expose
+        @SerializedName("platform_name")
+        public PlatformName platform_name;
+
+    }
+
+    public static class PlatformName implements Serializable {
+        @Expose
+        @SerializedName("ar")
+        public String ar;
+        @Expose
+        @SerializedName("en")
+        public String en;
     }
 
 //    public static class JobPostBudget implements Serializable {

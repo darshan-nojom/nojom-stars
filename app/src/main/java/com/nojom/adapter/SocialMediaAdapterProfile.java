@@ -89,7 +89,15 @@ public class SocialMediaAdapterProfile extends RecyclerView.Adapter<SocialMediaA
             }
             binding.getRoot().setOnClickListener(v -> {
                 if (mDataset.get(getBindingAdapterPosition()).web_url != null) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mDataset.get(getBindingAdapterPosition()).web_url + mDataset.get(getBindingAdapterPosition()).username));
+                    Intent intent;
+                    if (mDataset.get(getBindingAdapterPosition()).username.startsWith("https://")
+                            ||mDataset.get(getBindingAdapterPosition()).username.startsWith("http://")
+                            || mDataset.get(getBindingAdapterPosition()).username.startsWith("www.")) {
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mDataset.get(getBindingAdapterPosition()).username));
+                    } else {
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mDataset.get(getBindingAdapterPosition()).web_url + mDataset.get(getBindingAdapterPosition()).username));
+                    }
+
                     activity.startActivity(intent);
                 }
             });

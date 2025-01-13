@@ -83,9 +83,8 @@ class ProjectSubmitFragmentVM extends AndroidViewModel implements RecyclerviewAd
             binding.imgAdd.setOnClickListener(view -> {
                 if (projectData != null && projectData.jobPostBids != null) {
 
-                    if(projectData.refundStatus!=null&& (projectData.refundStatus.equals("0")
-                            ||projectData.refundStatus.equals("1")||projectData.refundStatus.equals("3")))
-                    {
+                    if (projectData.refundStatus != null && (projectData.refundStatus.equals("0")
+                            || projectData.refundStatus.equals("1") || projectData.refundStatus.equals("3"))) {
                         Toast.makeText(fragment.activity, fragment.getString(R.string.refund_status_message), Toast.LENGTH_LONG).show();
                         return;
                     }
@@ -97,17 +96,16 @@ class ProjectSubmitFragmentVM extends AndroidViewModel implements RecyclerviewAd
             });
 
             binding.tvSubmitJob.setOnClickListener(view -> {
-                if (projectData != null && projectData.jobPostBids != null) {
+                if (projectData != null && projectData.id != null) {
 
-                    if(projectData.refundStatus!=null&& (projectData.refundStatus.equals("0")
-                            ||projectData.refundStatus.equals("1")||projectData.refundStatus.equals("3")))
-                    {
+                    if (projectData.refundStatus != null && (projectData.refundStatus.equals("0")
+                            || projectData.refundStatus.equals("1") || projectData.refundStatus.equals("3"))) {
                         Toast.makeText(fragment.activity, fragment.getString(R.string.refund_status_message), Toast.LENGTH_LONG).show();
                         return;
                     }
 
                     Intent i = new Intent(fragment.activity, SubmitJobActivity.class);
-                    i.putExtra(Constants.PROJECT_BID_ID, String.valueOf(projectData.jobPostBids.id));
+                    i.putExtra(Constants.PROJECT_BID_ID, String.valueOf(projectData.id));
                     fragment.startActivity(i);
                 }
             });

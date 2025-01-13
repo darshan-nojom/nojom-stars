@@ -49,7 +49,7 @@ public class Projects extends GeneralModel implements Serializable {
         public String dateCompleted;
         @Expose
         @SerializedName("job_post_state_id")
-        public int jobPostStateId;
+        public Integer jobPostStateId;
         @Expose
         @SerializedName("job_post_state_name")
         public String jobPostStateName;
@@ -88,6 +88,31 @@ public class Projects extends GeneralModel implements Serializable {
         @Expose
         @SerializedName("gigType")
         public String gigType;//1= Custom & 2 = standard
+
+        @SerializedName("amount")
+        @Expose
+        public Double amount;
+        @SerializedName("brief")
+        @Expose
+        public String brief;
+        @SerializedName("attachment")
+        @Expose
+        public String attachment;
+        @SerializedName("launch_date")
+        @Expose
+        public String launch_date;
+        @SerializedName("status")
+        @Expose
+        public String status;
+        @SerializedName("created_at")
+        @Expose
+        public String created_at;
+        @SerializedName("type")
+        @Expose
+        public String type;
+        @SerializedName("services")
+        @Expose
+        public List<ProjectByID.Services> services;
 
         public boolean isShowProgress;
     }

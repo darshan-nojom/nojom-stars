@@ -150,17 +150,12 @@ public class OverViewActivityNew extends BaseActivity implements ResponseListene
         initData();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     private void initData() {
         setOnProfileLoadListener(this::onProfileLoad);
 
         binding.imgBack.setOnClickListener(v -> {
-//            onBackPressed();
-            discardChangesDialog();
+            onBackPressed();
+//            discardChangesDialog();
         });
         binding.tvToolbarTitle.setText(getString(R.string.overview));
 //        binding.relEdit.setVisibility(View.GONE);
@@ -212,6 +207,9 @@ public class OverViewActivityNew extends BaseActivity implements ResponseListene
             }
         });
 
+        DrawableCompat.setTint(binding.relSave.getBackground(), ContextCompat.getColor(OverViewActivityNew.this, R.color.C_E5E5EA));
+        binding.tvSave.setTextColor(getResources().getColor(R.color.C_020814));
+
         verifyIDActivityVM.getMawthouqStatusMutableLiveData().observe(this, mawthouqStatus -> {
             if (profileData != null && mawthouqStatus != null) {
                 if (mawthouqStatus.mawthooq_number != null) {
@@ -223,10 +221,15 @@ public class OverViewActivityNew extends BaseActivity implements ResponseListene
                 } else {
                     binding.etMawId.setText("");
                 }
-                setPublicStatusValue(profileData.mawthooq_status.public_status != null ? profileData.mawthooq_status.public_status : 1, binding.txtStatusMaw);
+                if (profileData.mawthooq_status != null) {
+                    setPublicStatusValue(profileData.mawthooq_status.public_status != null ? profileData.mawthooq_status.public_status : 1, binding.txtStatusMaw);
+                } else {
+                    setPublicStatusValue(1, binding.txtStatusMaw);
+                }
             } else {
                 setPublicStatusValue(1, binding.txtStatusMaw);
             }
+            binding.etMawId.addTextChangedListener(watcher);
         });
     }
 
@@ -357,7 +360,6 @@ public class OverViewActivityNew extends BaseActivity implements ResponseListene
 
         }
         binding.etAbout.addTextChangedListener(watcher);
-        binding.etMawId.addTextChangedListener(watcher);
         binding.etMin.addTextChangedListener(watcher);
         binding.etMax.addTextChangedListener(watcher);
         binding.etGender.addTextChangedListener(watcher);
@@ -407,6 +409,11 @@ public class OverViewActivityNew extends BaseActivity implements ResponseListene
     @Override
     public void onBackPressed() {
         try {
+            if (Boolean.FALSE.equals(isAnyChanges.getValue())) {
+                finish();
+                finishToRight();
+                return;
+            }
             discardChangesDialog();
         } catch (Exception e) {
             e.printStackTrace();
@@ -805,6 +812,7 @@ public class OverViewActivityNew extends BaseActivity implements ResponseListene
                 break;
             case R.id.et_mawId:
                 Intent i = new Intent(this, VerifyMawthooqActivity.class);
+                i.putExtra("from", true);
                 startActivityForResult(i, REQ_ID_VERIFICATION);
                 break;
             case R.id.rel_save:
@@ -1485,6 +1493,12 @@ public class OverViewActivityNew extends BaseActivity implements ResponseListene
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQ_ID_VERIFICATION) {
+            binding.etAbout.removeTextChangedListener(null);
+            binding.etMin.removeTextChangedListener(null);
+            binding.etMax.removeTextChangedListener(null);
+            binding.etGender.removeTextChangedListener(null);
+            binding.etDob.removeTextChangedListener(null);
+            //isAnyChanges.postValue(isAnyChanges.getValue());
             getProfile();
         }
     }

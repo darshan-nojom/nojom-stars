@@ -28,6 +28,9 @@ public class ProfileResponse implements Serializable {
     @SerializedName("first_name")
     @Expose
     public String firstName;
+    @SerializedName("chat_allowed")
+    @Expose
+    public int chat_allowed;
     @SerializedName("last_name")
     @Expose
     public String lastName;
@@ -160,7 +163,7 @@ public class ProfileResponse implements Serializable {
 
     @SerializedName("show_email")
     @Expose
-    public Integer show_email=1;//1== public, 2 == private
+    public Integer show_email = 1;//1== public, 2 == private
     @SerializedName("email")
     @Expose
     public String email;

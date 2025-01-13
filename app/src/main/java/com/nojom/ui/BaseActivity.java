@@ -1567,4 +1567,13 @@ public class BaseActivity extends AppCompatActivity implements APIRequest.APIReq
             return String.valueOf(value);
         }
     }
+    public String enFormatValue(double value) {
+        // If there's no fraction part, show without decimal
+        if (value == (long) value) {
+            return String.format(Locale.ENGLISH,"%d", (long) value);
+        } else {
+            // Else, show with decimal
+            return String.valueOf(value);
+        }
+    }
 }

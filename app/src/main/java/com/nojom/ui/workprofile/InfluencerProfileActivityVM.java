@@ -152,8 +152,8 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
             }
             setTagsAdapter(skillList);
 
-            verifyIDActivityVM.getListMutableLiveData().observe(activity, this::setMaqData);
-
+//            verifyIDActivityVM.getListMutableLiveData().observe(activity, this::setMaqData);
+            setMaqData();
 //            if (clientData.trustRateStatus != null && clientData.trustRateStatus.verifyId != null && clientData.trustRateStatus.verifyId == 1) {
 //            binding.imgVerified.setVisibility(GONE);
 //            }
@@ -228,21 +228,30 @@ class InfluencerProfileActivityVM extends AndroidViewModel implements View.OnCli
 
     List<VerifyID.Data> mawData;
 
-    private void setMaqData(List<VerifyID.Data> verifyIdsList) {
+    private void setMaqData() {
 
-        if (verifyIdsList != null && verifyIdsList.size() > 0) {
-            mawData = verifyIdsList;
-            if (verifyIdsList.get(0).data != null) {
-                binding.tvMawId.setText(String.format("%s", verifyIdsList.get(0).data));
+//        if (verifyIdsList != null && verifyIdsList.size() > 0) {
+//            mawData = verifyIdsList;
+//            if (verifyIdsList.get(0).data != null) {
+//                binding.tvMawId.setText(String.format("%s", verifyIdsList.get(0).data));
+//                binding.tvMawId.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password, 0);
+//            } else {
+//                mawData = null;
+//                binding.tvMawId.setText("-");
+//            }
+//
+//        } else {
+//            mawData = null;
+//            binding.tvMawId.setText("-");
+//        }
+
+        if (clientData.mawthooq_status != null) {
+            if (clientData.mawthooq_status.data != null) {
+                binding.tvMawId.setText(String.format("%s", clientData.mawthooq_status.data));
                 binding.tvMawId.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password, 0);
             } else {
-                mawData = null;
                 binding.tvMawId.setText("-");
             }
-
-        } else {
-            mawData = null;
-            binding.tvMawId.setText("-");
         }
     }
 

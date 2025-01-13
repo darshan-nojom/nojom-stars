@@ -4,23 +4,14 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static java.lang.Math.abs;
 
-import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -47,6 +38,7 @@ import com.nojom.adapter.ProfilePartnersAdapter;
 import com.nojom.adapter.ProfileProductsAdapter;
 import com.nojom.adapter.ProfileStoreAdapter;
 import com.nojom.adapter.ProfileYoutubeAdapter;
+import com.nojom.adapter.SelectedServiceAdapter;
 import com.nojom.adapter.SkillsListAdapter;
 import com.nojom.adapter.SocialMediaAdapterProfile;
 import com.nojom.adapter.WorkwithAdapter;
@@ -56,6 +48,7 @@ import com.nojom.databinding.ViewMyStoreBinding;
 import com.nojom.databinding.ViewOverviewBinding;
 import com.nojom.databinding.ViewPartnerBinding;
 import com.nojom.databinding.ViewPortfolioBinding;
+import com.nojom.databinding.ViewServicesBinding;
 import com.nojom.databinding.ViewSocialMediaBinding;
 import com.nojom.databinding.ViewWorkwithBinding;
 import com.nojom.databinding.ViewYoutubeBinding;
@@ -67,10 +60,12 @@ import com.nojom.model.GetYoutube;
 import com.nojom.model.Portfolios;
 import com.nojom.model.ProfileMenu;
 import com.nojom.model.ProfileResponse;
+import com.nojom.model.Serv;
 import com.nojom.model.Skill;
 import com.nojom.ui.BaseActivity;
 import com.nojom.ui.workprofile.EditProfileActivity;
 import com.nojom.ui.workprofile.EditProfileActivityVM;
+import com.nojom.ui.workprofile.GetServiceActivityVM;
 import com.nojom.ui.workprofile.MyPartnerActivityVM;
 import com.nojom.ui.workprofile.MyPlatformActivityVM;
 import com.nojom.ui.workprofile.MyStoreActivityVM;
@@ -84,10 +79,7 @@ import com.nojom.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -97,6 +89,7 @@ public class BrandViewActivity extends BaseActivity implements BaseActivity.OnPr
     private EditProfileActivityVM editProfileActivityVM;
     List<ProfileMenu> profileMenuListOrigin;
     boolean isSelectPublic = false;
+    private GetServiceActivityVM serviceActivityVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +99,8 @@ public class BrandViewActivity extends BaseActivity implements BaseActivity.OnPr
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile_brand);
         editProfileActivityVM = ViewModelProviders.of(this).get(EditProfileActivityVM.class);
         editProfileActivityVM.init(this, null);
+        serviceActivityVM = ViewModelProviders.of(this).get(GetServiceActivityVM.class);
+        serviceActivityVM.init(this);
         setOnProfileLoadListener(this);
         if (language.equals("ar")) {
             setArFont(binding.tvName, Constants.FONT_AR_MEDIUM);
@@ -352,7 +347,7 @@ public class BrandViewActivity extends BaseActivity implements BaseActivity.OnPr
         profileMenuListOrigin.add(new ProfileMenu(getString(R.string.youtube), 6));
         profileMenuListOrigin.add(new ProfileMenu(getString(R.string.partners), 7));
         profileMenuListOrigin.add(new ProfileMenu(getString(R.string.agency), 8));
-
+        profileMenuListOrigin.add(new ProfileMenu(getString(R.string.service), 9));
 
         if (profileData != null) {
 
@@ -399,9 +394,9 @@ public class BrandViewActivity extends BaseActivity implements BaseActivity.OnPr
 
             if (profileData.settings_order != null) {
                 List<String> list = new ArrayList<>(Arrays.asList(profileData.settings_order.split(",")));
-                Set<String> set = new HashSet<>(list);
-                List<String> newList = new ArrayList<>(set);
-                for (String item : newList) {
+//                Set<String> set = new HashSet<>(list);
+//                List<String> newList = new ArrayList<>(set);
+                for (String item : list) {
 
                     switch (item) {
                         case "1":
@@ -427,6 +422,9 @@ public class BrandViewActivity extends BaseActivity implements BaseActivity.OnPr
                             break;
                         case "8":
                             addAgencyLayout();
+                            break;
+                        case "9":
+                            addInfluencerServiceLayout();
                             break;
                     }
 
@@ -589,10 +587,10 @@ public class BrandViewActivity extends BaseActivity implements BaseActivity.OnPr
             if (profileData.price_range_public_status == 1 || profileData.price_range_public_status == 2) {
                 overviewBinding.tvPriceRange.setVisibility(VISIBLE);
                 overviewBinding.txtPriceTitle.setVisibility(VISIBLE);
-                String minP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.minPrice));
-                String maxP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.maxPrice));
 
                 if (profileData.minPrice != null && profileData.maxPrice != null && profileData.minPrice > 0 && profileData.maxPrice > 0) {
+                    String minP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.minPrice));
+                    String maxP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.maxPrice));
                     overviewBinding.tvPriceRange.setText(String.format("%s - %s %s", minP, maxP, getCurrency().equals("SAR") ? getString(R.string.sar) : getString(R.string.dollar)));
                 } else {
                     overviewBinding.tvPriceRange.setText("");
@@ -982,5 +980,43 @@ public class BrandViewActivity extends BaseActivity implements BaseActivity.OnPr
         }
         agencyBinding.txtAdd.setVisibility(GONE);
         binding.linearCustom.addView(agencyBinding.getRoot());
+    }
+
+    private void addInfluencerServiceLayout() {
+        ViewServicesBinding socialMediaBinding = DataBindingUtil.inflate(LayoutInflater.from(getApplicationContext()), R.layout.view_services, null, false);
+        if (language.equals("ar")) {
+            setArFont(socialMediaBinding.txtName, Constants.FONT_AR_MEDIUM);
+        }
+        socialMediaBinding.imgOrder.setVisibility(GONE);
+        socialMediaBinding.txtShow.setVisibility(GONE);
+        socialMediaBinding.txtAdd.setVisibility(GONE);
+        serviceActivityVM.getServices();
+
+        socialMediaBinding.txtName.setText(getString(R.string.influencer_services));
+
+        serviceActivityVM.serviceMutableLiveData.observe(this, data -> {
+//            influencerServices = data;
+            if (data != null && data.services != null && data.services.size() > 0) {
+                ArrayList<Serv> servicesData = new ArrayList<>(data.services);
+
+                /*for (Serv da : data.services) {
+                    if (da.id == -1) {
+                        if (da.price > 0) {
+                            servicesData.add(new Serv(getString(R.string.all_social_media), da.price));
+                        }
+                        break;
+                    }
+                }*/
+
+                SelectedServiceAdapter adapter = new SelectedServiceAdapter(servicesData, this);
+                socialMediaBinding.rvService.setAdapter(adapter);
+                socialMediaBinding.rvService.setVisibility(VISIBLE);
+            } else {
+                socialMediaBinding.rvService.setVisibility(GONE);
+                socialMediaBinding.txtShow.setVisibility(VISIBLE);
+            }
+        });
+
+        binding.linearCustom.addView(socialMediaBinding.getRoot());
     }
 }

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@color/C_F2F2F7"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tvIndex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/_1"
+                android:textColor="@color/C_020814"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sfpro_text_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/tvIndex"
+                android:drawableEnd="@drawable/danger_circle"
+                android:drawablePadding="@dimen/_10sdp"
+                android:text="@string/platform"
+                android:textColor="@color/C_020814"
+                android:textSize="@dimen/_12sdp"
+                app:fonts="@string/sfpro_text_bold" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_delete_file" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/lin_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:id="@+id/rel_platform"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_button_bg_7"
+                    android:padding="@dimen/_7sdp">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_profile"
+                        android:layout_width="@dimen/_17sdp"
+                        android:layout_height="@dimen/_17sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_insta"
+                        android:visibility="gone"
+                        app:riv_corner_radius="@dimen/_5sdp"
+                        app:riv_oval="false" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/et_platform"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/img_profile"
+                        android:background="@android:color/transparent"
+                        android:drawableEnd="@drawable/ic_arrow_down_thin"
+                        android:hint="@string/select_platform"
+                        android:imeOptions="actionNext"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/C_020814"
+                        android:textColorHint="@color/C_3C3C43"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_button_bg_7"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_7sdp">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:digits="0123456789"
+                        android:fontFamily="@string/sfpro_text_regular"
+                        android:hint="@string/price"
+                        android:imeOptions="actionNext"
+                        android:maxLength="11"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/C_020814"
+                        android:textColorHint="@color/C_3C3C43"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/_9sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_9sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="@string/sar"
+                        android:textColor="@color/C_3C3C43"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

@@ -324,6 +324,7 @@ public class NewPortfolioActivity extends BaseActivity implements NewPortfolioAd
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     isAnyChanges.postValue(data);
+                    isMadeAnyChanges.postValue(true);
                 }
 
                 @Override
@@ -350,20 +351,20 @@ public class NewPortfolioActivity extends BaseActivity implements NewPortfolioAd
 
             Glide.with(this).load(companyList.path + data.company_filename)
                     .apply(RequestOptions.circleCropTransform()).into(new CustomTarget<Drawable>() {
-                @Override
-                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                    // Set the drawable as left drawable
-                    resource.setBounds(0, 0, 60, 60);
-                    addPortfolioBinding.etName.setCompoundDrawables(resource, null, null, null);
-                    addPortfolioBinding.etName.setCompoundDrawablePadding(15);
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            // Set the drawable as left drawable
+                            resource.setBounds(0, 0, 60, 60);
+                            addPortfolioBinding.etName.setCompoundDrawables(resource, null, null, null);
+                            addPortfolioBinding.etName.setCompoundDrawablePadding(15);
 //                            addPortfolioBinding.etName.setCompoundDrawablesWithIntrinsicBounds(resource, null, null, null);
-                }
+                        }
 
-                @Override
-                public void onLoadCleared(@Nullable Drawable placeholder) {
-                    // Handle the cleanup if needed
-                }
-            });
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+                            // Handle the cleanup if needed
+                        }
+                    });
         }
         DrawableCompat.setTint(addPortfolioBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
         addPortfolioBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
@@ -497,7 +498,9 @@ public class NewPortfolioActivity extends BaseActivity implements NewPortfolioAd
         });*/
 
         addPortfolioBinding.tvCancel.setOnClickListener(v -> {
-            if (data == null && (addPortfolioBinding.roundedImage.getTag() == null || TextUtils.isEmpty(addPortfolioBinding.roundedImage.getTag().toString()))) {
+            if (data == null &&
+                    (addPortfolioBinding.roundedImage.getTag() == null || TextUtils.isEmpty(addPortfolioBinding.roundedImage.getTag().toString()))
+                    || Boolean.FALSE.equals(isMadeAnyChanges.getValue())) {
                 dialogAddCompany.dismiss();
                 return;
             } else if (Boolean.FALSE.equals(isMadeAnyChanges.getValue())) {
@@ -647,7 +650,7 @@ public class NewPortfolioActivity extends BaseActivity implements NewPortfolioAd
         }
 
         dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_portfolio_item) + " " + nam);
-        dialogDeleteBinding.txtDesc.setText(String.format(getString(R.string.you_re_going_to_delete_the_s), nam+"." + " ") + getString(R.string._are_you_sure));
+        dialogDeleteBinding.txtDesc.setText(getString(R.string.you_re_going_to_delete_the_sm) + " " + nam + "." + getString(R.string._are_you_sure));
         dialogDeleteBinding.tvSend.setText(getString(R.string.yes_delete));
         dialogDeleteBinding.tvCancel.setText(getString(R.string.no_keep_it));
 
@@ -877,6 +880,7 @@ public class NewPortfolioActivity extends BaseActivity implements NewPortfolioAd
                                     addPortfolioBinding.imgAdd.setVisibility(View.GONE);
                                     DrawableCompat.setTint(addPortfolioBinding.relSave.getBackground(), ContextCompat.getColor(NewPortfolioActivity.this, R.color.black));
                                     addPortfolioBinding.tvSend.setTextColor(Color.WHITE);
+                                    isMadeAnyChanges.setValue(true);
                                 } else {
                                     toastMessage(getString(R.string.unsupported_media_type));
                                     addPortfolioBinding.roundedImage.setTag("");
@@ -1191,6 +1195,7 @@ public class NewPortfolioActivity extends BaseActivity implements NewPortfolioAd
         addPortfolioBinding.etName.setCompoundDrawablePadding(15);
 
         addPortfolioBinding.rvCompany.setVisibility(View.GONE);
+        isMadeAnyChanges.setValue(true);
     }
 
     public void checkPermission() {

@@ -1,14 +1,16 @@
 package com.nojom.util;
 
 
+import com.nojom.BuildConfig;
+
 public interface Constants {
 
     //CHAT LIVE URL
 //    String BASE_URL_CHAT = "https://geaxdtp8z0.execute-api.us-east-2.amazonaws.com/prod/";
 //    String BASE_URL_WEBSOCKET = "wss://4zpnqwqsn5.execute-api.us-east-2.amazonaws.com/prod/";
 
-    String BASE_URL_CHAT_MSG = "http://15.184.217.235:3000/";
-    String BASE_URL_CHAT = "http://15.184.217.235:3000/api/";
+    String BASE_URL_CHAT_MSG = BuildConfig.DEBUG ? "http://ec2-15-184-217-235.me-south-1.compute.amazonaws.com:4000/" : "http://ec2-15-184-217-235.me-south-1.compute.amazonaws.com:3000/";
+    String BASE_URL_CHAT = BuildConfig.DEBUG ? "http://ec2-15-184-217-235.me-south-1.compute.amazonaws.com:4000/api/" : "http://ec2-15-184-217-235.me-south-1.compute.amazonaws.com:3000/api/";
 
 //    String BASE_URL_CHAT = "https://rv0h39xor3.execute-api.us-east-2.amazonaws.com/dev/";
 //    String BASE_URL_WEBSOCKET = "wss://qcjaqghd7k.execute-api.us-east-2.amazonaws.com/dev/";
@@ -448,6 +450,7 @@ public interface Constants {
     String API_GET_SERVICE_CATEGORIES = "fetch_service_categories";
     String API_GET_TAGS = "fetch_tags";
     String API_ADD_CATEGORY = "manage_profile_categories";
+    String API_ADD_SERVICE = "services";
     String API_ADD_TAGS = "manage_profile_tags";
 
     String API_UPDATE_MAW_STATUS = "update_mawthooq_status";//TODO:
@@ -473,5 +476,20 @@ public interface Constants {
     int FONT_AR_LIGHT = 4;
     int FONT_AR_MEDIUM = 5;
     int FONT_AR_THIN = 6;
+
+    String API_FETCH_CAMPAIGN = "campaigns?campaign_status=";
+    String API_ACC_REJECT_CAMP = "campaign/";
+    String API_CAMP_ATTACH = "campaign/attachment";
+    String API_CAMP_ATTACH_LINK = "campaign/";
+    String API_GET_WALLET = "wallet";
+    String API_GET_WALLET_TXN = "transactions?limit=1000";
+
+    String API_GET_ACCOUNTS = "bank-accounts?limit=1000";
+    String API_WITHDRAW_AMOUNT = "wallet/withdraw";
+    String API_ADD_BANK = "bank-accounts/add";
+    String API_UPDATE_BANK = "bank-accounts/update";
+    String API_DELETE_BANK_NEW = "bank-accounts/delete";
+
+    String API_GET_HISTORY = "wallet/withdraw/request";
 }
 

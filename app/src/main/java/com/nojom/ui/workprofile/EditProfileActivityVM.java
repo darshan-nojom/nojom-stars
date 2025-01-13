@@ -48,7 +48,7 @@ public class EditProfileActivityVM extends ViewModel implements APIRequest.APIRe
     }
 
     void updateProfile(String fNme, String emailId, String mobile, String mobPrefix,
-                       String username, File profileFile, int gender, String arName, int msg, int offer, int email, int whatsapp) {
+                       String username, File profileFile, int gender, String arName, int msg, int offer, int email, int whatsapp,int chat) {
         if (!activity.isNetworkConnected()) return;
 
         getShowProgress().postValue(true);
@@ -95,6 +95,7 @@ public class EditProfileActivityVM extends ViewModel implements APIRequest.APIRe
         if (gender != -1) {
             updateProfile.setGender(gender);
         }
+        updateProfile.setChat_allowed(chat);
         updateProfile.setShow_message_button(msg);
         updateProfile.setShow_send_offer_button(offer);
         updateProfile.setShow_email(email);

@@ -33,7 +33,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Simple
     private JobClickListener jobClickListener;
 
     public interface JobClickListener {
-        void onClickJob(int jobId, int selectedPos, String jobType, String gigType);
+        void onClickJob(Projects.Data data,int jobId, int selectedPos, String jobType, String gigType);
     }
 
     public boolean isState() {
@@ -126,49 +126,66 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Simple
             }
         }*/
 
-        switch (item.jobPostStateId) {
-            case Constants.BIDDING:
-                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.yellow_border_5), ContextCompat.getColor(context, R.color.yellow));
-                holder.binding.tvRefunds.setVisibility(View.GONE);
-                break;
-            case 7:
-            case Constants.WAITING_FOR_ACCEPTANCE:
-                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.lovender_border_5), ContextCompat.getColor(context, R.color.lovender));
-                holder.binding.tvRefunds.setVisibility(View.GONE);
-                break;
-            case Constants.WAITING_FOR_DEPOSIT:
-                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.red_border_5), ContextCompat.getColor(context, R.color.red_dark));
-                holder.binding.tvRefunds.setVisibility(View.GONE);
-                break;
-            case Constants.BANK_TRANSFER_REVIEW:
-                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.orange_border_5), ContextCompat.getColor(context, R.color.orange_light));
-                holder.binding.tvRefunds.setVisibility(View.GONE);
-                break;
-            case Constants.IN_PROGRESS:
-                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.blue_border_5), ContextCompat.getColor(context, R.color.colorPrimary));
-                if (item.jobRefunds != null) {//refund case
-                    holder.binding.tvRefunds.setVisibility(View.VISIBLE);
-                } else {
+        if (item.jobPostStateId != null) {
+            switch (item.jobPostStateId) {
+                case Constants.BIDDING:
+                    updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.yellow_border_5), ContextCompat.getColor(context, R.color.yellow));
                     holder.binding.tvRefunds.setVisibility(View.GONE);
-                }
-                break;
-            case Constants.SUBMIT_WAITING_FOR_PAYMENT:
-            case Constants.COMPLETED:
-                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.green_border_5), ContextCompat.getColor(context, R.color.greendark));
-                if (item.jobRefunds != null) {//refund case
-                    holder.binding.tvRefunds.setVisibility(View.VISIBLE);
-                } else {
+                    break;
+                case 7:
+                case Constants.WAITING_FOR_ACCEPTANCE:
+                    updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.lovender_border_5), ContextCompat.getColor(context, R.color.lovender));
                     holder.binding.tvRefunds.setVisibility(View.GONE);
-                }
-                break;
-            case Constants.CANCELLED:
-                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.black_gray_border_5), ContextCompat.getColor(context, R.color.gray_text));
-                holder.binding.tvRefunds.setVisibility(View.GONE);
-                break;
-            case Constants.REFUNDED:
-                updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.orange_border_5), ContextCompat.getColor(context, R.color.orange_light));
-                holder.binding.tvRefunds.setVisibility(View.GONE);
-                break;
+                    break;
+                case Constants.WAITING_FOR_DEPOSIT:
+                    updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.red_border_5), ContextCompat.getColor(context, R.color.red_dark));
+                    holder.binding.tvRefunds.setVisibility(View.GONE);
+                    break;
+                case Constants.BANK_TRANSFER_REVIEW:
+                    updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.orange_border_5), ContextCompat.getColor(context, R.color.orange_light));
+                    holder.binding.tvRefunds.setVisibility(View.GONE);
+                    break;
+                case Constants.IN_PROGRESS:
+                    updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.blue_border_5), ContextCompat.getColor(context, R.color.colorPrimary));
+                    if (item.jobRefunds != null) {//refund case
+                        holder.binding.tvRefunds.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.binding.tvRefunds.setVisibility(View.GONE);
+                    }
+                    break;
+                case Constants.SUBMIT_WAITING_FOR_PAYMENT:
+                case Constants.COMPLETED:
+                    updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.green_border_5), ContextCompat.getColor(context, R.color.greendark));
+                    if (item.jobRefunds != null) {//refund case
+                        holder.binding.tvRefunds.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.binding.tvRefunds.setVisibility(View.GONE);
+                    }
+                    break;
+                case Constants.CANCELLED:
+                    updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.black_gray_border_5), ContextCompat.getColor(context, R.color.gray_text));
+                    holder.binding.tvRefunds.setVisibility(View.GONE);
+                    break;
+                case Constants.REFUNDED:
+                    updateStatus(holder.binding.tvStatus, item.getStateName(context.language), ContextCompat.getDrawable(context, R.drawable.orange_border_5), ContextCompat.getColor(context, R.color.orange_light));
+                    holder.binding.tvRefunds.setVisibility(View.GONE);
+                    break;
+            }
+        } else if (item.status != null) {
+            switch (item.status) {
+                case "paid":
+                    updateStatus(holder.binding.tvStatus, capitalizeWords(item.status), ContextCompat.getDrawable(context, R.drawable.blue_border_5), ContextCompat.getColor(context, R.color.colorPrimary));
+                    if (item.jobRefunds != null) {//refund case
+                        holder.binding.tvRefunds.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.binding.tvRefunds.setVisibility(View.GONE);
+                    }
+                    break;
+                default:
+                    updateStatus(holder.binding.tvStatus, capitalizeWords(item.status), ContextCompat.getDrawable(context, R.drawable.black_gray_border_5), ContextCompat.getColor(context, R.color.gray_text));
+                    holder.binding.tvRefunds.setVisibility(View.GONE);
+                    break;
+            }
         }
         if (!isState()) {
             holder.binding.tvRefunds.setVisibility(View.GONE);
@@ -201,7 +218,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Simple
                             binding.shimmerViewContainer.setBackgroundResource(R.drawable.transp_rounded_corner_10);
                             binding.progressBar.setVisibility(View.VISIBLE);
 
-                            jobClickListener.onClickJob(projectsList.get(getAdapterPosition()).id, getAdapterPosition(), projectsList.get(getAdapterPosition()).job
+                            jobClickListener.onClickJob(projectsList.get(getAdapterPosition()),projectsList.get(getAdapterPosition()).id, getAdapterPosition(), projectsList.get(getAdapterPosition()).status
                                     , projectsList.get(getAdapterPosition()).gigType);
                         }
                     } catch (Exception e) {
@@ -210,5 +227,24 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Simple
                 }
             });
         }
+    }
+
+    public static String capitalizeWords(String input) {
+        // split the input string into an array of words
+        String[] words = input.split("\\s");
+
+        // StringBuilder to store the result
+        StringBuilder result = new StringBuilder();
+
+        // iterate through each word
+        for (String word : words) {
+            // capitalize the first letter, append the rest of the word, and add a space
+            result.append(Character.toTitleCase(word.charAt(0)))
+                    .append(word.substring(1))
+                    .append(" ");
+        }
+
+        // convert StringBuilder to String and trim leading/trailing spaces
+        return result.toString().trim();
     }
 }

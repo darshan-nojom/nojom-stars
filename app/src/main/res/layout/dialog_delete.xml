@@ -28,6 +28,8 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/discard_changes"
             android:textColor="@color/c_080921"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:textSize="@dimen/_14sdp"
             app:fonts="@string/sfpro_text_midium" />
 

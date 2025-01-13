@@ -335,7 +335,8 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
 
         dialogAddCompany.setContentView(addStoresBinding.getRoot());
         dialogAddCompany.setCancelable(true);
-        DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
+        DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
+        addStoresBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
         isAnyChanges.setValue(false);
         if (data != null) {
             addStoresBinding.etName.setText(data.title);
@@ -376,9 +377,11 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
 
             if (data != null) {
                 if (isValid(data)) {
-                    DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
+                    DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.black));
+                    addStoresBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
+                    DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
+                    addStoresBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
                 }
             }
             isAnyChanges.setValue(true);
@@ -394,11 +397,14 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (isValid(data)) {
                     DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
-                    isAnyChanges.setValue(true);
+                    addStoresBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
+//                    isAnyChanges.setValue(true);
                 } else {
-                    DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
-                    isAnyChanges.setValue(false);
+                    DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.C_E5E5EA));
+                    addStoresBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
+//                    isAnyChanges.setValue(false);
                 }
+                isAnyChanges.setValue(true);
             }
 
             @Override
@@ -416,11 +422,14 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (isValid(data)) {
                     DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
-                    isAnyChanges.setValue(true);
+                    addStoresBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
+//                    isAnyChanges.setValue(true);
                 } else {
-                    DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
-                    isAnyChanges.setValue(false);
+                    DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.C_E5E5EA));
+                    addStoresBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
+//                    isAnyChanges.setValue(false);
                 }
+                isAnyChanges.setValue(true);
             }
 
             @Override
@@ -505,7 +514,8 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
         dialogAddProduct.setContentView(addProductBinding.getRoot());
         dialogAddProduct.setCancelable(true);
         isAnyChanges.setValue(false);
-        DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
+        DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
+        addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
         if (data != null) {
             addProductBinding.etName.setText(data.title);
             addProductBinding.etWebsite.setText(data.url);
@@ -560,9 +570,11 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
             addProductBinding.roundedImage.setTag("");
             if (data != null) {
                 if (isValidProduct(data)) {
-                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
+                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.black));
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
+                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
                 }
             }
             isAnyChanges.setValue(true);
@@ -578,11 +590,14 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (isValidProduct(data)) {
                     DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
-                    isAnyChanges.setValue(true);
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
+//                    isAnyChanges.setValue(true);
                 } else {
-                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
-                    isAnyChanges.setValue(false);
+                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.C_E5E5EA));
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
+//                    isAnyChanges.setValue(false);
                 }
+                isAnyChanges.setValue(true);
             }
 
             @Override
@@ -600,11 +615,14 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (isValidProduct(data)) {
                     DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
-                    isAnyChanges.setValue(true);
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
+//                    isAnyChanges.setValue(true);
                 } else {
-                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
-                    isAnyChanges.setValue(false);
+                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.C_E5E5EA));
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
+//                    isAnyChanges.setValue(false);
                 }
+                isAnyChanges.setValue(true);
             }
 
             @Override
@@ -623,11 +641,14 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (isValidProduct(data)) {
                     DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
-                    isAnyChanges.setValue(true);
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
+//                    isAnyChanges.setValue(true);
                 } else {
-                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
-                    isAnyChanges.setValue(false);
+                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.C_E5E5EA));
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
+//                    isAnyChanges.setValue(false);
                 }
+                isAnyChanges.setValue(true);
             }
 
             @Override
@@ -645,11 +666,14 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (isValidProduct(data)) {
                     DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
-                    isAnyChanges.setValue(true);
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
+//                    isAnyChanges.setValue(true);
                 } else {
-                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
-                    isAnyChanges.setValue(false);
+                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.C_E5E5EA));
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
+//                    isAnyChanges.setValue(false);
                 }
+                isAnyChanges.setValue(true);
             }
 
             @Override
@@ -837,10 +861,10 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
         dialogDelete.setCancelable(true);
         String txt;
         if (isTabStore) {
-            dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_store));
+            dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_store) + " " + data);
             txt = getString(R.string.store).toLowerCase();
         } else {
-            dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_product));
+            dialogDeleteBinding.txtTitle.setText(getString(R.string.delete_product) + " " + data);
             txt = getString(R.string.product).toLowerCase();
         }
 
@@ -1111,8 +1135,10 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
 
                             if (isValid(null)) {
                                 DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
+                                addStoresBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
                             } else {
-                                DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
+                                DrawableCompat.setTint(addStoresBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.C_E5E5EA));
+                                addStoresBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
                             }
                         } else {
                             Toast.makeText(this, "Unsupported media type", Toast.LENGTH_SHORT).show();
@@ -1160,9 +1186,11 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
                             addProductBinding.roundedImage.setTag(realPath);
                             addProductBinding.imgCancel.setVisibility(View.VISIBLE);
                             if (isValidProduct(null)) {
-                                DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
+                                DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.black));
+                                addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
                             } else {
-                                DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
+                                DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
+                                addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
                             }
                         } else {
                             Toast.makeText(this, "Unsupported media type", Toast.LENGTH_SHORT).show();
@@ -1436,9 +1464,11 @@ public class MyStoresActivity extends BaseActivity implements MyStoresAdapter.On
             etCurrency.setText(isSelectSaudi.get() ? getString(R.string.sar) : getString(R.string.dollar));
             if (data != null) {
                 if (isValidProduct(data)) {
-                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.black));
+                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.black));
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(MyStoresActivity.this, R.color.c_AEAEB2));
+                    DrawableCompat.setTint(addProductBinding.relSave.getBackground(), ContextCompat.getColor(this, R.color.C_E5E5EA));
+                    addProductBinding.tvSend.setTextColor(getResources().getColor(R.color.C_020814));
                 }
                 isAnyChanges.setValue(true);
             }

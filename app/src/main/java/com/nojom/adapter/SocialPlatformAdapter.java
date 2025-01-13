@@ -226,7 +226,7 @@ public class SocialPlatformAdapter extends RecyclerView.Adapter<SocialPlatformAd
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (TextUtils.isEmpty(s)) {
                     dialogAddSocialmediaBinding.txtLink.setVisibility(View.GONE);
-                    DrawableCompat.setTint(dialogAddSocialmediaBinding.relSave.getBackground(), ContextCompat.getColor(context, R.color.c_AEAEB2));
+                    DrawableCompat.setTint(dialogAddSocialmediaBinding.relSave.getBackground(), ContextCompat.getColor(context, R.color.C_E5E5EA));
                     dialogAddSocialmediaBinding.tvSend.setTextColor(context.getResources().getColor(R.color.C_020814));
                 } else {
                     dialogAddSocialmediaBinding.txtLink.setVisibility(View.VISIBLE);

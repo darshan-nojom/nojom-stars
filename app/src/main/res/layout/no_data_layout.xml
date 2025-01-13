@@ -10,23 +10,36 @@
         android:orientation="vertical"
         android:visibility="gone">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/empty_camp_ph" />
+
         <android.textview.TextViewSFTextPro
-            app:fonts="@string/sftext_bold"
             android:id="@+id/tv_no_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_14sdp" />
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/there_is_no_campaign_here"
+            android:textColor="@color/textgrayAccent"
+            android:textSize="@dimen/_11sdp"
+            app:fonts="@string/sfpro_text_regular" />
 
         <android.textview.TextViewSFTextPro
             android:id="@+id/tv_no_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_20sdp"
             android:gravity="center"
+            android:text="@string/there_is_no_campaign_here"
             android:textColor="@color/textgrayAccent"
-            android:textSize="@dimen/_12sdp"
-            app:fonts="@string/sftext_regular" />
+            android:textSize="@dimen/_11sdp"
+            app:fonts="@string/sfpro_text_regular" />
     </LinearLayout>
 </layout>

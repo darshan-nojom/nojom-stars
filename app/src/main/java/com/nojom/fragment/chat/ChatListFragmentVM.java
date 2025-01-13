@@ -19,6 +19,7 @@ import com.nojom.fragment.BaseFragment;
 import com.nojom.model.ChatList;
 import com.nojom.model.ChatMessageList;
 import com.nojom.model.Typing;
+import com.nojom.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,7 +142,9 @@ class ChatListFragmentVM extends AndroidViewModel {
             return;
         }
         arrChatList = new ArrayList<>();
-        Call<ChatList> call = fragment.activity.getService().getUser(String.valueOf(fragment.activity.getUserID()), "" + AGENT_PROFILE);
+        Call<ChatList> call = fragment.activity.getService().getUser(
+                Constants.BASE_URL_CHAT + "users/getAllUsers",
+                String.valueOf(fragment.activity.getUserID()), "" + AGENT_PROFILE);
         call.enqueue(new Callback<ChatList>() {
             @Override
             public void onResponse(@NonNull Call<ChatList> call, @NonNull Response<ChatList> response) {

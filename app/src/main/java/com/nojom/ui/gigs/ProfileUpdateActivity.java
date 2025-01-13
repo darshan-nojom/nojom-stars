@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -55,6 +54,7 @@ import com.nojom.adapter.ProfilePartnersAdapter;
 import com.nojom.adapter.ProfileProductsAdapter;
 import com.nojom.adapter.ProfileStoreAdapter;
 import com.nojom.adapter.ProfileYoutubeAdapter;
+import com.nojom.adapter.SelectedServiceAdapter;
 import com.nojom.adapter.SkillsListAdapter;
 import com.nojom.adapter.SocialMediaAdapterProfile;
 import com.nojom.adapter.WorkwithAdapter;
@@ -66,6 +66,7 @@ import com.nojom.databinding.ViewMyStoreBinding;
 import com.nojom.databinding.ViewOverviewBinding;
 import com.nojom.databinding.ViewPartnerBinding;
 import com.nojom.databinding.ViewPortfolioBinding;
+import com.nojom.databinding.ViewServicesBinding;
 import com.nojom.databinding.ViewSocialMediaBinding;
 import com.nojom.databinding.ViewWorkwithBinding;
 import com.nojom.databinding.ViewYoutubeBinding;
@@ -77,12 +78,16 @@ import com.nojom.model.GetYoutube;
 import com.nojom.model.Portfolios;
 import com.nojom.model.ProfileMenu;
 import com.nojom.model.ProfileResponse;
+import com.nojom.model.Serv;
+import com.nojom.model.Services;
 import com.nojom.model.Skill;
 import com.nojom.model.UserModel;
 import com.nojom.ui.BaseActivity;
 import com.nojom.ui.workprofile.AgencyInfoActivity;
 import com.nojom.ui.workprofile.EditProfileActivity;
 import com.nojom.ui.workprofile.EditProfileActivityVM;
+import com.nojom.ui.workprofile.GetServiceActivityVM;
+import com.nojom.ui.workprofile.InfluencerServiceActivity;
 import com.nojom.ui.workprofile.MyPartnerActivity;
 import com.nojom.ui.workprofile.MyPartnerActivityVM;
 import com.nojom.ui.workprofile.MyPlatformActivityVM;
@@ -105,11 +110,9 @@ import com.nojom.util.Utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -121,6 +124,7 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
     private int selectedSectionPos;
     boolean isSelectPublic = true;
     boolean isEnglishLanguage;
+    private GetServiceActivityVM serviceActivityVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,7 +144,8 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
         binding.txtBrand.setTextColor(Color.WHITE);
         DrawableCompat.setTint(binding.txtBrand.getBackground(), ContextCompat.getColor(this, R.color.C_3C3C43));
         DrawableCompat.setTint(binding.txtPublic.getBackground(), ContextCompat.getColor(this, R.color.white));
-
+        serviceActivityVM = ViewModelProviders.of(this).get(GetServiceActivityVM.class);
+        serviceActivityVM.init(this);
         editProfileActivityVM = ViewModelProviders.of(this).get(EditProfileActivityVM.class);
         editProfileActivityVM.init(this, null);
         setOnProfileLoadListener(this);
@@ -411,6 +416,7 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
         profileMenuListOrigin.add(new ProfileMenu(getString(R.string.youtube), 6));
         profileMenuListOrigin.add(new ProfileMenu(getString(R.string.partners), 7));
         profileMenuListOrigin.add(new ProfileMenu(getString(R.string.agency), 8));
+        profileMenuListOrigin.add(new ProfileMenu(getString(R.string.influencer_services), 9));
 
 
         if (profileData != null) {
@@ -477,9 +483,9 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
 
             if (profileData.settings_order != null) {
                 List<String> list = new ArrayList<>(Arrays.asList(profileData.settings_order.split(",")));
-                Set<String> set = new HashSet<>(list);
-                List<String> newList = new ArrayList<>(set);
-                for (String item : newList) {
+//                Set<String> set = new HashSet<>(list);
+//                List<String> newList = new ArrayList<>(set);
+                for (String item : list) {
 //                    profileMenuList.add(profileMenuListOrigin.get(Integer.parseInt(item) - 1));
                     int pos = Integer.parseInt(item) - 1;
                     profileMenuListOrigin.get(pos).isShow = true;
@@ -509,6 +515,9 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
                         case "8":
                             addAgencyLayout(pos);
                             break;
+                        case "9":
+                            addInfluencerServiceLayout(pos);
+                            break;
                     }
 
                 }
@@ -526,7 +535,7 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
 
                 selectedSectionPos = -1;
 
-                if (binding.linearCustom.getChildCount() == 8) {
+                if (binding.linearCustom.getChildCount() == 9) {
                     binding.txtAllSection.setVisibility(GONE);
                     binding.txtAllSection.invalidate();
                 } else {
@@ -579,7 +588,7 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
             gotoMainActivity(TAB_HOME);
         });
 
-        if (binding.linearCustom.getChildCount() == 8) {
+        if (binding.linearCustom.getChildCount() == 9) {
             binding.txtAllSection.setVisibility(GONE);
             binding.txtAllSection.invalidate();
         } else {
@@ -776,6 +785,11 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
                 break;
             case 8://agency
                 redirectActivity(AgencyInfoActivity.class);
+                break;
+            case 9://Influencer Services
+                Intent intent = new Intent(this, InfluencerServiceActivity.class);
+                intent.putExtra("data", influencerServices);
+                startActivity(intent);
                 break;
         }
     }
@@ -1007,10 +1021,10 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
                 overviewBinding.tvPriceRange.setVisibility(VISIBLE);
                 overviewBinding.txtPriceTitle.setVisibility(VISIBLE);
                 overviewBinding.viewRange.setVisibility(VISIBLE);
-                String minP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.minPrice));
-                String maxP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.maxPrice));
 
                 if (profileData.minPrice != null && profileData.maxPrice != null && profileData.minPrice > 0 && profileData.maxPrice > 0) {
+                    String minP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.minPrice));
+                    String maxP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.maxPrice));
                     isHide = true;
                     overviewBinding.tvPriceRange.setText(String.format("%s - %s %s", minP, maxP, getCurrency().equals("SAR") ? getString(R.string.sar) : getString(R.string.dollar)));
                 } else {
@@ -1020,10 +1034,10 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
                 overviewBinding.tvPriceRange.setVisibility(VISIBLE);
                 overviewBinding.txtPriceTitle.setVisibility(VISIBLE);
                 overviewBinding.viewRange.setVisibility(VISIBLE);
-                String minP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.minPrice));
-                String maxP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.maxPrice));
 
                 if (profileData.minPrice != null && profileData.maxPrice != null && profileData.minPrice > 0 && profileData.maxPrice > 0) {
+                    String minP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.minPrice));
+                    String maxP = NumberTextWatcherForThousand.getDecimalFormat(formatValue(profileData.maxPrice));
                     isHide = true;
                     overviewBinding.tvPriceRange.setText(String.format("%s - %s %s", minP, maxP, getCurrency().equals("SAR") ? getString(R.string.sar) : getString(R.string.dollar)));
                 } else {
@@ -1640,4 +1654,54 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
         }
     }
 
+    private Services influencerServices;
+
+    private void addInfluencerServiceLayout(int pos) {
+        ViewServicesBinding socialMediaBinding = DataBindingUtil.inflate(LayoutInflater.from(getApplicationContext()), R.layout.view_services, null, false);
+        if (language.equals("ar")) {
+            setArFont(socialMediaBinding.txtName, Constants.FONT_AR_MEDIUM);
+            setArFont(socialMediaBinding.txtShow, Constants.FONT_AR_MEDIUM);
+            setArFont(socialMediaBinding.txtAdd, Constants.FONT_AR_MEDIUM);
+        }
+        serviceActivityVM.getServices();
+
+        socialMediaBinding.txtName.setText(getString(R.string.influencer_services));
+        socialMediaBinding.txtShow.setText(getString(R.string.hide));
+        socialMediaBinding.txtAdd.setText(getString(R.string.add));
+
+        serviceActivityVM.serviceMutableLiveData.observe(this, data -> {
+            influencerServices = data;
+            if (data != null && data.services != null && data.services.size() > 0) {
+                ArrayList<Serv> servicesData = new ArrayList<>(data.services);
+                socialMediaBinding.txtShow.setVisibility(GONE);
+                socialMediaBinding.txtAdd.setText(getString(R.string.edit));
+
+               /* for (Serv da : data.services) {
+                    if (da.id == -1) {
+                        if (da.price > 0) {
+                            servicesData.add(new Serv(getString(R.string.all_platforms), da.price));
+                        }
+                        break;
+                    }
+                }*/
+
+                SelectedServiceAdapter adapter = new SelectedServiceAdapter(servicesData, this);
+                socialMediaBinding.rvService.setAdapter(adapter);
+                socialMediaBinding.rvService.setVisibility(VISIBLE);
+            } else {
+                socialMediaBinding.rvService.setVisibility(GONE);
+                socialMediaBinding.txtShow.setVisibility(GONE);
+            }
+        });
+
+        socialMediaBinding.txtAdd.setOnClickListener(view -> clickToOpenModule(9));
+        socialMediaBinding.txtShow.setOnClickListener(view -> {
+            binding.linearCustom.removeView(socialMediaBinding.getRoot());
+            profileMenuListOrigin.get(pos).isShow = false;
+            hideShowMenu(true, 9, profileMenuListOrigin.get(pos).id);
+        });
+        socialMediaBinding.imgOrder.setOnClickListener(view -> reOrderDialog());
+
+        binding.linearCustom.addView(socialMediaBinding.getRoot());
+    }
 }

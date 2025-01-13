@@ -1,5 +1,8 @@
 package com.nojom.adapter;
 
+import static com.nojom.util.YouTubeTitleFetcher.fetchVideoTitle;
+import static com.nojom.util.YouTubeTitleFetcher.getVideoId;
+
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -127,7 +130,16 @@ public class YoutubeAdapter extends RecyclerView.Adapter<YoutubeAdapter.SimpleVi
 //        Log.e("YT Thumb ", "" + videothumb);
         holder.binding.txtName.setTag("" + position);
         if (TextUtils.isEmpty(item.getName(context.language))) {
-            new FetchVideoTitleTask(holder.binding.txtName).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, item.link);
+//            new FetchVideoTitleTask(holder.binding.txtName).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, item.link);
+            String videoId = getVideoId(item.link);
+
+            if (videoId != null) {
+                String title = fetchVideoTitle(videoId);
+                holder.binding.txtName.setText(title);
+            } else {
+                System.out.println("Invalid YouTube URL");
+                holder.binding.txtName.setText("----");
+            }
         }
         Glide.with(context).load(videothumb).placeholder(R.drawable.dp).listener(new RequestListener<Drawable>() {
             @Override
