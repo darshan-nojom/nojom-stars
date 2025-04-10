@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_round_corner_top_bg_light">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="@string/steps_details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15sdp"
+                    app:fonts="@string/sfpro_text_midium" />
+
+                <android.textview.TextViewSFTextPro
+                    android:id="@+id/txtCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/cancel"
+                    android:textColor="@color/C_007AFF"
+                    android:textSize="@dimen/_12sdp"
+                    app:fonts="@string/sfpro_text_regular" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/white_button_bg"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <!-- Timeline Circle and Line -->
+                    <RelativeLayout
+                        android:id="@+id/rel1"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/lin2">
+
+                        <!-- Circle -->
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/radio_button_active" />
+
+                        <View
+                            android:id="@+id/v1"
+                            android:layout_width="@dimen/_2sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/img_1"
+                            android:layout_centerHorizontal="true"
+                            android:background="@color/background" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_toEndOf="@+id/rel1"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/_15sdp">
+
+                        <!-- Status -->
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/requested_awaiting_star_approval"
+                            android:textColor="@color/C_020814"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_midium" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_1_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:text="Your request has been successfully submitted. We are waiting for the star to approve the order."
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel2"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/lin3"
+                        android:layout_below="@id/lin1">
+
+                        <!-- Circle -->
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/radio_button_inactive" />
+
+                        <View
+                            android:id="@+id/v2"
+                            android:layout_width="@dimen/_2sdp"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/img_2"
+                            android:layout_centerHorizontal="true"
+                            android:background="@color/background" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lin1"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_toEndOf="@+id/rel2"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/_15sdp">
+
+                        <!-- Status -->
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/star_approved_in_progress"
+                            android:textColor="@color/C_020814"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_midium" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_2_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:text="The Star is working on creating and delivering the content according to the agreed order details."
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_2_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:drawableStart="@drawable/ic_cal"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_11sdp"
+                            android:visibility="gone"
+                            app:fonts="@string/sfpro_text_regular" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel3"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/lin4"
+                        android:layout_below="@id/lin2">
+
+                        <!-- Circle -->
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/radio_button_inactive" />
+
+                        <View
+                            android:id="@+id/v3"
+                            android:layout_width="@dimen/_2sdp"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/img_3"
+                            android:layout_centerHorizontal="true"
+                            android:background="@color/background" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lin2"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_toEndOf="@+id/rel3"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/_15sdp">
+
+                        <!-- Status -->
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/delivered_awaiting_your_approval"
+                            android:textColor="@color/C_020814"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_midium" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_3_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:text="Once the implementation is complete, you can review the submitted content and make sure it matches the requirements."
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_3_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:drawableStart="@drawable/ic_cal"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_11sdp"
+                            android:visibility="gone"
+                            app:fonts="@string/sfpro_text_regular" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel4"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lin3">
+
+                        <!-- Circle -->
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/radio_button_inactive" />
+
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lin3"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:layout_toEndOf="@+id/rel4"
+                        android:orientation="vertical">
+
+                        <!-- Status -->
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Your Approval (Completed)"
+                            android:textColor="@color/C_020814"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_midium" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_4_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:text="After final approval, the amount is released to the star, and the order s considered complete."
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_11sdp"
+                            app:fonts="@string/sfpro_text_regular" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_4_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:drawableStart="@drawable/ic_cal"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_11sdp"
+                            android:visibility="gone"
+                            app:fonts="@string/sfpro_text_regular" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

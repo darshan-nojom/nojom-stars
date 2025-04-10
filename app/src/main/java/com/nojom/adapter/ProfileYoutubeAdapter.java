@@ -4,12 +4,11 @@ import static com.nojom.util.YouTubeTitleFetcher.fetchVideoTitle;
 import static com.nojom.util.YouTubeTitleFetcher.getVideoId;
 
 import android.content.Intent;
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.text.TextUtils;
 import android.textview.TextViewSFTextPro;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -28,12 +25,10 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.nojom.R;
-import com.nojom.databinding.ItemAgentCompanyBinding;
 import com.nojom.databinding.ItemYoutubeProfileBinding;
 import com.nojom.model.GetYoutube;
 import com.nojom.ui.BaseActivity;
 import com.nojom.util.Constants;
-import com.nojom.util.ReOrderYoutubeMoveCallback;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -41,7 +36,6 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -131,8 +125,31 @@ public class ProfileYoutubeAdapter extends RecyclerView.Adapter<ProfileYoutubeAd
                 context.setArFont(binding.txtMainPhoto, Constants.FONT_AR_MEDIUM);
             }
             itemView.getRoot().setOnClickListener(v -> {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(paymentList.get(getAdapterPosition()).link));
-                context.startActivity(intent);
+                if (!TextUtils.isEmpty(paymentList.get(getAdapterPosition()).link)) {
+                    try {
+//                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(paymentList.get(getAdapterPosition()).link));
+//                        context.startActivity(intent);
+                        Intent intent;
+                        if (!paymentList.get(getAdapterPosition()).link.startsWith("http")) {
+                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + paymentList.get(getAdapterPosition()).link));
+                        } else {
+                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(paymentList.get(getAdapterPosition()).link));
+                        }
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setPackage("com.google.android.youtube"); // Open in YouTube app if installed
+
+                        // Check if YouTube app is available
+                        if (intent.resolveActivity(context.getPackageManager()) != null) {
+                            context.startActivity(intent);
+                        } else {
+                            // Open in a web browser if YouTube app is not available
+                            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(paymentList.get(getAdapterPosition()).link));
+                            context.startActivity(webIntent);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             });
         }
     }

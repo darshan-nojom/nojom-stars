@@ -204,6 +204,10 @@ public class SplashActivityVM extends ViewModel implements APIRequest.JWTRequest
 //            intentMain = new Intent(activity, SelectAccountActivity.class);
             intentMain = new Intent(activity, OnboardingActivity.class);
         }
+        if (activity.getIntent().hasExtra("screen_name")) {
+            intentMain.putExtra("s_name", activity.getIntent().getStringExtra("screen_name"));
+            intentMain.putExtra("camp_id", activity.getIntent().getStringExtra("campaign_id"));
+        }
         intentMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intentMain);

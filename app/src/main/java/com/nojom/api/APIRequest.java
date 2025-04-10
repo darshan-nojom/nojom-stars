@@ -10,6 +10,7 @@ import com.nojom.R;
 import com.nojom.model.APIResponse;
 import com.nojom.model.APIResponseArray;
 import com.nojom.model.AddCard;
+import com.nojom.model.CampListByIdResponse;
 import com.nojom.model.CampListResponse;
 import com.nojom.model.CampaignType;
 import com.nojom.model.CampaignUrls;
@@ -796,6 +797,8 @@ public class APIRequest {
                     }
                 } else if (response.code() == 401) {
                     activity.logout();
+                } else if (response.code() == 404) {
+//                    apiRequestListener.onResponseSuccess("", url, "");
                 }
             }
 
@@ -1179,22 +1182,22 @@ public class APIRequest {
         });
     }
 
-    public void getCampById(CampaignListener requestResponseListener, BaseActivity activity, String url) {
+    public void getCampById(CampaignByIdListener requestResponseListener, BaseActivity activity, String url) {
         String jwtToken = null;
         if (activity.getJWT() != null && !TextUtils.isEmpty(activity.getJWT())) {
             jwtToken = activity.getJWT();
         }
 
-        Call<CampListResponse> orderCall = activity.getService().getCampById(url, jwtToken, "6");
-        orderCall.enqueue(new Callback<CampListResponse>() {
+        Call<CampListByIdResponse> orderCall = activity.getService().getCampById(url, jwtToken, "6");
+        orderCall.enqueue(new Callback<CampListByIdResponse>() {
             @Override
-            public void onResponse(@NonNull Call<CampListResponse> call, @NonNull Response<CampListResponse> response) {
+            public void onResponse(@NonNull Call<CampListByIdResponse> call, @NonNull Response<CampListByIdResponse> response) {
                 if (response.code() == 401) {
                     activity.logout();
                 } else {
                     try {
                         if (response.body() != null) {
-                            CampListResponse commonResponse = response.body();
+                            CampListByIdResponse commonResponse = response.body();
                             if (commonResponse.status) {
                                 if (commonResponse.data != null) {
                                     requestResponseListener.successResponse(commonResponse.data, url, commonResponse.getMessage(activity.language));
@@ -1235,7 +1238,7 @@ public class APIRequest {
             }
 
             @Override
-            public void onFailure(@NonNull Call<CampListResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<CampListByIdResponse> call, @NonNull Throwable t) {
                 activity.failureError(activity.getString(R.string.something_went_wrong));
                 requestResponseListener.failureResponse(t, url, "");
             }
@@ -1646,4 +1649,45 @@ public class APIRequest {
         });
     }
 
+    public void getOrderList(WalletListener requestResponseListener, BaseActivity activity, String url) {
+        String jwtToken = null;
+        if (activity.getJWT() != null && !TextUtils.isEmpty(activity.getJWT())) {
+            jwtToken = activity.getJWT();
+        }
+
+        Call<WalletResponse> orderCall = activity.getService().getWalletBalance(url, jwtToken, "6");
+        orderCall.enqueue(new Callback<WalletResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<WalletResponse> call, @NonNull Response<WalletResponse> response) {
+                if (response.code() == 401) {
+                    activity.logout();
+                } else {
+                    try {
+                        if (response.body() != null) {
+                            WalletResponse commonResponse = response.body();
+                            if (commonResponse.status) {
+                                if (commonResponse.data != null) {
+                                    requestResponseListener.successResponse(commonResponse.data, url, commonResponse.getMessage(activity.language));
+                                } else {
+                                    requestResponseListener.successResponse(null, url, commonResponse.getMessage(activity.language));
+                                }
+                            } else {
+                                requestResponseListener.failureResponse(null, url, commonResponse.getMessage(activity.language));
+                            }
+                        } else {
+                            activity.failureError(activity.getString(R.string.something_went_wrong));
+                        }
+                    } catch (Exception e) {
+                        requestResponseListener.failureResponse(null, url, "");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<WalletResponse> call, @NonNull Throwable t) {
+                activity.failureError(activity.getString(R.string.something_went_wrong));
+                requestResponseListener.failureResponse(t, url, "");
+            }
+        });
+    }
 }

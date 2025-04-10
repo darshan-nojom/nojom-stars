@@ -3,6 +3,8 @@ package com.nojom.api;
 import com.nojom.model.APIResponse;
 import com.nojom.model.APIResponseArray;
 import com.nojom.model.AddCard;
+import com.nojom.model.CampListByIdData;
+import com.nojom.model.CampListByIdResponse;
 import com.nojom.model.CampListResponse;
 import com.nojom.model.CampaignUrls;
 import com.nojom.model.ChatList;
@@ -162,7 +164,8 @@ public interface ApiInterface {
                                                 @Body CampaignUrls campaignType, @Header("sys_id") String sysId);
 
     @GET
-    Call<CampListResponse> getCampById(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);
+    Call<CampListByIdResponse> getCampById(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);
+
 
     @GET
     Call<WalletResponse> getWalletBalance(@Url String method, @Header("Authorization") String token, @Header("sys_id") String sysId);

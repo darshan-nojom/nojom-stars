@@ -56,8 +56,8 @@
     <string name="call">Call</string>
     <string name="messenger">Messenger</string>
     <string name="messanger_text">messenger.com/t/nojom</string>
-    <string name="phone_number">+966 50 247 5630</string>
-    <string name="phone_number_">+966502475630</string>
+    <string name="phone_number">+966 55 663 3344</string>
+    <string name="phone_number_">+966556633344</string>
     <string name="phonenumber">Phone Number</string>
     <string name="phonenumber_">Phone number</string>
     <string name="phone_number_demo">512345678</string>
@@ -65,7 +65,7 @@
     <string name="email">Email</string>
     <string name="email_">Email</string>
     <string name="email_address">Email address</string>
-    <string name="email_text">info@nojom.com</string>
+    <string name="email_text">support@nojom.com</string>
     <string name="sms">SMS</string>
     <string name="cancel">Cancel</string>
     <string name="my_orders">My Campaigns</string>
@@ -83,6 +83,7 @@
     <string name="reset_password">Reset Password</string>
     <string name="reset_pw_text">Type your email to reset your password</string>
     <string name="orders">Campaigns</string>
+    <string name="orders_">Orders</string>
     <string name="view_all_your_orders">View all your campaigns</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
@@ -2052,7 +2053,7 @@
     <string name="create_new_account_sign_up">Create new account? Sign Up</string>
     <string name="we_ll_send_a_verification_code_to_your_number_so_you_can_change_your_password">We’ll send a verification code to your number so you can change your password</string>
     <string name="send_code">Send Code</string>
-    <string name="enter_6_digit_code">Enter 6-digit code</string>
+    <string name="enter_6_digit_code">Enter 4-digit code</string>
     <string name="your_new_password_must_be_different_from_previously_used_passwords">Your new password must be different from previously used passwords.</string>
     <string name="already_have_an_account_log_in">Already have an account? Log in</string>
     <string name="this_helps_brands_filter_and_find_you_visible_to_brands_only">This helps brands filter and find you.</string>
@@ -2162,4 +2163,30 @@
     <string name="withdraw_history">Withdraw History</string>
     <string name="yes_cancel">Yes, Cancel</string>
     <string name="are_you_sure_to_cancel_this_campaign">Are you sure to cancel this campaign?</string>
+    <string name="due_date">"Due Date: "</string>
+    <string name="delivery_date">"Delivery Date: "</string>
+    <string name="current_orders">Current orders</string>
+    <string name="past_orders">Past orders</string>
+    <string name="not_logged_on_yet_login_now_to_see_posted_jobs">Not logged in yet, Login now to see the campaigns posted.</string>
+    <string name="sure_i_d_like_that">Sure, I\'d like that</string>
+    <string name="approved_pending_your_progress">Approved (Pending your progress)</string>
+    <string name="new_request_pending_approval">New request (Pending your approval)</string>
+    <string name="approved_completed">Approved (completed)</string>
+    <string name="request_declined_cancelled">Request rejected (Canceled)</string>
+    <string name="done_pending_client_review">Completed (Pending client review)</string>
+    <string name="see_step_by_step_details">See step by step details</string>
+    <string name="order_total">Order Total</string>
+    <string name="the_amount_has_been_successfully_deposited_into_the_nojom_platform_but_will_not_be_transferred_directly_to_the_star_after_the_star_submits_the_requested_campaign_you_can_review_the_work_and_approve_the_transfer_of_the_amount_if_no_action_is_taken_within_5_days_from_the_date_if_submission_the_campaign_will_be_approved_and_the_amount_will_be_transferred_to_the_influencer_automatically_to_ensure_smooth_operations">The amount has been successfully deposited into the Nojom platform, but will not be transferred directly to the star. After the star submits the requested campaign, you can review the work and approve the transfer of the amount. If no action is taken within 5 days from the date if submission, the campaign will be approved and the amount will be transferred to the influencer automatically to ensure smooth operations.</string>
+    <string name="requested">Requested</string>
+    <string name="delivered">Delivered</string>
+    <string name="requested_pending_star_approval">Requested (pending star approval)</string>
+    <string name="you_approved_completed">You approved (Completed)</string>
+    <string name="star_declined_cancelled">Star declined (Cancelled)</string>
+    <string name="steps_details">Steps details</string>
+    <string name="requested_awaiting_star_approval">Requested (Awaiting Star Approval)</string>
+    <string name="star_approved_in_progress">Star Approved (In Progress)</string>
+    <string name="delivered_awaiting_your_approval">Delivered (Awaiting your approval)</string>
+    <string name="order_title">Order Title</string>
+    <string name="details_2">Details</string>
+    <string name="orders_details">Order Details</string>
 </resources>

@@ -56,11 +56,11 @@
                 android:inputType="number"
                 android:itemBackground="@drawable/white_button_bg"
                 app:hideLineWhenFilled="true"
-                app:itemCount="6"
-                app:itemHeight="35dp"
+                app:itemCount="4"
+                app:itemHeight="@dimen/_35sdp"
                 app:itemRadius="10dp"
-                app:itemSpacing="@dimen/_5sdp"
-                app:itemWidth="35dp"
+                app:itemSpacing="@dimen/_7sdp"
+                app:itemWidth="@dimen/_35sdp"
                 app:lineColor="@color/gray"
                 app:lineWidth="1dp" />
 

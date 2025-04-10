@@ -57,7 +57,7 @@ public class CampList implements Serializable {
     @SerializedName(value = "campaign_status", alternate = "status")
     @Expose
     public String campaignStatus;
-    @SerializedName("campaign_created_at")
+    @SerializedName(value = "campaign_created_at", alternate = "created_at")
     @Expose
     public String campaignCreatedAt;
     @SerializedName("client_profile_id")
@@ -94,8 +94,14 @@ public class CampList implements Serializable {
     @Expose
     public ClientName client_name;
 
+    @SerializedName("timeline")
+    @Expose
+    public List<Timeline> timeline;
+
     public boolean isShowProgress;
 
+    public boolean isHeaderType = false;
+    public String headerText;
 
     public String getStatusName(BaseActivity activity) {
         if (activity.language.equals("ar")) {

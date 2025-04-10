@@ -1,6 +1,7 @@
 package com.nojom.ui.balance;
 
 import static com.nojom.util.Constants.API_ADD_BANK;
+import static com.nojom.util.Constants.API_CAMP_ATTACH_LINK;
 import static com.nojom.util.Constants.API_DELETE_BANK_NEW;
 import static com.nojom.util.Constants.API_GET_ACCOUNTS;
 import static com.nojom.util.Constants.API_GET_HISTORY;
@@ -16,9 +17,11 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.nojom.api.APIRequest;
+import com.nojom.api.CampaignByIdListener;
 import com.nojom.api.CampaignListener;
 import com.nojom.api.WalletListener;
 import com.nojom.model.AddCard;
+import com.nojom.model.CampListByIdData;
 import com.nojom.model.CampListData;
 import com.nojom.model.UpdateCard;
 import com.nojom.model.WalletData;
@@ -28,13 +31,15 @@ import com.nojom.ui.BaseActivity;
 
 import java.util.List;
 
-public class CampByIdVM extends AndroidViewModel implements CampaignListener, WalletListener {
+public class CampByIdVM extends AndroidViewModel implements CampaignListener, WalletListener, CampaignByIdListener {
     @SuppressLint("StaticFieldLeak")
     private final BaseActivity activity;
     public MutableLiveData<Boolean> mutableProgress = new MutableLiveData<>();
     public MutableLiveData<List<WalletData>> mpWalletData = new MutableLiveData<>();
     public MutableLiveData<WalletData> mpWalletBalanceData = new MutableLiveData<>();
     public MutableLiveData<WalletData> bankAccountList = new MutableLiveData<>();
+    String urlId;
+    public MutableLiveData<CampListByIdData> campListData = new MutableLiveData<>();
 
     public CampByIdVM(Application application, BaseActivity freelancerProfileActivity) {
         super(application);
@@ -86,6 +91,14 @@ public class CampByIdVM extends AndroidViewModel implements CampaignListener, Wa
         }
         activity.isClickableView = false;
         mutableProgress.postValue(false);
+    }
+
+    @Override
+    public void successResponse(CampListByIdData responseBody, String url, String message) {
+        if (urlId.equals(url)) {//by id response
+            urlId = "";
+            campListData.postValue(responseBody);
+        }
     }
 
     @Override
@@ -191,6 +204,13 @@ public class CampByIdVM extends AndroidViewModel implements CampaignListener, Wa
 //        mutableProgress.postValue(true);
         APIRequest apiRequest = new APIRequest();
         apiRequest.getHistory(this, activity, API_GET_HISTORY);
+    }
+
+    public void getCampById(int campId) {
+
+        APIRequest apiRequest = new APIRequest();
+        urlId = API_CAMP_ATTACH_LINK + campId;
+        apiRequest.getCampById(this, activity, urlId);
     }
 }
 

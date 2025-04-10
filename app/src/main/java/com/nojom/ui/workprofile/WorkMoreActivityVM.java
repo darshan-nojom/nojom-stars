@@ -1,6 +1,7 @@
 package com.nojom.ui.workprofile;
 
 import static com.nojom.util.Constants.API_LOGOUT;
+import static com.nojom.util.Constants.API_UPDATE_PROFILE;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -18,7 +19,6 @@ import com.nojom.api.APIRequest;
 import com.nojom.model.requestmodel.CommonRequest;
 import com.nojom.ui.BaseActivity;
 import com.nojom.ui.startup.OnboardingActivity;
-import com.nojom.ui.startup.SelectAccountActivity;
 import com.nojom.util.Constants;
 import com.nojom.util.Preferences;
 import com.nojom.util.Utils;
@@ -26,7 +26,6 @@ import com.nojom.util.Utils;
 import java.util.HashMap;
 import java.util.Objects;
 
-import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 import io.intercom.android.sdk.Intercom;
 
 public class WorkMoreActivityVM extends ViewModel implements APIRequest.APIRequestListener {
@@ -160,5 +159,18 @@ public class WorkMoreActivityVM extends ViewModel implements APIRequest.APIReque
         getIsShowProgress().postValue(false);
 //        activity.hideProgress();
         getIsShow().postValue(false);
+    }
+
+    public void updateProfile(String lang) {
+        if (!activity.isNetworkConnected())
+            return;
+
+
+        CommonRequest.UpdateProfileLang updateProfile = new CommonRequest.UpdateProfileLang();
+        updateProfile.setLanguage(lang);
+
+        APIRequest apiRequest = new APIRequest();
+        apiRequest.makeAPIRequest(activity, API_UPDATE_PROFILE, updateProfile.toString(), true, this);
+
     }
 }

@@ -209,7 +209,7 @@ public class OverViewActivityNew extends BaseActivity implements ResponseListene
 
         DrawableCompat.setTint(binding.relSave.getBackground(), ContextCompat.getColor(OverViewActivityNew.this, R.color.C_E5E5EA));
         binding.tvSave.setTextColor(getResources().getColor(R.color.C_020814));
-
+        setPublicStatusValue(1, binding.txtStatusMaw);
         verifyIDActivityVM.getMawthouqStatusMutableLiveData().observe(this, mawthouqStatus -> {
             if (profileData != null && mawthouqStatus != null) {
                 if (mawthouqStatus.mawthooq_number != null) {
@@ -1500,6 +1500,7 @@ public class OverViewActivityNew extends BaseActivity implements ResponseListene
             binding.etDob.removeTextChangedListener(null);
             //isAnyChanges.postValue(isAnyChanges.getValue());
             getProfile();
+            verifyIDActivityVM.getMawthooqStatus(this);
         }
     }
 }

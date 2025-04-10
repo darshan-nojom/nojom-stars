@@ -64,7 +64,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 try {
                     Map<String, String> params = remoteMessage.getData();
                     JSONObject json = new JSONObject(params);
-                    handleDataMessage(json);
+                    handleDataMessage(remoteMessage, json);
                 } catch (Exception e) {
                     Log.e(TAG, "Exception: " + e.getMessage());
                 }
@@ -80,16 +80,29 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //
 //    }
 
-    private void handleDataMessage(JSONObject json) {
+    private void handleDataMessage(RemoteMessage remoteMessage, JSONObject json) {
         Log.e(TAG, "push json: " + json.toString());
 
         try {
+            String title, message = "";
             Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
 
-            String title = json.getString("title");
-            String message = json.getString("body");
-            Log.e(TAG, "title: " + title);
-            Log.e(TAG, "message: " + message);
+//            String title = json.getString("title");
+//            String message = json.getString("body");
+//            Log.e(TAG, "title: " + title);
+//            Log.e(TAG, "message: " + message);
+
+            if (json.has("title")) {
+
+                title = json.getString("title");
+                if (json.has("body")) {
+                    message = json.getString("body");
+                    Log.e(TAG, "message: " + message);
+                }
+                Log.e(TAG, "title: " + title);
+            } else {
+                title = remoteMessage.getNotification().getBody();
+            }
 
             String chatId;
             if (json.has("chatId")) {
@@ -144,6 +157,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 if (additionalData.has("path")) {
                     String path = additionalData.getString("path");
                     resultIntent.putExtra("path", path);
+                }
+            }
+
+            if (json.has("screen_name")) {
+                String screenName = json.getString("screen_name");
+                resultIntent.putExtra("s_name", screenName);
+                if (json.has("campaign_id")) {
+                    String campId = json.getString("campaign_id");
+                    resultIntent.putExtra("camp_id", campId);
                 }
             }
 

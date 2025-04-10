@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/orders_"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_25sdp"
+                app:fonts="@string/sfpro_text_bold" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/current_orders"
+                android:textColor="@color/c_3C3C4399"
+                android:textSize="@dimen/_14sdp"
+                android:visibility="gone"
+                app:fonts="@string/sfpro_text_midium" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.nojom.util.SwipeRefreshLayoutWithEmpty
+                    android:id="@+id/swipeRefreshLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_15sdp">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvCurrentOrders"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                        <!--            <android.textview.TextViewSFTextPro-->
+                        <!--                android:layout_width="wrap_content"-->
+                        <!--                android:layout_height="wrap_content"-->
+                        <!--                android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--                android:gravity="center"-->
+                        <!--                android:text="@string/past_orders"-->
+                        <!--                android:textColor="@color/c_3C3C4399"-->
+                        <!--                android:textSize="@dimen/_14sdp"-->
+                        <!--                app:fonts="@string/sf_protext_medium" />-->
+
+                        <!--            <androidx.recyclerview.widget.RecyclerView-->
+                        <!--                android:id="@+id/rvPastOrders"-->
+                        <!--                android:layout_width="match_parent"-->
+                        <!--                android:layout_height="wrap_content"-->
+                        <!--                android:layout_marginTop="@dimen/_5sdp"-->
+                        <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
+
+                        <RelativeLayout
+                            android:id="@+id/lin_placeholder_login"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/tv_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="@dimen/_40sdp"
+                                android:layout_marginRight="@dimen/_40sdp"
+                                android:gravity="center"
+                                android:text="@string/no_jobs"
+                                android:textColor="@color/black_alpha_60"
+                                android:textSize="@dimen/_16sdp"
+                                app:fonts="@string/sfdiaply_regular" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/txtLbl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_title"
+                                android:layout_marginLeft="@dimen/_40sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_40sdp"
+                                android:gravity="center"
+                                android:text="@string/not_logged_on_yet_login_now_to_see_posted_jobs"
+                                android:textColor="@color/black_alpha_60"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sfdiaply_regular"
+                                tools:ignore="RelativeOverlap" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/btn_login"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_below="@+id/txtLbl"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/_40sdp"
+                                android:background="@drawable/blue_gradient"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/_30sdp"
+                                android:paddingRight="@dimen/_30sdp"
+                                android:paddingBottom="@dimen/_3sdp"
+                                android:text="@string/sure_i_d_like_that"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sfdiaply_regular" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </com.nojom.util.SwipeRefreshLayoutWithEmpty>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/item_orders_ph" />
+
+                        <include layout="@layout/item_orders_ph" />
+
+                        <include layout="@layout/item_orders_ph" />
+
+                        <include layout="@layout/item_orders_ph" />
+
+                        <include layout="@layout/item_orders_ph" />
+
+                        <include layout="@layout/item_orders_ph" />
+
+                        <include layout="@layout/item_orders_ph" />
+
+                        <include layout="@layout/item_orders_ph" />
+
+                        <include layout="@layout/item_orders_ph" />
+
+                        <include layout="@layout/item_orders_ph" />
+
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</layout>

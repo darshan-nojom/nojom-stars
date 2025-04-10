@@ -80,4 +80,20 @@ public class WalletData implements Serializable {
     @SerializedName("embed_url")
     @Expose
     public String embed_url;
+
+    /*order list response*/
+    @Expose
+    @SerializedName("campaigns")
+    public List<CampList> campaigns;
+
+
+    @SerializedName("totalRecords")
+    @Expose
+    public int totalRecords;
+    @SerializedName("totalPages")
+    @Expose
+    public int totalPages;
+    @SerializedName("currentPage")
+    @Expose
+    public String currentPage;
 }

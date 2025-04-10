@@ -415,6 +415,7 @@
                 android:background="@drawable/blue_button_bg">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_app"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_centerVertical="true"
@@ -435,6 +436,23 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_11sdp"
                     app:fonts="@string/sfpro_text_midium" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar_app"
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/white"
+                    app:cpb_colors="@array/progressColor"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -447,6 +465,7 @@
                 android:background="@drawable/red_border_6">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_rej"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_centerVertical="true"
@@ -465,17 +484,34 @@
                     android:textColor="@color/red"
                     android:textSize="@dimen/_11sdp"
                     app:fonts="@string/sfpro_text_midium" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar_rej"
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:cpbStyle="@style/CircularProgressBar"
+                    app:cpb_color="@color/red"
+                    app:cpb_colors="@array/progressColorRed"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="@dimen/_2sdp"
+                    app:cpb_sweep_speed="1.0" />
             </RelativeLayout>
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/rel_camp_complete"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:background="@drawable/blue_button_bg_10"
-            android:padding="@dimen/_5sdp">
+            android:padding="@dimen/_5sdp"
+            android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/_20sdp"
@@ -483,6 +519,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@id/txt_complete"
                 android:src="@drawable/sent"
+                android:id="@+id/img_done"
                 app:tint="@color/white" />
 
             <android.textview.TextViewSFTextPro
@@ -498,6 +535,23 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_11sdp"
                 app:fonts="@string/sfpro_text_midium" />
+
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar_done"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:cpbStyle="@style/CircularProgressBar"
+                app:cpb_color="@color/white"
+                app:cpb_colors="@array/progressColor"
+                app:cpb_max_sweep_angle="300"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_stroke_width="@dimen/_2sdp"
+                app:cpb_sweep_speed="1.0" />
 
         </RelativeLayout>
     </LinearLayout>

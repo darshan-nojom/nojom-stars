@@ -166,6 +166,7 @@ public class WorkSettingActivity extends BaseActivity implements APIRequest.APIR
 
         });
         txtApply.setOnClickListener(v -> {
+            workMoreActivityVM.updateProfile(isEnglish[0] ? "en" : "ar");
             Preferences.writeString(this, Constants.PREF_SELECTED_LANGUAGE, isEnglish[0] ? "en" : "ar");
             loadAppLanguage();
             dialog.dismiss();

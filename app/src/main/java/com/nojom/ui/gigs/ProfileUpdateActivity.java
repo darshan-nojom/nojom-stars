@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -177,6 +178,9 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
                 binding.imgShow.setRotation(0);
             }
         });
+
+        String token = Preferences.readString(this, Constants.FCM_TOKEN, "");
+        Log.d("TTT", "token..... " + token);
     }
 
     @Override
@@ -194,13 +198,11 @@ public class ProfileUpdateActivity extends BaseActivity implements AllSectionAda
             msgEmailOffer();
         } else if (getEmailStatus() == 3 && getAcceptOfferStatus() != 3 && getWhatsappStatus() != 3) {
             msgWhatsappOffer(true);
-        } else if (getEmailStatus() != 3 && getAcceptOfferStatus() == 3 && getWhatsappStatus() != 3) {
+        } else if (getEmailStatus() != 3 && getWhatsappStatus() != 3) {
             businessEmailWhatsapp(true);
-        } else if (getEmailStatus() == 3 && getAcceptOfferStatus() == 3 && getWhatsappStatus() != 3) {
+        } else if (getEmailStatus() == 3 && getAcceptOfferStatus() == 3) {
             msgWhatsapp(true);
-        } else if (getWhatsappStatus() != 3 && getAcceptOfferStatus() != 3) {
-            msgWhatsappOffer(false);
-        } else if (getAcceptOfferStatus() != 3 && getEmailStatus() == 3 && getWhatsappStatus() == 3) {
+        } else if (getAcceptOfferStatus() != 3) {
             msgOffer();
         }
 

@@ -1016,6 +1016,14 @@ public class CommonRequest {
         }
     }
 
+    public static class UpdateProfileLang {
+        String language;
+
+        public void setLanguage(String language) {
+            this.language = language;
+        }
+    }
+
     public static class UpdateProfile {
         String first_name, last_name, email, mobile_prefix, contactNo, username, birth_date, about_me, whatsapp_number, bussiness_email, settings_order;
         Integer gender, show_age, show_email, show_whatsapp, show_message_button, show_send_offer_button, price_range_public_status, gender_public_status, registration_step, is_verified, location_public, chat_allowed;

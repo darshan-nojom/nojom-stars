@@ -29,6 +29,7 @@ import androidx.databinding.DataBindingUtil;
 import com.nojom.R;
 import com.nojom.adapter.FileAdapter;
 import com.nojom.api.APIRequest;
+import com.nojom.api.CampaignByIdListener;
 import com.nojom.api.CampaignListener;
 import com.nojom.databinding.DialogAddLinkCopyBinding;
 import com.nojom.databinding.DialogPickFileBinding;
@@ -36,6 +37,7 @@ import com.nojom.databinding.FragmentCampFilesBinding;
 import com.nojom.fragment.BaseFragment;
 import com.nojom.model.CampFile;
 import com.nojom.model.CampList;
+import com.nojom.model.CampListByIdData;
 import com.nojom.model.CampListData;
 import com.nojom.model.CampaignUrls;
 import com.nojom.util.CompressFile;
@@ -56,7 +58,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class CampFileFragment extends BaseFragment implements CampaignListener {
+public class CampFileFragment extends BaseFragment implements CampaignListener, CampaignByIdListener {
     private FragmentCampFilesBinding binding;
     private CampList campList;
     private ActivityResultLauncher<Intent> filePickerLauncher;
@@ -66,6 +68,7 @@ public class CampFileFragment extends BaseFragment implements CampaignListener {
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_camp_files, container, false);
         campList = ((CampaignDetailActivity2) activity).campList;
+        renderView();
         initData();
         return binding.getRoot();
     }
@@ -89,15 +92,14 @@ public class CampFileFragment extends BaseFragment implements CampaignListener {
         });
         binding.linSubmit.setOnClickListener(view -> {
             if (campFiles != null && campFiles.size() > 0) {
+                binding.txtSubmit.setVisibility(View.INVISIBLE);
+                binding.progressBar.setVisibility(View.VISIBLE);
                 uploadCampFiles();
             }
         });
 
-        if (campList.star_details != null && campList.star_details.attachments != null) {
-            renderFileView(campList.star_details.attachments);
-        }
+        //renderView();
 
-        // Register the ActivityResultLauncher
         filePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                 Intent data = result.getData();
@@ -143,6 +145,7 @@ public class CampFileFragment extends BaseFragment implements CampaignListener {
                         cmpF.fileSize = fileSize;
                         cmpF.fileName = filename;
                         cmpF.isImage = true;
+                        cmpF.isLink = false;
                     }
                     cmpF.filepath = path;
                     campFiles.add(cmpF);
@@ -151,6 +154,13 @@ public class CampFileFragment extends BaseFragment implements CampaignListener {
                 setAdapter();
             }
         });
+    }
+
+    private void renderView() {
+        if (campList.star_details != null && campList.star_details.attachments != null) {
+            campFiles = new ArrayList<>();
+            renderFileView(campList.star_details.attachments);
+        }
     }
 
     private void renderFileView(List<String> attachments) {
@@ -174,9 +184,9 @@ public class CampFileFragment extends BaseFragment implements CampaignListener {
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    public void setData() {
+        campList = ((CampaignDetailActivity2) activity).campList;
+        renderView();
     }
 
     @Override
@@ -401,6 +411,9 @@ public class CampFileFragment extends BaseFragment implements CampaignListener {
             APIRequest apiRequest = new APIRequest();
             String url = API_CAMP_ATTACH_LINK + campId + "/attachments";
             apiRequest.uploadCampAttachUrls(this, activity, url, campaignUrls);
+        } else {
+            binding.txtSubmit.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.GONE);
         }
     }
 
@@ -412,24 +425,42 @@ public class CampFileFragment extends BaseFragment implements CampaignListener {
             //add link which is added by user and direct upload to this below APIs
 
             uploadUrls(campList.campaignId, responseBody.urls);
-        } else if (url.equals(this.url)) {
+        } /*else if (url.equals(this.url)) {
 
-            if (campList.star_details.star_id.equals(responseBody.star_details.id)) {
+            if (campList.star_details.star_id.equals(responseBody.star_details.star_id)) {
                 if (responseBody.star_details.attachments != null) {
                     campFiles = new ArrayList<>();
                     renderFileView(responseBody.star_details.attachments);
                 }
             }
 
-        } else {
+        }*/ else {
             activity.toastMessage(message);
             getCampById(campList.campaignId);
         }
     }
 
     @Override
+    public void successResponse(CampListByIdData responseBody, String url, String message) {
+        if (url.equals(this.url)) {
+
+            if (campList.star_details.star_id.equals(responseBody.star_details.star_id)) {
+                if (responseBody.star_details.attachments != null) {
+                    campFiles = new ArrayList<>();
+                    renderFileView(responseBody.star_details.attachments);
+                }
+            }
+
+        }
+        binding.txtSubmit.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
     public void failureResponse(Throwable throwable, String url, String message) {
         activity.toastMessage(message);
+        binding.txtSubmit.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.GONE);
     }
 
     public String getFileNameFromUrl(String urlString) {

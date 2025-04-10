@@ -9,8 +9,8 @@ public interface Constants {
 //    String BASE_URL_CHAT = "https://geaxdtp8z0.execute-api.us-east-2.amazonaws.com/prod/";
 //    String BASE_URL_WEBSOCKET = "wss://4zpnqwqsn5.execute-api.us-east-2.amazonaws.com/prod/";
 
-    String BASE_URL_CHAT_MSG = BuildConfig.DEBUG ? "http://ec2-15-184-217-235.me-south-1.compute.amazonaws.com:4000/" : "http://ec2-15-184-217-235.me-south-1.compute.amazonaws.com:3000/";
-    String BASE_URL_CHAT = BuildConfig.DEBUG ? "http://ec2-15-184-217-235.me-south-1.compute.amazonaws.com:4000/api/" : "http://ec2-15-184-217-235.me-south-1.compute.amazonaws.com:3000/api/";
+    String BASE_URL_CHAT_MSG = BuildConfig.DEBUG ? "https://chat-stage-api.nojom.com/" : "https://chat-prod-api.nojom.com/";
+    String BASE_URL_CHAT = BuildConfig.DEBUG ? "https://chat-stage-api.nojom.com/api/" : "https://chat-prod-api.nojom.com/api/";
 
 //    String BASE_URL_CHAT = "https://rv0h39xor3.execute-api.us-east-2.amazonaws.com/dev/";
 //    String BASE_URL_WEBSOCKET = "wss://qcjaqghd7k.execute-api.us-east-2.amazonaws.com/dev/";
@@ -491,5 +491,8 @@ public interface Constants {
     String API_DELETE_BANK_NEW = "bank-accounts/delete";
 
     String API_GET_HISTORY = "wallet/withdraw/request";
+
+    String API_GET_CURRENT_ORDERS = "assigned-campaigns?limit=20&campaign_status=pending&campaign_status=in_progress&campaign_status=completed&released=false&page=";
+    String API_GET_PAST_ORDERS = "assigned-campaigns?limit=20&campaign_status=completed&campaign_status=canceled&released=true&page=";
 }
 

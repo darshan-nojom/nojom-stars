@@ -19,6 +19,7 @@ import android.view.WindowManager;
 
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.MutableLiveData;
 
 import com.bumptech.glide.Glide;
 import com.nojom.R;
@@ -49,26 +50,32 @@ public class CampDetailFragment extends BaseFragment implements CampaignListener
     private FragmentCampDetailBinding binding;
     private CampList campList;
     private final PrettyTime p = new PrettyTime();
+    private MutableLiveData<Integer> isShowProgress = new MutableLiveData<>();
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_camp_detail, container, false);
-        campList = ((CampaignDetailActivity2) activity).campList;
-        renderView();
         return binding.getRoot();
     }
 
     private void renderView() {
 
         binding.txtCampaignTitle.setText("" + campList.campaignTitle);
-        binding.tvReceiverName.setText("" + campList.client_name.en + " " + campList.client_name.ar);
+        if (campList.client_name != null) {
+            binding.tvReceiverName.setText("" + campList.client_name.en + " " + campList.client_name.ar);
+        }
         if (campList.star_details != null) {
 
             int selTab = ((CampaignDetailActivity2) activity).selectedTab;
             switch (selTab) {
                 case 0://in progress
-                    binding.linButtonView.setVisibility(View.GONE);
-                    binding.relCampComplete.setVisibility(View.VISIBLE);
+                    if (campList.star_details.req_status.equals("completed")) {//case come when redirect from notification
+                        binding.linButtonView.setVisibility(View.GONE);
+                        binding.relCampComplete.setVisibility(View.GONE);
+                    } else {
+                        binding.linButtonView.setVisibility(View.GONE);
+                        binding.relCampComplete.setVisibility(View.VISIBLE);
+                    }
                     break;
                 case 1://pending
                     if (campList.star_details.req_status.equals("approved") || campList.star_details.req_status.equals("rejected")) {
@@ -92,29 +99,30 @@ public class CampDetailFragment extends BaseFragment implements CampaignListener
 //            TimelineAdapter adapter = new TimelineAdapter(activity, campList.profiles);
 //            binding.rvTracks.setAdapter(adapter);
         }
-        Date date1 = Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", campList.timestamp);
-        Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat dfFinal2;
-        if (activity.language.equals("ar")) {
-            dfFinal2 = new SimpleDateFormat("dd MMM,yyyy");
-        } else {
-            dfFinal2 = new SimpleDateFormat("MMM dd,yyyy");
-        }
-
-
-        if (date1 != null) {
-            if (activity.printDifference(date1, date).equalsIgnoreCase("0")) {
-                String result = p.format(Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", campList.timestamp));
-                binding.txtDate.setText("Due Date: " + result);
+        if (campList.timestamp != null) {
+            Date date1 = Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", campList.timestamp);
+            Date date = Calendar.getInstance().getTime();
+            SimpleDateFormat dfFinal2;
+            if (activity.language.equals("ar")) {
+                dfFinal2 = new SimpleDateFormat("dd MMM,yyyy");
             } else {
-                String finalDate = dfFinal2.format(date1);
-                binding.txtDate.setText("Due Date: " + finalDate);
+                dfFinal2 = new SimpleDateFormat("MMM dd,yyyy");
             }
+
+
+            if (date1 != null) {
+                if (activity.printDifference(date1, date).equalsIgnoreCase("0")) {
+                    String result = p.format(Utils.changeDateFormat("yyyy-MM-dd'T'hh:mm:ss", campList.timestamp));
+                    binding.txtDate.setText(getString(R.string.due_date) + result);
+                } else {
+                    String finalDate = dfFinal2.format(date1);
+                    binding.txtDate.setText(getString(R.string.due_date) + finalDate);
+                }
 
 //            String[] time = campList.timestamp.split("T")[1].split(":");
 //            binding.txtTime.setText(time[0] + ":" + time[1]);
+            }
         }
-
         if (!TextUtils.isEmpty(campList.campaignBrief)) {
             binding.txtDetails.setText(campList.campaignBrief);
         }
@@ -136,25 +144,26 @@ public class CampDetailFragment extends BaseFragment implements CampaignListener
             binding.tvStatus.setText(capitalizeWords(campList.campaignStatus));
         }
 
-        switch (campList.campaignStatus) {
-            case "completed":
-                binding.tvStatus.setBackground(ContextCompat.getDrawable(activity, R.drawable.blue_bg_20));
-                binding.tvStatus.setTextColor(ContextCompat.getColor(activity, R.color.white));
-                break;
-            case "in_progress":
-                binding.tvStatus.setBackground(ContextCompat.getDrawable(activity, R.drawable.green_button_bg_20));
-                binding.tvStatus.setTextColor(ContextCompat.getColor(activity, R.color.white));
-                break;
-            case "pending":
-                binding.tvStatus.setBackground(ContextCompat.getDrawable(activity, R.drawable.orangelight_bg_20));
-                binding.tvStatus.setTextColor(ContextCompat.getColor(activity, R.color.white));
-                break;
-            case "canceled":
-                binding.tvStatus.setBackground(ContextCompat.getDrawable(activity, R.drawable.red_bg_20));
-                binding.tvStatus.setTextColor(ContextCompat.getColor(activity, R.color.white));
-                break;
+        if (campList.campaignStatus != null) {
+            switch (campList.campaignStatus) {
+                case "completed":
+                    binding.tvStatus.setBackground(ContextCompat.getDrawable(activity, R.drawable.blue_bg_20));
+                    binding.tvStatus.setTextColor(ContextCompat.getColor(activity, R.color.white));
+                    break;
+                case "in_progress":
+                    binding.tvStatus.setBackground(ContextCompat.getDrawable(activity, R.drawable.green_button_bg_20));
+                    binding.tvStatus.setTextColor(ContextCompat.getColor(activity, R.color.white));
+                    break;
+                case "pending":
+                    binding.tvStatus.setBackground(ContextCompat.getDrawable(activity, R.drawable.orangelight_bg_20));
+                    binding.tvStatus.setTextColor(ContextCompat.getColor(activity, R.color.white));
+                    break;
+                case "canceled":
+                    binding.tvStatus.setBackground(ContextCompat.getDrawable(activity, R.drawable.red_bg_20));
+                    binding.tvStatus.setTextColor(ContextCompat.getColor(activity, R.color.white));
+                    break;
+            }
         }
-
         if (!TextUtils.isEmpty(campList.campaignAttachmentUrl)) {
             String fName = getFileNameFromUrl(campList.campaignAttachmentUrl);
             binding.txtFileName.setText("" + fName + " " + fName.length() + " " + getString(R.string.kb));
@@ -166,8 +175,40 @@ public class CampDetailFragment extends BaseFragment implements CampaignListener
             binding.tvBudget.setText(Utils.decimalFormat(String.valueOf(campList.getActualPrice())) + " " + activity.getString(R.string.sar));
         }
 
-        binding.relApproved.setOnClickListener(view -> updateStatus(campList.campaignId, "approve"));
-        binding.relReject.setOnClickListener(view -> postDoneDialog(false));
+        binding.relApproved.setOnClickListener(view -> {
+            isShowProgress.postValue(1);
+            updateStatus(campList.campaignId, "approve");
+        });
+        binding.relReject.setOnClickListener(view -> {
+            postDoneDialog(false);
+        });
+
+        isShowProgress.observe(activity, integer -> {
+            if (integer == 1) {//approve case
+                binding.imgApp.setVisibility(View.INVISIBLE);
+                binding.txtApprove.setVisibility(View.INVISIBLE);
+                binding.progressBarApp.setVisibility(View.VISIBLE);
+            } else if (integer == 2) {//reject case
+                binding.imgRej.setVisibility(View.INVISIBLE);
+                binding.txtReject.setVisibility(View.INVISIBLE);
+                binding.progressBarRej.setVisibility(View.VISIBLE);
+            } else if (integer == 3) {//done case
+                binding.imgDone.setVisibility(View.INVISIBLE);
+                binding.txtComplete.setVisibility(View.INVISIBLE);
+                binding.progressBarDone.setVisibility(View.VISIBLE);
+            } else {
+                binding.imgApp.setVisibility(View.VISIBLE);
+                binding.txtApprove.setVisibility(View.VISIBLE);
+                binding.progressBarApp.setVisibility(View.GONE);
+                binding.imgRej.setVisibility(View.VISIBLE);
+                binding.txtReject.setVisibility(View.VISIBLE);
+                binding.progressBarRej.setVisibility(View.GONE);
+                binding.imgDone.setVisibility(View.VISIBLE);
+                binding.txtComplete.setVisibility(View.VISIBLE);
+                binding.progressBarDone.setVisibility(View.GONE);
+            }
+        });
+
 
         binding.progressBar.setProgress((int) campList.progress);
         binding.txtPercent.setText(campList.progress + "%");
@@ -203,12 +244,19 @@ public class CampDetailFragment extends BaseFragment implements CampaignListener
             }
         });
 
-        binding.relCampComplete.setOnClickListener(view -> campaignDone(campList.campaignId));
+        binding.relCampComplete.setOnClickListener(view -> {
+            isShowProgress.postValue(3);
+            campaignDone(campList.campaignId);
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if (activity != null && ((CampaignDetailActivity2) activity).campList != null) {
+            campList = ((CampaignDetailActivity2) activity).campList;
+            renderView();
+        }
     }
 
     @Override
@@ -253,6 +301,7 @@ public class CampDetailFragment extends BaseFragment implements CampaignListener
 
     @Override
     public void successResponse(CampListData responseBody, String url, String message) {
+        isShowProgress.postValue(0);
         if (url.equals(reqUrl)) {//campaign done case
             activity.finish();
         } else {//approve reject case
@@ -267,6 +316,7 @@ public class CampDetailFragment extends BaseFragment implements CampaignListener
     @Override
     public void failureResponse(Throwable throwable, String url, String message) {
         activity.toastMessage(message);
+        isShowProgress.postValue(0);
         if (url.equals(reqUrl)) {//campaign done case
 
         } else {
@@ -295,6 +345,7 @@ public class CampDetailFragment extends BaseFragment implements CampaignListener
             if (isApprove) {
                 dialog.dismiss();
             } else {
+                isShowProgress.postValue(2);
                 updateStatus(campList.campaignId, "reject");
                 dialog.dismiss();
             }

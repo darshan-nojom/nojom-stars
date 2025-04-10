@@ -61,7 +61,7 @@ public class Task24Application extends MultiDexApplication implements Constants 
         return mFirebaseAnalytics;
     }
 
-    public static String LIVE_URL = "https://74i1n3rop0.execute-api.me-central-1.amazonaws.com/prod/";
+    public static String LIVE_URL = "https://agent-prod-api.nojom.com/";
     public static String BASE_URL_GIG = "https://zap31dqqtk.execute-api.me-central-1.amazonaws.com/prod/";
 //    public WebSocketClient clientNew;
 

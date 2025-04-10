@@ -81,4 +81,9 @@ public class SplashActivity extends BaseActivity {
         super.onPause();
 //        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
     }
+
+    @Override
+    public Intent getIntent() {
+        return super.getIntent();
+    }
 }

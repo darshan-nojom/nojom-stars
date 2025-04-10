@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:contentDescription="@string/back"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/intercom_back"
+                app:tint="@color/C_007AFF" />
+
+            <android.textview.TextViewSFTextPro
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img_back"
+                android:text="@string/orders_"
+                android:textColor="@color/C_007AFF"
+                android:textSize="@dimen/_13sdp"
+                app:fonts="@string/sfpro_text_regular" />
+
+            <android.textview.TextViewSFTextPro
+                android:id="@+id/tv_close_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/orders_details"
+                android:textColor="@color/C_020814"
+                android:textSize="@dimen/_13sdp"
+                app:fonts="@string/sftext_semibold" />
+        </RelativeLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
+
+
+                <LinearLayout
+                    android:id="@+id/lin_timeline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:background="@drawable/white_button_bg_7"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imgReq"
+                                android:layout_width="@dimen/_34sdp"
+                                android:layout_height="@dimen/_34sdp"
+                                android:layout_centerHorizontal="true"
+                                android:src="@drawable/ic_requested" />
+
+                            <ProgressBar
+                                android:id="@+id/progress1"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_3sdp"
+                                android:layout_marginStart="@dimen/_minus3sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_toEndOf="@+id/imgReq"
+                                android:background="@drawable/progress_bar_style"
+                                android:max="100"
+                                android:progress="100"
+                                android:progressDrawable="@drawable/progress_bar_style"
+                                android:progressTint="@color/black" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/txt_requested"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/imgReq"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:text="@string/requested"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sfpro_text_regular" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_minus5sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ProgressBar
+                                android:id="@+id/progress2"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_3sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginEnd="@dimen/_minus3sdp"
+                                android:layout_toStartOf="@+id/imgApproved"
+                                android:background="@drawable/progress_bar_style"
+                                android:max="100"
+                                android:progress="100"
+                                android:progressDrawable="@drawable/progress_bar_style"
+                                android:progressTint="@color/C_F2F2F7" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imgApproved"
+                                android:layout_width="@dimen/_34sdp"
+                                android:layout_height="@dimen/_34sdp"
+                                android:layout_centerHorizontal="true"
+                                android:src="@drawable/ic_approved" />
+
+                            <ProgressBar
+                                android:id="@+id/progress3"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_3sdp"
+                                android:layout_marginStart="@dimen/_minus3sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_toEndOf="@+id/imgApproved"
+                                android:background="@drawable/progress_bar_style"
+                                android:progress="100"
+                                android:progressDrawable="@drawable/progress_bar_style"
+                                android:progressTint="@color/C_F2F2F7" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/txt_approved"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/imgApproved"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:text="@string/approved"
+                                android:textColor="@color/c_3C3C43_99"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sfpro_text_regular" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_minus5sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ProgressBar
+                                android:id="@+id/progress4"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_3sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginEnd="@dimen/_minus3sdp"
+                                android:layout_toStartOf="@+id/imgDeliver"
+                                android:background="@drawable/progress_bar_style"
+                                android:max="100"
+                                android:progress="100"
+                                android:progressDrawable="@drawable/progress_bar_style"
+                                android:progressTint="@color/C_F2F2F7" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imgDeliver"
+                                android:layout_width="@dimen/_34sdp"
+                                android:layout_height="@dimen/_34sdp"
+                                android:layout_centerHorizontal="true"
+                                android:src="@drawable/ic_delivered" />
+
+                            <ProgressBar
+                                android:id="@+id/progress5"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_3sdp"
+                                android:layout_marginStart="@dimen/_minus3sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_toEndOf="@+id/imgDeliver"
+                                android:background="@drawable/progress_bar_style"
+                                android:progress="100"
+                                android:progressDrawable="@drawable/progress_bar_style"
+                                android:progressTint="@color/C_F2F2F7" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/txt_delivered"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/imgDeliver"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:text="@string/delivered"
+                                android:textColor="@color/c_3C3C43_99"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sfpro_text_regular" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_minus5sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ProgressBar
+                                android:id="@+id/progress6"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_3sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginEnd="@dimen/_minus3sdp"
+                                android:layout_toStartOf="@+id/imgComplete"
+                                android:background="@drawable/progress_bar_style"
+                                android:max="100"
+                                android:progress="100"
+                                android:progressDrawable="@drawable/progress_bar_style"
+                                android:progressTint="@color/C_F2F2F7" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imgComplete"
+                                android:layout_width="@dimen/_34sdp"
+                                android:layout_height="@dimen/_34sdp"
+                                android:layout_centerHorizontal="true"
+                                android:src="@drawable/ic_completed" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/txt_completed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/imgComplete"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:text="@string/completed"
+                                android:textColor="@color/c_3C3C43_99"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sfpro_text_regular" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/txt_steps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:text="@string/see_step_by_step_details"
+                        android:textColor="@color/C_007AFF"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+                </LinearLayout>
+
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/stars"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_17sdp"
+                    app:fonts="@string/sfdiaply_bold"
+                    tools:ignore="RelativeOverlap" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvStars"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/order_details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_17sdp"
+                    app:fonts="@string/sfdiaply_bold"
+                    tools:ignore="RelativeOverlap" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/white_button_bg_7"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/order_title"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/c_3C3C43_99"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sfpro_text_regular"
+                        tools:ignore="TextContrastCheck" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_job_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/C_F2F2F7" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/details_2"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/c_3C3C43_99"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sfpro_text_regular"
+                        tools:ignore="TextContrastCheck" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/C_F2F2F7" />
+
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/attach_file"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/c_3C3C43_99"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sfpro_text_regular"
+                        tools:ignore="TextContrastCheck" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgFile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/file_type_icon" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/txt_file_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_7sdp"
+                            android:layout_toEndOf="@+id/imgFile"
+                            android:gravity="center_vertical"
+                            android:text="@string/attach_file"
+                            android:textColor="@color/C_344054"
+                            android:textSize="@dimen/_10sdp"
+                            app:fonts="@string/sfpro_text_regular"
+                            tools:ignore="TextContrastCheck" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/C_F2F2F7" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <android.textview.TextViewSFTextPro
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/date"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/c_3C3C43_99"
+                                android:textSize="@dimen/_10sdp"
+                                app:fonts="@string/sfpro_text_regular"
+                                tools:ignore="TextContrastCheck" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/tv_deadline"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|start"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:drawableStart="@drawable/ic_cal_new"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textIsSelectable="true"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sfpro_text_regular" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <android.textview.TextViewSFTextPro
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/time"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/c_3C3C43_99"
+                                android:textSize="@dimen/_10sdp"
+                                app:fonts="@string/sfpro_text_regular"
+                                tools:ignore="TextContrastCheck" />
+
+                            <android.textview.TextViewSFTextPro
+                                android:id="@+id/tv_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|start"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:drawableStart="@drawable/ic_time"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textIsSelectable="true"
+                                android:textSize="@dimen/_12sdp"
+                                app:fonts="@string/sfpro_text_regular" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/C_F2F2F7" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/job_id"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/c_3C3C43_99"
+                        android:textSize="@dimen/_10sdp"
+                        app:fonts="@string/sfpro_text_regular"
+                        tools:ignore="TextContrastCheck" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:id="@+id/tv_job_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/_13sdp"
+                        app:fonts="@string/sfpro_text_regular" />
+                </LinearLayout>
+
+                <android.textview.TextViewSFTextPro
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/payment_details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_17sdp"
+                    app:fonts="@string/sfpro_text_bold"
+                    tools:ignore="RelativeOverlap" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@drawable/white_button_bg_7"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/order_total"
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular"
+                            tools:ignore="TextContrastCheck" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/lbl_agency"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/agency_fee"
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular"
+                            tools:ignore="TextContrastCheck" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_agencyFee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/lbl_tax"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/service_fee_10_1"
+                            android:textColor="@color/c_3C3C43_99"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_regular"
+                            tools:ignore="TextContrastCheck" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_serviceTax"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/C_F2F2F7" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <android.textview.TextViewSFTextPro
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/total_price"
+                            android:textColor="@color/C_020814"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sfpro_text_bold"
+                            tools:ignore="TextContrastCheck" />
+
+                        <android.textview.TextViewSFTextPro
+                            android:id="@+id/tv_totalPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/colorPrimary"
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/_14sdp"
+                            app:fonts="@string/sfpro_text_bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/C_F2F2F7" />
+
+                    <android.textview.TextViewSFTextPro
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:lineHeight="@dimen/_15sdp"
+                        android:text="@string/the_amount_has_been_successfully_deposited_into_the_nojom_platform_but_will_not_be_transferred_directly_to_the_star_after_the_star_submits_the_requested_campaign_you_can_review_the_work_and_approve_the_transfer_of_the_amount_if_no_action_is_taken_within_5_days_from_the_date_if_submission_the_campaign_will_be_approved_and_the_amount_will_be_transferred_to_the_influencer_automatically_to_ensure_smooth_operations"
+                        android:textColor="@color/c_3C3C43_99"
+                        android:textSize="@dimen/_12sdp"
+                        app:fonts="@string/sfpro_text_regular"
+                        tools:ignore="TextContrastCheck" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

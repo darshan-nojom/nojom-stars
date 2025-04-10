@@ -96,7 +96,7 @@ public class CodeActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
-                if (i == 5 && !TextUtils.isEmpty(charSequence) && charSequence.length() == 6) {
+                if (i == 3 && !TextUtils.isEmpty(charSequence) && charSequence.length() == 4) {
                     DrawableCompat.setTint(binding.relLogin.getBackground(), ContextCompat.getColor(CodeActivity.this, R.color.black));
                     binding.btnLogin.setTextColor(getResources().getColor(R.color.white));
                 } else {
@@ -156,7 +156,7 @@ public class CodeActivity extends BaseActivity {
                     toastMessage(getString(R.string.please_enter_otp));
                     return;
                 }
-                if (otp.length() != 6) {
+                if (otp.length() != 4) {
                     //toastMessage(getString(R.string.please_enter_otp));
                     return;
                 }

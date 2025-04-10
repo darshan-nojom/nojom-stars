@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StarDetails implements Serializable {
 
-    @SerializedName("star_id")
+    @SerializedName(value = "star_id", alternate = {"id"})
     @Expose
     public Integer star_id;
     @SerializedName("req_status")
@@ -22,7 +22,7 @@ public class StarDetails implements Serializable {
     public String client_note;
     @SerializedName("is_released")
     @Expose
-    public boolean is_released;
+    public int is_released;
     @SerializedName("total_service_price")
     @Expose
     public double total_service_price;

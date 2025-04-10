@@ -130,4 +130,15 @@
     <integer-array name="progressColorLightGray">
         <item>@color/gray</item>
     </integer-array>
+
+    <color name="c_3C3C43_99">#993C3C43</color>
+    <color name="C_C2C5D0">#C2C5D0</color>
+    <color name="C_007AFF">#007AFF</color>
+    <color name="C_D4E4FA">#D4E4FA</color>
+    <color name="C_C7591A">#1A34C759</color>
+    <color name="C_34C759">#34C759</color>
+    <color name="C_FF95001A">#1AFF9500</color>
+    <color name="C_545456">#57545456</color>
+    <color name="C_FF3B30_10">#1AFF3B30</color>
+    <color name="C_787880_12">#1F787880</color>
 </resources>

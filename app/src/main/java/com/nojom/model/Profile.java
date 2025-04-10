@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class Profile extends GeneralModel {
+public class Profile extends GeneralModel implements Serializable{
 
     @SerializedName("id")
     @Expose
@@ -160,7 +160,9 @@ public class Profile extends GeneralModel {
     @SerializedName("contact_no")
     @Expose
     public String contactNo;
-
+    @SerializedName("is_released")
+    @Expose
+    public int is_released;
     @SerializedName("aboutus_id")
     @Expose
     public int aboutus_id;

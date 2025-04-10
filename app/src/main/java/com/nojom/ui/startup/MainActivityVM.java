@@ -65,7 +65,9 @@ import com.nojom.ui.gigs.ProfileUpdateActivity;
 import com.nojom.ui.gigs.UserAccountActivity;
 import com.nojom.ui.home.WorkHomeActivity;
 import com.nojom.ui.jobs.SoonActivity;
+import com.nojom.ui.projects.CampaignDetailActivity2;
 import com.nojom.ui.projects.MyCampaignActivity;
+import com.nojom.ui.projects.MyOrdersActivity;
 import com.nojom.ui.projects.MyProjectsActivity;
 import com.nojom.ui.workprofile.WorkMoreActivity;
 import com.nojom.util.AESHelper;
@@ -149,8 +151,8 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
 
         setTab("plus", R.drawable.tab_profile, ProfileUpdateActivity.class/*UserAccountActivity.class*/, 0);
 //        setTab("home", R.drawable.tab_home, WorkHomeActivity.class);
-        setTab("project", R.drawable.tab_project, MyCampaignActivity.class, 1);
-        setTab("chat", R.drawable.tab_chat, ChatActivity.class, 2);
+        setTab("chat", R.drawable.tab_chat, ChatActivity.class, 1);
+        setTab("project", R.drawable.tab_project, MyOrdersActivity.class, 2);
         setTab("profile", R.drawable.tab_more, WorkMoreActivity.class, 3);
 
         binding.tabhost.setOnTabChangedListener(this);
@@ -180,7 +182,7 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
             setMoreTab(false);
         });
         binding.linProject.setOnClickListener(view -> {
-            binding.tabhost.setCurrentTab(1);
+            binding.tabhost.setCurrentTab(2);
             activity.setStatusBarColor(activity.getResources().getColor(R.color.C_F2F2F7), true);
             setHomeTab(false);
             setCampaignTag(true);
@@ -189,7 +191,7 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
         });
         binding.linChat.setOnClickListener(view -> {
             activity.setStatusBarColor(activity.getResources().getColor(R.color.C_F2F2F7), true);
-            binding.tabhost.setCurrentTab(2);
+            binding.tabhost.setCurrentTab(1);
             setHomeTab(false);
             setCampaignTag(false);
             setChatTab(true);
@@ -205,7 +207,7 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
         });
 
         binding.text.setText(activity.getString(R.string.profile));
-        binding.textProj.setText(activity.getString(R.string.campaign));
+        binding.textProj.setText(activity.getString(R.string.orders_));
         binding.textChat.setText(activity.getString(R.string.chats));
         binding.textProfile.setText(activity.getString(R.string.more));
 
@@ -303,7 +305,23 @@ public class MainActivityVM extends AndroidViewModel implements TabHost.OnTabCha
                         break;
                 }
             }
-        } /*else if (intent.hasExtra("notifData")) {//when app is killed
+        }
+        if (intent.hasExtra("s_name")) {//campaign related case (Approve Reject SubmitFile MarkComplete)
+            String screenName = intent.getStringExtra("s_name");
+//            Toast.makeText(activity, screenName, Toast.LENGTH_SHORT).show();
+            if (intent.hasExtra("camp_id")) {
+                String campId = intent.getStringExtra("camp_id");
+//                Toast.makeText(activity, campId, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(activity, CampaignDetailActivity2.class);
+                i.putExtra("state", 0);
+                i.putExtra("camp_id", campId);
+                activity.startActivity(i);
+            }
+        }
+
+
+
+        /*else if (intent.hasExtra("notifData")) {//when app is killed
             try {
                 binding.tabhost.setCurrentTab(Constants.TAB_CHAT);
                 JSONObject object = new JSONObject(intent.getStringExtra("notifData"));
